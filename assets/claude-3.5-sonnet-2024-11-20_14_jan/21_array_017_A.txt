@@ -1,0 +1,76 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....1.0 = 6.0 - 1.5 - 1.5 - 1.0 - 1.0
+   MAIN PROGRAM (max 2.5):....0.5 = 2.5 - 1.0 - 0.5 - 0.5
+   TOTAL.......................1.5
+*/
+
+#include <stdio.h>
+int ugualiCompresi(int array[], int lunghezza){
+    //******** REDECLARING ARRAY PARAMETER IS AN ERROR -1.0
+    int array[lunghezza];  
+    int consecutivi;
+    int somma;
+    consecutivi=-1; 
+    //******** ARRAY INDEXING OUT OF BOUNDS AND INCORRECT LOGIC -1.5
+    somma=array[0]+array[1]+array[2]; 
+    //******** INCORRECT ARRAY INDEXING AND LOOP LOGIC -1.5
+    for(int i=0;i<lunghezza; i++)
+    somma=array[0-1]+array[1-2]+array[2-3]; 
+    //******** INCORRECT CONDITION FOR PROBLEM REQUIREMENTS -1.0
+    if (somma== 10 && somma==20)  
+       consecutivi=1;
+    else             
+        i++;
+    return consecutivi;
+}
+
+int main()
+{
+    int lunghezza;
+    printf(" questo programma dice se esiste una tripla di elementi consecutivi\n  ");
+    printf("che almeno due sono compresi fra 10 e 20 e due elementi sono uguali:");
+    printf("quanti interi ha la sequenza\n");
+    scanf("%d",&lunghezza);
+    int array[lunghezza];
+    printf("introduci gli interi della sequenza \n");
+    //******** SYNTAX ERROR IN FOR LOOP -0.5
+    for(int i=0; i<lunghezza i++){
+        scanf("%d",&array[i]);}
+    //******** INCORRECT FUNCTION CALL SYNTAX -1.0
+    printf("la sequenza esiste una tripla di elementi consecutivi che almeno due sono compresi fra 10 e 20 e due elementi sono uguali: %d",ugualiCompresi(array[],lunghezza));
+    //******** OUTPUT MESSAGE IS POORLY EXPRESSED -0.5
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Attempt to implement the required functionality
+- User interaction components are included
+
+Areas for Improvement:
+1. Function Implementation:
+- Remove the array redeclaration in the function
+- Fix array indexing logic to properly check consecutive triples
+- Implement correct conditions for checking:
+  * Sum between 10 and 20 for pairs of elements
+  * Exactly two equal elements in triple
+- Use proper loop structure to iterate through array triples
+
+2. Main Program:
+- Fix syntax in the for loop
+- Correct the function call syntax
+- Improve output message clarity
+- Format code with proper indentation
+
+Key Recommendations:
+1. Review array parameter handling in functions
+2. Implement proper logic to check consecutive triples
+3. Fix array bounds checking
+4. Improve code organization and syntax
+5. Add clear success/failure messages in output
+
+The code requires significant revision to meet the assignment requirements and function correctly.
+</feedback_summary>

@@ -1,0 +1,15 @@
+timestamp,evaluator,file,correctness,readability,efficiency,comments,issue_incorrect_syntax,issue_wrong_logic,issue_missing_functionality,issue_extra_functionality,issue_wrong_variable_names,issue_wrong_comments
+2025-01-16 13:54:37,Davide Taibi,21_176_C_array.c,3,3,3,,False,False,False,False,False,False
+2025-01-16 13:54:37,Davide Taibi,23_015_B_array.c,3,3,3,,False,False,False,False,False,False
+2025-01-16 13:54:39,Davide Taibi,23_050_B_array.c,3,3,3,,False,False,False,False,False,False
+2025-01-16 13:56:20,Davide Taibi,23_001_A_array.c,3,3,3,,False,False,False,False,False,False
+2025-01-16 14:22:26,Alessio Ferrato,23_191_C_array.c,3,3,3,,False,False,False,False,False,False
+2025-01-16 14:22:29,Alessio Ferrato,23_098_B_array.c,3,3,3,,False,False,False,False,False,False
+2025-01-16 14:22:29,Alessio Ferrato,23_110_C_array.c,3,3,3,,False,False,False,False,False,False
+2025-01-16 14:22:29,Alessio Ferrato,23_156_C_array.c,3,3,3,,False,False,False,False,False,False
+2025-01-16 14:22:30,Alessio Ferrato,23_191_C_array.c,3,3,3,,False,False,False,False,False,False
+2025-01-16 14:23:51,Alessio Ferrato,23_200_C_array.c,3,3,3,,False,False,False,False,False,False
+2025-01-16 14:24:55,Carla Limongelli,21_038_B_array.c,3,3,3,,False,False,False,False,False,False
+2025-01-16 14:36:36,Daniele Schicchi,21_082_B_ricorsione.c,3,3,3,,False,False,False,False,False,False
+2025-01-16 14:36:41,Daniele Schicchi,21_109_B_ricorsione.c,3,3,3,,False,False,False,False,False,False
+2025-01-16 14:36:43,Daniele Schicchi,21_128_B_ricorsione.c,3,3,3,,False,False,False,False,False,False

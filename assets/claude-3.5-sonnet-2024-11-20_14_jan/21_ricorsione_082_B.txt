@@ -1,0 +1,89 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........4.0 = 5.0 - 1.0
+countNumbers (2).....2.0
+readNumbers (2)......2.0
+writeNumbers(1)......0.7 = 1.0 - 0.3
+TOTAL................8.7
+*/
+
+#include <stdio.h>
+int minimoDispari(int array[],int l){
+    int verificata; 
+    if(l<3)
+    verificata=1;
+    else{
+        //******** Complex and hard to read boolean expression. Should calculate minimum first -1.0
+        verificata=(((array[0]<array[1] && array[0]<array[2] && array[0]%2!=0)||
+        (array[1]<array[0] && array [1]<array[2] && array[1]%2!=0)||
+        (array[2]<array[0] && array[2]<array[1] && array[2]%2!=0)) &&(minimoDispari(array+1,l-1)));
+    }
+    return verificata;
+}
+
+void scriviNumeri(int array[],int l){
+    FILE* fp=fopen("MinimoDis.dat","wb");
+    //******** Missing error handling return after NULL check -0.3
+    if(fp==NULL){
+        printf("Apertura fallita!\n");
+    }
+    else{
+        fwrite(array,sizeof(int),l,fp);
+        printf("Salvataggio effettuato!\n");
+        fclose(fp);
+    }
+}
+
+void leggiNumeri(int array[],int l){
+    FILE* fp=fopen("MinimoDis.dat","rb");
+    if(fp==NULL)
+        printf("File vuoto!\n");
+        else{
+            for(int i=0;i<l;i++){
+                fread(& array[i],sizeof(int),1,fp);
+            }
+            fclose(fp);
+        }
+}
+
+int quantiNumeri(){
+    FILE* fp=fopen("MinimoDis.dat","rb");
+    int quanti=0;  
+    if(fp==NULL)
+    printf("Apertura fallita!\n");
+    else{
+        int letto; 
+        while(fread(& letto,sizeof(int),1,fp)>0){
+            quanti++;
+        }
+        fclose(fp);
+    }
+    return quanti;
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of file operations (reading and counting)
+- Proper recursive structure in minimoDispari function
+- Good error handling for file operations
+- Correct implementation of binary file handling
+
+Areas for Improvement:
+- The minimoDispari function could be simplified by first calculating the minimum of three numbers and then checking if it's odd
+- File operation error handling should include appropriate return statements or error codes
+- The file name used (MinimoDis.dat) differs from the assignment specification (integers.dat)
+- Boolean expression in minimoDispari is overly complex and could be more readable
+
+Key Recommendations:
+1. Simplify the minimum odd check logic by separating minimum finding from odd checking
+2. Add proper error handling returns after NULL file checks
+3. Use the specified filename from the assignment
+4. Consider breaking down complex boolean expressions into smaller, more manageable parts
+5. Add more descriptive error messages for file operations
+
+</feedback_summary>

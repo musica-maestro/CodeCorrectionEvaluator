@@ -1,0 +1,120 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* 
+maxEven (5)......... 2.0 = 5.0 - 3.0
+countNumbers (2).... 1.7 = 2.0 - 0.3
+readNumbers (2)..... 1.7 = 2.0 - 0.3
+writeNumbers(1)..... 1.0
+TOTAL............... 6.4/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+int maxElementi(int *array){
+    //******** ERROR IN CALCULATING MAXIMUM OF THREE INTEGERS - OVERLY COMPLEX AND ERROR-PRONE -1.5
+    int res=array[0];
+    if(array[0]>array[1]){
+        if(array[0]>array[2])
+            res=array[0];
+        else{  
+            if(array[2]>array[0]) 
+            res=array[2];
+        }
+    }
+    else{
+        if(array[1]>array[2])
+            res=array[1];
+        else
+            res=array[2];
+    }
+    return res;
+}
+
+int massimoPari(int *seq, int lunghezza){
+    //******** MISSING PROPER BASE CASE FOR RECURSION -1.5
+    int ogni; 
+    if(lunghezza<=2)
+        ogni=1;
+    else{
+        //******** INCORRECT LOGIC - CHECKING IF MAX IS >=0 INSTEAD OF EVEN -1.0
+        if(maxElementi(seq)>=0 && massimoPari(seq+1,lunghezza-1)) 
+            ogni=maxElementi(seq) && massimoPari(seq+1,lunghezza-1);
+    }
+    return ogni;
+}
+
+int quantiNumeri() {
+    int quanti=0; 
+    int valore;
+    FILE *fp=fopen("interi.dat","rb");
+    if(fp==NULL)
+        printf("errore\n");
+    else{
+        while(fread(&valore,sizeof(int),1,fp))
+            quanti++;
+    }
+    //******** FILE CLOSURE AFTER RETURN STATEMENT - UNREACHABLE CODE -0.3
+    return quanti;
+    fclose(fp);
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE *fp=fopen("interi.dat","rb");
+    if(fp==NULL)
+        printf("nessun numero da leggere\n");
+    else{
+        for(int i=0;i<lunghezza;i++){
+            //******** INCORRECT FREAD SYNTAX - USING & WITH ARRAY ELEMENT -0.3
+            fread(&sequenza[i],sizeof(int),1,fp);
+        }
+    }
+    fclose(fp);
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE *fp=fopen("interi.dat","wb");
+    if(fp==NULL)
+        printf("nessun numero da salvare\n");
+    else{
+        for(int i=0;i<lunghezza;i++){
+            fwrite(&sequenza[i],sizeof(int),1,fp);
+        }
+    }
+    fclose(fp);
+}
+
+[... rest of the code ...]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Proper implementation of file writing functionality
+- Good basic structure for file operations
+- Correct use of binary file operations
+
+Areas for Improvement:
+1. maxEven function:
+   - Implement proper base case for recursion
+   - Fix logic to check for even maximum values instead of positive values
+   - Simplify maximum calculation logic
+
+2. File Operations:
+   - Fix file closure placement in quantiNumeri()
+   - Correct fread syntax in leggiNumeri()
+   - Add proper error handling for file operations
+
+3. General Structure:
+   - Improve variable naming for clarity
+   - Add more robust error handling
+   - Implement proper parameter validation
+
+Key Recommendations:
+1. Revise the recursive implementation to properly check for even maximums
+2. Fix file handling issues, especially closure timing
+3. Implement proper error handling throughout the code
+4. Simplify the maximum calculation logic
+5. Add input validation for array lengths and parameters
+</feedback_summary>

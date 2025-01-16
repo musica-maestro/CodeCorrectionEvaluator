@@ -1,0 +1,72 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.0 = 6.0 - 1.5 - 0.5
+   - Wrong condition structure for checking triples (-1.5)
+   - Unnecessary boolean variable initialization (-0.5)
+   
+   MAIN (max 2.0):....1.8 = 2.0 - 0.2
+   - Unclear output message (-0.2)
+   
+   TOTAL:....5.8/8.0
+*/
+
+#include<stdio.h>
+int dueUnaCifra(int seq[], int l) {
+    int i = 0;    
+    int esiste = 1; 
+    //******** SETTING THE VARIABLE TO 1 IS NOT NECESSARY (BECAUSE IT'S ALREADY 1), BUT YOU SAVE IT BECAUSE YOU PLACED THE BOOLEAN IN THE LOOP CONDITION -0.5
+    while(i<l-2 && esiste) {
+        //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+        if(!((seq[i]>=0 && seq[i]<=9) && (seq[i+1]>=0 && seq[i+1]<=9)) &&
+           !((seq[i]>=0 && seq[i]<=9) && (seq[i+2]>=0 && seq[i+2]<=9)) &&
+           !((seq[i+1]>=0 && seq[i+1]<=9) && (seq[i+2]>=0 && seq[i+2]<=9)))
+            esiste = 0;
+        else
+        i++;
+    }
+    return esiste;
+}
+int main()
+{
+    int i = 0;    
+    int lunghezza;    
+    printf("Ciao sono un programma che verifica se in ogni tripla di elementi adiacenti della sequenza di numeri che tu introduci sono presenti almeno due numeri composti da una solo cifra! \n");
+    printf("Dimmi quanti numeri hai sottomano? \n");
+    scanf("%d", &lunghezza);
+    int array[lunghezza];
+    while(i<lunghezza) {
+        printf("Dammi un numero:");  
+        scanf("%d", &array[i]);
+        i++;
+    }
+    //******** UNCLEAR MESSAGE -0.2
+    if(dueUnaCifra(array, lunghezza))
+        printf("Si, in ogni tripla di elementi adiacenti della sequenza sono presenti almeno due numeri composti da una solo cifra");
+    else
+        printf("No, in ogni tripla di elementi adiacenti della sequenza non sono presenti almeno due numeri composti da una solo cifra\n");
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct function structure with proper parameters
+- Good implementation of array handling
+- Proper loop control for checking all triples
+- Good user interaction in main function
+
+Areas for Improvement:
+- The logical condition for checking triples is incorrect. The current implementation uses negative logic which makes it harder to read and more prone to errors
+- The boolean variable 'esiste' is initialized unnecessarily since it's already set to 1 by default
+- Output messages could be clearer and more concise
+
+Key Recommendations:
+1. Simplify the triple checking condition by using positive logic instead of negative
+2. Remove unnecessary variable initialization
+3. Make output messages more concise and clear
+4. Consider adding input validation for positive numbers
+5. Consider adding a check for minimum sequence length (at least 3 elements)
+
+The function could be improved by restructuring the condition to check if at least two numbers in each triple are single digits, rather than checking if it's not true that all pairs don't have single digits.
+</feedback_summary>

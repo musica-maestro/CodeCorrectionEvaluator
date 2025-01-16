@@ -1,0 +1,63 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.5):....2.5
+   TOTAL......................7.8
+*/
+
+#include <stdio.h>
+int maggiori5Pari(int a[], int l){
+    int contiene;            
+    int i=0;                 
+    contiene=1;
+    //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+    while(i<l-2 && contiene)
+        if(!(((a[i]>=5 && a[i+1]>=5 && a[i+2]<5)
+        || (a[i]>=5 && a[i+1]<5 && a[i+2]>=5)
+        || (a[i]<5 && a[i+1]>=5 && a[i+2]>=5)) &&
+           ((a[i]%2==0 && a[i+1]%2==0) || (a[i]%2==0 && a[i+2]%2==0) || (a[i+1]%2==0 && a[i+2]%2==0))))
+            contiene=0;
+        else
+            i++;
+    return contiene;
+}
+
+//******** IF THE FUNCTION IS BELOW, YOU MUST DECLARE THE PROTOTYPE -0.5
+int main(){
+    int l;               
+    int i;               
+    printf("Ciao, sono un programma che legge una sequenza di interi e verifica se ogni tripla di elementi consecutivi contiene esattamente ");
+    printf("due elementi maggiori o uguali a 5 ed almeno due elementi pari\n\n");
+    printf("Quanti numeri vuoi inserire? ");
+    scanf("%d",&l);
+    int sequenza[l];
+    printf("\nQuali sono i numeri?\n");
+    for(i=0; i<l; i++)
+        scanf("%d",&sequenza[i]);
+    if(maggiori5Pari(sequenza,l))
+        printf("\nTutte le triple di elementi consecutivi contengono esattamente due elementi maggiori o uguali a 5 ed almeno due elementi pari\n\n");
+    else
+        printf("\nNON tutte le triple di elementi consecutivi contengono esattamente due elementi maggiori o uguali a 5 ed almeno due elementi pari\n\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for checking exactly two elements ≥5 and at least two even elements
+- Proper array handling and loop control
+- Well-structured main function with clear user interaction
+- Good input/output messages that clearly explain the program's purpose
+- Efficient use of boolean flag for loop control
+
+Areas for Improvement:
+- The condition in the maggiori5Pari function, while correct, is quite complex and could be more readable by breaking it down into smaller logical parts
+- Function prototype should be declared before main when the function is defined after it
+- Consider adding input validation for array length
+
+Key Recommendations:
+- Break down complex conditions into smaller, more readable parts using intermediate boolean variables
+- Add function prototype at the beginning of the file
+- Consider adding comments to explain the logic of complex conditions
+- Consider adding input validation to ensure array length is sufficient for checking triples (l ≥ 3)
+</feedback_summary>

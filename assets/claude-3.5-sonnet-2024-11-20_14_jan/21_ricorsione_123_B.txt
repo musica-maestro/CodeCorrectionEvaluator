@@ -1,0 +1,107 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)........... 2.5 = 5.0 - 1.5 - 1.0
+countNumbers (2)..... 0.3 = 2.0 - 0.7 - 1.0
+readNumbers (2)...... 0.6 = 2.0 - 1.0 - 0.4
+writeNumbers(1)...... 0.6 = 1.0 - 0.4
+TOTAL................ 4.0
+*/
+
+#include <stdio.h>
+int minimo(int a, int b, int c){
+    int minimo;
+    if((a<=b) &&  (a<=c))
+        minimo = a;
+    if((b<=a) &&  (b<=c))
+        minimo = b;
+    if((c<=a) &&  (c<=b))
+        minimo = c;
+    return minimo;
+}
+
+int minimoDispari(int* interi, int n){
+    int verificata;                            
+    //******** The base case should be length<=2 (because you need to consider a triplet of elements) -1.0
+    if(n<3)
+        verificata = 0; 
+    else
+        //******** it is a universal check, && -1.5
+        verificata = ((minimo(interi[n-1], interi[n-2], interi[n-3])%2) != 0) && minimoDispari(interi, n-1);
+    return verificata;
+}
+
+void scriviNumeri(int* interi, int n){
+    FILE* fp = fopen("interi.txt", "w");
+    //******** you don't check if fopen was successful -0.4
+    if(fp==NULL)
+        printf("Il file non esiste o l'apertura %c andata male!", 138);
+    else
+        for(int i = 0; i<n; i++)
+            fprintf(fp, "%c ", interi[i]); 
+    fclose(fp);
+}
+
+int quantiNumeri(){
+    int i = 0;                                                
+    char caratteri;                                            
+    //******** file opened with wrong mode -0.7
+    FILE* fp = fopen("interi.txt", "w"); 
+    if(fp==NULL)
+        printf("Il file non esiste o l'apertura %c andata male!", 138);
+    else
+        //******** with fscanf, while must return a value >0 while(fscanf(fp,"%d",&num)>0) -1.0
+        while(fscanf(fp, "%c", &caratteri)>0)
+            i++;
+    fclose(fp);
+    return i;
+}
+
+void leggiNumeri(int* interi, int n){
+    int i = 0;                                                
+    char caratteri;                                            
+    //******** file opened with wrong mode -0.4
+    FILE* fp = fopen("interi.txt", "w");  
+    if(fp==NULL)
+        printf("Qualcosa %c abdato storto!", 138);
+    else{
+        //******** comparing an integer with a character -1.0
+        while(fscanf(fp, "%c", &caratteri)>0){
+            interi[i] = caratteri;
+            i++;
+        }
+        i=n;
+    }
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic file operations structure is present
+- Good implementation of the minimum function for three numbers
+- Main program flow is well structured
+
+Areas for Improvement:
+1. minimoDispari function:
+   - Base case needs correction to handle triplets properly
+   - Logic for universal check needs revision using proper boolean operations
+
+2. File Operations:
+   - File opening modes are incorrect (using "w" instead of "r" for reading)
+   - Need proper error handling after file operations
+   - Character vs integer handling needs correction
+
+3. Input/Output:
+   - File reading/writing needs proper type handling
+   - Error messages could be more informative
+
+Key Recommendations:
+1. Review file operation modes ("r" for reading, "w" for writing)
+2. Implement proper type handling for integer file operations
+3. Revise the recursive logic in minimoDispari to properly check all triplets
+4. Add proper error handling for file operations
+5. Use proper data types for file reading/writing operations
+</feedback_summary>

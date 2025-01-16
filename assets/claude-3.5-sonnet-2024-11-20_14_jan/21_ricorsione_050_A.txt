@@ -1,0 +1,103 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* 
+maxEven (5)......... 3.5 = 5.0 - 1.5
+countNumbers (2).... 1.7 = 2.0 - 0.3
+readNumbers (2)..... 1.7 = 2.0 - 0.3
+writeNumbers(1)..... 1.0
+TOTAL............... 7.9/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int trovaMassimo(int * array,int n){
+    int max = array[n-1];  
+    //******** Inefficient way to find maximum of three numbers, should use a loop or better comparison logic -0.5
+    if(n>=3){ 
+        if(max < array[n-2]){
+            max = array[n-2];
+        }else if(max < array[n-3]){
+            max = array[n-3];
+        }
+    }else{
+        printf("Array troppo piccolo, deve avere minimo 3 elementi\n");
+    }
+    return max;
+}
+
+int massimoPari(int *seq, int lunghezza){
+    //******** Base case is not properly handled - should check for length <= 2 -1.0
+    int verificato = 0; 
+    if(lunghezza >= 3){
+        if(lunghezza == 3){ 
+            verificato = (trovaMassimo(seq,3)) % 2 ==0;
+        }else{ 
+            verificato = ((trovaMassimo(seq,lunghezza)) % 2 == 0) && massimoPari(seq,lunghezza-1); 
+        }
+    }else{
+        printf("Array troppo piccolo, deve avere minimo 3 elementi\n");
+    }
+    return verificato;
+}
+
+int quantiNumeri() {
+    FILE *fp = fopen("interi.txt","r"); 
+    int cont=0,temp=0;
+    //******** Missing file opening check (fp == NULL) -0.3
+    if( fp != NULL){ 
+        while(fscanf(fp,"%d",&temp)>0) 
+            cont ++;
+    }else{
+        printf(" file non esiste\n");
+    }
+    fclose(fp); 
+    return cont;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE *fp = fopen("interi.txt","r");
+    int intero = 0, i=0; 
+    //******** Missing file opening check (fp == NULL) -0.3
+    if( fp != NULL){ 
+        while(fscanf(fp,"%d",&intero)>0 && i<lunghezza){ 
+            sequenza[i] = intero; 
+            i++; 
+        }
+    }else{
+        printf("File non esiste\n");
+    }
+    fclose(fp); 
+}
+
+[Rest of the code remains unchanged...]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of file I/O operations
+- Correct implementation of writeNumbers function
+- Proper file closing in all file operations
+- Good main function structure with user interaction
+
+Areas for Improvement:
+1. Maximum Finding Function (trovaMassimo):
+   - Implementation could be more efficient using a loop or better comparison logic
+   - Should handle edge cases better
+
+2. Recursive Function (massimoPari):
+   - Base case needs proper handling for arrays of length <= 2
+   - Error messages should be more descriptive
+
+3. File Operations:
+   - Need to add proper file opening validation checks
+   - Error handling could be more robust
+
+Key Recommendations:
+1. Add proper NULL checks after file operations
+2. Implement a more efficient maximum finding algorithm
+3. Improve base case handling in recursive function
+4. Add more descriptive error messages
+5. Consider adding input validation in the main function
+</feedback_summary>

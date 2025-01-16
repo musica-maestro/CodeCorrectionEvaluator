@@ -1,0 +1,70 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....1.0 = 6.0 - 1.5 - 1.0 - 1.5 - 1.0
+   MAIN PROGRAM (max 2.5):....0.5 = 2.5 - 1.0 - 0.5 - 0.5
+   TOTAL.......................1.5
+*/
+
+#include <stdio.h>
+int ugualiCompresi(int interi[],int lunghezza){
+    int esiste=0;                                         
+    int i=0;                                              
+    int somma=0;                                           
+    //******** NEVER ENTERS THE LOOP! Assignment instead of comparison (esiste=0) -1.0
+    while(esiste=0 && i<=lunghezza-2){ 
+        somma=interi[i]+interi[i+1]+interi[i+2];
+        //******** CALCULATING THE SUM OF ALL THREE ELEMENTS INSTEAD OF CHECKING PAIRS -1.5
+        //******** CONDITION ON INDEX IS WRONG, SHOULD BE i < length-2 -1.5
+        if((somma>=10 && somma<=20) && ((i==i+1 && i!=i+2) || (i!=i+1 && i==i+2))) 
+            esiste=1;
+        else
+            i++;
+    }
+    return esiste;
+}
+
+int main(){
+    int n;
+    int i=0;
+    //******** ARRAY DECLARATION WITH VARIABLE SIZE BEFORE KNOWING n -1.0
+    int interi[i]; 
+    int esito=0;
+    printf("Gentile utente, quanti numeri vuole inserire?\n");
+    scanf("%d",&n);
+    printf("Quali numeri vuole inserire?\n");
+    for(i=0;i<n;i++)
+        scanf("%d",&interi[i]);
+    //******** INCORRECT FUNCTION CALL - USING i INSTEAD OF ARRAY -0.5
+    esito=ugualiCompresi(interi[i],n); 
+    //******** OUTPUT IS POORLY EXPRESSED -0.5
+    printf("l'esito della sua ricerca %c %d", 138, esito); 
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Attempt to implement the required function and main program
+- Input/output interaction with user is implemented
+
+Areas for Improvement:
+1. Function Implementation:
+- The while loop condition uses assignment (=) instead of comparison (==)
+- The logic for checking pairs of numbers needs revision - should check sums of pairs instead of all three
+- Array bounds checking needs correction
+- Index comparison logic is incorrect
+
+2. Main Program:
+- Array should be declared after getting size from user
+- Function call needs correction to pass array properly
+- Output message should be more descriptive about what the result means
+
+Key Recommendations:
+1. Fix the while loop condition to use == for comparison
+2. Revise the logic to check pairs of numbers within the triple
+3. Correct array bounds checking in the loop
+4. Declare array after reading size from user
+5. Improve output message clarity
+6. Fix function call to pass array correctly
+</feedback_summary>

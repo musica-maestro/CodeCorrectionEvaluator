@@ -1,0 +1,67 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....3.5 = 6.0 - 1.5 - 1.0
+   MAIN (max 2.0):.......1.8 = 2.0 - 0.2
+   TOTAL..................5.3
+*/
+
+#include<stdio.h>
+#include<stdlib.h>
+int DueUnaCifra(int A[], int n){
+	int x=0;
+	int i=0;
+	//******** THIS IS A UNIVERSAL VERIFICATION, NOT AN EXISTENTIAL ONE -1.5
+	while(x==0 && i<n-2){
+		//******** CONDITION ON THE TRIPLE IS WRONG -1.0
+		if((A[i]>=10 && A[i+1]>=10)||(A[i]>=10 && A[i+2]>=10)||(A[i+1]>=10 && A[i+2]>=10)){
+			x=1;
+		}          
+		i++;
+	}
+	return(x);
+}
+int main(){
+	int n, x;
+	printf("\nCiao utente, di quanti elementi vuoi che sia composta la sequenza?\n");
+	scanf("%d",&n);
+	int A[n];
+	printf("\nInserisci %d interi positivi:\n", n);
+	for(int i=0; i<n; i++){
+		scanf("%d",&A[i]);
+	}
+	x=DueUnaCifra(A,n);
+	//******** UNCLEAR MESSAGE -0.2
+	if(x==0){
+		printf("\nSÃ¬. Ogni tripla della sequenza ha almeno due numeri di una sola cifra.");
+	}else{
+		printf("\nNo. Alcune triple non hanno due numeri di una sola cifra.");
+	}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is correct
+- Function and main program separation is appropriate
+- Array handling and user interaction are implemented correctly
+
+Areas for Improvement:
+1. Logic Implementation:
+   - The function implements an existential verification (looking for a triple that doesn't meet the condition) when it should be a universal verification (checking all triples meet the condition)
+   - The condition for checking single-digit numbers is incorrect (currently checks for multi-digit numbers)
+
+2. Condition Logic:
+   - The triple checking condition should verify for at least two single-digit numbers, but currently checks for two or more multi-digit numbers
+   - Should use (A[i] < 10) to check for single-digit numbers instead of (A[i] >= 10)
+
+3. Output Clarity:
+   - Messages could be clearer and more professional
+   - Avoid using special characters that might not display correctly
+
+Key Recommendations:
+1. Reverse the logic to check for single-digit numbers (< 10 instead of >= 10)
+2. Implement proper universal verification by checking all triples
+3. Make output messages more clear and professional
+4. Use standard ASCII characters in output messages
+</feedback_summary>

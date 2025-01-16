@@ -1,0 +1,91 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)............4.0 = 5.0 - 1.0
+countNumbers (2).......1.0 = 2.0 - 1.0
+readNumbers (2)........1.7 = 2.0 - 0.3
+writeNumbers(1)........1.0
+TOTAL..................7.7/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimoPari(int *a,int l){
+    int verificato;        
+    if(l<3){    
+        verificato=1;
+    }
+    else{    
+        //******** The recursive call should be && with the current triplet check -1.0
+        verificato=((a[0]>a[1] && a[0]>a[2] && a[0]%2==0)||
+                    (a[1]>a[0] && a[1]>a[2] && a[1]%2==0)||
+                    (a[2]>a[0] && a[2]>a[1] && a[2]%2==0)) && massimoPari(a+1,l-1);
+    }
+    return verificato;        
+}
+
+int quantiNumeri(){
+    FILE *fp=fopen("massimoPariFile.dat","rb");
+    int n;
+    //******** Counter n is not initialized -0.5
+    if(fp!=NULL){
+        while(fread(&n,sizeof(int),1,fp)){
+            n++;
+        }
+    }
+    else{
+        printf("Impossibile recuperare la dimensione.\n");
+    }
+    fclose(fp);
+    //******** Function may return uninitialized value if file open fails -0.5
+    return n;
+}
+
+void leggiNumeri(int *a,int l){
+    FILE *fp=fopen("massimoPariFile.dat","rb");
+    //******** Missing error handling return value when file open fails -0.3
+    if(fp==NULL){
+        printf("Impossibile salvare l'array");
+    }
+    else{
+        fread(a,sizeof(int),l,fp);
+    }
+    fclose(fp);
+}
+
+void scriviNumeri(int *a,int l){
+    FILE *fp=fopen("massimoPariFile.dat","wb");
+    if(fp==NULL){
+        printf("Impossibile aprire il file\n");
+    }
+    else{
+        fwrite(a,sizeof(int),l,fp);
+    }
+    fclose(fp);
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of file writing functionality
+- Good error checking for file operations
+- Proper recursive structure in massimoPari function
+- Clear main program flow with user interaction
+
+Areas for Improvement:
+- The massimoPari function should use logical AND (&&) between current triplet check and recursive call
+- quantiNumeri function has issues with counter initialization and potential return of uninitialized value
+- leggiNumeri function should handle file open failure more robustly
+- File operations could use more comprehensive error handling
+
+Key Recommendations:
+1. Revise the massimoPari function to properly check all triplets
+2. Initialize counter variables before use
+3. Add proper return values for error conditions in file operations
+4. Implement more robust error handling for file operations
+5. Consider adding input validation for array lengths and user input
+</feedback_summary>

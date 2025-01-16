@@ -1,0 +1,66 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........6.0
+   MAIN PROGRAM (max 2.5):....2.5
+   TOTAL.......................8.5
+*/
+
+ int compresiMultipli3(int interi[],int lunghezza){
+	 int i=0;    
+	 int tripla=0;  
+	 while(i<lunghezza-2 && !tripla){
+		 if(((interi[i]>-10 && interi[i]<10 && interi[i+1]>-10 && interi[i+1]<10)
+		 || (interi[i]>-10 && interi[i]<10 && interi[i+2]>-10 && interi[i+2]<10)
+		 || (interi[i+1]>-10 && interi[i+1]<10 && interi[i+2]>-10 && interi[i+2]<10))
+			 && ((interi[i]%3==0 && interi[i+1]%3 == 0 && interi[i+2]%3!=0)
+			 || (interi[i]%3==0 && interi[i+2]%3 == 0 && interi[i+1]%3!=0)
+			 || (interi[i+1]%3==0 && interi[i+2]%3 == 0 && interi[i]%3!=0)) )
+				 tripla=1;  
+		 else
+			 i++;    
+	 }
+	 return tripla;
+ }
+
+#include <stdio.h>
+int main(int argc, char **argv)
+{
+	int lunghezza;  
+	printf("Questo programma verifica se esiste una tripla di interi consecutivi contenenti ");
+	printf("due elementi di valore compreso tra -10 e 10 e esattamente due multipli di 3\n");
+	printf("Quanto vuoi che sia lunga la sequenza? ");
+	scanf("%d",&lunghezza);
+	int sequenza[lunghezza];
+	for(int i=0;i<lunghezza;i++){
+		printf("Inserisci un intero: ");
+		scanf("%d",&sequenza[i]);
+	}
+	if(compresiMultipli3(sequenza,lunghezza))
+		printf("Esiste una tripla contenente almeno due elementi di valore compreso tra -10 e 10 e esattamente due multipli di 3.\n");
+	else
+		printf("Non esiste una tripla contenente almeno due elementi di valore compreso tra -10 e 10 e esattamente due multipli di 3.\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the existential verification problem
+- Proper use of boolean flag (tripla) to control loop execution
+- Comprehensive condition checking for both range and divisibility by 3
+- Well-structured main program with clear user instructions
+- Appropriate array handling and user input management
+- Clear output messages that match the problem requirements
+
+Areas for Improvement:
+- While the code is functionally correct, the conditions could be made more readable by breaking them into smaller, more manageable parts
+- Consider adding input validation for the sequence length
+- Function declaration could be placed before main() for better code organization
+
+Key Recommendations:
+- Consider breaking down complex conditions into intermediate boolean variables for better readability
+- Add input validation to ensure sequence length is positive and reasonable
+- Consider adding function prototype at the beginning of the file
+</feedback_summary>
+
+The student's submission is excellent and meets all the requirements specified in the assignment. The function correctly implements the existential verification for triples of consecutive elements with the required properties, and the main program properly handles user interaction. The code is well-structured and produces correct results for all test cases.

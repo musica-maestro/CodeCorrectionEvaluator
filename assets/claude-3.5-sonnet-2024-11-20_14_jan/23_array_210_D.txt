@@ -1,0 +1,86 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....2.3 = 6.0 - 1.5 - 1.5 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................4.1
+*/
+
+#include <stdio.h>
+#include <math.h>
+int restoDivisione(int* seq, int l){
+	int esistenza=0; 
+	int i=0; 
+    //******** THIS IS AN EXISTENTIAL VERIFICATION, BUT LOGIC IS INVERTED (SHOULD START WITH esistenza=0) -1.5
+	while(i<l-2 && esistenza){
+      //******** CONDITION ON THE TRIPLE IS OVERLY COMPLEX AND PARTIALLY INCORRECT -1.5
+      if (((int)seq[i]%(int)seq[i+1]!=(int)seq[i+2])||((int)seq[i]%(int)seq[i+2]!=(int)seq[i+1])||((int)seq[i+1]%(int)seq[i]!=(int)seq[i+2])||((int)seq[i+1]%(int)seq[i+2]!=(int)seq[i])||
+      	((int)seq[i+2]%(int)seq[i]!=(int)seq[i+1])||((int)seq[i+2]%(int)seq[i+1]!=(int)seq[i])){
+      	esistenza=0;      
+      	i++;
+      }else{
+      	esistenza=1;
+      }
+	}
+    //******** INCORRECT LOGIC FOR RETURN VALUE (INVERTED) -0.5
+    //******** HOW DO YOU CONSIDER DIVISION BY 0? -0.2
+  return esistenza;
+}
+int main(){
+	printf("Caro utente, l'applicazione data una sequenza di interi verifica se in almeno una\n");
+	printf("tripla di interi adiacenti, un intero vale il resto della divisione degli altri due elementi.\n");
+	printf("\n");
+	int l; 
+	printf("Quanti interi hai a portata di mano? ");
+	scanf("%d", &l);
+    printf("\n");
+	int seq[l];
+	for (int i = 0; i < l; i++){
+		printf("Inserisci un intero: ");
+		scanf("%d",&seq[i]);
+	}
+    //******** UNCLEAR MESSAGE (INVERTED LOGIC IN OUTPUT) -0.2
+	if (restoDivisione(seq , l)){
+		printf("La funzione non ha nessuna tripla che soddisfa la condizione\n");
+	}else{
+        printf("La funzione ha almeno una tripla che soddisfa la condizione.\n");
+	}
+	return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Main function handles user interaction appropriately
+- Array allocation and input reading are implemented correctly
+
+Areas for Improvement:
+1. Logic Implementation:
+   - The existential verification logic is inverted
+   - The condition checking for remainder relationships is overly complex
+   - Return value logic is incorrect
+
+2. Error Handling:
+   - No handling for division by zero cases
+   - Should validate input values
+
+3. Code Logic:
+   - The while loop condition combined with esistenza creates incorrect flow
+   - The triple checking condition needs simplification and correction
+
+Key Recommendations:
+1. Restructure the function to properly implement existential verification:
+   - Start with esistenza=0
+   - Set to 1 when a valid triple is found
+   - Exit loop when found (or continue to check all)
+
+2. Simplify the remainder checking condition:
+   - Check each possible combination clearly
+   - Add protection against division by zero
+
+3. Fix the output logic:
+   - Align return value with actual finding
+   - Make output messages clearer and consistent with the function's return value
+
+</feedback_summary>

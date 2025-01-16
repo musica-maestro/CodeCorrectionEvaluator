@@ -1,0 +1,86 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.5):....2.2 = 2.5 - 0.3
+   TOTAL.......................6.2
+*/
+
+#include <stdio.h>
+//******** IF FUNCTION IS WRITTEN BELOW, YOU MUST DECLARE THE PROTOTYPE -0.5
+int comrpesiMultipli3(int *v, int i);
+
+int main(){
+    int i;
+    printf("Inserisci il numero di numeri: ");
+    scanf("%d",&i);
+    int vettore[i];
+    for(int n=0; n < i; n++){
+        printf("Inserisci un numero: ");
+        scanf("%d",&vettore[n]);
+    }
+    int c = comrpesiMultipli3(vettore, i);
+    switch(c){ 
+        case 0:
+        printf("Non esiste una tripla! ");
+        for(int n=0; n < i; n++)
+        printf("%d ",vettore[n]);
+        break;
+        case 1:
+        printf("Esiste una tripla! ");
+        //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+        for(int n=0; n < i; n++)
+        printf("%d ",vettore[n]);
+        break;
+        default:
+        printf("Errore! ");
+        break;
+    }
+    return 0;
+}
+
+int comrpesiMultipli3(int *v, int i){
+    int check=0, counter_consecutivi=0, counter_multipli=0, j=0;
+    //******** EXACTLY TWO ELEMENTS MUST BE DIVISIBLE BY 3 (THE THIRD MUST BE DIFFERENT). EXAMPLE: IF TRIPLE IS 3 12 6 YOUR CONDITION IS SATISFIED -1.5
+    while(check!=1 && j<i){  
+        if( v[j]>=-10 && v[j]<=10 ){
+            counter_consecutivi++;
+            if(v[j]%3==0){
+                counter_multipli++;
+            }
+            if( counter_consecutivi==3 && counter_multipli==2 ){
+            check=1;
+            }
+            else{
+                check=0;
+            }
+        }
+        j++;        
+    }
+    return check;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good main program structure with proper user interaction
+- Correct use of switch statement for output handling
+- Basic array handling and input collection is well implemented
+
+Areas for Improvement:
+- Function implementation needs revision for checking consecutive triples:
+  * Current implementation doesn't properly check consecutive elements
+  * The logic for counting multiples of 3 needs to consider the entire triple at once
+  * The range check (-10 to 10) should count elements across the triple
+
+- Code organization:
+  * Function prototype should be declared before use
+  * Output messages could be more descriptive about the properties being checked
+
+Key Recommendations:
+1. Modify the function to check three consecutive elements at a time using a proper sliding window
+2. Implement separate counters for range check and multiples of 3 within each triple
+3. Add more descriptive output messages explaining the properties found/not found
+4. Declare function prototype at the beginning of the file
+5. Consider adding input validation for array size
+</feedback_summary>

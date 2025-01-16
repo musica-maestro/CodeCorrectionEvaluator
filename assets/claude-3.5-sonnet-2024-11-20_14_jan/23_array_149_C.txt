@@ -1,0 +1,66 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....2.3 = 6.0 - 2.0 - 1.5 - 0.2
+   MAIN (max 2.0):.......1.9 = 2.0 - 0.1
+   TOTAL..................4.2
+*/
+
+#include <stdio.h>
+int dueUnaCifra(int seq[], int lung) {
+    int ris=0;
+    int cont=0;  
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lung - 2 -1.0
+    for(int i=0; i<lung-2; i++) {
+    //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+    if(((seq[i]>=0 && seq[i]<=9) || (seq[i+1]>=0 && seq[i+1]<=9) || (seq[i+2]<=0 && seq[i+2]>=9)) && 
+        ((seq[i]>=0 && seq[i]<=9) || (seq[i+1]<=0 && seq[i+1]>=9) || (seq[i+2]>=0 && seq[i+2]<=9)) &&
+        ((seq[i]<=0 && seq[i]>=9) || (seq[i+1]>=0 && seq[i+1]<=9) || (seq[i+2]>=0 && seq[i+2]<=9)))
+        cont=1;
+    else
+        i++;
+    }
+    //******** WITHOUT THE BOOLEAN VARIABLE IN THE CONDITION, EVEN IF YOU FIND A TRIPLE THAT DOES NOT SATISFY THE PROPERTY, YOU CONTINUE TO CHECK -0.2
+    if(cont==1)
+        ris=1;
+    else
+        ris=0;
+    return ris;
+}
+int main() {
+    int lung;
+    printf("Quanti interi vuoi inserire?\n");
+    scanf("%d",&lung);
+    int seq[lung];
+    for(int i=0; i<lung; i++) {
+        printf("Inserisci intero: ");
+        //******** MISSING SPACE -0.1
+        scanf("%d",&seq[i]);
+    }
+    if(dueUnaCifra(seq,lung))
+        printf("In tutte le triple di elementi adiacenti della sequenza sono presenti almeno due numeri composti da una sola cifra\n");
+    else
+        printf("Non in tutte le triple di elementi adiacenti della sequenza sono presenti almeno due numeri composti da una sola cifra\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct overall program structure with separate function and main
+- Good user interaction in main function
+- Clear output messages
+- Proper parameter passing between main and function
+
+Areas for Improvement:
+- The logic for checking triples is incorrect. The current conditions don't properly verify if at least two numbers in each triple are single digits
+- Array bounds checking needs correction to avoid accessing elements beyond the array
+- The loop control with i++ in the else clause can cause triples to be skipped
+- The boolean logic could be simplified and made more efficient by breaking the loop when a failing condition is found
+
+Key Recommendations:
+1. Revise the triple-checking logic to correctly count single-digit numbers in each triple
+2. Fix array bounds checking to prevent buffer overflows
+3. Remove the i++ from the else clause and let the for loop handle iteration
+4. Consider using a break statement when a triple fails the condition instead of continuing to check
+5. Simplify the boolean conditions for better readability and maintainability
+</feedback_summary>

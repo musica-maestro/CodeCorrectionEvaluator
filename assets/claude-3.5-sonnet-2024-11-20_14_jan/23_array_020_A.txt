@@ -1,0 +1,63 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.3 = 6.0 - 1.5 - 0.2
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL......................6.1
+*/
+
+#include <stdio.h>
+int multipli(int sequenza[],int lunghezza){
+	int i,j,k,conteggio; 
+	int multipli = 1;
+	//******** SETTING THE VARIABLE TO 1 IS NOT NECESSARY (BECAUSE IT'S ALREADY 1), BUT YOU SAVE IT BECAUSE YOU PLACED THE BOOLEAN IN THE LOOP CONDITION -0.5
+	for(i=0;i<lunghezza-2 && multipli;i++){
+		conteggio = 0;
+		for(j=i;j<=i+2;j++)
+			for(k=i;k<=i+2;k++)
+			//******** HOW TO CONSIDER 0? -0.2
+			if(sequenza[j]%sequenza[k]==0 && sequenza[j]!=sequenza[k]) 
+				conteggio++;  
+		if(conteggio==0) 
+		    multipli = 0;
+	}
+	return multipli;
+}
+int main(){
+	int lunghezza; 
+	printf("Programma che verifica se in una sequenza di interi in ogni terna di numeri adiacenti è presente almeno un numero multiplo di un altro.\n");
+	printf("Inserire il numero di interi della sequenza: ");
+	scanf("%d",&lunghezza);
+	int sequenza[lunghezza];
+	for(int i=0;i<lunghezza;i++){
+		printf("Inserire l'intero numero %d: ",i+1);
+		scanf("%d",&sequenza[i]);
+	}
+	//******** UNCLEAR OUTPUT MESSAGE -0.2
+	if(multipli(sequenza,lunghezza))
+		printf("\nOgni terna di numeri adiacenti della sequenza %c tale che un numero %c il multiplo di un altro.\n\n",138,138);
+	else
+		printf("Esiste almeno una terna di numeri adiacenti tale che NESSUN numero %c il multiplo di un altro.",138);
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the triple checking logic
+- Proper array traversal and boundary checking
+- Good structure with separate function and main program
+- Appropriate use of nested loops for checking multiples
+
+Areas for Improvement:
+- The initialization of multipli=1 is redundant since it's already initialized to 1
+- Need to handle the case when input contains zero values more carefully
+- Output messages could be clearer and more descriptive
+- Consider using more meaningful variable names (e.g., 'conteggio' could be 'multipleCount')
+
+Key Recommendations:
+1. Remove unnecessary variable initializations
+2. Add input validation for zero values
+3. Make output messages more user-friendly and clear
+4. Consider adding comments to explain the logic of the nested loops
+5. Use more descriptive variable names to improve code readability
+</feedback_summary>

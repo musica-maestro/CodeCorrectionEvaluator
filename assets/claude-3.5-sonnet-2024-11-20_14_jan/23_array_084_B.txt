@@ -1,0 +1,61 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.2 - 0.5
+   MAIN PROGRAM (max 2.0):....2.0
+   TOTAL.......................7.3
+*/
+
+#include <stdio.h>
+int positivi (int a, int b, int c){
+//******** DO YOU CONSIDER 0 POSITIVE OR NEGATIVE? -0.2
+return (a>0 && b>0 || a>0 && c>0 || b>0 && c>0);  
+}
+int duePositivi(int a[], int n){
+int i=0;  
+int DuePos=1;  
+//******** SETTING THE VARIABLE TO 1 IS NOT NECESSARY (BECAUSE IT'S ALREADY 1), BUT YOU SAVE IT BECAUSE YOU PLACED THE BOOLEAN IN THE LOOP CONDITION -0.5
+	while(i<n-2 && DuePos)   
+		if(positivi(a[i],a[i+1],a[i+2]))
+			i++;  
+		else
+			DuePos=0;
+return DuePos;
+}
+int main(){
+int n;  
+printf("Caro Utente, questo programma ti dice se nella sequenza di numeri, in ogni tripla sono presenti esattamente due numeri positivi \n");
+printf("Inserisci la lunghezza dell'array: ");
+scanf("%d",&n);  
+int array[n];  
+	for(int i=0;i<n;i++){  
+		printf("Inserisci un numero: ");
+		scanf("%d",&array[i]);
+	}
+		if(duePositivi(array,n))   
+			printf("In ogni tripla di elementi adiacenti sono presenti esattamente due numeri positivi");
+		else
+			printf("Non è vero che in ogni tripla di elementi adiacenti sono presenti esattamente due numeri positivi");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of universal verification approach
+- Good structure with separate functions for checking positives and main logic
+- Clear and informative user interaction in main function
+- Proper array handling and iteration
+- Good implementation of the stopping condition when a triple is found that doesn't satisfy the requirement
+
+Areas for Improvement:
+- The positivi function should be more explicit about handling zero values
+- The initialization of DuePos to 1 is redundant since it's the default value
+- Consider adding input validation for array length n
+- Consider adding comments to explain the logic of the positivi function
+
+Key Recommendations:
+- Clarify the handling of zero values in the positivi function
+- Add input validation for array length
+- Add comments to explain the logic in complex conditions
+- Consider using more descriptive variable names (e.g., 'hasExactlyTwoPositives' instead of 'DuePos')
+</feedback_summary>

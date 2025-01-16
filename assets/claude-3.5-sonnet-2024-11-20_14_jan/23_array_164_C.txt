@@ -1,0 +1,73 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....1.5 = 6.0 - 1.5 - 1.5 - 1.5
+   MAIN PROGRAM (max 2.0):....2.0
+   TOTAL.......................3.5
+*/
+
+#include <stdio.h>
+int unaCifra(int interi[],int lungh)	{
+	int duenumeriunitari ;
+	duenumeriunitari=0 ;
+	int i ;
+	i=0 ;
+	//******** INCORRECT LOOP CONDITION: SHOULD BE i < lungh-2 AND BOOLEAN LOGIC IS WRONG -1.5
+	while(i<=lungh-2 && duenumeriunitari)	{ 
+		//******** COMPARING INTEGERS WITH CHARACTERS ('0','9') IS INCORRECT -1.5
+		if((( interi[i]>='0' && interi[i]<='9') && (interi[i+1]>='0' && interi[i+1]<='9')
+			&& (interi[i+2]>'9' ) ) || ( (interi[i]>='0' && interi[i]<='9')
+			&& (interi[i+1]>'9') && (interi[i+2]>='0' && interi[i+2]<='9') )   
+			|| ( (interi[i]>'9') && (interi[i+1]>='0' && interi[i+1]<='9') &&
+			(interi[i+2]>='0' && interi[i+2]<='9') ) ) {  
+			//******** CONDITION ON TRIPLE IS WRONG - SHOULD CHECK FOR SINGLE DIGITS (x < 10 && x >= 0) -1.5
+			duenumeriunitari=1 ; 
+		}
+		else i++ ;
+	}
+	 return duenumeriunitari ;
+}
+int main() {
+	int lunghezza ;
+	printf("Caro utente introduca la lunghezza della sequenza : ");
+	scanf("%d",&lunghezza) ;
+	int sequenza[lunghezza] ;
+	for(int i=0;i<lunghezza;i++)	{
+		printf("Introduci un intero : ") ;
+		scanf("%d",&sequenza[i]) ;
+	}
+	if(unaCifra(sequenza,lunghezza))
+		printf("Dentro ogni terna di interi ci sono effettivamente due numeri unitari") ;
+	else
+		printf("Dentro la terna di numeri interi non ci sono due numeri unitari") ; 
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Main function correctly handles user interaction
+- Proper array declaration and input collection
+- Clear output messages
+
+Areas for Improvement:
+1. Logic Issues:
+   - The loop condition is incorrect and uses the boolean variable wrongly
+   - Integer comparison with characters ('0','9') is fundamentally wrong
+   - The triple condition logic needs to check for single digits properly
+
+2. Implementation Issues:
+   - Should use proper integer comparison (x < 10 && x >= 0) for single digit check
+   - Loop condition should be i < lungh-2 to avoid array bounds issues
+   - Boolean logic in while loop needs revision
+
+Key Recommendations:
+1. Fix the single digit check logic:
+   - Use numerical comparisons instead of character comparisons
+   - Implement proper bounds checking (0-9) for single digits
+2. Correct the loop structure:
+   - Fix the while loop condition
+   - Ensure proper array bounds checking
+3. Revise the triple checking logic:
+   - Implement correct counting of single digit numbers in each triple
+   - Use proper numerical comparisons
+</feedback_summary>

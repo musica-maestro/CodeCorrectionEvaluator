@@ -1,0 +1,111 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)......... 2.5 = 5.0 - 1.5 - 1.0
+countNumbers (2).... 1.7 = 2.0 - 0.3
+readNumbers (2)..... 0.0 = 2.0 - 2.0
+writeNumbers(1)..... 0.7 = 1.0 - 0.3
+TOTAL............... 4.9
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimo(int interi[], int l){
+    int max=interi[0];
+    for(int i=1; i<l; i++){
+        if(interi[i]>max)
+            max=interi[i];
+    }
+    return max;
+}
+
+int pari(int a){
+    return (a%2==0);
+}
+
+int massimoPari(int interi[], int l){
+    int risultato; 
+    //******** base case is wrong - should check l<=2 -1.5
+    if(l<3)
+        risultato=1;
+    else
+        //******** recursion should be done on array length, not array+1 -1.0
+        risultato=pari(massimo(interi, 3)) && massimoPari(interi+1, l-1);
+    return risultato;
+}
+
+int quantiNumeri(){
+    int numero; 
+    //******** counter not initialized -0.3
+    int quanti=0;
+    FILE *fp=fopen("LeggiInteri.txt","r");
+    if(fp!=NULL){
+        while(fscanf(fp,"%d", &numero)>0)
+            quanti++;
+    }
+    fclose(fp);
+    return quanti;
+}
+
+void scriviNumeri(int* sequenza, int l) {
+    //******** missing check if file opening failed -0.3
+    FILE *fp=fopen("LeggiInteri.txt", "w");
+    if(fp!=NULL){
+        for(int i=0; i<l; i++){
+            fprintf(fp,"%d ", *(&sequenza[i]));
+        }
+    }
+    else
+        printf("scrittura non possibile...\n\n");
+    fclose(fp);
+}
+
+//******** missing readNumbers function -2.0
+
+int main() {
+    int lunghezza;         
+    int scelta;                
+    printf("Vuoi introdurre una nuova sequenza (premi 1) oppure recuperarla da file (premi 2)? ");
+    scanf("%d",&scelta);
+    if(scelta==1) {
+        printf("Introduci la lunghezza della sequenza: ");
+        scanf("%d",&lunghezza);
+        int array[lunghezza];
+        printf("Scrivi %d elementi \n",lunghezza);
+        for(int i=0;i<lunghezza;i++)
+            scanf("%d",&array[i]);
+        if(massimoPari(array,lunghezza))
+            printf("Si, la sequenza inserita ha tutte le triple in cui l'elemento massimo e' pari\n\n");
+        else
+            printf("No, la sequenza inserita non ha tutte le triple in cui l'elemento massimo e' pari\n\n");
+            scriviNumeri(array, lunghezza);
+    }
+    else {
+        lunghezza = quantiNumeri();
+        printf("lunghezza e' pari a %d\n", lunghezza);
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of the massimo (maximum) helper function
+- Proper file handling with close operations
+- Clear main program structure with user interaction
+
+Areas for Improvement:
+- The massimoPari (maxEven) function has incorrect base case and recursive implementation
+- The readNumbers function is completely missing
+- File handling needs additional error checking
+- Counter initialization in quantiNumeri needs attention
+
+Key Recommendations:
+1. Implement the missing readNumbers function
+2. Fix the base case in massimoPari to check for l<=2
+3. Correct the recursive implementation to work on array length
+4. Add proper file opening error checks
+5. Initialize counters properly in quantiNumeri
+6. Consider implementing proper error handling for file operations
+</feedback_summary>

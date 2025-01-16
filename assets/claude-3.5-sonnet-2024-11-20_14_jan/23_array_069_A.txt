@@ -1,0 +1,83 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.5 = 6.0 - 1.0 - 0.5
+   MAIN (max 2.0):.......1.8 = 2.0 - 0.2
+   TOTAL..................6.3/8.0
+*/
+
+#include <stdio.h>
+int unMultiplo(int a, int b){
+	int si=0;
+	if ((a%b==0)||(b%a==0)){
+		si =1;
+	}
+	return si;
+}
+
+int multipli(int v[], int len){
+	int i =0;
+	int verificato=1;
+	//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < len - 2 -1.0
+	while(i<(len-2) && verificato==1){
+		if ((unMultiplo(v[i],v[i+1])) || (unMultiplo(v[i], v[i+2])) || (unMultiplo(v[i+1], v[i+2]))){
+			i++;
+		}
+		else{
+			verificato=0;
+		}
+	}
+	return verificato;
+}
+
+int main(){
+	int l;
+	printf("Ciao user, creiamo una sequenza di interi. Di quanti elementi la vuoi creare?\n");
+	scanf("%d", &l);
+	//******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.2
+	int v[l];
+	printf("Ok, ora inserisci %d valori interi.\n",l);
+	int i  =0;
+	while(i<l){
+		scanf("%d", &v[i]);
+		i++;
+	}
+	printf("Ecco la tua sequenza:\n");
+	int lun=0;
+	while (lun<l){
+		printf("%d", v[lun]);
+		lun++;
+	}
+	printf("\n");
+	printf("Ok, ora controllo se, per ogni tripla di consecutivi, \nc'è almeno una coppia dividendo-divisore.\n");
+	//******** ACCENTED CHARACTERS ARE NOT ALLOWED -0.5
+	if(multipli(v,l)==1){                               
+		printf("A quanto pare si!\n");
+	}
+	else if(multipli(v,l)==0){
+		printf("A quanto pare no...\n");
+	}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of the helper function unMultiplo
+- Correct logic for checking multiples between pairs
+- Well-structured main function with clear user interaction
+- Proper implementation of the universal verification approach
+
+Areas for Improvement:
+- Array bounds checking needs attention in the multipli function
+- Array declaration should follow after getting the length input
+- Avoid using accented characters in output messages
+- Consider adding input validation for array length
+- Could improve output formatting with spaces between numbers
+
+Key Recommendations:
+1. Fix the array bounds checking in multipli function to prevent potential buffer overflows
+2. Move array declaration after length input validation
+3. Replace accented characters with standard ASCII characters
+4. Add input validation for array length to ensure it's positive and reasonable
+5. Consider adding spaces between numbers in output for better readability
+</feedback_summary>

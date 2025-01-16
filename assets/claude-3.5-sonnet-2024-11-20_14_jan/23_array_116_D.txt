@@ -1,0 +1,58 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.8 = 6.0 - 1.0 - 0.2
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................6.6
+*/
+
+#include<stdio.h>
+int restoDivisione(int*seq,int l){
+    int contatore=0;  
+    //******** WITHOUT THE BOOLEAN VARIABLE IN THE CONDITION, EVEN IF YOU FIND A TRIPLE THAT SATISFIES THE PROPERTY, YOU CONTINUE TO CHECK -0.2
+    for(int i=0;i<l-2 && !contatore;i++){
+        //******** TWO OR THREE COMBINATIONS ON THE TRIPLE CONDITION ARE MISSING -1.0
+        if(seq[i]%seq[i+1]==seq[i+2] || seq[i+2]%seq[i+1]==seq[i] || seq[i+1]%seq[i+2]==seq[i] || seq[i]%seq[i+2]==seq[i+1]
+            || seq[i+1]%seq[i]==seq[i+2] || seq[i+2]%seq[i]==seq[i+1])
+            contatore=1;
+    }
+return contatore;
+}
+
+int main(){
+    int lunghezza; 
+    printf("Inserisci la lunghezza della sequenza perfavore\n");
+    scanf("%d",&lunghezza);
+    int array[lunghezza]; 
+    //******** UNCLEAR MESSAGE -0.2
+    for(int i=0;i<lunghezza;i++) {
+        printf("Inserisci un intero perfavore\n");
+        scanf("%d",&array[i]);
+    }
+    if(restoDivisione(array,lunghezza))
+        printf("Esiste una terna di elementi adiacenti nell'array in cui e presente almeno un elemento multiplo di uno degli altri\n");
+    else
+        printf("Non esiste una terna di elementi adiacenti nell'array in cui uno dei tre è il resto della divisione degli altri due\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the array bounds check (i<l-2)
+- Proper function structure with parameters and return value
+- Good implementation of the main loop for checking triples
+- Appropriate use of boolean flag (contatore) to stop when found
+
+Areas for Improvement:
+- The condition checking for remainder relationships could be more comprehensive
+- Input prompts could be more clear and informative
+- The code doesn't handle the case when one of the numbers is 0 explicitly
+- The control flow could be optimized to stop checking once a valid triple is found
+
+Key Recommendations:
+1. Add explicit handling for division by zero cases
+2. Make input prompts more descriptive and user-friendly
+3. Consider adding input validation for array length
+4. Consider using more descriptive variable names (e.g., 'found' instead of 'contatore')
+5. Add comments to explain the logic of the remainder checking conditions
+</feedback_summary>

@@ -1,0 +1,104 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)......... 2.5 = 5.0 - 1.5 - 0.5 - 0.5
+countNumbers (2).... 1.7 = 2.0 - 0.3
+readNumbers (2)..... 1.7 = 2.0 - 0.3
+writeNumbers(1)..... 0.7 = 1.0 - 0.3
+TOTAL............... 6.6
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimo(int a,int b,int c){
+    int max = a;
+    if(max<b && b>c)
+        max = b;
+    else
+        if(max<c)
+            max = c;
+    return max;
+}
+
+int massimoPari(int *a, int l){
+    int risultato;
+    //******** ERROR: Accessing array elements beyond bounds when l<=2 -0.5
+    if(l<=2)
+        risultato = ((massimo(a[0],a[1],a[2]))%2) == 0; 
+    else
+        //******** ERROR: Recursive logic should check all triplets -1.5
+        risultato = (((massimo(a[0],a[1],a[2]))%2) == 0) && massimoPari(a+1,l-1);
+    return risultato;
+}
+
+int quantiNumeri() {
+    FILE* fp = fopen("interi.dat","rb");
+    int l = 0;
+    int app;
+    //******** MISSING else after NULL check -0.3
+    if(fp==NULL)
+        printf("il file non esiste\n");
+    else
+        while(fread(&app,sizeof(int),1,fp))
+            l++;
+    printf("nel file ci sono %d numeri\n\n",l);
+    fclose(fp);
+    return l;
+}
+
+void leggiNumeri(int* a, int l) {
+    FILE* fp = fopen("interi.dat","rb");
+    //******** MISSING else after NULL check -0.3
+    if(fp==NULL)
+        printf("il file non esiste\n");
+    else
+        fread(a,sizeof(int),l,fp);
+    printf("lettura da file eseguita\n\n");
+    fclose(fp);
+}
+
+void scriviNumeri(int* a, int l) {
+    FILE* fp = fopen("interi.dat","wb");
+    //******** MISSING else after NULL check -0.3
+    if(fp==NULL)
+        printf("impossibile aprire il file\n");
+    else
+        fwrite(a,sizeof(int),l,fp);
+    fclose(fp);
+    printf("salvato\n");
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of file I/O operations
+- Good basic structure for recursive function
+- Proper file handling with open/close operations
+- Clear implementation of maximum finding function
+
+Areas for Improvement:
+1. massimoPari function:
+   - Fix array bounds checking in base case
+   - Revise recursive logic to properly check all consecutive triplets
+   - Consider edge cases when array length is less than 3
+
+2. File handling:
+   - Add proper error handling after NULL checks
+   - Include appropriate error messages and recovery mechanisms
+
+3. Code robustness:
+   - Add input validation for array lengths
+   - Improve error messaging for file operations
+
+Key Recommendations:
+1. Revise the massimoPari function to:
+   - Properly handle base cases when l < 3
+   - Implement correct recursive logic for checking all triplets
+2. Add proper error handling in file operations with else clauses
+3. Add input validation for array lengths and other parameters
+4. Improve error messages to be more informative for users
+</feedback_summary>

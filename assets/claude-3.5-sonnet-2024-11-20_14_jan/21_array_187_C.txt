@@ -1,0 +1,71 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.5 = 6.0 - 0.5
+   MAIN PROGRAM (max 2.5):....2.5
+   TOTAL.......................8.0
+*/
+
+#include <stdio.h>
+int MultiploDi3(int n)
+{
+	return (n%3 == 0);
+}
+int compresiMultipli3(int seq[], int l)
+{
+	int i = 0;				 
+	int esiste = 0;			
+	while(i<l-2 && !esiste) {
+		//******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.5
+		if((((seq[i] > -10 && seq[i] < 10) && (seq[i+1] > -10 && seq[i+1] < 10))
+		|| ((seq[i+2] > -10 && seq[i+2] < 10) && (seq[i+1] > -10 && seq[i+1] < 10))
+			|| ((seq[i] > -10 && seq[i] < 10)  && (seq[i+2] > -10 && seq[i+2] < 10)))
+			&& ((MultiploDi3(seq[i]) && MultiploDi3(seq[i+1]))
+			|| (MultiploDi3(seq[i+1]) && MultiploDi3(seq[i+2]))
+			|| (MultiploDi3(seq[i]) && MultiploDi3(seq[i+2])))) {
+				esiste = 1;
+			} else {
+				i++;
+			}
+	}
+	return esiste;
+}
+int main()
+{
+	int lunghezza;		
+	printf("Quanti valori vuoi inserire?\n");
+	scanf("%d", &lunghezza);
+	int sequenza[lunghezza];
+	for(int i = 0; i < lunghezza; i++) {
+		printf("Inserisci un valore:\n");
+		scanf("%d", &sequenza[i]);
+	}
+	if(compresiMultipli3(sequenza, lunghezza)) {
+		printf("Esiste almeno una tripla di interi nella sequenza che contiene almeno due elementi il cui valore è compreso tra -10 e 10 (estremi inclusi) e che contiene esattamente due multipli di 3!\n");
+	} else {
+		printf("Non esiste una tripla di interi nella sequenza che contiene almeno due elementi il cui valore è compreso tra -10 e 10 (estremi inclusi) e che contiene esattamente due multipli di 3!\n");
+	}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the existential verification problem
+- Proper array bounds checking in the main loop (i<l-2)
+- Good use of boolean flag (esiste) to control loop execution
+- Well-structured main function with clear user interaction
+- Comprehensive output messages that clearly explain the results
+- Correct handling of the two required conditions (range check and multiple of 3)
+
+Areas for Improvement:
+- The condition in the if statement is overly complex and could be refactored for better readability
+- Consider breaking down the complex condition into smaller, more manageable sub-conditions with meaningful variable names
+- Could use more descriptive variable names (e.g., 'lunghezza' could be 'length' for better clarity)
+
+Key Recommendations:
+- Break down complex conditions into smaller, well-named boolean variables
+- Add comments explaining the logic of complex conditions
+- Consider using more descriptive variable names in English for better code maintainability
+</feedback_summary>
+
+The student's implementation is largely correct and meets most of the requirements. The only minor deduction is for the overly complex condition that could be made more readable. The main function is well implemented with proper user interaction and clear output messages. The core logic correctly identifies triples meeting both required conditions (range check and multiples of 3).

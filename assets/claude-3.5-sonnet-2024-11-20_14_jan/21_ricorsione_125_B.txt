@@ -1,0 +1,86 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)........... 2.5 = 5.0 - 1.5 - 1.0
+countNumbers (2)..... 0.0 = 2.0 - 2.0
+readNumbers (2)...... 0.0 = 2.0 - 2.0
+writeNumbers(1)...... 0.3 = 1.0 - 0.4 - 0.3
+TOTAL................ 2.8
+*/
+
+int minimoDispari(int *seq, int lunghezza){
+    //******** Recursion should be done on array length, incorrect recursive logic -1.5
+    //******** The base case should be length<=2 (because you need to consider a triplet of elements) -1.0
+    int res;
+    if(lunghezza<3)
+        res=0;
+        else{
+            if(lunghezza==3)
+                res= (((seq[0]<seq[1] && seq[0]<seq[2]) && seq[0]%2!=0) ||
+                ((seq[1]<seq[0] && seq[1]<seq[2]) && seq[1]%2!=0) ||
+                ((seq[2]<seq[1] && seq[2]<seq[0]) && seq[2]%2!=0));
+                else{
+                    res= (((seq[0]<seq[1] && seq[0]<seq[2]) && seq[0]%2!=0) ||
+                ((seq[1]<seq[0] && seq[1]<seq[2]) && seq[1]%2!=0) ||
+                ((seq[2]<seq[1] && seq[2]<seq[0]) && seq[2]%2!=0)) + minimoDispari(seq+1, lunghezza-1);
+                }
+        }
+        return res;
+}
+
+int quantiNumeri() {
+    //******** Missing the countNumbers implementation -2.0
+    printf("Non ancora!\n");
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    //******** Missing the readNumbers implementation -2.0
+    printf("Non ancora!\n");
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE* fp = fopen("interi.dat", "wb");
+    //******** while(fp!=NULL) leads to infinite loop -0.4
+    if(fp==NULL)
+        printf("Slavataggio non riuscito.\n");
+        else{
+            while(fp!=NULL){
+                //******** Missing proper file writing logic, incorrect parameter usage -0.3
+                fwrite(&sequenza[0], sizeof(lunghezza), 1, fp);
+                sequenza++;
+            }
+            printf("Salvataggio riuscito!\n");
+        }
+        fclose(fp);
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic structure of the minimoDispari function is present
+- Attempt at implementing file operations
+- Main function properly handles user input
+
+Areas for Improvement:
+- minimoDispari function:
+  * Incorrect recursive logic
+  * Base case needs revision to properly handle triplets
+  * Should use proper array length checks
+
+- File Operations:
+  * quantiNumeri and leggiNumeri functions are not implemented
+  * scriviNumeri has an infinite loop issue
+  * Incorrect file writing logic
+
+- Missing Functions:
+  * Complete implementation of quantiNumeri (countNumbers)
+  * Complete implementation of leggiNumeri (readNumbers)
+
+Key Recommendations:
+1. Revise the recursive logic in minimoDispari to properly handle array traversal
+2. Implement proper base cases for arrays of length ≤ 2
+3. Complete the missing file operation functions
+4. Fix the infinite loop in scriviNumeri
+5. Use proper file writing syntax with correct parameters
+</feedback_summary>

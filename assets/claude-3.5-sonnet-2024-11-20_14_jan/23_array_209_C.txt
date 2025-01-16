@@ -1,0 +1,62 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.0 = 6.0 - 1.0 - 1.0
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................5.8
+*/
+
+#include<stdio.h>
+int dueUnaCifra(int*arr,int l){
+	int verif=1; 
+	//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < l - 2 -1.0
+	for (int i = 0; i < l-2; i++)
+	{
+		//******** CONDITION ON THE TRIPLE IS WRONG - SHOULD CHECK FOR SINGLE DIGITS (0-9) NOT JUST <10 -1.0
+		if((arr[i]>=10&&arr[i+1]>=10)
+			||(arr[i+2]>=10&&arr[i+1]>=10)    
+			||(arr[i]>=10&&arr[i+2]>=10))
+			verif=0;
+	}
+	return verif;
+}
+int main(){
+	int lunghezza;
+	printf("utente dimmi quanti numeri vuoi inserire: ");
+	scanf("%d",&lunghezza);
+	int array[lunghezza];
+	for (int i = 0; i < lunghezza; i++)
+	{
+		printf("dammi un numero e premi invio: ");
+		scanf("%d",&array[i]);
+	}
+	int verifica=dueUnaCifra(array,lunghezza);
+	//******** UNCLEAR MESSAGE -0.2
+	if(verifica){
+		printf("utente in tutte le triple di elementi adiacenti \n");
+		printf("della sequenza sono presenti almeno due numeri composti da una sola cifra ");
+	}
+	else
+		printf("utente NON in tutte le triple di elementi adiacenti della sequenza sono presenti almeno due numeri composti da una sola cifra");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct overall program structure with separate function and main
+- Proper array handling and parameter passing
+- Good implementation of universal verification logic
+- Appropriate use of boolean flag for verification
+
+Areas for Improvement:
+- The condition for checking single-digit numbers is incorrect. Instead of checking arr[i]>=10, should check if number is between 0 and 9
+- Array bounds checking needs attention - the loop condition should properly account for checking triples
+- Output messages could be clearer and more concise
+- Consider adding input validation for positive integers
+
+Key Recommendations:
+1. Modify the condition to check for single digits using: number >= 0 && number <= 9
+2. Review array indexing when checking triples to prevent out-of-bounds access
+3. Improve output message clarity
+4. Add input validation to ensure only positive integers are entered
+</feedback_summary>

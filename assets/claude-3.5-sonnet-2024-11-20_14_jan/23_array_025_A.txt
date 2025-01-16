@@ -1,0 +1,68 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.5 = 6.0 - 1.5 - 1.0
+   MAIN PROGRAM (max 2.0):....1.0 = 2.0 - 0.5 - 0.5
+   TOTAL......................4.5
+*/
+
+#include <stdio.h>
+int multipli(int array[],int lunghezza)
+{
+    int verifica=1;   
+    int i=0;    
+    //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+    for(i=0; i<lunghezza-2; i++) 
+        {
+            if((array[i]%2!=array[i+1]) && (array[i]%2!=array[i+2]) &&
+               (array[i+1]%2!=array[i]) && (array[i+1]%2!=array[i+2]) &&
+               (array[i+2]%2!=array[i+1]) && (array[i+2]%2!=array[i]))
+                  verifica=0;
+        }
+        return verifica;
+}
+
+int main()
+{
+    int i;
+    int dim;
+    printf("Quanti interi ha la sequenza?\n");
+    scanf("%d", &dim);
+    //******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+    int lunghezza[dim];
+    for(i=0; i<dim; i++)
+    {
+        printf("Inserisci un intero:\n");
+        //******** INCORRECT READING, SHOULD BE &lunghezza[i] -0.5
+        scanf("%d", &lunghezza[i]);
+    }
+    //******** FUNCTION NAME MISMATCH (multipli vs multipli) -1.0
+    int esiste=multipli(lunghezza,dim);
+    {
+    if(esiste==1)
+      printf("Esiste per ciascuna terna di elementi adiacenti della sequenza\nalmeno un elemento della terna multiplo di uno degli altri due\n");
+    else
+      printf("Esiste almeno un elemento per cui non e' vero che\nper ciascuna terna di elementi adiacenti della sequenza\nalmeno un elemento della terna multiplo di uno degli altri due\n");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is correct
+- Output messages are clear and informative
+- Proper use of function parameters and return values
+
+Areas for Improvement:
+- The logic for checking multiples in triples is incorrect. The current implementation checks for modulo 2 instead of checking if numbers are multiples of each other
+- Array declaration should occur after getting the dimension from user input
+- Function name mismatch between declaration and call (multipli vs multipli)
+- Incorrect scanf usage for array elements
+
+Key Recommendations:
+1. Fix the triple checking logic by properly implementing the modulo operation between numbers
+2. Move array declaration after getting the dimension
+3. Use consistent function names throughout the code
+4. Correct the scanf format for array elements using &lunghezza[i]
+5. Consider adding input validation for array dimension and elements
+</feedback_summary>

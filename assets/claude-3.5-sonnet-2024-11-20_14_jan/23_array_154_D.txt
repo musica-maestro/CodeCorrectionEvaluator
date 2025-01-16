@@ -1,0 +1,73 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.3 = 6.0 - 1.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.0):....1.3 = 2.0 - 0.5 - 0.2
+   TOTAL.......................5.6
+*/
+
+#include<stdio.h>
+int restoDivisione(int sequenza[],int l) {
+	int i; 
+	int esiste; 
+	esiste=0;
+    //******** INCORRECT INDENTATION -0.5
+    for(i=0;i<l-2 && !esiste;i++) {
+		//******** HOW DO YOU CONSIDER DIVISION BY 0? -0.2
+		if((sequenza[i]%sequenza[i+1]==sequenza[i+2] ) || (sequenza[i+1]%sequenza[i]==sequenza[i+2]) ||
+			(sequenza[i]%sequenza[i+2]==sequenza[i+1]) || (sequenza[i+2]%sequenza[i]==sequenza[i+1]) ||
+			(sequenza[i+2]%sequenza[i+1]==sequenza[i]) || (sequenza[i+1]%sequenza[i+2]==sequenza[i])) {
+			esiste=1;
+		}
+	}
+return esiste;
+}
+
+int main() {
+  int i;
+  int l; 
+  int uguale; 
+  printf("Ciao sono un programma che verifica se esiste tra una tripla di elementi adiacenti\n");
+  printf("dove uno dei tre sia uguale all resto della divisione degli altri due\n");
+  printf("Quanto vuoi che la tua sequenza sia lungha?\n");
+  scanf("%d",&l);
+  //******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+  int sequenza[l];
+  for(i=0;i<l;i++) {
+  	printf("Inserci un intero:\n");
+  	scanf("%d",&sequenza[i]);
+  }
+ uguale=restoDivisione(sequenza,l);
+ //******** UNCLEAR MESSAGE -0.2
+ if(uguale==1) {
+ 	printf("SI esiste una terna di elementi adicaenti nella sequenza in cui uno dei tre");
+    printf("%c il resto della divisione degli altri due",138);
+    }
+ else {
+ 	printf("NON esiste una terna di elementi adicaenti nella sequenza in cui uno dei tre");
+ 	printf("%c il resto della divisione degli altri due",138);
+ }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the existential verification logic
+- Proper function structure with parameters and return value
+- Complete implementation of all possible remainder combinations
+- Good use of boolean flag to stop searching once a valid triple is found
+
+Areas for Improvement:
+- Code indentation needs to be consistent throughout
+- Need to handle division by zero cases
+- Array declaration should follow the length input
+- Output messages could be clearer and more professional
+- Consider using standard ASCII characters instead of extended ASCII
+
+Key Recommendations:
+1. Add validation for division by zero
+2. Move array declaration after getting the length input
+3. Improve code formatting and indentation
+4. Make output messages more clear and professional
+5. Use standard ASCII characters for better compatibility
+</feedback_summary>

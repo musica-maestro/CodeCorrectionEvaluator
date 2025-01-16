@@ -1,0 +1,68 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....3.3 = 6.0 - 1.5 - 1.0 - 0.2
+   MAIN (max 2.0):.......1.3 = 2.0 - 0.5 - 0.2
+   TOTAL.................4.6
+*/
+
+#include <stdio.h>
+int isMultiplo(int a,int b){
+	int multiplo=0;
+	if(a%b==0 || b%a==0)
+		multiplo=1;
+	return multiplo;
+}
+int Multipli(int *sequenza,int l){
+	int i=0;		
+	int tutti=1;	
+	//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < l - 2 -1.0
+	while(i+2<l && tutti){
+		//******** CONDITION ON THE TRIPLE IS WRONG -1.5
+		if(!(isMultiplo(sequenza[i],sequenza[i+1]) || isMultiplo(sequenza[i+1],sequenza[i+2]) || isMultiplo(sequenza[i],sequenza[i+2]))){
+			tutti=0;
+		}
+		else
+			i++;
+	}
+	return tutti;
+}
+int main(){
+	int i,n;		
+	printf("inserisci il numero degli elementi della tua sequenza\n");
+	scanf("%d",&n);
+	//******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+	int sequenza[n];		
+	printf("inserisci gli elementi della tua sequenza\n");
+	for(i=0;i<n;i++)
+		scanf("%d",&sequenza[i]);
+	//******** HOW TO CONSIDER 0? -0.2
+	if(Multipli(sequenza,n))
+		//******** UNCLEAR OUTPUT MESSAGE -0.2
+		printf("in tutte le triple della seqeunza c'%c almeno un elemento che %c multiplo dell'altro\n",138,138);
+	else
+		printf("esiste almeno una tripla della sequenza in cui nessun elemento %c multiplo dell'altro",138);
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good overall program structure with separate functions
+- Correct implementation of the isMultiplo helper function
+- Basic user interaction implemented correctly
+
+Areas for Improvement:
+- Array bounds checking needs correction: The loop condition should be i < l - 2 to avoid accessing elements beyond array bounds
+- The logic for checking multiples in triples needs revision to correctly handle all cases
+- Array declaration should follow after getting the size input
+- Need to consider edge cases like handling zero values
+- Output messages could be clearer and more informative
+
+Key Recommendations:
+1. Fix array bounds checking in the Multipli function to prevent buffer overflows
+2. Review and correct the triple condition logic to ensure all multiple relationships are properly checked
+3. Move array declaration after size input validation
+4. Add handling for edge cases, especially zero values
+5. Improve output messages clarity and correctness
+6. Consider adding input validation for array size and elements
+</feedback_summary>

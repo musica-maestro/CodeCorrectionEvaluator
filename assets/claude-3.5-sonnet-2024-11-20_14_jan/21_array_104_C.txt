@@ -1,0 +1,75 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........0.5 = 6.0 - 1.5 - 1.0 - 0.5 - 1.5 - 1.0
+   MAIN PROGRAM (max 2.5):....0.5 = 2.5 - 0.5 - 0.5 - 0.5 - 0.5
+   TOTAL.......................1.0
+*/
+
+#include <stdio.h>
+//******** IF FUNCTION IS WRITTEN BELOW, YOU MUST DECLARE THE PROTOTYPE -0.5
+int compresiMultipli3(int interi[], int lunghezza[]){
+//******** WRONG INITIALIZATION -1.0
+int modulo       
+//******** EXTREMELY CONVOLUTED AND WRONG CONDITION -1.5
+'while'(-10<=interi[]>=10) 
+'intero'[i]=0
+'intero'[j]=0
+'while'(interi[]%3==0)
+'if'(-10<=interi[]>=10, interi[]%3==0)
+	modulo==1
+'else'
+	modulo==0
+
+//******** FORMAT SPECIFIER FOR AN INTEGER IS %d -0.5
+int main(int sequenza, int lunghezza)
+{  
+	printf("Caro utente, quanti interi ha la sequenza?\n");
+	scanf("%s", &sequenza) 
+	printf("Caro utente introduci gli interi della sequenza.\n");
+	//******** IT'S NOT A STRING -0.5
+	scanf("%s", &sequenza)  
+}
+	//******** FUNCTION CALLED WITHOUT PARAMETERS -1.5
+	compresimultipli3(int sequenza, int lunghezza)
+	//******** CONDITION MISSING! -1.0
+	if(-10<=interi[]>=10; intero[i]%3==0; intero[j]%3==0) 
+		printf("Caro utente, esiste una tripla di elementi.\n")
+	else
+		printf("Caro utente, non esiste una tripla di elementi.\n")
+	return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure attempt with main function and helper function
+- Attempt to implement user interaction
+- Basic output messages are clear and user-friendly
+
+Areas for Improvement:
+1. Function Structure:
+- Function prototype needs to be declared before main
+- Function implementation has severe syntax errors
+- Parameters are incorrectly handled in function call
+
+2. Logic Implementation:
+- Missing proper loop structure to check consecutive triples
+- Incorrect condition checking for numbers between -10 and 10
+- Missing logic for checking exactly two multiples of 3
+
+3. Input/Output:
+- Wrong format specifier used for integer input (%s instead of %d)
+- Array input handling is missing
+- Array length is not properly used
+
+Key Recommendations:
+1. Implement proper array traversal using a for loop
+2. Use correct syntax for array indexing (array[i] instead of array[])
+3. Fix format specifiers in scanf (%d for integers)
+4. Properly implement the logic for checking:
+   - At least two elements between -10 and 10
+   - Exactly two multiples of 3
+5. Add proper function prototype declaration
+6. Implement proper array input handling in main
+</feedback_summary>

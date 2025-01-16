@@ -1,0 +1,81 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........2.0 = 6.0 - 1.5 - 1.0 - 1.5
+   MAIN PROGRAM (max 2.5):....1.7 = 2.5 - 0.5 - 0.3
+   TOTAL.......................3.7
+*/
+
+#include <stdio.h>
+int isUguali(int array[], int i){
+	return ((array[i]==array[i+1])&&(array[i]!=array[i+2]) && (array[i]!=array[i-1]));
+}                                                     
+int ugualiCompresi(int array[], int lunghezza){
+	int i=0;		
+	int esiste=0;	
+        //******** NEVER ENTERS THE LOOP! Wrong condition with esiste initialized to 0 -1.5
+	while(i<lunghezza-2 && esiste){
+                //******** CONDITION IS COMPLICATED AND INCORRECT - Missing proper check for exactly two equal elements -1.5
+                //******** CONDITION IS MISSING PROPER RANGE CHECK FOR SUMS -1.0
+		if ((isUguali 
+		&& ((((array[i]+array[i+1]>10 && array[i]+array[i+1]<20)
+		|| (array[i]+array[i+2]>10 && array[i]+array[i+2]<20)
+		|| (array[i+1]+array[i+2]>10 && array[i+1]+array[i+2]<20)))) ||
+		 (((array[i]+array[i+1]>10 && array[i]+array[i+1]<20)
+		 || (array[i]+array[i+2]>10 && array[i]+array[i+2]<20)
+		 || (array[i+1]+array[i+2]>10 && array[i+1]+array[i+2]<20))) ||
+		(((array[i]+array[i+1]>10 && array[i]+array[i+1]<20)
+		|| (array[i]+array[i+2]>10 && array[i]+array[i+2]<20)
+		|| (array[i+1]+array[i+2]>10 && array[i+1]+array[i+2]<20)))))
+			esiste=1;
+		else
+			i++;
+	}
+	return esiste;
+}
+int main()
+{
+	int lunghezza;		
+	printf("inserisci lunghezza array\n");
+	scanf("%d", &lunghezza);
+	int array[lunghezza];		
+	for(int i=0;i<lunghezza;i++){
+		printf("inserisci un intero\n");
+		scanf("%d" , &array[i]);
+	}
+        //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+        //******** YOU DO NOT EXPLAIN THE MEANING OF THE OUTPUT -0.3
+	if (ugualiCompresi(array,lunghezza))
+		printf("esiste una tripla in cui ci sono due interi uguali e la somma di due elementi della tripla e' compresa tra 10 e 20, estremi esclusi\n");
+	else
+		printf("non esiste una tripla in cui ci sono due interi uguali e la somma di due elementi della tripla e' compresa tra 10 e 20, estremi esclusi\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Main function correctly handles array input
+- Attempt to implement the required logic for checking triples
+
+Areas for Improvement:
+1. Loop Logic:
+   - The while loop condition is incorrect (esiste initialized to 0 prevents loop entry)
+   - Need to fix the loop condition to properly traverse the array
+
+2. Condition Implementation:
+   - The condition checking for exactly two equal elements needs to be simplified and corrected
+   - Sum range checks need to be more clearly implemented
+   - Current implementation has redundant conditions
+
+3. Output Messages:
+   - Messages should be more specific about the properties being checked
+   - Consider adding more informative output for better user understanding
+
+Key Recommendations:
+1. Fix the while loop condition to properly iterate through the array
+2. Simplify and correct the equality checking logic
+3. Implement clearer sum range checks
+4. Improve output messages for better clarity
+5. Consider breaking down the complex condition into smaller, more manageable parts
+</feedback_summary>

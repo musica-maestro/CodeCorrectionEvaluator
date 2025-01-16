@@ -1,0 +1,63 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.0 = 6.0 - 1.5 - 0.5
+   MAIN (max 2.0):.......1.5 = 2.0 - 0.5
+   TOTAL..................5.5/8.0
+*/
+
+#include <stdio.h>
+int Multipli(int *seq, int lunghezza){
+    int esiste=1;
+    int i=0;
+    //******** THIS IS A UNIVERSAL VERIFICATION, NOT AN EXISTENTIAL ONE -1.5
+    while(i<lunghezza-2 && esiste){
+        if(!((seq[i]%seq[i+1]==0)||(seq[i+1]%seq[i]==0)|| (seq[i+1]%seq[i+2]==0)||
+            (seq[i+2]%seq[i+1]==0))){
+            esiste=0;
+        }
+        else
+            i++;
+    }
+    //******** SETTING THE VARIABLE TO 1 IS NOT NECESSARY, BUT SAVED BY BOOLEAN IN LOOP CONDITION -0.5
+    return esiste;
+}
+
+int main() {
+    int lunghezza;
+    printf("Ciao utente sono un programma che verifica se, data una sequenza di interi,\n");
+    printf("esiste un elemento che e\' multiplo del suo adiacente. \n");
+    printf("Quanti interi vuoi introdurre?\n");
+    scanf("%d", &lunghezza);
+    //******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+    int seq[lunghezza];
+    for(int i=0; i<lunghezza; i++){
+        printf("Dammi un intero: \n");
+        scanf("%d", &seq[i]);
+    }
+    if(Multipli(seq, lunghezza))
+        printf("Esiste un elemento multiplo del suo adiacente\n");
+    else
+        printf("Non esiste un elemento multiplo del suo adiacente\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct array bounds checking in the loop (i < lunghezza-2)
+- Proper parameter passing and function structure
+- Good user interaction in main function
+- Appropriate use of boolean flag for verification
+
+Areas for Improvement:
+- The logic implements an existential verification rather than the required universal verification for triples
+- The initialization of 'esiste' to 1 is redundant given the loop condition structure
+- Array declaration should follow the length input
+- The output message could be more specific about checking triples rather than just adjacent elements
+
+Key Recommendations:
+1. Modify the verification logic to check if ALL triples satisfy the condition, not just if one exists
+2. Move the array declaration after getting the length input
+3. Update the output messages to clearly indicate the triple checking nature of the program
+4. Consider removing redundant variable initialization
+</feedback_summary>

@@ -1,0 +1,79 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....3.0 = 6.0 - 2.0 - 0.5 - 0.5
+   MAIN (max 2.0):....1.3 = 2.0 - 0.5 - 0.2
+   TOTAL:....4.3
+*/
+
+#include <stdio.h>
+int positivo(int* arr, int l) {
+	int p=1;
+	for(int t=0; t<l && p==1; t++) {
+		if(arr[t]<0){
+			p=0;
+		}
+	}
+	return p;
+}
+int dueUnaCifra (int* arr, int l) {
+	int esiste=1;
+	//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < l - 2 -0.5
+	for(int c=0; c<l-2 && esiste==1; c++) {
+			//******** BEING BETWEEN 0 AND 9 IS WRITTEN AS arr[i] >= 0 && arr[i] <= 9 -2.0
+			if(((arr[c]<10 && arr[c+1]<10)) ||
+				((arr[c]<10 && arr[c+2]<10))||
+				((arr[c+1]<10 && arr[c+2]<10))) {
+				esiste=1;  
+		}
+		else
+			esiste=0;
+	}
+	return esiste;
+}
+int main() {
+	int y=0;
+	printf("ciao utente\n");
+	printf("sono un programma tuo amico\n");
+	printf("quanti interi avra' la tua sequenza?\n");
+	int lunghezza=0;
+	scanf("%d", &lunghezza);
+	//******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+	int arr[lunghezza];
+	for(int c=0; c<lunghezza;c++) {
+		printf("dammi un elemento positivo in posizione %d\n", c+1);
+		scanf("%d", &arr[c]);
+	}
+	y = dueUnaCifra(arr, lunghezza);
+	int x = positivo(arr, lunghezza);
+	//******** UNCLEAR MESSAGE -0.2
+	if (x=0)  
+		printf("avevo detto solo positivi");
+	else if(y==1)
+		printf("in ogn tripla di elemneti adiacenti esistono almeno due valori ad una sola cifra");
+		else
+			printf("non in ogn tripla di elemneti adiacenti esistono almeno due valori ad una sola cifra\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic structure of the program is correct
+- Implementation of separate functions for different tasks
+- Proper use of loop control with boolean flag
+
+Areas for Improvement:
+- Array bounds checking needs correction to prevent buffer overflow
+- Single digit checking logic should use proper range comparison (>= 0 && <= 9)
+- Array declaration should follow after getting the length input
+- Output messages could be clearer and more professional
+- Assignment operator (=) used instead of comparison operator (==) in if condition
+
+Key Recommendations:
+1. Fix the array bounds in the dueUnaCifra function to prevent buffer overflow
+2. Implement proper single-digit checking using both upper and lower bounds
+3. Move array declaration after getting the length input
+4. Improve output message clarity and fix typos
+5. Use proper comparison operators in conditional statements
+6. Consider adding input validation for array length and elements
+</feedback_summary>

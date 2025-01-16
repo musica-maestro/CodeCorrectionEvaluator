@@ -1,0 +1,72 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........2.0 = 6.0 - 1.5 - 1.5 - 1.0
+   MAIN PROGRAM (max 2.5):....1.5 = 2.5 - 0.5 - 0.5
+   TOTAL.......................3.5
+*/
+
+#include <stdio.h>
+ int UgualiCompresi(int seq[],int l) {
+//******** ERROR IN "WITHIN THE RANGE" EXPRESSION: THIS DOES NOT EXPRESS "WITHIN THE RANGE". IT SHOULD BE 10 <= s[i] + s[i+1] <= 20 -1.5
+int contiene; 
+contiene=0;
+int i; 
+i=0;
+while(i<l-2 && !contiene)  {
+	if((10<seq[i]+seq[i+1]<20 || 10<seq[i]+seq[i+2]<20 || 10<seq[i+1]+seq[i+2]<20)
+	&& (seq[i]==seq[i+1] || seq[i]==seq[i+2] || seq[i+1]==seq[i+2]))
+		contiene=1;
+		else
+			i++; 
+			}
+			return contiene;
+			}
+int main()
+{
+//******** THIS STATEMENT IS USELESS; THE FUNCTION IS INVOKED AFTER -0.5
+int UgualiCompresi(sequenza,lunghezza); 
+	int lunghezza; 
+	printf("Salve utente, sono un programma che riceve una sequenza di elementi e verifica che nella sequenza esiste una tripla di elementi consecutivi\n");
+	printf("tale che almeno due elementi della tripla hanno somma compresa fra 10 e 20 ed esattamente due elementi della tripla sono uguali.\n");
+	printf("Da quanti elementi %c composta la sequenza?\n",138);
+	scanf("%d",&lunghezza);
+	int sequenza[lunghezza];
+	for(int i=0;i<lunghezza;i++) {
+		printf("Inserisci l'elemento n.%d: ",i+1);
+		scanf("%d",&sequenza[i]);
+		}
+		//******** IF THE FUNCTION IS WRITTEN BELOW, YOU MUST DECLARE ITS PROTOTYPE -0.5
+		if(UgualiCompresi(sequenza,lunghezza)) {
+			printf("Nella sequenza esiste una tripla di elementi consecutivi tale che la somma di almeno due elementi della tripla\n");
+			printf("%c compresa tra 10 e 20 ed esattamente due elementi della tripla sono uguali.\n",138); }
+			else {
+				printf("Nella sequenza non esiste una tripla di elementi consecutivi tale che la somma di almeno due elementi della tripla\n");
+			printf("%c compresa tra 10 e 20 ed esattamente due elementi della tripla sono uguali.\n",138); }
+	}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct loop structure for checking consecutive triples
+- Proper use of boolean flag for existential verification
+- Good user interaction with clear instructions
+- Proper array allocation based on user input
+
+Areas for Improvement:
+- The range comparison in the function is incorrectly written. In C, the expression "10<x<20" doesn't work as intended. It should be written as "(x>10 && x<20)"
+- Function prototype is missing when the function is defined after main
+- The function declaration inside main is unnecessary and incorrect
+- The condition for checking sums between 10 and 20 needs to be fixed to properly handle inclusive bounds
+
+Key Recommendations:
+1. Fix the range comparison using proper logical operators:
+   ```c
+   if(((seq[i]+seq[i+1] >= 10 && seq[i]+seq[i+1] <= 20) || 
+       (seq[i]+seq[i+2] >= 10 && seq[i]+seq[i+2] <= 20) || 
+       (seq[i+1]+seq[i+2] >= 10 && seq[i+1]+seq[i+2] <= 20))
+   ```
+2. Add function prototype before main
+3. Remove the unnecessary function declaration inside main
+4. Consider improving code indentation for better readability
+</feedback_summary>

@@ -1,0 +1,72 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....2.3 = 6.0 - 1.0 - 1.5 - 0.2 - 0.5 - 0.5
+   MAIN (max 2.0):....1.3 = 2.0 - 0.5 - 0.2
+   TOTAL:....3.6
+*/
+
+#include<stdio.h>
+int dueUnaCifra (int array[],int lunghezza) {
+int i;		
+int tripla;		
+tripla=1;	
+//******** INCORRECT INDENTATION -0.5
+	for(i=0; i<lunghezza-2 &&tripla; i++) {
+        //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+		if (((array[i]>9)&&(array[i+1]>9))&&(array[i+2]>9))||
+			(((array[i]>9)&&(array[i+1]>9))&&(array[i+2]<=9))||
+			(((array[i]>9)&&(array[i+1]<=9))&&(array[i+2]>9))
+							tripla=0;
+        //******** WITHOUT THE BOOLEAN VARIABLE IN THE CONDITION, EVEN IF YOU FIND A TRIPLE THAT DOES NOT SATISFY THE PROPERTY, YOU CONTINUE TO CHECK -0.2
+ 		if	(((array[i]>9)&&(array[i-1]>9))&&(array[i-2]>9))||
+			(((array[i]>9)&&(array[i-1]>9))&&(array[i-2]<=9))||
+			(((array[i]>9)&&(array[i-1]<=9))&&(array[i-2]>9))
+ 							tripla=0;
+				}
+return tripla;
+}
+
+int main () {
+int verita;
+int i;
+int dimensione;
+printf("Ciao,  ti diro' se in tutte le triple adiacenti ch si trovano nel tuo array, almeno due elementi sono di una cifra singola\n");
+printf("Per iniziare, quanti elementi vuoi inserire nel tuo array?\n");
+scanf("%d", &dimensione);
+//******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+int array[dimensione];
+		for(i=0; i<dimensione; i++) {
+		printf("Inserisci intero\n");
+		scanf("%d", &array[i]);
+}
+verita=dueUnaCifra(array, dimensione);
+//******** UNCLEAR MESSAGE -0.2
+if (verita=1) 
+	printf("La tua sequenza e' valida\n");
+else
+	printf("La tua sequenza non e' valida\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Function and main program separation is correct
+- Array handling and user interaction implemented
+
+Areas for Improvement:
+- Logic for checking triples is incorrect - should check for at least two single-digit numbers
+- Array declaration should follow after getting the dimension
+- Code indentation needs improvement
+- Boolean logic in the loop could be simplified
+- Output messages could be more descriptive
+
+Key Recommendations:
+1. Revise the triple-checking logic to correctly identify when at least two numbers are single digits
+2. Move array declaration after getting the dimension from user
+3. Improve code formatting and indentation
+4. Simplify the boolean conditions in the loop
+5. Make output messages more descriptive about what makes a sequence valid or invalid
+6. Fix the comparison operator in the if statement (verita=1 should be verita==1)
+</feedback_summary>

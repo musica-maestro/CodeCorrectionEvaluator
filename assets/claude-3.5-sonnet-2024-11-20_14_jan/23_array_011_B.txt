@@ -1,0 +1,74 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6):........3.3 = 6.0 - 1.0 - 1.5 - 0.2
+   MAIN PROGRAM (max 2):....1.0 = 2.0 - 0.5 - 0.5
+   TOTAL.....................4.3
+*/
+
+#include<stdio.h>
+int duePositivi(int lunghezza, int array[lunghezza], int i, int bl){
+    //******** UNNECESSARY PARAMETERS i AND bl, SHOULD BE INITIALIZED IN FUNCTION -0.2
+    bl=1;
+    i=0;  
+    while(i<lunghezza && bl==1){ 
+        //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lunghezza - 2 -1.0
+        if(array[i]>0 && array[i+1]>0 && array[i+2]<0||array[i]<0 && array[i+1]>0 && array[i+2]>0 || array[i]>0 && array[i+1]<0 && array[i+2]>0 ){
+            i++; 
+        }
+        else{ 
+            bl=0;
+        }
+    } return bl;
+}
+int main(){
+    int lunghezza; 
+    //******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+    int array[lunghezza];  
+    int i;
+    int bl; 
+    printf("caro utente inserisci la lunghezza dell'array\n"); 
+    scanf("%d", &lunghezza);
+    for(i=0; i<lunghezza; i++){
+        printf("inserisci l'elemento da inserire nell'indice %d\n",i);
+        scanf("%d",&array[i]);
+    }
+    //******** NOT CAPTURING RETURN VALUE FROM FUNCTION -0.5
+    duePositivi(lunghezza, array, i, bl); 
+    if(bl==1){
+        printf("ogni tripla di elementi adiacenti contiene esattamente due numeri positivi\n");
+    }
+    else{
+        printf("in tutte le triple di elementi adiacenti NON ci sono esattamente due interi positivi\n");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic function structure implements universal verification
+- Main program handles user interaction appropriately
+- Output messages are clear and informative
+
+Areas for Improvement:
+1. Array Bounds Safety:
+- Modify loop condition to prevent array access beyond bounds
+- Should use i < lunghezza - 2 to ensure valid triple checking
+
+2. Function Design:
+- Remove unnecessary parameters (i and bl)
+- Initialize variables within the function
+- Properly capture and use function return value
+
+3. Memory Management:
+- Array should be declared after getting its length
+- Current implementation has undefined behavior
+
+Key Recommendations:
+1. Fix array bounds checking to prevent buffer overflow
+2. Simplify function parameters to only necessary ones (array and length)
+3. Properly handle function return value in main
+4. Declare array after getting its size
+5. Consider edge case where array length is less than 3
+
+</feedback_summary>

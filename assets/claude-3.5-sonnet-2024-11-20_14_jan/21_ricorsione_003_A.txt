@@ -1,0 +1,103 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)............2.0 = 5.0 - 1.5 - 1.0 - 0.5
+countNumbers (2).......0.5 = 2.0 - 1.0 - 0.5
+readNumbers (2)........1.0 = 2.0 - 0.5 - 0.5
+writeNumbers(1)........0.5 = 1.0 - 0.5
+TOTAL..................4.0
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimoPari(int *seq, int lunghezza){
+    //******** The base case should be length<=2 (because you need to consider a triplet of elements) -0.5
+    //******** Recursion should be done on the array length -1.0
+    //******** base case: l==3 is part of the recursive step. If you put it in the base case, you need to repeat the check "maximum of 3 evens" twice -0.3
+    if(lunghezza==3){
+        [...]
+    }
+    else{
+        [...]
+        //******** it is a universal check, && -1.5
+        risultato=(max%2==0) && massimoPari(seq,lunghezza-1);    
+    }
+    return risultato;
+}
+
+int quantiNumeri() {
+    int conta;    
+    //******** counter not initialized -0.3                                     
+    FILE* fp=fopen("massiomoPari.dat","rb");
+    if(fp==NULL)
+        printf("File vuoto\n");
+    else{
+        //******** while(fp!=NULL): this leads to an infinite loop -0.5
+        while(fp!=NULL){                          
+            conta++;                        
+        }
+        fclose(fp);
+    }
+    return conta;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE* fp=fopen("massiomoPari.dat","rb");
+    if(fp==NULL)
+        printf("File vuoto\n");
+    else{
+        int intero;
+        //******** in fread you should not use &sequence, because sequence is already an address -0.5
+        fread(&intero,sizeof(int),lunghezza,fp);
+        fclose(fp);
+    }
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE* fp=fopen("massiomoPari.dat","wb");   
+    if(fp==NULL)                               
+        printf("Nulla da salvare\n");
+    else{                                     
+        //******** in fread, you should not use &, sequence is already an address -0.5
+        fwrite(&sequenza,sizeof(int),lunghezza,fp);         
+        printf("Salvato\n");
+        fclose(fp);                        
+    }
+}
+
+[... rest of the code ...]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic structure of all required functions is present
+- File handling includes error checking for NULL
+- Main function provides user interaction
+- Proper file closure in all file operations
+
+Areas for Improvement:
+1. massimoPari function:
+   - Base case needs revision to handle arrays of length ≤ 2
+   - Recursive logic should maintain the universal check property
+   - Avoid duplicating triplet checking logic
+
+2. File Operations:
+   - Initialize counter variable in quantiNumeri()
+   - Fix infinite loop in quantiNumeri()
+   - Correct fread/fwrite parameter syntax
+   - Improve error messages for file operations
+
+3. General Structure:
+   - Consider renaming functions to match assignment requirements
+   - Improve error handling messages
+   - Add input validation
+
+Key Recommendations:
+1. Revise the recursive implementation to properly check all triplets
+2. Fix file reading/writing parameter syntax
+3. Implement proper counter initialization and file reading loop
+4. Add proper error handling and validation
+5. Use more descriptive error messages
+</feedback_summary>

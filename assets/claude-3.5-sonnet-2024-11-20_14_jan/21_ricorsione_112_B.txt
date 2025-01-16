@@ -1,0 +1,99 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........2.5 = 5.0 - 1.5 - 1.0
+countNumbers (2).....0.5 = 2.0 - 1.5
+readNumbers (2)......1.0 = 2.0 - 0.5 - 0.5
+writeNumbers(1)......0.5 = 1.0 - 0.5
+TOTAL................4.5/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+int minimoDispari (int sequenza[], int lunghezza)
+{
+    int esiste;  
+    //******** Base case incorrectly handles arrays of length <3 -1.0
+    if (lunghezza<3)  
+        esiste=1;
+        else    
+           //******** Complex boolean logic makes code hard to follow and error-prone -1.5
+           esiste = (((sequenza[0]<=sequenza[1]) && (sequenza[0]<=sequenza[2]) && (sequenza[0]%2!=0)) ||
+                    ((sequenza[1]<=sequenza[0]) && (sequenza[1]<=sequenza[2]) && (sequenza[1]%2!=0)) ||
+                    ((sequenza[2]<=sequenza[1]) && (sequenza[2]<=sequenza[0]) && (sequenza[2]%2!=0))) &&
+                     minimoDispari (sequenza+1, lunghezza-1);
+           return esiste;
+}
+
+void scriviNumeri (int sequenza[], int lunghezza)
+{
+    FILE*fp = fopen ("interi.dat", "wb");  
+    //******** Missing file open check -0.3
+    for (int i=0; i<lunghezza, i++)
+    {
+        //******** Incorrect syntax in fwrite -0.2
+        fwrite (&sequenza[i], sizeof(int), 1, fp);  
+    }
+    fclose (fp);  
+}
+
+void leggiNumeri (int sequenza[], int lunghezza)
+{
+    FILE*fp= fopen ("interi.dat", "rb");  
+    if (fp!=NULL)
+    {
+        for (int i=0; i<lunghezza; i++)
+        {
+        //******** Incorrect fread syntax -0.5
+        fread = (&sequenza[i], sizeof(int), 1 fp);  
+        }
+    }
+    fclose (fp);  
+}
+
+int quantiNumeri ()
+{
+    //******** fp not defined in function scope -0.5
+    int numero;
+    if (fp==NULL)
+        numero=0;
+        else
+        {
+            //******** Incomplete function implementation -1.0
+            numero=
+        }
+        return numero;
+}
+[Rest of main function...]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic recursive structure implemented in minimoDispari
+- Proper file handling structure with open/close operations
+- Binary file operations chosen appropriately
+
+Areas for Improvement:
+1. minimoDispari function:
+   - Base case needs proper handling for arrays < 3 elements
+   - Simplify boolean logic for better readability and maintainability
+   - Consider using a helper function for minimum calculation
+
+2. File Operations:
+   - Add proper error checking after file operations
+   - Fix syntax errors in fread and fwrite operations
+   - Complete the quantiNumeri function implementation
+
+3. General:
+   - Add proper error handling throughout
+   - Fix syntax errors in for loops
+   - Complete incomplete function implementations
+
+Key Recommendations:
+1. Review file operation syntax, especially for binary files
+2. Implement proper error checking for all file operations
+3. Simplify the recursive logic in minimoDispari
+4. Complete the quantiNumeri function implementation
+5. Add proper documentation and comments
+</feedback_summary>

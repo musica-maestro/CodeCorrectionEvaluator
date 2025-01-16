@@ -1,0 +1,98 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)......... 1.5 = 5.0 - 1.5 - 1.0 - 1.0
+countNumbers (2).... 1.4 = 2.0 - 0.3 - 0.3
+readNumbers (2)..... 1.3 = 2.0 - 0.4 - 0.3
+writeNumbers(1)..... 0.5 = 1.0 - 0.3 - 0.2
+TOTAL............... 4.7/10
+*/
+
+#include <stdio.h>
+int massimopari(int sequenza[], int lunghezza) {
+    //******** INCORRECT BASE CASE CHECK: sequenza==0 is comparing address with 0 -1.5
+    if(sequenza==0)
+        printf("Sequenza non valida\n\n");
+    //******** INCORRECT CONDITION: sequenza==3 compares address with number -1.0
+    else if(sequenza==3) 
+        risultato = (sequenza[0]%2==0 && (sequenza[0]>sequenza[1] && sequenza[0]>sequenza[2]))
+        || (sequenza[1]%2==0 && (sequenza[1]>sequenza[0] && sequenza[1]>sequenza[2]))
+        || (sequenza[2]%2==0 && (sequenza[2]>sequenza[0] && sequenza[2]>sequenza[1]));
+    else
+        //******** RECURSION LOGIC ERROR: Not properly checking all consecutive triplets -1.0
+        risultato = (sequenza[0]%2==0 && (sequenza[0]>sequenza[1] && sequenza[0]>sequenza[2]))
+        || (sequenza[1]%2==0 && (sequenza[1]>sequenza[0] && sequenza[1]>sequenza[2]))
+        || (sequenza[2]%2==0 && (sequenza[2]>sequenza[0] && sequenza[2]>sequenza[1])) && massimopari(sequenza+1, lunghezza-1);
+    return risultato;
+}
+
+void scrivinumeri(int *sequenza, int lunghezza) {
+    FILE *fp = fopen("interi.dat", "wb");
+    //******** MISSING FILE CLOSE IN ERROR CASE -0.2
+    if(fp==NULL)
+        printf("Impossibile aprire file\n\n");
+    else
+        //******** INCORRECT FWRITE FORMAT SPECIFIER: Using "%d" instead of sizeof(int) -0.3
+        fwrite(sequenza, "%d", lunghezza, fp);
+    printf("Salvataggio effettuato\n\n");
+    fclose(fp);
+}
+
+void legginumeri(int *sequenza, int lunghezza) {
+    FILE *fp = fopen("interi.dat", "rb");
+    if(fp==NULL)
+        printf("File vuoto\n\n");
+    else
+        //******** INCORRECT FREAD FORMAT SPECIFIER: Using "%d" instead of sizeof(int) -0.4
+        fread(sequenza, "%d", lunghezza, fp);
+    //******** MISSING FILE CLOSE -0.3
+}
+
+int quantinumeri() {
+    int quanti;
+    int *sequenza;
+    FILE *fp = fopen("interi.dat", "rb");
+    //******** COUNTER NOT INITIALIZED -0.3
+    if(fp==NULL)
+        printf("File vuoto\n\n");
+    else {
+        //******** INCORRECT FILE READING LOGIC: Using wrong parameters for fread -0.3
+        while(fread(sequenza, "%d", sizeof(int), fp)!=0)
+            quanti++;
+    }
+    return quanti;
+}
+
+[... rest of the code ...]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic file I/O structure implemented
+- Attempt at recursive solution for maxEven function
+- Basic error checking for file operations
+
+Areas for Improvement:
+1. maxEven function:
+   - Fix base case logic
+   - Implement proper recursive checking of consecutive triplets
+   - Correct comparison operations with array addresses
+
+2. File Operations:
+   - Use correct format specifiers for binary file operations
+   - Properly close files in all cases
+   - Initialize counters before use
+
+3. General:
+   - Add proper error handling
+   - Use consistent naming conventions
+   - Improve code organization and structure
+
+Key Recommendations:
+1. Review binary file operations syntax (fread/fwrite)
+2. Study recursive function implementation
+3. Implement proper error handling throughout the code
+4. Add proper file cleanup in all cases
+5. Fix base case logic in recursive function
+</feedback_summary>

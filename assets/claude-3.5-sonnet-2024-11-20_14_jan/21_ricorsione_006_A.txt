@@ -1,0 +1,93 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)......... 2.5 = 5.0 - 1.0 - 1.5
+countNumbers (2).... 0.5 = 2.0 - 1.5
+readNumbers (2)..... 1.0 = 2.0 - 0.6 - 0.4
+writeNumbers(1)..... 0.3 = 1.0 - 0.4 - 0.3
+TOTAL............... 4.3/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimoPari(int *seq, int lunghezza){
+    //******** The base case should be length<=2 (because you need to consider a triplet of elements) -1.0
+    int pari;
+    if(lunghezza < 3)
+        pari = 1;
+    else {
+        //******** using a complex boolean expression instead of calculating maximum properly -1.5
+        pari = ((seq[0]>seq[1] && seq[0]>seq[2] && seq[0]%2 == 0) || (seq[1]>seq[0] && seq[1]>seq[2] && seq[1]%2 == 0) ||
+                (seq[2]>seq[1] && seq[2]>seq[0] && seq[2]%2 == 0)) && massimoPari(seq+1, lunghezza-1);
+    }
+    return pari;
+}
+
+int quantiNumeri() {
+    FILE* fp = fopen("interi.txt", "r");
+    int quanti = 0;
+    //******** Counter not initialized and no counting logic implemented -1.5
+    if(fp == NULL)
+        printf("Non sono stati memorizzati interi sul file o non si riesce ad accedere al file!\n\n");
+    else
+    fclose(fp);
+    //******** Missing return statement for counter -0.3
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE* fp = fopen("interi.txt", "r");
+    if(fp == NULL)
+        printf("Non %c possibile accedere al file o non sono stati memorizzati numeri nel file!\n\n", 138);
+    else
+        //******** fread is used for binary files, not text files -0.4
+        fread(sequenza, sizeof(int), lunghezza, fp);
+        printf("Interi memorizzati correttamente!\n\n");
+    fclose(fp);
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    //******** File opened with wrong mode (should be "w" for writing) -0.4
+    FILE* fp = fopen("interi.txt", "r");
+    if(fp == NULL)
+        printf("Non %c possibile aprire il file!\n\n", 138);
+    else
+        //******** Writing to file opened in read mode -0.3
+        fwrite(sequenza, sizeof(int), lunghezza, fp);
+        printf("Valori scritti sul file!\n\n"); 
+    fclose(fp);
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic file handling structure is present
+- Error checking for file operations implemented
+- Recursive approach attempted in massimoPari function
+
+Areas for Improvement:
+1. massimoPari function:
+   - Incorrect base case handling
+   - Complex boolean expression should be simplified using proper maximum calculation
+   - Recursive logic needs refinement
+
+2. quantiNumeri function:
+   - Missing implementation for counting numbers
+   - No return value provided
+   - Should use fscanf for text file reading
+
+3. File Operations:
+   - Incorrect file modes used in scriviNumeri
+   - Using binary file operations (fread/fwrite) with text files
+   - Need proper text file handling with fprintf/fscanf
+
+Key Recommendations:
+1. Implement proper base case for massimoPari (length <= 2)
+2. Simplify maximum calculation logic
+3. Complete quantiNumeri implementation with proper counting
+4. Use appropriate text file operations (fscanf/fprintf) instead of binary operations
+5. Fix file modes in scriviNumeri (use "w" for writing)
+</feedback_summary>

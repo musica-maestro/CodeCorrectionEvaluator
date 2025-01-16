@@ -1,0 +1,98 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)............4.0 = 5.0 - 1.0
+countNumbers (2).......2.0
+readNumbers (2)........2.0
+writeNumbers (1).......1.0
+TOTAL..................9.0/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int trovaMax(int a, int b, int c) {
+    int max; 
+    if (a>b)
+        if (a>c)
+            max=a;
+        else
+            max=c;
+    else
+        if (b>c)
+            max=b;
+        else
+            max=c;
+    return max;
+}
+
+int massimoPari(int *seq, int lunghezza){
+    //******** Base case should be length<=2 since we need triplets -1.0
+    int ris; 
+    if (lunghezza<3)
+        ris=1;
+    else
+        ris=(trovaMax(seq[0],seq[1],seq[2])%2==0)&&massimoPari(seq+1,lunghezza-1);
+    return ris;
+}
+
+int quantiNumeri() {
+    int tot=0; 
+    int temp; 
+    FILE *fp=fopen("interi.dat","rb");
+    if (fp==NULL)
+        printf("Impossibile contare quanti numeri ci sono sul file\n");
+    else {
+        while(fread(&temp,sizeof(int),1,fp))
+            tot++;
+        printf("Ho letto %d numeri\n",tot); 
+    }
+    fclose(fp);
+    return tot;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE *fp=fopen("interi.dat","rb");
+    if (fp==NULL)
+        printf("Impossibile leggere numeri da file!\n");
+    else {
+        fread(sequenza,sizeof(int),lunghezza,fp);
+        printf("Numeri letti da file e salvati sull'array\n");
+    }
+    fclose(fp);
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE *fp=fopen("interi.dat","wb");
+    if (fp==NULL)
+        printf("Impossibile salvare numeri su file!\n");
+    else {
+        fwrite(sequenza,sizeof(int),lunghezza,fp);
+        printf("Numeri salvati su file\n");
+    }
+    fclose(fp);
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Well-implemented file handling with proper error checking
+- Correct implementation of binary file operations
+- Good structure for reading and writing numbers
+- Proper memory management and array handling
+- Clear recursive approach in massimoPari function
+
+Areas for Improvement:
+- The base case in massimoPari function should be adjusted. Currently, it returns 1 for sequences shorter than 3, which isn't correct since we can't form triplets with less than 3 elements
+- The function should return 0 (false) for sequences shorter than 3 elements since we can't verify the property for triplets in those cases
+
+Key Recommendations:
+- Modify the base case in massimoPari to handle sequences shorter than 3 elements appropriately
+- Consider adding more descriptive error messages in the file handling functions
+- Add input validation for the sequence length in the main function
+</feedback_summary>
+
+The student's implementation is generally very good, with only minor issues in the recursive function's base case. The file handling is particularly well done, with proper error checking and cleanup. The main deduction comes from the base case implementation in the massimoPari function, which could lead to incorrect results for very short sequences.

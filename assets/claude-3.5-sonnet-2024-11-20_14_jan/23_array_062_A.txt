@@ -1,0 +1,70 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL......................5.8
+*/
+
+#include<stdio.h>
+int multipli(int array[], int size){
+    int esistenza = 0;        
+    int risultato = 0;        
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < size - 2 -1.5
+    for (int i = 1; i < size-1; i++){                    
+        if((array[i-1]%array[i] == 0) ||
+           (array[i+1]%array[i] == 0) ||
+           (array[i]%array[i-1] == 0) ||
+           (array[i]%array[i+1] == 0) ||
+           (array[i-1]%array[i+1] == 0) ||
+           (array[i+1]%array[i-1] == 0)){ 
+            esistenza++;        
+        }
+    }
+    //******** ACCENTED CHARACTERS ARE NOT ALLOWED -0.5
+    if(esistenza == size -2){        
+        risultato = 1;                
+    }
+    return risultato;
+}
+
+int main(){
+    int dimensione;            
+    do{
+        printf("Inserisci il numero di valori da controllare: ");
+        scanf("%d", &dimensione);
+    }while(dimensione < 3);        
+    int array[dimensione];        
+    for(int i = 0; i < dimensione; i++){
+        printf("Inserisci valore con posizione %d: ", i);
+        scanf("%d", &array[i]);
+    }
+    //******** UNCLEAR OUTPUT MESSAGE -0.2
+    if(multipli(array, dimensione)){
+        printf("La sequenza da te inserita rispetta la condizione per cui per ogni terna esiste almeno un numero tale che sia un multiplo di uno degli altri due \n");
+    }else{
+        printf("La sequenza da te inserita NON rispetta la condizione per cui per ogni terna esiste almeno un numero tale che sia un multiplo di uno degli altri due \n");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the multiple checking logic
+- Good input validation for minimum sequence length
+- Proper function structure with clear return values
+- Complete user interaction in main function
+
+Areas for Improvement:
+- Array bounds checking needs correction: The loop should run until size-2 to avoid accessing invalid memory
+- Avoid using accented characters in variable names and comments
+- Output messages could be more concise and clearer
+- Function name has a typo (multipli vs multipli)
+
+Key Recommendations:
+1. Fix the array bounds in the for loop to prevent potential buffer overflows
+2. Use only standard ASCII characters for variable names and comments
+3. Simplify output messages for better readability
+4. Double-check function names for consistency between declaration and calls
+5. Consider adding input validation for zero or negative numbers in the sequence
+</feedback_summary>

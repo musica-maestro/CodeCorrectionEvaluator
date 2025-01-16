@@ -1,0 +1,65 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.5):....2.5
+   TOTAL.......................7.8
+*/
+
+#include <stdio.h>
+//******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+int maggiori5Pari(int interi[], int l){
+	int i=0; 
+	int tutte=1; 
+	while(i<l-2 && tutte==1){
+		if((interi[i]>=5 && interi[i+1]>=5 && interi[i+2]<5)
+		|| (interi[i+1]>=5 && interi[i+2]>=5 && interi[i]<5)
+		|| (interi[i]>=5 && interi[i+2]>=5 && interi[i+1]<5)){
+			if((interi[i]%2==0 && interi[i+1]%2==0) || (interi[i+1]%2==0 && interi[i+2]%2==0) || (interi[i]%2==0 && interi[i+2]%2==0))
+				i++;
+			else
+				tutte=0;
+		}
+		else
+			tutte=0;
+	}
+	//******** IF THE FUNCTION IS BELOW, YOU MUST DECLARE THE PROTOTYPE -0.5
+	return tutte;
+}
+
+int main(){
+	int n; 
+	int i=0; 
+	printf("caro utente quanti elementi ci sono nella sequenza che vuoi introdurre?   \n\n");
+	scanf("%d", &n);
+	int interi[n];
+	for(i=0; i<n; i++){
+		printf("inserisci il %d%c elemento della sequenza   ", i+1, 167);
+		scanf("%d", &interi[i]);
+	}
+	if(maggiori5Pari(interi, n))
+		printf("\nsi! tutte le triple della sequenza contengono esattamente due elementi maggiori o uguali a 5 ed almeno due elementi pari\n\n");
+	else
+		printf("\nno! non tutte le triple della sequenza contengono esattamente due elementi maggiori o uguali a 5 ed almeno due elementi pari\n\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for checking triples
+- Proper handling of both conditions (exactly two elements ≥5 and at least two even elements)
+- Well-structured main program with clear user interaction
+- Good error handling and loop control
+- Clear output messages explaining the results
+
+Areas for Improvement:
+- The condition checks in the maggiori5Pari function could be more readable by breaking them into smaller, more manageable parts
+- Function prototype should be declared before main when the function is defined after it
+- Consider adding input validation for the sequence length
+
+Key Recommendations:
+- Break down complex conditions into smaller, more readable parts using intermediate boolean variables
+- Add function prototype at the beginning of the file
+- Consider adding input validation to ensure n is positive and reasonable
+- Consider adding comments to explain the logic of the complex conditions
+</feedback_summary>

@@ -1,0 +1,102 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)........... 3.5 = 5.0 - 1.0 - 0.5
+countNumbers (2)..... 2.0
+readNumbers (2)...... 2.0
+writeNumbers(1)...... 0.7 = 1.0 - 0.3
+TOTAL................ 8.2/10
+*/
+
+#include <stdio.h>
+int minimo (int a,int b,int c){
+    int min;
+    if(a<b){
+        if(a<c){
+            min=a;
+        }else{
+            min=c;
+        }
+    }else{
+        if(b<c){
+            min=b;
+        }else{
+            min=c;
+        }
+    }
+    return min;
+}
+
+int minimoDispar(int serie [],int lun){
+    //******** The base case should be length<=2 (because you need to consider a triplet of elements) -0.5
+    int ver=0;        
+    if(lun<=1){ 
+        ver=1;
+    }else{
+        //******** you cannot access array[lun] (it is not part of the array) -1.0
+        ver=(((minimo(serie [lun],serie [lun-1],serie [lun-2])%2==1)&&minimoDispar(serie,lun-1)));
+    }         
+    return ver;
+}
+
+void salva (int serie [],int lun){
+    FILE* file=fopen("interi.txt","w");
+    if(file==NULL){
+        printf("\n\t\t\t\t\t---------------------------------------\n");
+        printf("\t\t\t\t\terrore durante il salvataggio\n");
+        printf("\t\t\t\t\t---------------------------------------\n");
+    }else{
+        for(int i=0;i<lun;i++){
+            fprintf(file,"%d",serie [i]);
+            if(i+1<lun){
+                fprintf(file," ");
+            }
+        }
+        fclose(file);
+        printf("\n\t\t\t\t\t----------------------------------\n");
+        printf("\t\t\t\t\t     salvataggio completatato\n");
+        printf("\t\t\t\t\t----------------------------------\n");
+    }
+}
+
+int quantiNumeri (){
+    int lun=0;        
+    FILE* file=fopen("interi.txt","r");
+    //******** you don't check if the file opening failed if(fp==NULL) -0.3
+    if(file==NULL){
+        printf("\t\t\t\t\tfile non trovato\n");
+    }else{
+        int temp;
+        while(fscanf(file,"%d",&temp)!=EOF){
+            lun++;
+        }
+    }
+    return lun;
+}
+
+[Rest of the code remains unchanged...]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of file I/O operations
+- Clear error handling for file operations
+- Well-structured code with appropriate function separation
+- Proper implementation of reading and counting numbers from file
+
+Areas for Improvement:
+- The base case in minimoDispar function should check for length <= 2 since triplets are being evaluated
+- Array access in minimoDispar function goes out of bounds when accessing serie[lun]
+- File handling could be more robust with proper closure after operations
+- Some error messages could be more descriptive about the specific error condition
+
+Key Recommendations:
+1. Fix the array bounds issue in minimoDispar function
+2. Adjust the base case condition to properly handle triplets
+3. Add file closure in quantiNumeri function
+4. Enhance error messages to be more specific about what went wrong
+5. Consider adding input validation for array operations
+
+The code is generally well-structured but needs attention to array bounds and base cases in the recursive function.
+</feedback_summary>

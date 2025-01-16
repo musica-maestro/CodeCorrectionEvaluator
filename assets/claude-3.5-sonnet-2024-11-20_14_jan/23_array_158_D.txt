@@ -1,0 +1,65 @@
+I'll grade the submission following the provided format and criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.0 = 6.0 - 1.0 - 1.0
+   MAIN PROGRAM (max 2.0):....1.7 = 2.0 - 0.2 - 0.1
+   TOTAL.......................5.7
+*/
+
+int restoDivisione(int*seq, int lunghezza){
+	int i=1;
+	int esiste=0;
+	//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lunghezza - 2 -1.0
+	while(i<=lunghezza-2 && !esiste){
+		//******** TWO OR THREE COMBINATIONS ON THE TRIPLE CONDITION ARE MISSING -1.0
+		if((seq[i]%seq[i-1]==seq[i+1]) || (seq[i]%seq[i+1]==seq[i-1]) || (seq[i-1]%seq[i]==seq[i+1]) ||
+			(seq[i-1]%seq[i+1]==seq[i]) || (seq[i+1]%seq[i]==seq[i-1]) || (seq[i+1]%seq[i-1]==seq[i]))
+		{
+			esiste=1;
+		}
+		else
+			i++;
+	}
+	return esiste;
+}
+
+#include<stdio.h>
+int main()
+{
+	int lunghezza;
+	printf("quanti interi vuoi inserire?\n");
+	scanf("%d" ,&lunghezza);
+	int seq[lunghezza];
+	for(int i=0; i<lunghezza; i++){
+		//******** MISSING SPACE -0.1
+		printf("inserisci %d intero", i+1); 
+		scanf("%d", &seq[i]);
+	}
+	//******** UNCLEAR MESSAGE -0.2
+	if(restoDivisione(seq, lunghezza))
+		printf("esiste");
+	else
+		printf("non esiste"); 
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct overall structure with separate function and main program
+- Proper use of boolean flag for existential verification
+- Correct parameter passing and array handling
+- Basic functionality works as intended
+
+Areas for Improvement:
+- Array bounds checking needs correction to prevent potential buffer overflows
+- Missing some combinations in the remainder checking conditions
+- User interface messages could be more descriptive
+- Code formatting and spacing needs attention
+
+Key Recommendations:
+1. Fix the array bounds checking in the while loop condition to use i < lunghezza - 2
+2. Add more descriptive output messages to clearly indicate what exists/doesn't exist
+3. Review and add all possible combinations for remainder checking
+4. Improve code formatting and spacing for better readability
+5. Add input validation for array length
+</feedback_summary>

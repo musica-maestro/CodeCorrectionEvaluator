@@ -1,0 +1,117 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* 
+minOdd (5)...........3.0 = 5.0 - 1.5 - 0.5
+countNumbers (2).....1.4 = 2.0 - 0.3 - 0.3
+readNumbers (2)......0.9 = 2.0 - 0.5 - 0.3 - 0.3
+writeNumbers(1)......0.3 = 1.0 - 0.4 - 0.3
+TOTAL................5.6
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int minimo(int n1, int n2, int n3){
+    int min=n1;  
+    if (n1<=n2 && n1<=n3)
+        min=n1;
+    else if(n2<=n1 && n2<=n3)
+        min=n2;
+    //******** ERROR IN CONDITION: n3<=n1 repeated instead of n3<=n2 -0.5
+    else if(n3<=n1 && n3<=n1)
+        min=n3;
+    printf("Minimo: %d", min);
+    return(min);
+}
+
+int minimoDispari(int *seq, int l){
+    int verificato;
+    //******** INCORRECT BASE CASE IMPLEMENTATION: Missing proper handling of triplets -1.5
+    if (l<=2)
+        verificato=1;
+    else{
+        if (minimo(seq[0],seq[1],seq[2])%2==0)
+            verificato=0;
+        else
+            verificato=minimoDispari(seq+1,l-1);
+    }
+    return(verificato);
+}
+
+int quantiNumeri() {
+    int n; 
+    int c; 
+    //******** COUNTER NOT INITIALIZED -0.3
+    FILE* fp=fopen("interi.bin", "rb");
+    if (fp==NULL)
+        printf("Apertura file non riuscita. \n");
+    else{
+        while(fread(&n,sizeof(int),1,fp)>0)
+            c=c+1;
+    }
+    fclose(fp);
+    return(c);
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE* fp=fopen("interi.bin", "rb");
+    if (fp==NULL)
+        printf("Apertura file non riuscita. \n");
+    else{
+        int n;
+        int array[lunghezza]; 
+        //******** ERROR IN ASSIGNMENT: fread returns number of items read, not the value -0.3
+        for (int i=0; i<lunghezza;i++)
+            array[i]=fread(&n,sizeof(int),1,fp); 
+        //******** NOT STORING VALUES IN sequenza PARAMETER -0.5
+    }
+    fclose(fp);
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE* fp=fopen("interi.bin", "wb");
+    if (fp==NULL)
+        printf("Apertura file non riuscita. \n");
+    else{
+        int n;
+        //******** USING n INSTEAD OF lunghezza IN LOOP CONDITION -0.4
+        for (int i=0;i<n;i++){
+            //******** NOT WRITING sequenza VALUES, WRITING UNINITIALIZED n -0.3
+            fwrite(&n,sizeof(int),1,fp); 
+        }
+        printf("Salvataggio sequenza riuscito. \n");
+    }
+    fclose(fp);
+}
+
+[... rest of main() function ...]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic file operations structure is present
+- Error checking for file operations implemented
+- Main program flow is logical
+
+Areas for Improvement:
+1. minimoDispari function:
+   - Base case implementation needs revision
+   - Should properly handle triplets of numbers
+
+2. File Operations:
+   - Initialize counter variables
+   - Correct fread usage in leggiNumeri
+   - Use proper array parameters in scriviNumeri
+
+3. Logic Issues:
+   - Fix comparison condition in minimo function
+   - Properly use function parameters instead of local arrays
+
+Key Recommendations:
+1. Review recursive function implementation, especially base cases
+2. Ensure proper initialization of variables
+3. Correct file reading/writing operations using proper parameters
+4. Fix array handling in file operations
+5. Review binary file operations syntax and usage
+</feedback_summary>

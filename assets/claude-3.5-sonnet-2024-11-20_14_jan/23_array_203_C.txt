@@ -1,0 +1,59 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................5.8
+*/
+
+#include <stdio.h>
+int dueCifre (int* array,int l){
+	int ris=1;
+	//******** CONDITION ON THE TRIPLE IS WRONG -1.5
+	for (int i=0;i<l-2;i++){
+		if ((array[i]>=10 && array[i+1]>=10)||
+		    (array[i]>=10 && array[i+2]>=10)||
+		    (array[i+2]>=10 && array[i+1]>=10)||
+		    (array[i]>=10 && array[i+1]>=10 && array[i+2]>=10))
+			ris=0;
+	}
+	//******** SETTING THE VARIABLE TO 1 IS NOT NECESSARY (BECAUSE IT'S ALREADY 1), BUT YOU SAVE IT BECAUSE YOU PLACED THE BOOLEAN IN THE LOOP CONDITION -0.5
+	return ris;
+}
+int main(){
+	int l;  
+	printf("quanti valori vuoi inserire? ");
+	scanf("%d",&l);
+	int array[l]; 
+	for (int i=0;i<l;i++){
+		printf("inserisci il %d numero della sequenza: ",i+1);
+		scanf("%d",&array[i]);
+	}
+	//******** UNCLEAR MESSAGE -0.2
+	if(dueCifre(array,l))
+		printf("per ogni tripla adiacente dell'array tutte contenevano almeno due elementi composti da una sola cifra");
+	else
+		printf("non tutte le triple dell'array contenevano due elementi composti da una sola cifra");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct array bounds checking in the loop (i<l-2)
+- Proper function parameter passing
+- Good basic program structure with separate function and main
+- Appropriate user interaction for input collection
+
+Areas for Improvement:
+- The logic for checking single-digit numbers needs revision. The current condition checks for two-digit numbers instead of single-digit numbers
+- The initialization of 'ris' to 1 is redundant since it's already the default value
+- Output messages could be clearer and more concise
+- The condition for checking triples should be simplified and corrected to check for single-digit numbers (numbers < 10)
+
+Key Recommendations:
+1. Modify the condition to check for single-digit numbers using (array[i] < 10) instead of (array[i] >= 10)
+2. Simplify the triple-checking logic to count single-digit numbers in each triple
+3. Make output messages more user-friendly and clear
+4. Consider adding input validation for positive integers
+5. Remove redundant variable initialization
+</feedback_summary>

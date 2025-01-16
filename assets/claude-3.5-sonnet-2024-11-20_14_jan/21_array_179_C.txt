@@ -1,0 +1,67 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.5):....2.2 = 2.5 - 0.3
+   TOTAL.......................6.2
+*/
+
+#include <stdio.h>
+int compresiMultipli3(int sequenza[],int lunghezza){
+	int i=0; 
+	int soluzione=0; 
+	//******** WRONG ARRAY INDEX CONDITION: should be i < lunghezza-2 -1.5
+	while (sequenza[i]<lunghezza-2 && !soluzione){ 
+		//******** CONDITION IS COMPLICATED AND NOT VERY READABLE -0.5
+		if (((sequenza[i]+sequenza[i+1]>=-10 && sequenza[i]+sequenza[i+1]<=10) 
+		||(sequenza[i]+sequenza[i+2]>=-10 && sequenza[i]+sequenza[i+2]<=10) 	
+		||(sequenza[i+1]+sequenza[i+2]>=-10 && sequenza[i+1]+sequenza[i+2]<=10))
+		&&(((sequenza[i]%3==0)&&(sequenza[i+1]%3==0))||((sequenza[i]%3==0)&&(sequenza[i+2]%3==0)) 
+			||((sequenza[i+1]%3==0)&&(sequenza[i+2]%3==0))))										
+			soluzione=1;
+		else
+			i++; 
+	}
+	return soluzione;
+}
+
+int main()
+{
+	int lunghezza; 
+	printf("Quanti interi vuoi inserire?\n");
+	scanf("%d",&lunghezza);
+	int sequenza[lunghezza];
+	for (int i=0;i<lunghezza;i++){ 
+		printf("Inserisci un intero: ");
+		scanf("%d",&sequenza[i]);
+	}
+	int soluzione; 
+	soluzione=compresiMultipli3(sequenza,lunghezza); 
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+	if (soluzione==0)
+		printf("FALSO"); 
+	else
+		printf("VERO");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the main function structure
+- Proper array input handling
+- Good use of boolean flag (soluzione) for result tracking
+- Correct implementation of the multiple conditions for checking divisibility by 3
+
+Areas for Improvement:
+- The array index condition in the while loop is incorrect and could lead to array bounds violations
+- The condition checking for values between -10 and 10 is overly complicated and checks sums instead of individual values
+- The output messages could be more descriptive about what property was found or not found
+- Code readability could be improved by breaking down complex conditions into smaller, more manageable parts
+
+Key Recommendations:
+1. Fix the array bounds checking in the while loop to use "i < lunghezza-2"
+2. Simplify the conditions by checking individual values rather than sums
+3. Make output messages more descriptive and informative
+4. Consider breaking down complex conditions into separate boolean variables for better readability
+5. Add comments to explain the logic of complex conditions
+</feedback_summary>

@@ -1,0 +1,109 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* 
+minOdd (5)...........1.0 = 5.0 - 1.5 - 1.5 - 1.0
+countNumbers (2).....0.0 = 2.0 - 2.0
+readNumbers (2)......0.0 = 2.0 - 2.0
+writeNumbers(1)......0.0 = 1.0 - 1.0
+TOTAL................1.0
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int minimoDispari(int *seq, int lunghezza){
+    int n=0;
+    //******** missing base case -1.5
+    //******** incorrect logic for checking minimum and odd property -1.5
+     if(*seq+n<=*seq+n+1 && *seq<=*seq+n+2){ 
+         if(*seq%2==1)
+             //******** missing return value and incorrect recursive call -1.0
+             minimoDispari(seq,n+1);
+     }
+}
+
+//******** missing countNumbers function implementation -2.0
+int quantiNumeri() {
+}
+
+//******** missing readNumbers function implementation -2.0
+void leggiNumeri(int* sequenza, int lunghezza) {
+}
+
+//******** missing writeNumbers function implementation -1.0
+void scriviNumeri(int* sequenza, int lunghezza) {
+
+void main() {
+    int lunghezza; 		
+	int scelta;				
+    printf("Vuoi introdurre una nuova sequenza (premi 1) oppure recuperarla da file (premi 2)? ");
+    scanf("%d",&scelta);
+	if(scelta==1) {
+		printf("Introduci la lunghezza della sequenza: ");
+		scanf("%d",&lunghezza);
+		int array[lunghezza];
+		printf("Scrivi %d elementi \n",lunghezza);
+		for(int i=0;i<lunghezza;i++)
+			scanf("%d",&array[i]);
+		if(minimoDispari(array,lunghezza))
+			printf(" Ogni tripla e' dispari \n");
+		else
+			printf(" Almeno una tripla non e' dispari \n");
+		scriviNumeri(array,lunghezza);
+	}
+	else {
+		int array[lunghezza];
+		leggiNumeri(array,lunghezza);
+		printf("Ecco la sequenza recuperata\n");
+		for(int i=0;i<lunghezza;i++)
+			printf("%d ", array[i]);
+		printf("\n");
+		if(minimoDispari(array,lunghezza))
+			printf(" ... \n");
+		else
+			printf(" ... \n");
+		scriviNumeri(array,lunghezza);
+	}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is in place
+- Main function handles user input appropriately
+- Interface for file operations is defined
+
+Areas for Improvement:
+1. minimoDispari function:
+   - Missing base case for recursion
+   - Incorrect logic for checking minimum values
+   - Missing proper return values
+   - Needs proper implementation of triplet checking
+
+2. File Operations:
+   - quantiNumeri (countNumbers) function is completely missing
+   - leggiNumeri (readNumbers) function is not implemented
+   - scriviNumeri (writeNumbers) function is not implemented
+
+3. General Implementation:
+   - Need to implement all required functions
+   - Add proper error handling
+   - Complete the file I/O operations
+
+Key Recommendations:
+1. Implement the minimoDispari function correctly:
+   - Add base case for recursion (when length < 3)
+   - Properly check minimum of triplets
+   - Ensure correct recursive calls
+
+2. Complete missing functions:
+   - Implement quantiNumeri to count numbers in file
+   - Implement leggiNumeri for file reading
+   - Implement scriviNumeri for file writing
+
+3. Add proper error handling:
+   - Check file operations
+   - Validate input parameters
+   - Handle edge cases
+</feedback_summary>

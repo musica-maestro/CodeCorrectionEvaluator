@@ -1,0 +1,81 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):....1.5 = 6.0 - 1.5 - 1.5 - 1.5
+   MAIN PROGRAM (max 2.5):....1.7 = 2.5 - 0.5 - 0.3
+   TOTAL.......................3.2
+*/
+
+#include <stdio.h>
+int ugualiCompresi(int interi[], int lunghezza) {
+    int i; 
+    int sommaCompresa; 
+    int dueUguali; 
+    int proprietà = 0; 
+    sommaCompresa = 0; 
+    dueUguali = 0; 
+    //******** CONDITION ON INDEX IS WRONG, SHOULD BE i < lunghezza-2 TO AVOID ARRAY BOUNDS ERROR -1.5
+    for(int i=0; i<lunghezza; i++) { 
+        //******** ERROR IN "WITHIN THE RANGE" EXPRESSION: THIS DOES NOT EXPRESS "WITHIN THE RANGE" -1.5
+        if(10 <= (interi[i] + interi[i+1] || interi[i+1] + interi[i+2]) <= 20)
+            sommaCompresa = 1;
+        //******** EXACTLY TWO ELEMENTS MUST BE EQUAL (THE THIRD MUST BE DIFFERENT) -1.5
+        if(interi[i]==interi[i+1] || interi[i]==interi[i+2] || interi[i+1]==interi[i+2])
+            dueUguali = 1;
+    }
+    if(sommaCompresa==1 && dueUguali==1)
+        proprietà = 1;
+    return proprietà;
+}
+
+int main() {
+    int lunghezza; 
+    int proprietà = 0; 
+    printf("Caro utente sono un programma che una volta inserita una tripla");
+    printf("stampa 1 se ci sono almeno due elementi uguali e due hanno una ");
+    printf("somma compresa fra 10 e 20 altrimenti stampo 0\n");
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    printf("Dichiara la lunghezza del tuo array");
+    scanf("%d", &lunghezza);
+    int interi[lunghezza];
+    for(int i=0; i<lunghezza; i++) {
+        printf("Inserisci il %d numero del tuo array", i+1);
+        scanf("%d", &interi[i]);
+    }
+    proprietà = ugualiCompresi(interi, lunghezza);
+    //******** YOU DO NOT EXPLAIN THE MEANING OF THE OUTPUT (A BIT SCARCE) -0.3
+    if(proprietà==1)
+        printf("Caro utente nel tuo array ci sono due elementi uguali consecutivi e almeno due hanno una somma compresa fra 10 e 20!");
+    else
+        printf("Caro utente, nel tuo array non ci sono due elementi consecutivi e nessuno sommato ad un altro ha una somma fra 10 e 20!");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Input/output interaction with user is implemented
+- Function returns correct type
+- Array handling is implemented
+
+Areas for Improvement:
+1. Array bounds checking:
+   - The loop condition should be i < lunghezza-2 to avoid accessing elements outside array bounds
+   - Current implementation may cause undefined behavior
+
+2. Logic for checking conditions:
+   - The range check expression is incorrectly implemented
+   - Should use separate conditions: (sum >= 10 && sum <= 20)
+   - Need to properly check for exactly two equal elements
+
+3. Output messages:
+   - Messages should be more precise about the properties being checked
+   - Should clearly explain what constitutes a valid triple
+
+Key Recommendations:
+1. Fix array bounds in the loop to prevent buffer overflow
+2. Rewrite the sum range check using proper logical operators
+3. Implement proper check for exactly two equal elements
+4. Improve output messages to be more specific about the conditions being tested
+5. Add more detailed error messages and input validation
+</feedback_summary>

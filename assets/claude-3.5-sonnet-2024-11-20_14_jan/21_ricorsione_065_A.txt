@@ -1,0 +1,111 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)................3.0 = 5.0 - 1.5 - 0.5
+countNumbers (2)...........1.5 = 2.0 - 0.3 - 0.2
+readNumbers (2)............1.7 = 2.0 - 0.3
+writeNumbers (1)...........1.0
+TOTAL......................7.2/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int triplamax(int array[]){
+    int c,max=array[0];
+    //******** Using a for loop to calculate maximum of triplet -1.5
+    for(c=0;c<2;c++)
+    {
+        if(array[c]<array[c+1])
+        {
+            max=array[c+1];
+        }
+    }
+    return max;
+}
+
+int massimoPari(int array[], int lung)
+{
+    int vero=1;
+    //******** Base case l==3 is part of recursive step -0.5
+    if(lung==3)
+    {
+        if(triplamax(array)%2!=0)
+            vero=0;
+    }
+    else{
+        if(triplamax(array)%2!=0 || !massimoPari(array+1,lung-1)) 
+            vero=0;
+    }
+    return vero;
+}
+
+void scriviNumeri(int vet[],int lung){
+    FILE *fp=fopen("interi.dat","wb");
+    int c;
+    for(c=0;c<lung;c++)
+        fwrite(&vet[c],sizeof(int),1,fp);
+        fclose(fp);
+}
+
+int quantiNumeri()
+{
+    int lung;
+    //******** Counter not initialized -0.3
+    int prova;
+    FILE *fp=fopen("interi.dat","rb");
+    if(fp==NULL)
+        printf("file non aperto o vuoto \n");
+    else
+    {
+    while(fread(&prova,sizeof(int),1,fp))
+        lung++;
+    }
+    //******** File closure after return statement -0.2
+    return lung;
+    fclose(fp);
+}
+
+void leggiNumeri(int vet[],int lunghezza)
+{
+    FILE *fp=fopen("interi.dat","rb");
+    //******** In fread you should not use &sequence because sequence is already an address -0.3
+    fread(vet,sizeof(int),lunghezza,fp);
+    fclose(fp);
+}
+
+[Rest of main function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of file writing functionality
+- Good overall program structure
+- Proper file handling in most cases
+
+Areas for Improvement:
+1. Maximum calculation function (triplamax):
+   - Should not use a loop for finding maximum of three numbers
+   - Consider using direct comparisons instead
+
+2. Recursive implementation (massimoPari):
+   - Base case needs revision
+   - Should handle cases when length < 3 properly
+
+3. File handling (quantiNumeri):
+   - Initialize counter variable
+   - Move file closure before return statement
+   - Add proper error handling for file operations
+
+4. Array handling (leggiNumeri):
+   - Correct fread syntax for array parameters
+   - Add error checking for file operations
+
+Key Recommendations:
+1. Revise the maximum calculation logic to handle exactly three numbers
+2. Restructure the recursive function with proper base cases
+3. Initialize all variables before use
+4. Implement proper error handling for file operations
+5. Review and correct file I/O syntax
+</feedback_summary>

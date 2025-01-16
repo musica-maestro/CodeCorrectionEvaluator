@@ -1,0 +1,101 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.5 = 6.0 - 0.5
+   MAIN PROGRAM (max 2.5):....2.2 = 2.5 - 0.3
+   TOTAL.......................7.7
+*/
+
+#include <stdio.h>
+//******** GOOD: Function prototype is correctly declared
+int ugualiCompresi(int sequenza[],int lunghezza);
+
+int main()
+{
+    int numeriTot; 
+    int esiste=0; 
+    printf("Questo programma ti dice se la sequenza da te inserita possiede almeno una tripla, \nin cui 2 elementi della tripla abbiano una somma con un valore compreso tra 10 e 20, \ne che in questa tripla contemporaneamente ci siano due numeri uguali.\n");
+    printf("Dimmi quanti numeri vuoi inserire: \n");
+    scanf("%d",&numeriTot);
+    int sequenza[numeriTot];
+    for(int i=0;i<numeriTot;i++)
+    {
+        printf("Inserisci il numero: ");
+        scanf("%d",&sequenza[i]);
+    }
+    esiste=ugualiCompresi(sequenza,numeriTot);
+    //******** OUTPUT MESSAGE COULD BE MORE SPECIFIC ABOUT THE PROPERTIES -0.3
+    if(esiste==1)
+    {
+        printf("EVVAI, esiste almeno una tripla che possiede le caratteristiche del problema\n");
+    }
+    else
+    {
+        printf("MI DISPIACE, NON ESISTE alcuna tripla che possiede le caratteristiche del problema");
+    }
+    return 0;
+}
+
+int ugualiCompresi(int sequenza[],int lunghezza)
+{
+    int esisteAlmenoSomma=0;
+    int numUguali=1;
+    int esisteTripla=0;
+    //******** CONDITION IS A BIT COMPLICATED BUT CORRECT -0.5
+    for(int i=0;(i<(lunghezza-2))&&(esisteTripla==0);i++)
+    {
+        if((((sequenza[i]+sequenza[i+1])<=20) && ((sequenza[i]+sequenza[i+1])>=10)))
+        {
+            esisteAlmenoSomma=1;
+        }
+        if(((sequenza[i]+sequenza[i+2])<=20) && ((sequenza[i]+sequenza[i+2])>=10))
+        {
+            esisteAlmenoSomma=1;
+        }
+        if(((sequenza[i+2]+sequenza[i+1])<=20) && ((sequenza[i+2]+sequenza[i+1])>=10))
+        {
+            esisteAlmenoSomma=1;
+        }
+        if(sequenza[i]==sequenza[i+1])
+        {
+            numUguali++;
+        }
+        if(sequenza[i]==sequenza[i+2])
+        {
+            numUguali++;
+        }
+        if(sequenza[i+2]==sequenza[i+1])
+        {
+            numUguali++;
+        }
+        if((esisteAlmenoSomma==1)&&(numUguali==2))
+        {
+            esisteTripla=1;  
+        }
+        numUguali=1;
+        esisteAlmenoSomma=0;
+    }
+    return esisteTripla;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the function prototype
+- Proper array handling and iteration
+- Correct logic for checking both conditions (sum between 10-20 and exactly two equal elements)
+- Good use of boolean flags to track conditions
+- Proper loop termination when a valid triple is found
+
+Areas for Improvement:
+- The loop condition could be simplified for better readability
+- Output messages could be more specific about what properties were found/not found
+- Consider adding input validation for array size
+- The logic for checking sums and equality could be structured more elegantly
+
+Key Recommendations:
+- Add more descriptive output messages that specify exactly what conditions were met or not met
+- Consider simplifying the loop conditions and logical checks
+- Add input validation for the array size to ensure it's positive and reasonable
+- Consider using more meaningful variable names for better code readability
+</feedback_summary>

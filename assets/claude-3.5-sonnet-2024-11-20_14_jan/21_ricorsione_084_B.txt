@@ -1,0 +1,105 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........4.2 = 5.0 - 0.5 - 0.3
+countNumbers (2).....2.0
+readNumbers (2)......2.0
+writeNumbers(1)......0.7 = 1.0 - 0.3
+TOTAL................8.9/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int minimo(int x, int y, int z) {
+    int min = x;
+    if(y<x) {
+        min = y;
+    }
+    else if (z<x) {  //******** ERROR IN CALCULATING MINIMUM: Should check z against current min, not x -0.5
+        min = z;
+    }
+    return min;
+}
+
+int minimoDispari(int *seq, int lunghezza){
+    int tutte = 0;
+    //******** BASE CASE: l==3 is part of recursive step, should be handled differently -0.3
+    if(lunghezza==3) {
+        if(minimo(seq[0],seq[1],seq[2])%2!=0)
+            tutte = 1;
+    }
+    else {
+        tutte = minimoDispari(seq+1, lunghezza-1) && (minimo(seq[0],seq[1],seq[2])%2!=0);
+    }          
+    return tutte;
+}
+
+int quantiNumeri() {
+    int i=0;
+    FILE* fp = fopen("interi.txt","r");
+    if(fp==NULL)
+        printf("\nApertura non riuscita!\n\n");
+    else {
+        int intero;
+        while(fscanf(fp, "%d", &intero)>0) {
+            i++;
+        }
+    }
+    return i;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE* fp = fopen("interi.txt","r");
+    if(fp==NULL)
+        printf("\nApertura non riuscita!\n\n");
+    else {
+        for(int i=0; i<lunghezza; i++) {
+            fscanf(fp, "%d", &sequenza[i]);
+        }
+    }
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE* fp = fopen("interi.txt","w");
+    //******** MISSING FILE OPEN CHECK if(fp==NULL) -0.3
+    if(fp==NULL)
+        printf("\nSalvataggio non riuscito!\n\n");
+    else {
+        int i=0;
+        while(i<lunghezza) {
+            if(i==lunghezza-1)
+                fprintf(fp, "%d", sequenza[i]);
+            else
+                fprintf(fp, "%d ", sequenza[i]);
+            i++;
+        }
+    }
+}
+
+[... rest of main() function remains unchanged ...]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of file I/O functions (readNumbers and countNumbers)
+- Correct handling of text file operations
+- Well-structured recursive approach for minimoDispari function
+- Clear separation of concerns between different functions
+
+Areas for Improvement:
+- The minimum calculation function (minimo) has a logical error in its implementation
+- Base case handling in minimoDispari could be more efficient
+- File handling could be more robust with proper error checking
+- Consider adding file closing operations after file operations
+
+Key Recommendations:
+1. Fix the minimum calculation logic to compare against the current minimum
+2. Restructure the base case in minimoDispari to handle arrays of length ≤ 3 more efficiently
+3. Add proper file closing (fclose) after file operations
+4. Implement consistent error checking for file operations
+5. Add more robust input validation in the main function
+
+The code is generally well-structured and functional, with only minor issues that could be improved for better reliability and efficiency.
+</feedback_summary>

@@ -1,0 +1,67 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.0 = 6.0 - 2.0 - 1.0
+   MAIN PROGRAM (max 2.0):....1.3 = 2.0 - 0.5 - 0.2
+   TOTAL......................4.3
+*/
+
+#include <stdio.h>
+int multipli(int array[], int arrayCaselle){ 
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < arrayCaselle-2 -1.0
+    //******** THIS IS A UNIVERSAL VERIFICATION, NOT AN EXISTENTIAL ONE -2.0
+    for(int i=1;i<arrayCaselle;i++){
+        if(array[i]%array[i-1]==0||array[i]%array[i+1]==0)
+            return 1;
+    }
+    return 0;
+}
+int main(){
+    int arrayCaselle;
+    printf("Quanti valori ha l'array che vuole inserire?");  
+    scanf("%d", &arrayCaselle);
+    //******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+    int array[arrayCaselle];
+    for(int i=0;i<arrayCaselle;i++){
+        printf("Inserire il valore nella casella %d: ", i);
+        scanf("%d", &array[i]);
+    }
+    //******** UNCLEAR OUTPUT MESSAGE -0.2
+    if(multipli(array, arrayCaselle))
+    {
+        printf("Il vettore da te iserito contiene almeno una terna che comprende un multiplo di un numero.");
+    }
+    else
+    {
+        printf("Il vettore da te iserito non contiene almeno una terna che comprende un multiplo di un numero.");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Input collection from user is implemented correctly
+- Function separation between main and multipli is maintained
+
+Areas for Improvement:
+1. Logic Implementation:
+   - The multipli function implements existential verification (finds at least one case) instead of universal verification (checks all cases)
+   - Array bounds checking is incorrect, risking buffer overflow
+   - Triple checking logic needs to consider all combinations
+
+2. Array Management:
+   - Array declaration should follow after size input
+   - Array bounds need proper handling in the multipli function
+
+3. Output Clarity:
+   - Messages could be more precise about what constitutes a valid triple
+   - Output messages should clearly indicate the universal property being checked
+
+Key Recommendations:
+1. Modify the multipli function to check all triples (universal verification)
+2. Fix array bounds in the loop (i < arrayCaselle-2)
+3. Implement proper triple checking logic considering all possible combinations
+4. Improve output message clarity
+5. Move array declaration after size input
+</feedback_summary>

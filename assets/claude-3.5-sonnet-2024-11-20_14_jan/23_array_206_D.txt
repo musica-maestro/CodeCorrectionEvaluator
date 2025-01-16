@@ -1,0 +1,66 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.3 = 6.0 - 1.0 - 0.5 - 0.2
+   MAIN (max 2.0):.......1.3 = 2.0 - 0.5 - 0.2
+   TOTAL.................5.6
+*/
+
+#include <stdio.h>
+int restoDivisione(int array[], int length){
+    int i=0; 
+    int resto=0; 
+    //******** CONDITION ON THE TRIPLE IS MISSING SOME COMBINATIONS -1.0
+    while((i<length-2) && (resto == 0)) {
+        if((array[i]%array[i+1] == array [i+2]) || (array[i]%array[i+2] == array [i+1]) || (array[i+1]%array[i+2] == array [i])
+         ||(array[i+1]%array[i] == array [i+2]) || (array[i+2]%array[i] == array [i+1]) || (array[i+2]%array[i+1] == array [i])){
+            resto = 1;
+        } else
+            i++;
+    }
+    //******** HOW DO YOU CONSIDER 0? -0.2
+    return resto;
+}
+
+int main () {
+    int lun;
+    int ris;
+    //******** UNCLEAR MESSAGE -0.2
+    printf("Questo programma verifica se all'interno della sequenza da te inserita esiste una tripla di elementi adiacenti in cui uno dei tre %c il resto della divisione tra gli altri due\n", 138);
+    printf("Caro Utente, quanti interi vuoi inserire nella tua sequenza?\n");
+    scanf("%d", &lun);
+    //******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+    int seq[lun];
+    printf("inserisci %d interi:\n");
+    for(int i=0; i<lun; i++){
+        scanf("%d", &seq[i]);
+    }
+    ris = restoDivisione(seq, lun);
+    if(ris==1){
+        printf("Esiste una tripla nella sequenza in cui uno %c il resto degli altri due valori\n", 138);
+    } else {
+        printf("Non esiste nessuna tripla nella sequenza in cui uno %c il resto degli altri due valori\n", 138);
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct overall structure with separate function and main program
+- Proper implementation of the existential verification algorithm
+- Good use of loop control with the resto variable
+- Complete check of all possible division combinations within triples
+
+Areas for Improvement:
+- Array declaration should be done after getting the length input
+- Messages could be clearer and more user-friendly
+- Need to consider edge cases like division by zero
+- Some division combinations might be missing in the triple check
+
+Key Recommendations:
+1. Move array declaration after getting user input for length
+2. Add validation for division by zero cases
+3. Review and simplify output messages for better clarity
+4. Double-check all possible division combinations in the triple verification
+5. Consider adding input validation for array length and elements
+</feedback_summary>

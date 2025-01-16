@@ -1,0 +1,10 @@
+Design an algorithm to solve the following problem. Given a sequence of integers, check if there exists a triple of adjacent elements within the sequence where one of the three is the remainder of the division (between integers) of the other two. For example, the sequence [3, 2, 8, 9, 9] is a positive instance of the problem because in the first triple (3, 2, 8), 2 is the remainder of the division 8/3. The sequence [3,5,7,9] is a negative instance of the problem because none of the triples satisfies the property.
+
+(1 pt) Describe the specification of the problem briefly.
+(1 pt) Indicate what type of problem this is (accumulation, counting, existential verification, universal verification, search, minimum/maximum).
+(6 pt) A function restoDivisione with parameters: 1) an array of integers; and 2) an integer representing the length of the array. The function returns 1 if there exists a triple of adjacent elements in the array where at least one element is the remainder of the division of the other two, returns 0 otherwise.
+(2 pt) A main function that handles user interaction. The main function should:
+· Ask the user how many integers the sequence has and read the user's response
+· Ask the user to enter the integers of the sequence, read the integers entered by the user, and store them in an array;
+· Call the restoDivisione function, passing it a reference to the sequence of integers just read and its length;
+· Print a message informing the user whether there exists a triple of adjacent elements in the sequence where one of the three is the remainder of the division of the other two, or not.

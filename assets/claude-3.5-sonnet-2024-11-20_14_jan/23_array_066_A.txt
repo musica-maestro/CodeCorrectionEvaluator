@@ -1,0 +1,65 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....3.0 = 6.0 - 1.5 - 1.5
+   MAIN (max 2.0):.......1.3 = 2.0 - 0.5 - 0.2
+   TOTAL.................4.3
+*/
+
+#include <stdio.h>
+int multipli(int seq[], int l){
+	int isMultiplo = 1; 
+	int i; 
+	//******** CONDITION ON THE TRIPLE IS WRONG - MISSING SOME COMBINATIONS -1.5
+	for(i=0; i<l-2 && isMultiplo; i++ ){
+		if(!(seq[i]%seq[i+1]==0 || seq[i]%seq[i+2]==0 || seq[i+1]%seq[i+2]==0 || seq[i+1]%seq[i]==0 || seq[i+2]%seq[i]==0 || seq[i+2]%seq[i+1]==0))
+			isMultiplo = 0;
+	}
+	return isMultiplo;
+}
+
+int main(){
+	int lunghezza; 
+	int i; 
+	printf("Caro utente, quanti elementi vuoi inserire nella tua sequenza?\n");
+	scanf("%d", &lunghezza);
+		while(lunghezza<=0){
+				printf("valore non valido, inserisci un intero maggiore di zero\n");
+				scanf("%d", &lunghezza);
+			}
+	//******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+	int sequenza[lunghezza];
+	for(i=0; i<lunghezza; i++){
+		printf("inserisci valore di indice %d\n", i);
+		scanf("%d", &sequenza[i]);
+	}
+	//******** UNCLEAR OUTPUT MESSAGE -0.2
+	multipli(sequenza,lunghezza);
+	if(multipli(sequenza,lunghezza))
+		printf("si, ciasciuna terna ha almeno un elemento multiplo di uno degli altri due!\n");
+		else
+		printf("no, la sequenza non soddisfa la condizione.\n");
+}      
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct use of boolean flag for verification
+- Proper array bounds checking in the loop (i<l-2)
+- Good input validation for sequence length
+- Basic functionality is implemented correctly
+
+Areas for Improvement:
+- The function name in main ("multipli") doesn't match the function definition ("multipli")
+- The triple condition check could be simplified and made more clear
+- Array declaration should come after validating the input length
+- Output messages could be more descriptive and professional
+- Function is called twice unnecessarily
+
+Key Recommendations:
+1. Fix the function name consistency
+2. Reorganize the code structure to declare arrays after input validation
+3. Make output messages more clear and professional
+4. Optimize the function call to avoid calling it twice
+5. Consider adding more detailed error messages and input validation for the sequence values
+</feedback_summary>

@@ -1,0 +1,65 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.0 = 6.0 - 1.5 - 1.5
+   MAIN PROGRAM (max 2.5):....1.7 = 2.5 - 0.5 - 0.3
+   TOTAL.......................4.7
+*/
+
+#include <stdio.h>
+int UgualiCompresi(int vettore[], int lunghezza){
+	int i;
+	int risultato=0;
+	for(i=0;i<lunghezza-2;i++){
+		//******** THE SUM OF THE SAME TWO ELEMENTS MUST BE IN THE RANGE OF 10 TO 20. CONDITION IS OVERLY COMPLICATED AND INCORRECT -1.5
+		if((vettore[i]+vettore[i+1]>=10||vettore[i+1]+vettore[i+2]>=10||vettore[i]+vettore[i+2]>=10)&&(vettore[i]+vettore[i+1]<=20||vettore[i+1]+vettore[i+2]<=20)||(vettore[i]+vettore[i+2]<=20)){
+			//******** EXACTLY TWO ELEMENTS MUST BE EQUAL (THE THIRD MUST BE DIFFERENT). YOUR CONDITION DOESN'T ENSURE THIS -1.5
+			if(vettore[i]==vettore[i+1]||vettore[i+1]==vettore[i+2]||vettore[i]==vettore[i+2]){
+				risultato=1;
+			}
+		}else
+		risultato=0; 
+	}
+	return risultato;
+}
+int main(int argc, char **argv)
+{	int i;   
+	int dimensione; 
+	int uguali;  
+	printf("inserisci il numero di interi che vuoi verificare: ");    
+	scanf("%d",&dimensione);   
+	int array[dimensione];  
+	printf("inserisci %d interi:  ", dimensione);
+	for(i=0;i<dimensione;i++){
+		scanf("%d",&array[i]);   
+	}
+	uguali=UgualiCompresi(array,dimensione);   
+	if(uguali==1){
+		printf("nella sequenza di interi inserita, ci sono due interi la cui somma e' compresa tra 10 e 20 e un'intero della sequenza e' uguale ad un altro");
+	}
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+	else("nella sequenza di interi inserita,  non ci sono due interi la cui somma è compresa tra 10 e 20 e un'intero della sequenza è uguale ad un altro");
+	//******** YOU DO NOT EXPLAIN THE MEANING OF THE OUTPUT CLEARLY -0.3
+	return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct array indexing and bounds checking in the function
+- Proper input handling for array size and elements
+- Good basic structure of the program
+
+Areas for Improvement:
+- The condition for checking sums between 10 and 20 is overly complicated and incorrect. It should check each pair separately and ensure the sum is both >= 10 AND <= 20
+- The condition for checking exactly two equal elements needs to be more precise to exclude cases where all three elements are equal
+- Output messages could be more clear and specific about what conditions were or weren't met
+- The else statement is missing printf
+
+Key Recommendations:
+- Simplify the sum condition to check each pair individually with proper range checking
+- Modify the equality check to ensure exactly two elements are equal
+- Improve output messages to be more precise about the conditions being tested
+- Add proper printf statement in the else clause
+- Consider using more meaningful variable names and adding comments to explain the logic
+</feedback_summary>

@@ -1,0 +1,76 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):....2.3 = 6.0 - 1.0 - 1.5 - 1.0 - 0.2
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................4.1
+*/
+
+#include <stdio.h>
+int restoDivisione(int a[], int lung){
+    int ris;
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lung - 2 -1.0
+    for (int i=0; i<lung; i++){ 
+        //******** CONDITION ON THE TRIPLE IS WRONG (accessing i+1 and i-1 incorrectly) -1.5
+        if((a[i]%a[i+1] == a[i-1]) || (a[i-1]%a[i+1] == a[i]) ||
+            (a[i]%a[i-1] == a[i+1]))
+            ris = 1;
+        else
+            ris = 0; 
+    }
+    //******** WITHOUT THE BOOLEAN VARIABLE IN THE CONDITION, EVEN IF YOU FIND A TRIPLE THAT SATISFIES THE PROPERTY, YOU CONTINUE TO CHECK -0.2
+    return ris;
+}
+
+int main()
+{
+    int lunghezza;
+    printf("salve utente, sono un programma che verifica l'esistenza di un \n");
+    printf("elemento multiplo di altri elementi nell'array introdotto\n");
+    printf("introduci la lunghezza dell'array\n");
+    scanf("%d", &lunghezza);
+    int array[lunghezza];
+    for(int i=0; i<lunghezza;i++){
+        printf("introduci l'intero: ");
+        scanf("%d", &array[i]);
+    }
+    //******** UNCLEAR MESSAGE -0.2
+    printf("esito della verifica: %d", restoDivisione(array,lunghezza));
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Function parameters and return type are correctly defined
+- Main program handles user input appropriately
+- Array allocation and input collection are implemented correctly
+
+Areas for Improvement:
+1. Array Bounds:
+   - The loop in restoDivisione should only go up to lung-2 to avoid accessing invalid memory
+   - Current implementation causes buffer overflow
+
+2. Triple Condition Logic:
+   - The condition for checking remainders is incorrectly implemented
+   - Should check each consecutive triple of elements properly
+   - Need to handle array bounds correctly when accessing adjacent elements
+
+3. Result Handling:
+   - The function should return as soon as a valid triple is found
+   - Current implementation overwrites the result in each iteration
+   - Need to implement proper existential verification
+
+4. Output Clarity:
+   - The verification result message should be more descriptive
+   - Should indicate what 1 or 0 means in the output
+
+Key Recommendations:
+1. Modify the loop condition to prevent array bounds violation:
+   ```c
+   for (int i = 1; i < lung-1; i++)
+   ```
+2. Restructure the remainder checking logic to properly evaluate consecutive triples
+3. Implement early return when a valid triple is found
+4. Improve output message clarity to indicate what the result means
+</feedback_summary>

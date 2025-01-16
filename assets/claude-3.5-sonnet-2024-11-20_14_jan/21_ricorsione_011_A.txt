@@ -1,0 +1,97 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)............4.0 = 5.0 - 1.0
+countNumbers (2).......1.7 = 2.0 - 0.3
+readNumbers (2)........1.7 = 2.0 - 0.3
+writeNumbers (1).......0.7 = 1.0 - 0.3
+TOTAL..................8.1/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimoPari(int *s,int l) {
+    int verificato; 
+    int max; 
+    if(l<3) 
+        verificato=1;
+    else{
+        max=s[0];
+        //******** Using if statements instead of a more efficient method to find maximum of three numbers -0.5
+        if(max<s[1] || max<s[2]) {
+            if(s[1]>s[2]) {
+                max=s[1];
+            }
+            else
+                max=s[2];
+        }
+        //******** Universal check with && needed for all triplets -0.5
+        verificato = (max%2==0) && massimoPari(s+1,l-1);
+    }
+    return verificato;
+}
+
+void scriviNumeri(int *array, int l) {
+    FILE *fp = fopen("interi.dat","wb");
+    //******** Missing file opening check if(fp==NULL) before writing -0.3
+    if(fp==NULL)
+        printf("Impossibile salvare la sequenza di interi!\n");
+    else {
+        fwrite(array,sizeof(int),l,fp);
+        fclose(fp);
+    }
+}
+
+int quantiNumeri() {
+    int quanti=0; 
+    int numero; 
+    FILE *fp = fopen("interi.dat","rb");
+    //******** Missing file opening check if(fp==NULL) -0.3
+    while(fread(&numero,sizeof(int),1,fp)>0) {
+        quanti++;
+    }
+    fclose(fp);
+    return quanti;
+}
+
+void leggiNumeri(int *array, int l) {
+    FILE *fp = fopen("interi.dat","rb");
+    if(fp==NULL)
+        printf("Impossibile leggere la sequenza di interi!\n");
+    else {
+        fread(array,sizeof(int),l,fp);
+        fclose(fp);
+    }
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of recursive approach in massimoPari function
+- Correct file handling operations (open, read, write, close)
+- Proper use of binary file operations
+- Well-structured main function with clear user interaction
+
+Areas for Improvement:
+- File handling:
+  * Add proper NULL checks after file opening in all functions
+  * Handle file errors more gracefully
+
+- massimoPari function:
+  * Optimize the maximum finding logic for three numbers
+  * Improve the recursive check to ensure all triplets are properly verified
+
+- Error handling:
+  * Add more robust error checking throughout the code
+  * Provide more informative error messages
+
+Key Recommendations:
+1. Add proper file error handling in all file operations
+2. Optimize the maximum finding algorithm in massimoPari
+3. Add more detailed error messages for better user feedback
+4. Consider adding input validation for user inputs
+</feedback_summary>

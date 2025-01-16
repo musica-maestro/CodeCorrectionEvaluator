@@ -1,0 +1,67 @@
+I'll grade the student's submission following the provided format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.2 - 0.5
+   MAIN PROGRAM (max 2.5):....2.2 = 2.5 - 0.3
+   TOTAL.......................7.5
+*/
+
+#include<stdio.h>
+int maggiori5Pari( int interi[], int lunghezza){
+    int i; 
+    int verificato; 
+    i=0;
+    verificato=1;
+    //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+    while(i<lunghezza-2 && verificato){
+        if(!(((interi[i]>=5 && interi[i+1]>=5 && interi[i+2]<5)
+        || (interi[i]>=5 && interi[i+2]>=5 && interi[i+1]<5) |
+        |(interi[i+1]>=5 && interi[i+2]>=5 && interi[i]<5))
+        && ((interi[i]%2==0 && interi[i+1]%2==0) || (interi[i]%2==0 && interi[i+2]%2==0) || (interi[i+1]%2==0 && interi[i+2]%2==0) || (interi[i]%2==0 && interi[i+1]%2==0 && interi[i+2]%2==0))))
+            verificato=0;   
+        else
+            i++;
+    }
+    return verificato;
+}
+
+int main(int argc, char**argv){
+    int lunghezza;
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+    printf("Caro utente sono un programma che verifica che in una sequenza ogni tripla contiene esattamente due elementi maggiori o uguali di 5 e almeno due pari\n");
+    printf("Inserisci la lunghezza dlla sequenza\n");
+    scanf("%d",&lunghezza);
+    int sequenza[lunghezza];
+    for(int i=0;i<lunghezza;i++){
+        printf("Introduci un intero \n");
+        scanf("%d",&sequenza[i]);
+    }
+    if(maggiori5Pari(sequenza,lunghezza)){
+        printf("Ogni tripla della sequenza rispetta le caratteristiche\n");
+    }
+    else{
+        printf("Non tutte le triple della sequenza rispettano le caratteristiche\n");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the universal verification logic
+- Proper handling of array bounds in the loop condition
+- Correct implementation of both conditions (exactly two ≥5 and at least two even)
+- Good structure of the main program with clear user interaction
+- Proper use of boolean variable for loop control
+
+Areas for Improvement:
+- The condition in the maggiori5Pari function is overly complex and could be made more readable by breaking it down into smaller logical parts
+- The output messages could be more specific about what properties are being verified
+- Consider adding input validation for the sequence length
+
+Key Recommendations:
+- Break down the complex condition into smaller, more manageable parts using helper variables
+- Enhance user communication by providing more detailed output messages
+- Consider adding bounds checking for array size input
+</feedback_summary>
+
+The student's implementation is generally correct and well-structured. The main deductions are for readability and user interface clarity rather than functional issues. The solution correctly implements both required checks: exactly two elements ≥5 and at least two even numbers in each triple.

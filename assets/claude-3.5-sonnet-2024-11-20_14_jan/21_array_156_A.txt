@@ -1,0 +1,70 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....3.0 = 6.0 - 1.5 - 1.5
+   MAIN PROGRAM (max 2.5):....0.5 = 2.5 - 1.0 - 0.5 - 0.5
+   TOTAL.......................3.5
+*/
+
+#include <stdio.h>
+int UgualiCompresi(int num[],int lun){
+	int ugualicompresi=0; 
+	int somma1, somma2, somma3, somma4;
+	for(int i=0; i<lun-2; i++){   
+		//******** EXACTLY TWO ELEMENTS MUST BE EQUAL (THE THIRD MUST BE DIFFERENT). YOUR CONDITION IS NOT COMPLETE -1.5
+		if(((num[i]==num[i+1])&&(num[i]!=num[i+2]))||((num[i+1]==num[i+2])&&(num[i]!=num[i+2]))){
+			somma1=num[i]+num[i+1];
+			somma2=num[i]+num[i+2];
+			somma3=num[i+1]+num[i+2];
+			somma4=somma3+num[i]; 
+			//******** CALCULATING THE SUM OF ALL THREE ELEMENTS IN THE TRIPLE INSTEAD OF CHECKING IF AT LEAST TWO ELEMENTS HAVE A SUM BETWEEN 10 AND 20 -1.5
+			if((somma1>=10&&somma1<=20)||(somma2>=10&&somma2<=20)||(somma3>=10&&somma3<=20)||(somma4>=10&&somma4<=20)){
+				ugualicompresi=1;                                                        
+				}
+			}
+		}
+	return ugualicompresi;
+	}
+int main(){
+	int lunghezza; 
+	printf("Salve sono un programma che legge una sequenza di numeri.\n");
+	printf("Verifico se nella sequenza degli elementi %c presente \nuna tripla con due elementi uguali",138);
+	printf("e la somma di almeno 2 \nelementi %c compresa tra 10 e 20 inclusi\n\n",138);
+	printf("Quanti interi ha la sequenza? ");
+	//******** MISSING & OPERATOR IN SCANF -1.0
+	scanf("%d", lunghezza); 
+	int sequenza[lunghezza];
+	for(int i=0; i<lunghezza; i++){
+		printf("Inserisca un numero: ");
+		//******** MISSING & OPERATOR IN SCANF -0.5
+		scanf("%d", sequenza[i]);  
+		}
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+	if(UgualiCompresi(sequenza, lunghezza)==1){
+		printf("Nella sequenza esiste una tripla di elementi consecutivi dove 2 elementi sono uguali tra loro e almeno 2 elementi hanno somma compresa tra 10 e 20 ");
+		}
+	else{
+		printf("Nella sequenza non esiste una tripla di elementi consecutivi dove 2 elementi sono uguali tra loro e almeno 2 elementi hanno somma compresa tra 10 e 20 ");
+		}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct loop structure for checking consecutive triples
+- Proper function return type and parameters
+- Good attempt at implementing the logic for checking equal elements
+
+Areas for Improvement:
+- The logic for checking exactly two equal elements needs refinement
+- The sum calculation includes unnecessary combinations and should focus on pairs
+- Input handling in main() is missing & operators in scanf calls
+- Output messages could be more concise and clearer
+
+Key Recommendations:
+1. Fix the scanf statements by adding & operator before variables
+2. Simplify the sum checking logic to only consider pairs of elements
+3. Revise the condition for checking exactly two equal elements
+4. Make output messages more concise while maintaining clarity
+5. Remove the unnecessary somma4 calculation that includes all three elements
+</feedback_summary>

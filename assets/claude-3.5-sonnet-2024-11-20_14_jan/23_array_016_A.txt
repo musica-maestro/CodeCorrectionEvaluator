@@ -1,0 +1,90 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....3.0 = 6.0 - 1.0 - 1.5 - 0.5
+   MAIN (max 2.0):.......1.8 = 2.0 - 0.2
+   TOTAL..................4.8
+*/
+
+#include <stdio.h>
+int multipli(int arr[],int len){
+    int i,j=0;   
+    int TrueFalse;      
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < len - 2 -1.0
+    for(i=0;i<len;i++){  
+        //******** CONDITION ON THE TRIPLE IS WRONG - ACCESSING OUT OF BOUNDS ELEMENTS -1.5
+        if (arr[i]%arr[i+1]==0 || arr[i]%arr[i+2]==0 || arr[i+1]%arr[i]==0 || arr[i+1]%arr[i+2]==0 || arr[i+2]%arr[i]==0 || arr[i]%arr[i+1]==0 ){
+            j++;
+        }
+    }
+    //******** COMPARING LENGTH WITH ARRAY CONTENT -0.5
+    if (j==len){
+        TrueFalse = 1;
+    }
+    else {
+        TrueFalse = 0;
+    }
+    return TrueFalse; 
+}
+
+int main(){
+    int i;      
+    int len;    
+    int TrueFalse;       
+    printf("Programma che prende in input un array di interi e restituisce un valore positivo\n");
+    printf("se in tutte le terne di elementi adiacenti vi e' almeno un multiplo degli altri due elementi\n");
+    printf("inserisci la lunghezza dell'array : ");
+    scanf("%d",&len);
+    int arr[len];
+    printf("ora inserisci i valori : ");
+    for(i=0;i<len;i++){
+        scanf("%d",&arr[i]);
+    }
+    for(i=0;i<len;i++){
+        printf("valore [%d]: %d\n",i,arr[i]);
+    }
+    //******** UNCLEAR OUTPUT MESSAGE -0.2
+    TrueFalse = multipli(arr,len);
+    if (TrueFalse==1){
+        printf("Tutte le terne contengono alemno un multiplo\n");
+    }
+    if (TrueFalse==0){
+        printf("non tutte le terne contengono almeno un multiplo\n");
+    }
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic function structure is present
+- Main program handles user interaction appropriately
+- Input/output flow is generally well-structured
+
+Areas for Improvement:
+1. Array Bounds:
+   - The loop in multipli() should stop at len-2 to avoid accessing elements beyond array bounds
+   - Current implementation may cause undefined behavior
+
+2. Triple Condition Logic:
+   - The condition checking for multiples needs to be revised
+   - Should only check adjacent triples, not accessing i+2 elements without bounds checking
+
+3. Comparison Logic:
+   - The comparison of j with len is incorrect
+   - Should compare with the number of valid triples instead
+
+Key Recommendations:
+1. Fix the loop boundary in multipli():
+   ```c
+   for(i = 0; i < len-2; i++)
+   ```
+
+2. Revise the triple checking logic to properly verify adjacent elements
+
+3. Update the comparison logic to match the actual number of triples being checked
+
+4. Add input validation for array length and elements
+
+5. Make output messages more clear and precise
+</feedback_summary>

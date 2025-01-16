@@ -1,0 +1,76 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6):........4.3 = 6.0 - 1.5 - 0.2
+   MAIN PROGRAM (max 2):....1.8 = 2.0 - 0.2
+   TOTAL.....................6.1
+*/
+
+#include <stdio.h>
+int duePositivi(int *array, int n){ 
+    int i;
+    int risultato=0; 
+    int verita=0; 
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < n - 2 -1.5
+    for(i=0; i<n-2; i++){
+        //******** DO YOU CONSIDER 0 POSITIVE OR NEGATIVE? -0.2
+        if(array[i]>0 && array[i+1]>0 && array[i+2]<0){
+            risultato++;
+        }
+        else{
+            if(array[i]>0 && array[i+1]<0 && array[i+2]>0){
+                risultato++;
+            }
+            else{
+                if(array[i]<0 && array[i+1]>0 && array[i+2]>0){
+                    risultato++;
+                }
+            }    
+        }
+    }
+    if(risultato==n-2){
+        verita=1;
+    }
+    return verita;
+}
+
+int main(){ 
+    int n; 
+    int i; 
+    printf("quanti interi vuoi inserire nell'array? (devono essere almeno 3)\n");
+    scanf("%d", &n);    
+    int array[n]; 
+    printf("iserisci i numeri dell'array\n");
+    for(i=0; i<n; i++){
+        scanf("%d", &array[i]);
+    }
+    //******** UNCLEAR MESSAGE -0.2
+    if(duePositivi(array, n)){
+        printf("tutte le triple dell'array hanno due numeri positivi");
+    }
+    else{
+        printf("non tutte le triple dell'array hanno due numeri positivi");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the universal verification logic
+- Proper function structure with parameters and return value
+- Good handling of user interaction in main
+- Correct implementation of the three possible cases for two positives
+
+Areas for Improvement:
+- Array bounds checking needs correction: The loop should run until n-2 to avoid accessing elements beyond array bounds
+- The code doesn't explicitly handle the case of zero (0) - should clarify if it's considered positive or negative
+- Output messages could be more descriptive and clearer
+- Consider adding input validation for n to ensure it's at least 3
+
+Key Recommendations:
+1. Fix the array bounds issue by ensuring proper loop termination
+2. Add explicit handling of zero values
+3. Improve output message clarity
+4. Add input validation for array size
+5. Consider using more descriptive variable names (e.g., 'count' instead of 'risultato')
+</feedback_summary>

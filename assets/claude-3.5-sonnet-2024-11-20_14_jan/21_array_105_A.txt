@@ -1,0 +1,66 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.2 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................7.3
+*/
+
+#include <stdio.h>
+int compresoTra(int numero){
+	return numero <= 20 && numero >= 10;
+}
+
+int ugualiCompresi(int array[],int l){
+	int trovato=0;
+	int somma1=0,somma2=0,somma3=0;
+	//******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+	for(int i=0;(i<l-2) && (!trovato);i++){
+		somma1= array[i]+array[i+1]; 
+		somma2= array[i+1]+array[i+2];
+		somma3= array[i]+array[i+2];
+		if( ((( (array[i]==array[i+1]) + (array[i+1]==array[i+2]) + (array[i]==array[i+2])) == 1)) && (compresoTra(somma1) || compresoTra(somma2) || compresoTra(somma3))){
+				trovato=1;
+		}
+	}
+	return trovato;
+}
+
+int main(int argc, char **argv){
+	int l;
+	printf("inserisci lunghezza array: ");
+	scanf("%d",&l);
+	int arrayInteri[l]; 
+	for(int i=0;i<l;i++){
+		printf("Inserire l'elemento numero %d: ", i+1);
+		scanf("%d",&arrayInteri[i]);
+	}
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+	if(ugualiCompresi(arrayInteri,l)){
+		printf("\nQuesta e' un istanza positiva del problema");
+	}else{
+		printf("\nQuesta e' un istanza negativa del problema");
+	}
+}   
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for checking consecutive triples
+- Proper array bounds checking in the loop condition
+- Good use of helper function (compresoTra) to improve code readability
+- Correct implementation of the main function's input/output requirements
+
+Areas for Improvement:
+- The condition in the ugualiCompresi function, while correct, could be more readable by breaking it down into smaller logical parts
+- The output messages could be more descriptive about what property was found or not found in the sequence
+- Consider adding input validation for array length to ensure it's positive and reasonable
+
+Key Recommendations:
+- Break down complex conditions into smaller, well-named boolean variables for better readability
+- Provide more informative output messages that explain what conditions were or weren't met
+- Add input validation in the main function
+- Consider adding comments to explain the logic of complex conditions
+
+The solution correctly implements the required functionality but could benefit from improved readability and user communication.
+</feedback_summary>

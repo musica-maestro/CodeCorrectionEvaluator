@@ -1,0 +1,61 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.5 = 6.0 - 1.5
+   MAIN PROGRAM (max 2.0):....2.0
+   TOTAL.......................6.5/8.0
+*/
+
+#include <stdio.h>
+int duePositivi(int* array, int lunghezza){
+	int i=0;
+	int triple=1;
+	//******** CONDITION ON THE TRIPLE IS WRONG -1.5
+	while(i<lunghezza-2 && triple){
+		if(!((array[i]>0 && array[i+1]>0 && array[i+2]<0) || 
+             (array[i]>0 && array[i+1]<0 && array[i+2]>0) || 
+             (array[i]<0 && array[i+1]>0 && array[i+2]>0)))
+			triple=0;
+		else             
+			i++;
+	}
+return triple;
+}
+
+int main(){
+	int lunghezza;
+	int i;
+	printf("caro utente quanti interi vuoi introdurre? (minimo 3)\n");
+	scanf("%d", &lunghezza);
+	int array[lunghezza];
+	for(i=0; i<lunghezza; i++){
+		printf("caro utente introduci un intero:\n");
+		scanf("%d", &array[i]);
+	}
+	if(duePositivi(array, lunghezza))
+		printf("in tutte le triple adiacenti della sequenza ci sono esattamente due numeri positivi\n");
+	else
+		printf("almeno in una delle triple adiacenti della sequenza NON ci sono esattamente due numeri positivi\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of universal verification approach using a boolean flag
+- Proper array bounds checking in the loop (i < lunghezza-2)
+- Well-structured main function with clear user interaction
+- Good output messages that clearly communicate the result
+
+Areas for Improvement:
+- The condition for checking exactly two positives in a triple is incomplete. The current implementation doesn't cover all possible combinations of two positive numbers in a triple. Consider all possible arrangements of two positive numbers and one negative number.
+- Consider handling the case where zero is input (currently treated as negative)
+- Consider adding input validation for the array length to ensure it's at least 3
+
+Key Recommendations:
+1. Revise the triple-checking condition to include all possible combinations of exactly two positive numbers
+2. Add explicit handling for zero values
+3. Add input validation in main() to ensure lunghezza >= 3
+4. Consider using more descriptive variable names (though not part of grading criteria)
+</feedback_summary>
+
+The main deduction comes from the incomplete logic in checking for exactly two positive numbers in each triple. The current implementation misses some valid combinations. Otherwise, the code is well-structured and meets most requirements effectively.

@@ -1,0 +1,95 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........4.0 = 5.0 - 1.0
+countNumbers (2).....2.0
+readNumbers (2)......2.0
+writeNumbers(1)......0.7 = 1.0 - 0.3
+TOTAL................8.7/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int minimoDispari(int *seq, int dim){
+    //******** Function name should match assignment (minimoDispari vs minOdd) but functionality is correct
+    int ris;
+    //******** Base case should check if dim <= 2 since we need triplets -0.5
+    if(dim <= 3){
+        if(*seq < *(seq+1) && (*seq< *(seq+2)))
+            ris = ((*seq % 2 != 0));
+        else if((*seq > *(seq+1) && *(seq+1) < *(seq+2)))
+            ris = (*(seq+1)%2 != 0);
+        else if((*seq > *(seq+2) && *(seq+1) > *(seq+2)))
+            ris = (*(seq+2)%2 !=0);
+    }
+    else{
+        //******** Recursive implementation is correct but could be simplified -0.5
+        if(*seq < *(seq+1) && (*seq < *(seq+2)))
+            ris = ((*seq % 2 != 0) && minimoDispari(seq+1, dim-1));
+        else if(*seq > *(seq+1) && *(seq+1) < *(seq+2))
+            ris = ((*(seq+1)%2 != 0) && minimoDispari(seq+1, dim-1));
+        else if(*seq > *(seq+2) && *(seq+1) > *(seq+2))
+            ris = ((*(seq+2)%2 !=0) && minimoDispari(seq+1, dim-1));
+    }
+    return ris;
+}
+
+int quantiNumeri() {
+    FILE* fp = fopen("sequenza.dat", "rb");
+    int n;
+    int quanti = 0;
+    if(fp!=NULL){
+        while(fread(&n, sizeof(int), 1, fp)){
+            quanti++;
+        }
+        fclose(fp);
+    }
+    return quanti;
+}
+
+void leggiNumeri(int* sequenza, int dim) {
+    FILE* fp = fopen("sequenza.dat", "rb");
+    if(fp!=NULL){
+        fread(sequenza, dim*sizeof(int), dim, fp);
+        fclose(fp);
+    }
+    else
+        printf("errore nell'apertura\n\n");
+}
+
+void scriviNumeri(int* sequenza, int dim) {
+    //******** File name should be "integers.dat" as per assignment requirements -0.3
+    FILE* fp = fopen("sequenza.dat", "wb");
+    if(fp != NULL){
+        fwrite(sequenza, sizeof(int), dim, fp);
+        printf("Salvataggio completato!\n\n");
+        fclose(fp);
+    }
+    else
+        printf("Errore nel salvataaggio!\n\n");
+}
+
+[... rest of the code remains unchanged ...]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of file handling operations
+- Proper memory management and pointer usage
+- Good error handling for file operations
+- Recursive implementation of the minimum odd check function
+
+Areas for Improvement:
+- The base case in minimoDispari should check for dim <= 2 since triplets are needed
+- File naming should follow assignment requirements (integers.dat instead of sequenza.dat)
+- The recursive implementation could be simplified
+- Function names should match assignment specifications
+
+Key Recommendations:
+1. Adjust the base case check in minimoDispari to prevent potential array access issues
+2. Use the specified file name "integers.dat" as per assignment requirements
+3. Consider simplifying the recursive implementation while maintaining the same functionality
+4. Align function names with assignment specifications for consistency
+</feedback_summary>

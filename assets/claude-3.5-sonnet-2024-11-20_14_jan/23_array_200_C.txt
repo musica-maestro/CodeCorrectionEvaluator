@@ -1,0 +1,70 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....3.5 = 6.0 - 2.0 - 0.5
+   MAIN (max 2.0):.......1.0 = 2.0 - 0.5 - 0.5
+   TOTAL..................4.5
+*/
+
+#include <stdio.h>
+int dueUnaCifra(int*array, int l);
+int main(){
+    int lunghezza;            
+    int triple;                
+    printf("Ciao utente!! Dimmi quanti numeri vuoi inserire: ");
+    scanf("%d", &lunghezza);
+    if(lunghezza<3){
+        printf("\nLa tua sequenza e' tropppo piccola, deve contenere almeno 3 elementi");
+        scanf("%d", &lunghezza);
+    }
+    int sequenza [lunghezza];
+    for(int i=0; i<lunghezza; i++){
+        printf("\nInserisci intero: ");
+        //******** INCORRECT READING, SHOULD BE &sequenza[i] -0.5
+        scanf("%d", &sequenza); 
+    }
+    triple= dueUnaCifra(sequenza, lunghezza);
+    //******** NON-EXPLANATORY OUTPUT -0.5
+    if(triple)
+        printf("\nIn tutte le triple di elementi adiacenti della tua sequenza sono presentia almeno due numeri composti da una sola cifra");
+    else
+        printf("\nNON in tutte le triple di elementi adiacenti della tua sequenza sono presentia almeno due numeri composti da una sola cifra");
+}
+
+int dueUnaCifra(int*array, int l){
+    int i=0;                
+    int triple=1;                
+    //******** BEING BETWEEN 0 AND 9 IS WRITTEN AS array[i] >= 0 && array[i] <= 9 -2.0
+    while(i<l-2 && triple){
+        if((array[i]<=9 && array[i+1]<=9 && array[i+2]>9 ) ||
+           (array[i]<=9  && array[i+2]<=9 && array[i+1]>9 ) ||
+           (array[i+1]<=9 && array[i+2]<=9 && array[i]>9 )){   
+            i++; 
+        }
+        else
+            triple=0;            
+    }
+    //******** SETTING THE VARIABLE TO 1 IS NOT NECESSARY (BECAUSE IT'S ALREADY 1), BUT YOU SAVE IT BECAUSE YOU PLACED THE BOOLEAN IN THE LOOP CONDITION -0.5
+    return triple;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct overall program structure with separate main and function
+- Proper implementation of universal verification logic
+- Good handling of array bounds in the loop condition
+
+Areas for Improvement:
+- Array input is incorrect - scanf() needs the address of individual array elements
+- Single digit number checking needs to include both upper and lower bounds
+- Output messages could be more concise and clear
+- Variable initialization could be more efficient
+
+Key Recommendations:
+1. Fix array input by using &sequenza[i] in scanf()
+2. Implement proper bounds checking for single-digit numbers (>= 0 && <= 9)
+3. Simplify output messages for better clarity
+4. Review variable initialization practices
+5. Consider adding input validation for positive integers only
+</feedback_summary>

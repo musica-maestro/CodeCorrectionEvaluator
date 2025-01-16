@@ -1,0 +1,67 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.3 = 6.0 - 1.5 - 0.2
+   MAIN (max 2.0):...........1.5 = 2.0 - 0.5
+   TOTAL.....................5.8
+*/
+
+#include<stdio.h>
+int duePositivi(int array[], int lunghezza){
+	int i=0;
+	int booleana=1; 
+	//******** CONDITION ON THE TRIPLE IS WRONG -1.5
+	while(i<lunghezza-2 && booleana){
+		if(((array[i]<0 && array[i+1]<0 && array[i+2]<0)||(array[i]<0 && array[i+1]<0 && array[i+2]>=0))||
+		   ((array[i]<0 && array[i+1]>=0 && array[i+2]<0)||(array[i]>=0 && array[i+1]<0 && array[i+2]<0))||
+		   (array[i]>=0 && array[i+1]>=0 && array[i+2]>=0))
+		booleana=0; 
+		else i++;
+	}             
+	return booleana;
+}
+
+int main(){
+	int i;
+	int n; 
+	int booleana;
+	printf("Caro utente, inserisci la lunghezza della tua sequenza di numeri interi \n");
+	scanf("%d", &n);
+	//******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+	if(n<=2)   
+		printf("Se la lunghezza della sequenza %c minore o uguale a 2, non \n", 138);
+		printf("esisteranno mai triple di numeri. Inserisci una lunghezza maggiore di 2: ");
+		scanf("%d", &n);
+	int sequenza[n];
+	for(i=0; i<n; i++){
+		printf("Inserisci un numero: ");
+		scanf("%d", &sequenza[i]);}
+	booleana=duePositivi(sequenza, n);
+	if(booleana)
+		printf("Nella tua sequenza ogni tripla di numeri consecutivi contiene esattamente due numeri positivi");
+	else
+		printf("Nella tua sequenza almeno una tripla di numeri consecutivi non contiene esattamente due positivi");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct function structure with proper parameters
+- Good implementation of universal verification using boolean flag
+- Proper array bounds checking in the loop
+- Clear user interaction in main function
+- Appropriate error handling for sequences shorter than 3 elements
+
+Areas for Improvement:
+- The logic for checking exactly two positive numbers in a triple is incorrect. The current condition checks for cases where there are NOT exactly two positives, but misses some combinations
+- The array should be declared after validating the input length
+- Consider zero as either positive or negative consistently throughout the code
+- The code would be more maintainable with clearer conditions for checking the triples
+
+Key Recommendations:
+1. Simplify the triple-checking logic by counting positive numbers in each triple
+2. Move array declaration after input validation
+3. Add clear documentation about how zero is handled
+4. Break down complex conditions into smaller, more readable parts
+5. Consider using more descriptive variable names instead of "booleana"
+</feedback_summary>

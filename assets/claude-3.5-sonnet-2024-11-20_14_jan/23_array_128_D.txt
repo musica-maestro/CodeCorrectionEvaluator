@@ -1,0 +1,66 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....1.3 = 6.0 - 1.5 - 1.0 - 1.5 - 0.5 - 0.2
+   MAIN (max 2.0):....0.5 = 2.0 - 0.5 - 0.5 - 0.5
+   TOTAL:....1.8
+*/
+
+#include <stdio.h>
+void RestoDivisione (int array[], int lun){
+    //******** FUNCTION DOESN'T RETURN ANY VALUE DESPITE REQUIREMENT TO RETURN 0 OR 1 -1.5
+    int contatore=0;
+    for(int i=0; i<lun; i++){ 
+        //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lun - 2 -1.0
+        if((array[i]%array[i+1]==array[i+2]) || (array[i+1]%array[i+2]==array[i]) || (array[i]%array[i+2]==array[i+1]))
+            contatore=1;
+        else
+            i++;
+            //******** INCORRECT LOGIC: SKIPPING ELEMENTS WITH i++ IN ELSE BRANCH -1.5
+    }
+    //******** NO RETURN VALUE -0.2
+}
+
+int main(){
+    int lun;
+    printf("Ciao, inserisci la lunghezza della sequenza che vuoi inserire: ");    
+    scanf("%d", &lun);
+    //******** ARRAY DECLARED BEFORE ERROR CHECKING ON LUN -0.5
+    int array[lun];
+    for(int i=0; i<lun; i++){             
+        printf("\nInserisci un valore: ");
+        //******** INCORRECT VARIABLE IN SCANF - SHOULD BE &array[i] -0.5
+        scanf("%d", &lun);
+    }
+    //******** FUNCTION CALL MISSING LENGTH PARAMETER -0.5
+    if(RestoDivisione(array))
+        printf("\nla tua terna ha una sequenza di tre numeri dei quali due se divisi danno come resto della divisione il terzo");
+    else
+        printf("\nla tua terna non ha una sequenza di tre numeri dei quali due se divisi danno come resto della divisione il terzo");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Attempt to implement the required logic for checking remainders
+- User interaction implementation attempt
+
+Areas for Improvement:
+1. Function Implementation:
+   - Function should return an integer (0 or 1)
+   - Array bounds checking needs correction to prevent buffer overflow
+   - Remove the i++ in else branch as it causes incorrect element skipping
+
+2. Main Function:
+   - Fix scanf to store values in array elements instead of overwriting length
+   - Add proper parameter passing to RestoDivisione function call
+   - Validate input length before array declaration
+
+Key Recommendations:
+1. Modify RestoDivisione to return int and include proper return statements
+2. Correct the loop condition to prevent array access violations
+3. Fix array input logic in main function
+4. Add proper error checking for input values
+5. Ensure correct parameter passing in function calls
+</feedback_summary>

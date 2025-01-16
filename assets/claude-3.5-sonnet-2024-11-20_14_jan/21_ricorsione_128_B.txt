@@ -1,0 +1,91 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* 
+minOdd (5)...........1.5 = 5.0 - 1.5 - 1.0 - 1.0
+countNumbers (2).....0 = 2.0 - 2.0
+readNumbers (2)......0 = 2.0 - 2.0
+writeNumbers(1)......0.3 = 1.0 - 0.4 - 0.3
+TOTAL................1.8
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+int minimoDispari(int *seq, int lunghezza){
+    //******** Incorrect variable initialization and logic structure -1.5
+    int disp=1;
+    int min;
+    int i;
+    //******** Base case is incorrect - should check for length<=2 -1.0
+    if(lunghezza<3)
+        printf>("non possso eseguire las verifica\n"); 
+        else {
+    //******** Incorrect array access and recursive logic -1.0
+    while(seq[i]<lunghezza-3){  
+        if(((seq[0]<=array[1] && seq[i]<=seq[2] && seq[0]%2!=0)
+        || (seq[1]<=seq[0] && seq[1]<=seq[2] && seq[1]%2!=0)
+        || (seq[2]<=seq[0] && seq[2]<=seq[1] && seq[2]%2!=0)) && (minimoDispari(array+1, lunghezza-1)==1)){
+            }                                                                                
+            else {
+                disp=0;
+        }
+    }
+    }
+    return disp;
+    }
+
+//******** Missing implementation of countNumbers function -2.0
+int quantiNumeri(FILE* fp) {
+}
+
+//******** Missing implementation of readNumbers function -2.0
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE* fp= fopen("inetri.txt", "r");
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE* fp = fopen("interi.dat", "w");
+    //******** Incorrect fwrite syntax -0.4
+    for(int i=0; i<lunghezza; i++)
+        fwrite(fp, "%d", sequenza[i]);
+    //******** File check after writing, should be before -0.3
+        if(fp==NULL)  
+            printf("salvataggio non riuscito\n");
+            else
+                printf("salvataggio riuscito\n");
+        fclose(fp);
+}
+
+[Rest of the main function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Main function handles user interaction appropriately
+- File operations are attempted with proper closing
+
+Areas for Improvement:
+1. minimoDispari function:
+   - Incorrect base case implementation
+   - Logic errors in recursive implementation
+   - Array access issues need to be fixed
+
+2. File Operations:
+   - quantiNumeri function is completely missing
+   - leggiNumeri function is incomplete
+   - scriviNumeri has incorrect syntax for file writing
+
+3. General Implementation:
+   - Missing error handling for file operations
+   - Incomplete function implementations
+   - Incorrect recursive logic
+
+Key Recommendations:
+1. Implement proper base case for recursive function (length <= 2)
+2. Complete the missing functions (quantiNumeri and leggiNumeri)
+3. Fix file writing syntax in scriviNumeri
+4. Add proper error handling for file operations
+5. Review and correct the recursive logic in minimoDispari
+6. Ensure proper array access and bounds checking
+</feedback_summary>

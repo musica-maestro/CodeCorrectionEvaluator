@@ -1,0 +1,75 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.0 = 6.0 - 1.5 - 1.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................5.0
+*/
+
+#include <stdio.h>
+//******** IF THE FUNCTION IS WRITTEN BELOW, YOU MUST DECLARE ITS PROTOTYPE -0.5
+int main(int argc, char **argv)
+{
+    int num;
+    printf("Quanti valori si vogliono inserire: ");
+    scanf("%i",&num); 
+    int numeri[num];
+    for(int i=0;i<num;i++)
+    {
+        printf("Numero %i: ",i); 
+        scanf("%i", &numeri[i]); 
+    }
+    if(ugualiCompresi(numeri,num))
+        printf("Esiste una tripla con 2 numeri consecutivi uguali e 2 numeri consecutivi la cui loro somma e' compresa tra 10 e 20");
+    else
+        printf("Non esiste una tripla con 2 numeri consecutivi uguali e 2 numeri consecutivi la cui loro somma e' compresa tra 10 e 20");
+    return 0;
+}
+
+int ugualiCompresi(int numeri[], int num)
+{
+    int ritorno=0; 
+    //******** CONDITION ON INDEX IS WRONG i < length-2 -1.5
+    for(int i=2;i<num;i++) 
+    {
+        if(numeri[i-2]==numeri[i-1] || numeri[i-1]==numeri[i]) 
+        {
+            if(numeri[i-2]!=numeri[i]) 
+            {
+                //******** THE SUM OF THE SAME TWO ELEMENTS MUST BE IN THE RANGE OF 10 TO 20. IN YOUR CASE, [6,22,0] 6+22 >= 10 (BUT NOT <= 20) AND 6+0 <= 20 (BUT NOT >= 10), YOUR CONDITION WOULD BE TRUE -1.5
+                if(10<=(numeri[i-2]+numeri[i-1]) && (numeri[i-2]+numeri[i-1])<=20 || 10<=(numeri[i-2]+numeri[i-1]) && (numeri[i-2]+numeri[i-1])<=20) 
+                {
+                    ritorno=1;
+                }
+            }
+        }
+    }
+    return ritorno;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of the main program structure
+- Correct user interaction for input collection
+- Proper use of array to store the sequence
+- Basic logic for checking consecutive elements is present
+
+Areas for Improvement:
+1. Function Declaration:
+   - Add function prototype before main() to avoid potential compilation issues
+
+2. Array Bounds and Logic:
+   - The loop condition in ugualiCompresi should be i < num-2 to avoid accessing elements beyond array bounds
+   - The logic for checking sums needs revision to ensure both elements being summed are properly evaluated
+
+3. Condition Implementation:
+   - The sum condition is duplicated and needs to be simplified
+   - The logic for checking exactly two equal elements could be more precise
+
+Key Recommendations:
+1. Add function prototype at the beginning of the file
+2. Revise the loop bounds to prevent array overflow
+3. Simplify the sum condition and ensure it correctly checks for sums between 10 and 20
+4. Test the code with edge cases to verify correct behavior
+</feedback_summary>

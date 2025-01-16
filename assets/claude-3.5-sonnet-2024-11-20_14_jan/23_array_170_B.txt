@@ -1,0 +1,59 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.5 = 6.0 - 1.5
+   MAIN PROGRAM (max 2.0):....1.9 = 2.0 - 0.1
+   TOTAL......................6.4
+*/
+
+#include <stdio.h>
+int duePositivi (int *array, int lun) {
+    int variabile=1;        
+    int i=0;                
+    //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+    while (i<lun-2 && variabile==1) {
+        if ((array[i]>0 && array[i+1]>0 && array[i+2]<0) || 
+            (array[i]>0 && array[i+2]>0 && array[i+1]<0) ||
+            (array[i+1]>0 && array[i+2]>0 && array[i]<0))
+            i++;
+        else
+            variabile=0;
+    }
+    return variabile;
+}
+int main () {
+    int x;
+    printf("\nCiao utente, sono un programma che verifica se in ogni tripla di ");
+    printf("elementi adiacenti ci sono esattamente due numeri positivi.\n");
+    printf("Quanti interi ha la tua sequenza?\n");
+    scanf("%d", &x);
+    int seq[x];        
+    for (int i=0; i<x; i++) {
+        //******** MISSING SPACE -0.1
+        printf("\nInserisci l'elemento con indice [%d]: ", i+1);
+        scanf("%d", &seq[i]);
+    }
+    if (duePositivi(seq, x))
+        printf("\nSI', in ogni tripla di elementi adiacenti ci sono esattamente due numeri positivi.");
+    else
+        printf("\nNO, in ogni tripla di elementi adiacenti NON ci sono esattamente due numeri positivi.");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good overall program structure with separate function and main
+- Clear user interaction with descriptive prompts
+- Proper array handling and parameter passing
+- Good implementation of the universal verification approach
+
+Areas for Improvement:
+- The triple condition logic in duePositivi() is incorrect. The current implementation doesn't properly handle cases where zero might be present. The condition should consider that exactly two numbers should be positive, not just check for specific patterns.
+- Minor formatting issue with missing space in output message
+
+Key Recommendations:
+- Revise the triple checking condition to ensure exactly two positive numbers are present in each triple
+- Consider adding input validation for array size
+- Add proper spacing in output messages for better readability
+- Consider adding comments to explain the logic of the triple checking condition
+</feedback_summary>

@@ -1,0 +1,100 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)............3.7 = 5.0 - 1.0 - 0.3
+countNumbers (2).......1.7 = 2.0 - 0.3
+readNumbers (2)........1.7 = 2.0 - 0.3
+writeNumbers(1)........0.7 = 1.0 - 0.3
+TOTAL..................7.8/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimoPari(int *seq, int lunghezza){
+    //******** Recursion should be done on array length, base case l<=2 -1.0
+    int ris; 
+    int massimo = 0; 
+    if(lunghezza == 3){ 
+        massimo = seq[0];                          
+        if(seq[1] > massimo) massimo = seq[1];    
+        if(seq[2] > massimo) massimo = seq[2];    
+        ris = (massimo % 2 == 0);
+    } else {
+        if(lunghezza > 3){ 
+            massimo = seq[0];                        
+            if(seq[1] > massimo) massimo = seq[1];  
+            if(seq[2] > massimo) massimo = seq[2];  
+            ris = (massimo % 2 == 0) && massimoPari(seq + 1,lunghezza - 1); 
+        } else {
+            ris = 0; 
+        }
+    }
+    return ris; 
+}
+
+int quantiNumeri() {
+    //******** Missing NULL check for file pointer -0.3
+    FILE *fp = fopen("ricorsione.dat","rb"); 
+    int cont = 0;
+    if(fp != NULL){ 
+        while(fread(&cont,sizeof(int),1,fp)) 
+            cont++;
+    } else printf("\nImpossibile Aprire Il File\n");
+    fclose(fp);
+    return cont; 
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    //******** Missing NULL check for file pointer -0.3
+    FILE *fp = fopen("ricorsione.dat","rb"); 
+    if(fp != NULL){
+        fread(sequenza,sizeof(int),lunghezza,fp);
+        printf("\nAcquisizione Effettuata\n");
+    } else printf("\nImpossibile Aprire Il File\n");
+    fclose(fp);
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    //******** Missing NULL check for file pointer -0.3
+    FILE *fp = fopen("ricorsione.dat","wb");
+    if(fp != NULL){
+        fwrite(sequenza,sizeof(int),lunghezza,fp);
+        printf("\nSalvataggio Effettuato\n");
+    } else printf("\nImpossibile Aprire Il File\n");
+    fclose(fp);
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of file I/O operations
+- Proper memory management
+- Clear program structure with separate functions
+- Working implementation of maximum checking logic
+
+Areas for Improvement:
+1. Recursive Function (massimoPari):
+   - Base case should be when length <= 2
+   - Recursion implementation could be more efficient
+   - Current implementation may access invalid memory for small arrays
+
+2. File Operations:
+   - Need proper NULL checks before file operations
+   - Error handling could be more robust
+   - File operations should follow consistent error checking patterns
+
+3. General Structure:
+   - Function names don't match assignment requirements (Italian vs English)
+   - File name doesn't match assignment specifications (ricorsione.dat vs integers.dat)
+
+Key Recommendations:
+1. Revise the recursive function's base case and logic
+2. Add proper file pointer NULL checks
+3. Follow assignment specifications for file names
+4. Implement consistent error handling across all file operations
+5. Consider adding input validation for array lengths and values
+</feedback_summary>

@@ -1,0 +1,71 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....0.5 = 6.0 - 1.5 - 1.5 - 1.5 - 1.0
+   MAIN PROGRAM (max 2.5):....0.3 = 2.5 - 0.5 - 0.5 - 0.5 - 0.5 - 0.2
+   TOTAL.......................0.8
+*/
+
+#include <stdio.h>
+int main           
+{                  
+   int sequenza [5]=(7,7,3,2,1);
+   //******** BADLY INDENTED -0.2
+   printf("ecco la sequenza di interi:");
+   //******** FORMAT SPECIFIER ERROR: &int is invalid syntax -0.5
+   printf("\n\n %d %d %d %d %d", &int sequenza[0], &int sequenza[1], &int sequenza[2], &int sequenza[3], &int sequenza[4]);
+   //******** SYNTAX ERROR: if{ is incorrect -0.5
+   if{  
+   //******** SYNTAX ERROR: invalid use of int within array access -1.5
+   (int sequenza[0]+int sequenza[1] >= 10 && int sequenza[0]+int sequenza[1]<=20)
+      printf("\n\n1 la prima condizione della sequenza è accettata\n");
+      if(int sequenza[1]+int sequenza[2] >= 10 && int sequenza[1]+int sequenza[2]<=20)
+      printf("\n\n1 la prima condizione della sequenza è accettata\n");
+      if(int sequenza[2]+int sequenza[3] >= 10 && int sequenza[2]+int sequenza[3]<=20)
+      printf("\n\n1 la prima condizione della sequenza è accettata\n");
+      if(int sequenza[3]+int sequenza[4] >= 10 && int sequenza[3]+int sequenza[4]<=20)
+      printf("\n\n1 la prima condizione della sequenza è accettata\n");
+   }
+   else {
+      printf("\n\nla prima condizione della sequenza (e di conseguenza anche la sequenza stessa) non è accettata\n");
+   }
+   //******** SYNTAX ERROR: if{ is incorrect -0.5
+   if {
+   (int sequenza[0]==int sequenza[1])
+      printf("la seconda condizione della sequenza è accettata");
+      if (int sequenza[1]==int sequenza[2])
+      printf("la seconda condizione della sequenza è accettata");
+      if (int sequenza[2]==int sequenza[3])
+      printf("la seconda condizione della sequenza è accettata");
+      if (int sequenza[3]==int sequenza[4])
+      printf("la seconda condizione della sequenza è accettata");
+   }
+   else {
+      printf("\n\n la seconda condizione della sequenza (e di conseguenza anche la sequenza stessa) non è accettata");
+   }
+   //******** FUNCTION WAS REQUESTED, NOT EVERYTHING IN MAIN -1.5
+   //******** YOU MUST READ THE ARRAY LENGTH FROM INPUT -0.5
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Attempt to check both conditions (sum between 10-20 and equal elements)
+- Basic structure for checking consecutive elements
+
+Areas for Improvement:
+- The solution needs to be implemented as a function as specified in the assignment
+- Array length should be read from user input
+- Syntax errors in array access and if statements need to be corrected
+- Code structure needs to follow the assignment requirements (separate function and main)
+- Input validation is missing
+- Logic for checking triples needs to be implemented correctly
+
+Key Recommendations:
+1. Create a separate function ugualiCompresi that takes array and length parameters
+2. Implement proper user input for array length and elements
+3. Fix syntax errors in array access and if statements
+4. Implement correct logic for checking consecutive triples
+5. Add proper input validation
+6. Improve code organization and indentation
+</feedback_summary>

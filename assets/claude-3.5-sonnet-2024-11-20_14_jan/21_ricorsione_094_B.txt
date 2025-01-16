@@ -1,0 +1,97 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........3.5 = 5.0 - 1.5
+countNumbers (2).....0.0 = 2.0 - 2.0  
+readNumbers (2)......0.0 = 2.0 - 2.0
+writeNumbers(1)......0.0 = 1.0 - 1.0
+TOTAL................3.5/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int isDispari(int n1, int n2, int n3){
+    return (((n1<n2 && n1<n3) && n1%2==1) || ((n2<n3 && n2<n1) && n2%2==1) || ((n3<n2 && n3<n1) && n3%2==1));
+}
+
+int minimoDispari(int *seq, int lunghezza){
+    //******** base case: l==3 is part of the recursive step. If you put it in the base case, you need to repeat the check "minimum of 3 odd" twice -0.3
+    //******** The base case should be length<=2 (because you need to consider a triplet of elements) -0.5
+    //******** if l<=2, you cannot access 3 components! -0.5
+    int verificato = 1; 
+    if(lunghezza == 3){
+        verificato = isDispari(seq[0],seq[1],seq[2]) ;
+    }else{
+        verificato = isDispari(seq[0],seq[1],seq[2]) && minimoDispari(seq+1, lunghezza-1);
+    }
+    return verificato;
+}
+
+//******** missing the countNumbers function -2.0
+int quantiNumeri() {
+}
+
+//******** missing the readNumbers function -2.0
+void leggiNumeri(int* sequenza, int lunghezza) {
+}
+
+//******** missing the writeNumbers function -1.0
+void scriviNumeri(int* sequenza, int lunghezza) {
+}
+
+int main() {
+    int lunghezza;         
+    int scelta;                
+    printf("Vuoi introdurre una nuova sequenza (premi 1) oppure recuperarla da file (premi 2)? ");
+    scanf("%d",&scelta);
+    if(scelta==1) {
+        printf("Introduci la lunghezza della sequenza: ");
+        scanf("%d",&lunghezza);
+        int array[lunghezza];
+        printf("Scrivi %d elementi \n",lunghezza);
+        for(int i=0;i<lunghezza;i++)
+            scanf("%d",&array[i]);
+        //******** cryptic output, does not explain what is being checked -0.4
+        if(minimoDispari(array,lunghezza))
+            printf(" Perfetto l'intero minimo di ogni tripla e' negativo \n");
+        else
+            printf(" Peccato l'intero minimo di ogni tripla NON e' negativo \n");
+        scriviNumeri(array,lunghezza);
+    }
+    else {
+        lunghezza = quantiNumeri();
+        int array[lunghezza];
+        leggiNumeri(array,lunghezza);
+        printf("Ecco la sequenza recuperata\n");
+        for(int i=0;i<lunghezza;i++)
+            printf("%d ", array[i]);
+        printf("\n");
+        if(minimoDispari(array,lunghezza))
+            printf(" Perfetto l'intero minimo di ogni tripla e' negativo \n");
+        else
+            printf(" Peccato l'intero minimo di ogni tripla NON e' negativo \n");
+        scriviNumeri(array,lunghezza);
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of the recursive logic for checking odd minimums
+- Proper array handling and parameter passing
+- Clean main function structure with clear user interaction
+
+Areas for Improvement:
+- The base case in minimoDispari needs revision - it should handle arrays of length ≤ 2
+- Three required functions (quantiNumeri, leggiNumeri, scriviNumeri) are missing implementation
+- Output messages are not clear about what property is being checked
+- Base case implementation needs to be separated from the recursive step
+
+Key Recommendations:
+- Implement the missing file handling functions (quantiNumeri, leggiNumeri, scriviNumeri)
+- Revise the base case in minimoDispari to properly handle arrays shorter than 3 elements
+- Make output messages more descriptive about checking for odd minimums
+- Separate the base case logic from the recursive step in minimoDispari
+</feedback_summary>

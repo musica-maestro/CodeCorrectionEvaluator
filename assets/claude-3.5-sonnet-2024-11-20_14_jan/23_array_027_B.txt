@@ -1,0 +1,62 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.0):....2.0
+   TOTAL.......................7.3
+*/
+
+#include <stdio.h>
+int duePositivi(int a[], int n){
+    //******** INCORRECT INDENTATION -0.5
+	int verifica=1;
+	int i=0;
+	while(i<n-2 && verifica){
+        //******** DO YOU CONSIDER 0 POSITIVE OR NEGATIVE? (Condition could be more explicit) -0.2
+		if (!((a[i]>0 && a[i+1]>0 && a[i+2]<=0) || (a[i]<=0 && a[i+1]>0 && a[i+2]>0) || (a[i]>0 && a[i+1]<=0 && a[i+2]>0)))
+			verifica=0;
+		else
+			i++;
+	}
+	return verifica;
+}
+int main()
+{
+	int l;
+	printf("Caro utente, introduci la lunghezza della sequenza: \n");
+	scanf("%d", &l);
+	int seq[l];
+	for (int i = 0; i < l; i++)
+	{
+		printf("Caro utente introduci un intero: \n");
+		scanf("%d", &seq[i]);
+	}
+	if (duePositivi(seq,l))
+		printf("Ogni tripla di elementi adiacenti nella sequenza contiene esattamente 2 interi positivi!\n");
+	else
+		printf("Ogni tripla di elementi adiacenti nella sequenza non contiene esattamente 2 interi positivi!\n");
+	return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the universal verification logic
+- Proper handling of all three possible cases for two positives in a triple
+- Well-structured main function with clear user interaction
+- Appropriate array handling and function parameters
+- Clear output messages indicating the result
+
+Areas for Improvement:
+- Code indentation should be consistent throughout the function
+- The handling of zero values could be more explicit in the conditions
+- Consider adding input validation for array length
+
+Key Recommendations:
+- Use consistent indentation for better code readability
+- Add explicit comments or documentation about how zero values are handled
+- Consider adding input validation to ensure array length is sufficient for forming triples (n ≥ 3)
+- Consider using more descriptive variable names (e.g., 'verifica' could be 'hasExactlyTwoPositives')
+</feedback_summary>
+
+The student's solution is generally well-implemented, showing good understanding of the problem requirements. The function correctly implements the universal verification approach, checking all triples in the sequence for exactly two positive numbers. The main program properly handles user interaction and array management. The few deductions are mainly for style and clarity issues rather than functional problems.

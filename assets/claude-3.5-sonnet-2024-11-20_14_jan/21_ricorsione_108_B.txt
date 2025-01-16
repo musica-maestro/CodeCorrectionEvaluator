@@ -1,0 +1,101 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........4.0 = 5.0 - 1.0
+countNumbers (2).....2.0
+readNumbers (2)......2.0  
+writeNumbers(1)......0.7 = 1.0 - 0.3
+TOTAL................8.7
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int verificaProprieta(int a, int b, int c){
+    int min;
+    if((a<=b) && (a<=c))
+        min=a;
+    else if((b<=a) && (b<=c))
+        min=b;
+    else if((c<=a) && (c<=b))
+        min=c;
+    printf("\n**%d***\n",min);
+    return (min%2==1);
+}
+
+int minimoDispariRic(int *seq, int lunghezza,int i){
+    //******** The base case should be length<=2 (because you need to consider a triplet of elements) -1.0
+    if(i>=lunghezza-3)
+        verifica= verificaProprieta(seq[i],seq[i+1],seq[i+2]);
+    else{
+        verifica= verificaProprieta(seq[i],seq[i+1],seq[i+2]) && minimoDispariRic(seq,lunghezza,i+1);
+    }
+    return verifica;
+}
+
+int minimoDispari(int*seq,int l){
+    return minimoDispariRic(seq,l,0);
+}
+
+int quantiNumeri() {
+    int quanti=0;
+    FILE*fp=fopen("minimoDispari.txt","r");
+    if(fp==NULL)
+        printf("Apertura file non riuscita!\n");
+    else{
+        int numero;
+        while(fscanf(fp,"%d",&numero)!=EOF)
+            quanti++;
+        fclose(fp);
+    }
+    return quanti;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE*fp=fopen("minimoDispari.txt","r");
+    if(fp==NULL)
+        printf("Apertura file non riuscita!\n");
+    else{
+        for(int i=0;i<lunghezza;i++)
+            fscanf(fp,"%d",&sequenza[i]);
+        printf("Acquisizione sequenza dal file riuscita!\n");
+        fclose(fp);
+    }
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    //******** File name should be integers.txt as specified in requirements -0.3
+    FILE*fp=fopen("minimoDispari.txt","w");
+    if(fp==NULL)
+        printf("Apertura file non riuscita!\n");
+    else{
+        for(int i=0; i<lunghezza; i++){
+            fprintf(fp,"%d ",sequenza[i]);
+        }
+        printf("Salvataggio riuscito!\n");
+        fclose(fp);
+    }
+}
+
+[... rest of main() function ...]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of file handling operations
+- Proper error checking for file operations
+- Clear implementation of minimum finding logic
+- Good use of recursion for array traversal
+
+Areas for Improvement:
+- Base case in minimoDispariRic needs correction to properly handle arrays with length <= 2
+- File name should match assignment requirements (integers.txt instead of minimoDispari.txt)
+- The recursive implementation could be more efficient with a proper base case
+
+Key Recommendations:
+1. Modify the base case in minimoDispariRic to check if length <= 2
+2. Update file names to match assignment specifications
+3. Consider adding more detailed error messages for file operations
+4. Add input validation for array length in main function
+</feedback_summary>

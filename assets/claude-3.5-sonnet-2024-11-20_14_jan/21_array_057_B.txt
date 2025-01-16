@@ -1,0 +1,68 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.3 = 6.0 - 1.5 - 0.2
+   MAIN PROGRAM (max 2.5):....2.5
+   TOTAL......................6.8
+*/
+
+#include <stdio.h>
+int maggiori5pari(int array5pari[], int lungo) {
+    int i=0; 
+    int verita=1; 
+    //******** WRONG CONDITION ON INDEX - should be i < lungo-2 to avoid array bounds overflow -1.5
+    while(i<lungo&&verita) {
+        //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+        if(((array5pari[i]>=5)&&(array5pari[i+1]>=5)&&(array5pari[i+2]<5))
+        ||((array5pari[i+1]>=5)&&(array5pari[i+2]>=5)&&(array5pari[i]<5))
+        ||((array5pari[i]>=5)&&(array5pari[i+2]>=5)&&(array5pari[i+1]<5))) {
+            if(((array5pari[i]%2==0)&&(array5pari[i+1]%2==0))
+            ||((array5pari[i+1]%2==0)&&(array5pari[i+2]%2==0))
+            ||((array5pari[i]%2==0)&&(array5pari[i+2]%2==0))
+            ||((array5pari[i]%2==0)&&(array5pari[i+1]%2==0)&&(array5pari[i+2]==0)))
+                i++; 
+            else
+                verita=0; 
+        }
+        else
+            verita=0; 
+    }
+    return verita;
+}
+
+int main(int argc, char **argv)
+{
+    int lunghezza; 
+    printf("Ciao, questo programma calcola se in una sequenza di interi ogni tripla di elementi consecutivi\n");
+    printf("contiene esattamente due elementi maggiori o uguali a 5 ed almeno due elementi pari.\n");
+    printf("Quanti numeri vuoi inserire nella sequenza?");
+    scanf("%d", &lunghezza);
+    int array[lunghezza]; 
+    for(int i=0; i<lunghezza; i++) {
+        printf("Inserisci un numero: ");
+        scanf("%d", &array[i]);
+    }
+    if(maggiori5pari(array, lunghezza)) 
+        printf("Ogni tripla di elementi consecutivi contiene esattamente due numeri maggiori o uguali a 5 e almeno due numeri pari\n");
+    else
+        printf("NON tutte le triple di elementi consecutive contengono esattamente due numeri maggiori o uguali a 5 e almeno due numeri pari\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the main function with proper user interaction
+- Good output messages that clearly explain the results
+- Correct logic for checking exactly two elements ≥5 and at least two even elements
+- Proper use of boolean variable for loop control
+
+Areas for Improvement:
+- Array bounds checking in the maggiori5pari function needs correction to avoid potential buffer overflow
+- The condition structure in the maggiori5pari function, while correct, could be more readable
+- Consider breaking down complex conditions into smaller, more manageable parts
+
+Key Recommendations:
+- Modify the while loop condition to i < lungo-2 to prevent array access beyond bounds
+- Consider restructuring the complex conditions into separate boolean variables for better readability
+- Add input validation for the array length to ensure it's at least 3 (minimum needed for triples)
+</feedback_summary>

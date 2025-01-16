@@ -1,0 +1,60 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.5 = 6.0 - 1.5
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................6.3
+*/
+
+#include <stdio.h>
+int multipli(int* seq, int lunghezza) {
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lunghezza - 2 -1.0
+    int i = 0;
+    int verificata = 1; 
+    while(i<lunghezza-2 && verificata) {
+        //******** TWO OR THREE COMBINATIONS ON THE TRIPLE CONDITION ARE MISSING -0.5
+        if((seq[i]%seq[i+1] == 0) || (seq[i]%seq[i+2] == 0) || (seq[i+1]%seq[i] == 0) || (seq[i+1]%seq[i+2] == 0) || (seq[i+2]%seq[i] == 0) || (seq[i+2]%seq[i+1] == 0))
+            i++;
+        else
+            verificata = 0;
+    }
+    return verificata;
+}
+
+int main() {
+    int l; 
+    printf("Quanti interi vuoi introdurre? ");
+    scanf("%d",&l);
+    //******** UNCLEAR OUTPUT MESSAGE -0.2
+    int seq[l]; 
+    for(int i = 0; i<l; i++) {
+        printf("Inserisci valore con indirizzo %d: ",i);
+        scanf("%d",&seq[i]);
+    }
+    if(multipli(seq,l))
+        printf("Esiste almeno un valore multiplo degli altri due per tutte le triple");
+    else
+        printf("Non esiste almeno un valore multiplo degli altri due per tutte le triple");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct overall structure with separate function and main program
+- Proper implementation of the verification loop with boolean flag
+- Good use of parameters for array and length
+- Appropriate loop control using both counter and boolean condition
+
+Areas for Improvement:
+- Array bounds checking needs correction to prevent accessing invalid memory
+- Triple condition check could be more comprehensive
+- Output messages could be clearer and more user-friendly
+- Consider adding input validation for array length
+
+Key Recommendations:
+1. Fix the array bounds check in the while loop condition
+2. Review and complete all possible combinations for the triple condition check
+3. Make output messages more descriptive and user-friendly
+4. Add input validation for array length to ensure it's positive and reasonable
+5. Consider adding error handling for division by zero cases
+</feedback_summary>

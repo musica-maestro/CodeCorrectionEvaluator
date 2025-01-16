@@ -1,0 +1,78 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....1.0 = 6.0 - 2.0 - 1.5 - 1.5
+   MAIN PROGRAM (max 2.5):....1.7 = 2.5 - 0.5 - 0.3
+   TOTAL.......................2.7
+*/
+
+#include <stdio.h>
+int numCons(int arr[], int arr_lenght) {
+    //******** WITH A RETURN INSIDE THE LOOP, YOU STOP AT THE FIRST ITERATION -2.0
+    for(int i = 0; i < arr_lenght - 2; i++) {
+        if((arr[i] != arr[i+1] || arr[i+1] != arr[i+2]) && (arr[i] == arr[i+1] && arr[i+1] == arr[i+2])) {
+            return 0;
+        }
+        else
+            return 1; 
+    }
+}
+
+int ugualiCompresi(int arr[], int arr_lenght) {
+    //******** CALCULATING THE SUM OF ALL THREE ELEMENTS IN THE TRIPLE INSTEAD OF CHECKING IF AT LEAST TWO ELEMENTS HAVE A SUM BETWEEN 10 AND 20 -1.5
+    //******** CONDITION THAT EXACTLY TWO ELEMENTS ARE EQUAL IS MISSING -1.5
+    for(int i = 0; i < arr_lenght - 2; i++) {
+        if((numCons == 1) && (arr[i] + arr[i+1] >= 10 && arr[i] + arr[i + 1] <=20) || ((arr[i+1] + arr[i+1] >= 10 && arr[i+1] + arr[i + 2] <=20))) {
+                return 1;                                                                        
+        }                          
+        else
+            return 0;
+    }
+}
+
+int main(int argc, char **argv) {
+    int arr[1000];   
+    int arr_lenght;
+    printf("Salve utente! Quanti interi ha la sequenza che vuoi introdurre? ");
+    scanf("%d", &arr_lenght);
+    printf("Perfetto! Introduci gli interi\n");
+    for(int i = 0; i < arr_lenght; i++) {
+        printf("Intero numero %d: ", i);
+        scanf("%d", &arr[i]);
+    }
+    int risposta = ugualiCompresi(arr, arr_lenght);
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    if(risposta == 0) {
+        printf("Mi spiace, non esiste nella sua sequenza una tripla di elementi consecutivi tale che almeno due elementi");
+        printf("della tripla hanno una somma compresa fra 10 e 20 ed esattamente due elementi della tripla sono uguali fra loro");
+    }
+    else
+        //******** YOU DO NOT EXPLAIN THE MEANING OF THE OUTPUT IS (A BIT SCARCE) -0.3
+        printf("Nella sequenza esiste una tripla di elementi consecutivi tale che almeno due elementi della tripla hanno");
+        printf("una somma compresa fra 10 e 20 ed esattamente due elementi della tripla sono uguali fra loro");
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Main function handles user input correctly
+- Array bounds are properly checked in loops
+
+Areas for Improvement:
+- The numCons function has logical errors and returns too early
+- The ugualiCompresi function doesn't correctly implement the required conditions:
+  * Doesn't properly check for exactly two equal elements
+  * Sum condition is incorrectly implemented
+- Output messages could be more clear and concise
+
+Key Recommendations:
+1. Revise the numCons function to properly check for exactly two equal elements
+2. Modify ugualiCompresi to correctly check:
+   - Sum between 10 and 20 for any two elements in the triple
+   - Exactly two equal elements condition
+3. Remove early returns from loops to check all possible triples
+4. Improve output messages clarity and formatting
+5. Add proper function documentation and comments
+</feedback_summary>

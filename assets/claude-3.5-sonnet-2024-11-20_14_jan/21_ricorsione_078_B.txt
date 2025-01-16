@@ -1,0 +1,93 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* 
+minOdd (5)...........4.0 = 5.0 - 1.0
+countNumbers (2).....1.7 = 2.0 - 0.3
+readNumbers (2)......2.0
+writeNumbers(1)......1.0
+TOTAL................8.7/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int minimoDispari(int *seq, int lunghezza){
+    //******** Base case should check if length < 3 before accessing array elements -1.0
+    int minimo = seq[0];  
+    int res;   
+    if (minimo > seq[1])  
+        minimo = seq[1];
+    else
+        if (minimo > seq[2])
+            minimo = seq[2];
+    if (lunghezza<3)
+        res = 1;
+    else
+        res = (minimo % 2 != 0) && minimoDispari (seq+1, lunghezza-1);   
+    return res;
+}
+
+int quantiNumeri() {
+    int i;  
+    int quanti;  
+    //******** Counter not initialized -0.3
+    FILE* fp = fopen ("interi.dat", "rb");
+    if (fp == NULL)
+        printf ("apertura file fallita!\n");
+    else{
+        while (fread(&i, sizeof(int), 1, fp) > 0)  
+            quanti++;
+        fclose(fp);  
+    }
+    return quanti;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE* fp = fopen ("interi.dat", "rb");
+    if (fp == NULL)
+        printf ("apertura file fallita!\n");
+    else{
+        for (int i=0; i<lunghezza; i++)  
+            fread (&sequenza[i], sizeof(int), 1, fp);
+        printf ("lettura file completata\n");
+        fclose (fp);  
+    }
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE* fp = fopen ("interi.dat", "wb");
+    if (fp == NULL)
+        printf ("apertura file fallita!\n");
+    else{
+        fwrite (sequenza, sizeof(int), lunghezza, fp);   
+        printf ("salvataggio effettuato!\n");
+        fclose (fp);   
+    }
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of file operations (read/write)
+- Proper file handling with error checking
+- Good implementation of recursive approach in minimoDispari
+- Clean and well-structured code
+
+Areas for Improvement:
+- The minimoDispari function needs to check array bounds before accessing elements
+- The quantiNumeri function has an uninitialized counter variable
+- Base case handling in minimoDispari could be more robust
+- Consider adding more descriptive error messages
+
+Key Recommendations:
+1. Initialize all variables before use, especially counters
+2. Implement proper bounds checking before accessing array elements
+3. Restructure minimoDispari to check length before accessing array elements
+4. Add more detailed error messages for better user feedback
+5. Consider adding input validation in the main function
+
+The code is generally well-structured and implements most requirements correctly, but needs some attention to initialization and bounds checking for more robust operation.
+</feedback_summary>

@@ -1,0 +1,77 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.0 = 6.0 - 1.5 - 1.0 - 0.5
+   MAIN PROGRAM (max 2.5):....1.5 = 2.5 - 0.5 - 0.5
+   TOTAL.......................4.5
+*/
+
+#include <stdio.h>
+int maggiori5Pari(int sequenza, int lunghezza){
+    //******** WRONG PARAMETER TYPE: sequenza should be array, not int -1.5
+    int verificata;
+    verificata=1;
+    int i=0;
+    while(i<lunghezza-2 && verificata){
+        if(!((sequenza[i]>=5) && (sequenza[i+1]>=5))||
+        ((sequenza[i]>=5) && (sequenza[i+2]>=5))||
+        ((sequenza[i+1]>=5) && (sequenza[i+2]>=5)))
+            {
+            //******** CONDITION IS COMPLICATED AND NOT VERY READABLE -0.5
+            if(!((sequenza[i]%2==0) && (sequenza[i+1]%2==0))
+                || ((sequenza[i]%2==0) && (sequenza[i+2]%2==0))
+                || ((sequenza[i+1]%2==0) && (sequenza[i+2]%2==0)))
+                verificata=0;
+        }
+        else
+            i++;
+    }
+    return verificata;
+}
+
+int main(int argc, char **argv)
+{
+    int lunghezza;
+    printf("Ciao utente, sono un programma che legge una sequenza di interi e verifica se ogni tripla di elementi\n");
+    printf("\nconsecutivi contiene esattamente due elementi maggiori o uguali a 5 ed almeno due elementi pari.\n\n");
+    printf("\n\nQuanto deve essere lunga la sequenza?\n");
+    scanf("%d", &lunghezza);
+    int sequenza[lunghezza];
+    //******** SYNTAX ERROR: 'o' instead of '0' in loop initialization -0.5
+    for(int i=o;i<lunghezza;i++){
+        printf("\nInserisci un intero: \n");
+        scanf("%d", &sequenza[i]);
+    }
+    //******** OUTPUT IS POORLY EXPRESSED -0.5
+    if(maggiori5Pari(sequenza,lunghezza)){
+        printf("\nTutte le triple di elementi consecutivi nella sequenza contengono esattamente due elementi maggiori o uguali a 5\n");
+        printf("ed almeno due elementi pari.\n");
+    }
+    else
+    {
+        printf("\nNon tutte le triple di elementi consecutivi nella sequenza contengono esattamente due elementi maggiori o uguali a 5\n");
+        printf("ed almeno due elementi pari, c'%c una tripla che non soddisfa le propriet%c richieste.\n", 138, 133);
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Main function handles user interaction appropriately
+- Boolean flag (verificata) is properly used to control loop execution
+- Return value correctly implements the required logic
+
+Areas for Improvement:
+- Function parameter declaration is incorrect (should be array)
+- Logic conditions are overly complex and hard to read
+- Syntax error in for loop initialization
+- Output messages could be more precise and clearer
+
+Key Recommendations:
+1. Correct the function parameter to accept an array: int maggiori5Pari(int sequenza[], int lunghezza)
+2. Simplify the conditions by breaking them into smaller, more readable parts
+3. Fix the syntax error in the for loop (o → 0)
+4. Make output messages more concise and specific about which conditions are/aren't met
+5. Consider adding input validation for array length
+</feedback_summary>

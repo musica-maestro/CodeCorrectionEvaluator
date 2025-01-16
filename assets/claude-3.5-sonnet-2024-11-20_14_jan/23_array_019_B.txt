@@ -1,0 +1,72 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....1.3 = 6.0 - 1.5 - 1.5 - 1.5 - 0.2
+   MAIN PROGRAM (max 2.0):....0.5 = 2.0 - 1.0 - 0.5
+   TOTAL.......................1.8
+*/
+
+#include <stdio.h>
+int DuePositivi(int sequenza[], int lunghezza) {
+  //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lunghezza - 2 -1.5
+  for ( int i = 0; i <= lunghezza -3; i++){
+    //******** THIS WAY YOU CHECK IF THERE ARE AT LEAST TWO POSITIVES, NOT EXACTLY TWO -1.5
+    if ( sequenza[i] + sequenza [i+1] >= 0 || sequenza [i] + sequenza [i+2] >= 0 || sequenza[i+1] + sequenza[i+2] >= 0)
+  {
+  //******** RETURN THE CALCULATED VALUE ON THE FIRST TRIPLE, BECAUSE WITH RETURN YOU EXIT IMMEDIATELY FROM THE ITERATION -1.5
+  return 1;
+  }
+ }
+}
+
+int main(int sequenza[]) {
+   int lunghezza;
+    printf("Scrivere quanti interi ha la sequenza:\n");
+     scanf("%d", &lunghezza);
+     //******** INCORRECT READING, SHOULD BE &seq[i] -0.5 
+     printf(" Scrivere gli interi separati dallo spazio: \n"); 
+      scanf("%d", &sequenza[lunghezza]);
+    //******** MISSING DECLARATION OF THE ARRAY -1.0
+    int DuePositivi(int sequenza[], int lunghezza) { 
+      //******** SYNTAX ERROR IN IF CONDITION -0.2
+      if ( int i >= 0; i < lunghezza; i++) {
+         printf(" In tutte le triple di interi ci sono due numeri positivi \n");
+         scanf("%d", &sequenza[lunghezza]);  
+      else ( int i < 0; i < lunghezza; i++ )
+         printf(" Non in tutte le triple di interi ci sono due numeri positivi\n");
+        scanf("%d", &sequenza[lunghezza]);   
+      }
+        {
+        return 0;
+        }
+   }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic structure of the DuePositivi function is present
+- Attempt to implement the required user interaction in main
+
+Areas for Improvement:
+1. Function Implementation:
+- The condition for checking exactly two positives is incorrect
+- Array bounds checking needs to be fixed
+- The function returns too early, not checking all triples
+- Logic for exactly two positives needs to be implemented correctly
+
+2. Main Program:
+- Array declaration and initialization is missing
+- Input reading mechanism is incorrect
+- Syntax errors in control structures
+- Function declaration inside main is incorrect
+
+Key Recommendations:
+1. Fix the array bounds checking in the for loop
+2. Implement correct logic to count exactly two positives in each triple
+3. Properly declare and initialize the array in main
+4. Fix the input reading mechanism using proper array indexing
+5. Remove the function declaration from main
+6. Implement proper control flow without early returns
+7. Use correct syntax for if-else statements
+</feedback_summary>

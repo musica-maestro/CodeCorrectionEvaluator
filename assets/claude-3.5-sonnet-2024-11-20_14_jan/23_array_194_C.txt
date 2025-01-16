@@ -1,0 +1,63 @@
+I'll grade the submission following the provided format and criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.5 = 6.0 - 1.0 - 0.5
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................6.3
+*/
+
+#include <stdio.h>
+int dueUnaCifra(int interi[], int lunghezza){
+    int risultato=1;     
+    if (lunghezza>3){
+        for(int i=0; i<lunghezza-2; i++){
+            //******** CONDITION ON THE TRIPLE IS NOT OPTIMAL - SHOULD USE && seq[i] >= 0 TO ENSURE POSITIVE NUMBERS -1.0
+            if (!((interi[i]<=9 && interi[i+1]<=9)||(interi[i]<=9 && interi[i+2]<=9)
+                ||(interi[i+2]<=9 && interi[i+1]<=9)) && risultato) 
+                risultato=0;
+        }
+    }
+    //******** SETTING risultato TO 1 IS NOT NECESSARY AT THE START SINCE IT'S ALREADY 1 -0.5
+    return risultato;
+}
+
+int main ( ) {
+    int lunghezza;
+    printf("Sono un programma che verifica se in una tripla\n");
+    printf("ci sono almeno due numeri con una sola cifra\n");
+    printf("Per iniziare, quanto vuoi che sia lunga la sequenza: ");
+    scanf("%d", &lunghezza);
+    int sequenza[lunghezza];
+    for(int i=0; i<lunghezza; i++){
+        printf("Inserisci l'intero dell'indice %d: ", i);
+        scanf("%d", &sequenza[i]);
+    }
+    int risultato=dueUnaCifra(sequenza, lunghezza);
+    //******** UNCLEAR MESSAGE OUTPUT -0.2
+    if (risultato==0)
+        printf("La sequenza non contiene almeno 2 numeri con una sola cifra in ogni tripla\n");
+    else
+        printf("La sequenza contiene almeno 2 numeri con una sola cifra in ogni tripla\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the triple checking logic
+- Proper array handling and iteration
+- Good function structure with clear parameter passing
+- Appropriate user interaction in main function
+
+Areas for Improvement:
+- The condition checking for single-digit numbers should include a check for positive numbers
+- The initialization of 'risultato' could be more efficient
+- Output messages could be clearer and more specific
+- Consider adding input validation for array length
+
+Key Recommendations:
+1. Add positive number validation in the digit checking condition
+2. Remove unnecessary initialization of risultato
+3. Make output messages more descriptive and clear
+4. Add input validation for the sequence length
+5. Consider adding error handling for invalid inputs
+</feedback_summary>

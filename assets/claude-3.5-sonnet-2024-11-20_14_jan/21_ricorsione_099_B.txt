@@ -1,0 +1,91 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........3.0 = 5.0 - 1.0 - 0.5 - 0.5
+countNumbers (2).....0.7 = 2.0 - 0.3 - 0.5 - 0.5
+readNumbers (2)......0.0 = 2.0 - 2.0
+writeNumbers(1)......0.5 = 1.0 - 0.3 - 0.2
+TOTAL................4.2
+*/
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+//******** Missing readNumbers function prototype -0.3
+int minimoDispari(int array[], int l) { 
+    int perfetto;
+    if(l<=2)
+        perfetto = 1;
+    //******** Accessing array elements when l<=2 is unsafe -0.5
+    else {
+        //******** Complex boolean logic makes code hard to maintain and error-prone -0.5
+        perfetto = ((array[l-1]%2!=0 &&(array[l-1]<array[l-2]) && (array[l-1]<array[l-3])) ||
+        (array[l-2]%2!=0 &&(array[l-2]<array[l-1]) && (array[l-2]<array[l-3])) ||
+        (array[l-3]%2!=0 &&(array[l-3]<array[l-2]) && (array[l-3]<array[l-1]))) &&
+        minimoDispari(array,l-1);
+    }
+    return perfetto;
+}
+
+void scriviNumeri(int array[], int lunghezza) {
+    FILE *fp = fopen("scrivi.dat","wb");
+    int i=0;
+    //******** Missing file open error check -0.3
+    if(fp!=NULL) {
+        while(i<lunghezza) {
+            fwrite(&array[i],sizeof(int),1,fp);
+            i++;
+        }
+    }
+    fclose(fp);
+}
+
+int quantiNumeri() {
+    FILE*fp = fopen("scrivi.dat","rb");
+    int i=0;
+    //******** Array declaration with variable size i=0 is incorrect -0.5
+    int array[i]; 
+    if(fp!=NULL) {
+        //******** Incorrect array usage in fread - writing to unallocated memory -0.5
+        while(fread(&array[i],sizeof(int),1,fp))
+            i++;
+    }
+    return i;
+}
+
+//******** Missing readNumbers function implementation -2.0
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic file I/O operations implemented
+- Recursive approach attempted for minimoDispari function
+- Binary file handling implemented correctly
+
+Areas for Improvement:
+1. Function Implementation:
+   - readNumbers function is completely missing
+   - minimoDispari function needs safer array access checks
+   - File operations need proper error handling
+
+2. Code Safety:
+   - Array bounds checking needs improvement
+   - File open error checking should be implemented
+   - Variable-sized array declaration needs correction
+
+3. Code Structure:
+   - Function prototypes should be declared at the beginning
+   - Complex boolean logic should be simplified for better maintainability
+
+Key Recommendations:
+1. Implement the missing readNumbers function
+2. Add proper error checking for file operations
+3. Fix array bounds checking in minimoDispari
+4. Simplify complex boolean logic in minimoDispari
+5. Add proper function prototypes
+6. Fix array declaration in quantiNumeri function
+</feedback_summary>

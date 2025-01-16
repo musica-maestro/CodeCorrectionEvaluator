@@ -1,0 +1,61 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.5 = 6.0 - 1.5
+   MAIN PROGRAM (max 2.0):....2.0
+   TOTAL........................6.5
+*/
+
+#include <stdio.h>
+int condizione(int a,int b,int c){		
+	int verificato=0;
+	if(a%b==0 || a%c==0 || b%a==0 || b%c==0 || c%a==0 || c%b==0)
+		verificato=1;
+	return verificato;
+}
+int multipli(int *array,int lunghezza){		
+	int multiplo=1; 
+	//******** TWO OR THREE COMBINATIONS ON THE TRIPLE CONDITION ARE MISSING -1.5
+	for(int i=0;i<lunghezza-2;i++){
+		if(!condizione(array[i],array[i+1],array[i+2]))
+			multiplo=0;
+	}
+	return multiplo;
+}
+int main(){
+	int n;
+	printf("Inserisci una sequenza di elmenti e ti dirò se in ogni terna di elementi adiacenti ci sta almeno un elemento che %c multiplo degli altri due \n",138);
+	printf("Quanti elementi vuoi inserire?: ");
+	scanf("%d",&n);
+	int sequenza[n];
+	for(int i=0;i<n;i++){	
+		printf("Inserisci l'elemento di posizione [%d] della sequenza: ",i);
+		scanf("%d",&sequenza[i]);
+	}
+	if(multipli(sequenza,n))
+		printf("Nella sequenza di elementi tutte le terne adiacenti hanno almeno un elemento multiplo di uno degli altri due\n");
+	else
+		printf("Nella sequenza di elementi non tutte le terne adiacenti hanno almeno un elemento multiplo di uno degli altri due\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the main function with proper user interaction
+- Good array handling and input collection
+- Proper function structure with clear return values
+- Correct loop boundary check (lunghezza-2) for processing triples
+
+Areas for Improvement:
+- The condizione() function's logic could be more comprehensive. Currently, it misses some combinations when checking for multiples in the triple. The function should consider all possible combinations systematically.
+- Consider handling edge cases like zero values in the input sequence
+- Consider adding input validation for the sequence length
+
+Key Recommendations:
+- Revise the condizione() function to ensure all possible multiple relationships between three numbers are checked correctly
+- Add input validation to ensure n is positive and reasonable
+- Consider adding comments to explain the logic, especially in the condizione() function
+- Consider handling special cases like division by zero
+</feedback_summary>
+
+The student's implementation is generally good, with the main deduction coming from incomplete checking of all possible combinations in the condizione() function. The main program is well implemented with proper user interaction and clear output messages. The overall structure is correct, with appropriate function separation and parameter passing.

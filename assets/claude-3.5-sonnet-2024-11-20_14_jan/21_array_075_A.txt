@@ -1,0 +1,71 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........6.0
+   MAIN PROGRAM (max 2.5):....2.2 = 2.5 - 0.3
+   TOTAL.......................8.2
+*/
+
+#include <stdio.h>
+int ugualiCompresi(int seq[], int lung){
+    int i=0;
+    int isCompresi=0;
+    while(i<lung-2){  
+        if(((seq[i]+seq[i+1]>=10 && seq[i]+seq[i+1]<=20)
+        ||(seq[i]+seq[i+2]>=10 && seq[i]+seq[i+2]<=20)
+        ||(seq[i+1]+seq[i+2]>=10 && seq[i+1]+seq[i+2]<=20)) &&
+            (((seq[i]==seq[i+1]) && seq[i]!=seq[i+2])
+            ||((seq[i]==seq[i+2]) && seq[i]!=seq[i+1])
+            ||(((seq[i+2]==seq[i+1]) && seq[i+2]!=seq[i])))){
+            isCompresi=1;
+            break;  
+        }
+        else{
+            i++;
+        }
+    }
+    return isCompresi;
+}
+int main(int argc, char **argv)
+{
+    int lung; 
+    int finale; 
+    printf("inserire la lunghezza della sequenza.\n");
+    scanf("%d", &lung);
+    int seq[lung];
+    printf("inserire gli elementi della sequenza.\n");
+    for(int i=0;i<lung;i++){
+        scanf("%d", &seq[i]);
+    }
+    finale=ugualiCompresi(seq, lung);
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES CLEARLY ENOUGH) -0.3
+    if(finale==1){
+        printf("nella sequenza esiste una tripla di elementi consecutivi tale che almeno due elementi della tripla hanno una somma compresa tra 10 e 20 ed esattamente due elementi della tripla sono uguali fra loro.\n");
+    }
+    else{
+        printf("nella sequenza non esiste una tripla di elementi consecutivi tale che almeno due elementi della tripla hanno una somma compresa tra 10 e 20 ed esattamente due elementi della tripla sono uguali fra loro.\n");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the function logic for checking consecutive triples
+- Proper handling of array bounds with while(i<lung-2)
+- Correct conditions for checking sums between 10 and 20
+- Proper implementation of exactly two equal elements condition
+- Good use of break statement to exit loop when condition is found
+- Correct array input handling in main function
+
+Areas for Improvement:
+- The output messages could be more concise and clearer while still maintaining accuracy
+- Consider adding input validation for the sequence length
+- Consider adding more descriptive variable names for better code readability
+
+Key Recommendations:
+- Simplify output messages while maintaining their accuracy
+- Add input validation to ensure lung is positive and reasonable
+- Consider breaking down the complex condition into smaller, more readable parts using intermediate boolean variables
+</feedback_summary>
+
+The student's implementation is generally very good, with only minor improvements needed in the output messaging. The function correctly implements all required checks for both the sum condition and the equality condition. The main program correctly handles input and array management. The only deduction is for the somewhat verbose output messages that could be expressed more clearly.

@@ -1,0 +1,94 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........4.0 = 5.0 - 1.0
+countNumbers (2).....2.0
+readNumbers (2)......2.0  
+writeNumbers(1)......1.0
+TOTAL................9.0
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int minimoTripla(int a,int b, int c){
+    int minimo; 
+    minimo=a; 
+    if(b<minimo)
+        minimo=b;
+    if(c<minimo)
+        minimo=c;
+        //******** Missing proper indentation for return statement -0.0 (not penalized per rules)
+        return minimo;
+}
+
+int minimoDispari(int *seq, int lunghezza){
+    int risultato; 
+    //******** Base case should check for length<=2 since we need triplets -1.0
+    if(lunghezza<3)
+        risultato=1;
+        else
+            risultato= (minimoTripla(seq[0],seq[1],seq[2])%2!=0) && minimoDispari(seq+1,lunghezza-1);
+            return risultato;
+}
+
+int quantiNumeri() {
+    int quanti=0; 
+    FILE*fp=fopen("interi.dat","rb");
+    if(fp==NULL)
+        printf("File non esistente o apertura non riuscita!\n\n");
+        else{
+            int numero; 
+            while(fread(&numero,sizeof(int),1,fp)>0)
+                quanti++;
+                fclose(fp);
+        }
+        return quanti;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE*fp=fopen("interi.dat","rb");
+    if(fp==NULL)
+        printf("File non esistente o apertura non riuscita!\n\n");
+        else{
+            for(int i=0; i<lunghezza;i++)
+                fread(&sequenza[i],sizeof(int),1,fp);
+                fclose(fp);
+        }
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE*fp=fopen("interi.dat","wb");
+    if(fp==NULL)
+        printf("Salvataggio non riuscito!\n\n");
+        else{
+            fwrite(sequenza,sizeof(int),lunghezza,fp);
+            fclose(fp);
+        }
+}
+
+[Rest of main() function...]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of file operations (reading, writing, counting)
+- Proper error handling for file operations
+- Good implementation of minimum triplet calculation
+- Complete solution addressing all required functions
+
+Areas for Improvement:
+- The base case in minimoDispari function needs revision:
+  - Current implementation returns 1 for sequences shorter than 3, which is logically incorrect
+  - Should return true only when length <= 2 since we can't form triplets
+- Code indentation could be improved for better readability (though not penalized)
+
+Key Recommendations:
+- Modify the base case in minimoDispari to properly handle sequences shorter than 3 elements
+- Consider using consistent indentation throughout the code
+- Add more descriptive error messages for file operations
+- Consider adding input validation for array length in the main function
+
+The implementation is generally solid, with only minor logical issues in the recursive function's base case. The file operations are well-implemented with proper error checking and resource management.
+</feedback_summary>

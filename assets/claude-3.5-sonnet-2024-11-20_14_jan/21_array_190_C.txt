@@ -1,0 +1,86 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.0 = 6.0 - 1.0
+   MAIN PROGRAM (max 2.5):....2.5
+   TOTAL.......................7.5
+*/
+
+#include <stdio.h>
+int isMultiplo3(int n){
+    int multiplo;   
+    if (n%3==0)
+        multiplo=1;
+    else
+        multiplo=0;
+    return multiplo;
+}
+
+int compreso(int m){
+    int comp;           
+    if(m<=10 && m>=-10)
+        comp=1;
+    else
+        comp=0;
+    return comp;
+}
+
+int compresiMultipli3(int *seq, int l){
+    int i = 1; 
+    int trovato = 0; 
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i<l-2 -1.0
+    while (i<l-1 && !trovato){
+        if( ( (compreso(seq[i]) && compreso(seq[i-1]))
+        || (compreso(seq[i]) && compreso(seq[i+1]))
+        || (compreso(seq[i-1])&&compreso(seq[i+1])) )
+        && ((isMultiplo3(seq[i-1]) && isMultiplo3(seq[i]) && !(isMultiplo3(seq[i+1])))
+        || (isMultiplo3(seq[i]) && isMultiplo3(seq[i+1]) && !(isMultiplo3(seq[i-1])))
+        || (isMultiplo3(seq[i-1]) && isMultiplo3(seq[i+1]) && !(isMultiplo3(seq[i])) )))
+            trovato=1;
+        else
+            i++;
+    }
+    return trovato;
+}
+
+int main(int argc, char **argv)
+{
+    int lunghezza;
+    printf("ciao utente, inserisci la lunghezza della sequenza : ");
+    scanf("%d",&lunghezza);
+    int sequenza[lunghezza];
+    for (int i=0 ; i<lunghezza ; i++){
+        printf("introduci un intero : ");
+        scanf("%d",&sequenza[i]);
+    }
+    if (compresiMultipli3(sequenza,lunghezza)){
+        printf("esiste una tripla di elementi consecutivi che contiene almeno due elementi il cui valore\n");
+        printf("e' compreso fra -10 e 10 estremi inclusi e che contiene esattamente due elementi multipli di 3\n");
+    }
+    else {
+        printf("NON esiste una tripla di elementi consecutivi che contiene almeno due elementi il cui valore\n");
+        printf("e' compreso fra -10 e 10 estremi inclusi e che contiene esattamente due elementi multipli di 3\n");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Well-structured code with clear separation of concerns into functions
+- Good implementation of helper functions (isMultiplo3 and compreso)
+- Correct implementation of the main program with proper user interaction
+- Clear output messages explaining the result
+- Good use of boolean logic to check conditions
+
+Areas for Improvement:
+- The array bounds checking in compresiMultipli3 function needs correction
+  - Current condition (i<l-1) can lead to array access beyond bounds
+  - Should be (i<l-2) to ensure safe access to i+1 element
+  
+Key Recommendations:
+- Fix the array bounds checking in the while loop condition
+- Consider adding input validation for the sequence length
+- Consider adding comments to explain the complex logical conditions
+</feedback_summary>
+
+The student's submission is generally well-implemented with only one significant issue in the array bounds checking. The main program meets all requirements, and the helper functions are correctly implemented. The logical conditions, while complex, correctly implement the required checks for both the range constraint and the multiple of 3 constraint.

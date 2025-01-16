@@ -1,0 +1,64 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.0):....2.0
+   TOTAL.......................7.3
+*/
+
+#include <stdio.h>
+int restoDivisione(int* seq, int l) {
+	int esiste = 0; 
+	int i = 0; 
+    //******** INCORRECT INDENTATION! -0.5
+	while (i+2<l && !esiste) {
+        //******** HOW DO YOU CONSIDER 0? -0.2
+		if ((seq[i+1]%seq[i+2]==seq[i] || seq[i+2]%seq[i+1]==seq[i]) ||
+			(seq[i]%seq[i+2]==seq[i+1] || seq[i+2]%seq[i]==seq[i+1]) ||
+			(seq[i]%seq[i+1]==seq[i+2] || seq[i+1]%seq[i]==seq[i+2]))
+			esiste = 1;
+		else
+			i++;
+	}
+	return esiste;
+}
+int main() {
+	int lunghezza; 
+	printf("Ciao utente, dimmi quanti interi vuoi inserire: ");
+	scanf("%d", &lunghezza);
+	int sequenza[lunghezza];
+	for (int i=0; i<lunghezza; i++) {
+		printf("Inserisci un intero: ");
+		scanf("%d", &sequenza[i]);
+	}
+	if (restoDivisione(sequenza, lunghezza)) {
+		printf("Esiste almeno una tripla di elementi adiacenti in cui ");
+		printf("un elemento e' il resto della divisione intera degli altri due!");
+	}
+	else {
+		printf("Non esiste nessuna tripla di elementi adiacenti in cui ");
+		printf("un elemento e' il resto della divisione intera degli altri due!");
+	}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the existential verification algorithm
+- Proper handling of all possible remainder combinations between three numbers
+- Well-structured main function with clear user interaction
+- Good use of boolean flag to stop searching once a valid triple is found
+- Clear and informative output messages
+
+Areas for Improvement:
+- Code indentation could be more consistent for better readability
+- Need to handle the case when one of the numbers is 0 (division by zero)
+- Consider using braces for single-line if/else statements for better clarity
+
+Key Recommendations:
+1. Use consistent indentation throughout the code
+2. Add validation for division by zero cases
+3. Consider adding input validation for the sequence length
+4. Use braces for all control structures, even single-line ones
+5. Consider adding comments to explain the logic of the remainder combinations
+</feedback_summary>

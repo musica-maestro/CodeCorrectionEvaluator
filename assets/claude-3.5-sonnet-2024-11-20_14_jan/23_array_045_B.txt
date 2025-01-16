@@ -1,0 +1,74 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....3.3 = 6.0 - 1.5 - 1.0 - 0.2
+   MAIN (max 2.0):.......1.8 = 2.0 - 0.2
+   TOTAL.................5.1
+*/
+
+#include<stdio.h>
+int duePositivi(int sequenza[],int l){  
+    int i;
+    i=0;
+    int verifica=1;
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < l - 2 -1.0
+    while(i<=l-2&&verifica){
+        //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+        if(!(((sequenza[i]>0&&sequenza[i+1]>0)&&(sequenza[i]<=0))||((sequenza[i]>0&&sequenza[i+2]>0)&&(sequenza[i+1]<=0))||((sequenza[i+2]>0&&sequenza[i+1]>0)&&(sequenza[i]<=0))))
+            verifica=0;
+        else
+            i++;
+    }
+    //******** DO YOU CONSIDER 0 POSITIVE OR NEGATIVE? -0.2
+    return verifica;
+}
+
+int main(){
+    int l;
+    int i=0;
+    printf("quanti interi vuoi inserire?\n");
+    scanf("%d",&l);
+    int sequenza[l];
+    for(i=0;i<l;i++){
+        printf("inserisci un intero.\n");
+        scanf("%d",&sequenza[i]);
+    }
+    //******** UNCLEAR MESSAGE -0.2
+    if(duePositivi(sequenza,l))
+        printf("verificato.\n");
+    else
+        printf("non verificato");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct overall program structure with separate function and main
+- Proper array declaration and input handling
+- Good use of boolean flag for verification
+- Appropriate loop structure for checking triples
+
+Areas for Improvement:
+1. Array Bounds:
+- The while loop condition should be i < l - 2 to avoid accessing elements beyond array bounds
+- Current condition could lead to buffer overflow
+
+2. Triple Condition Logic:
+- The logical condition for checking two positives in a triple is incorrect
+- Should check for exactly two positives among three consecutive elements
+- Consider simplifying the condition using separate checks for each number
+
+3. Zero Handling:
+- Need to clearly define whether zero is considered positive or negative
+- Current implementation is ambiguous about zero handling
+
+4. Output Messages:
+- Messages should be more descriptive and clear
+- Consider adding more context to the verification result
+
+Key Recommendations:
+1. Fix the array bounds check in the while loop
+2. Revise the triple condition logic to correctly count positive numbers
+3. Add clear documentation about zero handling
+4. Improve output messages for better user understanding
+</feedback_summary>

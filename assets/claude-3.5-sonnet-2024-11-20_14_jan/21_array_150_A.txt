@@ -1,0 +1,70 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........1.0 = 6.0 - 3.0 - 1.0 - 0.5 - 0.5
+   MAIN PROGRAM (max 2.5):....1.5 = 2.5 - 0.5 - 0.5
+   TOTAL.......................2.5
+*/
+
+#include <stdio.h>
+//******** IF THE FUNCTION IS WRITTEN BELOW, YOU MUST DECLARE ITS PROTOTYPE -0.5
+int ugualiCompresi (int array[], int l)
+//******** CONDITION IS MISSING! -3.0
+	int trovato=0;  
+	int i=0;
+	while(i<l-2 && !trovato)
+		if() 
+			trovato=1;
+//******** INCREMENT OF i IS MISSING -1.0
+//******** RETURN STATEMENT IS MISSING -0.5
+
+int main(){
+	int l; 
+	int i;
+	printf("caro utente, quanti interi vuoi inserire?\n");
+	scanf("%d", &l); 
+	int array [l];
+	printf("inserisci l'intero: \n");  
+	for(i=0; i<l; i++)
+		scanf("%d", &array[i]); 
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+	if(ugualiCompresi(array, l))
+		printf("ESISTE una tripla di elementi consecutivi tale che almeno due elementi abbiano una somma compresa tra 10 e 20 ed esattamente due elementi uguali");
+	else
+		printf("NON ESISTE una tripla di elementi consecutivi tale che almeno due elementi abbiano una somma compresa tra 10 e 20 ed esattamente due elementi uguali");
+	return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Main function correctly handles array input
+- Loop structure for checking consecutive triples is started correctly
+
+Areas for Improvement:
+- Function implementation is incomplete:
+  * Missing the core logic condition in the if statement
+  * No increment of the loop counter
+  * No return statement
+  * Function prototype should be declared before main
+
+- Main program issues:
+  * Output messages could be more specific about the properties being checked
+  * Code formatting and structure could be improved
+
+Key Recommendations:
+1. Complete the ugualiCompresi function by:
+   - Adding the condition to check for pairs summing between 10 and 20
+   - Adding the condition to check for exactly two equal elements
+   - Including the loop counter increment
+   - Adding a proper return statement
+
+2. Add function prototype before main
+
+3. Improve output messages to be more specific about what conditions are being checked
+
+4. Follow proper code formatting and indentation practices
+
+The code shows understanding of the basic structure needed but lacks critical implementation details, particularly in the function logic.
+</feedback_summary>

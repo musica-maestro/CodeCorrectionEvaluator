@@ -1,0 +1,76 @@
+I'll grade the student's submission following the provided format and criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........1.3 = 6.0 - 1.5 - 1.5 - 1.5 - 0.2
+   MAIN PROGRAM (max 2.0):....0.5 = 2.0 - 1.0 - 0.5
+   TOTAL.......................1.8
+*/
+
+#include <stdio.h>
+//******** MISSING PARAMETERS FOR THE FUNCTION int seq[] AND length -1.5
+int Multipli(int lung, int numero, int i, int bl){
+    bl=1;          
+    //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+    if( i/numero && i/i){   
+        i++;
+    }
+    else{
+        bl=0;      
+    }
+    //******** THE FUNCTION MUST ALWAYS RETURN A VALUE -0.2
+}
+
+int main(){
+    int lung;
+    int numero;
+    int i;
+    int bl;
+    //******** MISSING DECLARATION OF THE ARRAY -1.0
+    printf("Caro utente inserisci il numero degli interi presenti nella sequenza desiderata:", numero);
+    scanf("%d", &lung);
+    for(i=0; i<lung; i++){
+        printf("Adesso puoi introdurre la tua sequenza\n", i);
+        //******** INCORRECT READING, SHOULD BE &seq[i] -0.5
+        scanf("[%d]", &numero); 
+    }
+    printf("La sequenza da te scelta e' la seguente:\n");
+    Multipli( lung,  numero,  i,  bl);      
+    //******** SHOULD NOT BE A MULTIPLE OF BOTH, AT LEAST ONE OF THE TWO, || INSTEAD OF && -1.5
+    if(bl=1){
+        printf("La terna adiacente contiene un multiplo!");
+    }
+    else{
+        printf("La tua sequenza non ha multipli nella terna, prova a inserirne un'altra!!");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure attempt with main function and separate function
+- Attempt to implement user interaction
+- Basic control flow with if-else statements
+
+Areas for Improvement:
+1. Function Implementation:
+   - The Multipli function needs to accept an array parameter and its length
+   - The logic for checking multiples in triples is incorrect
+   - Function should return a value in all cases
+
+2. Main Program:
+   - Missing array declaration to store the sequence
+   - Incorrect array input format
+   - Array elements are not properly stored or passed to the function
+
+Key Recommendations:
+1. Declare an array after getting the length from the user
+2. Implement proper array input using &seq[i]
+3. Modify Multipli function to:
+   - Accept correct parameters (array and length)
+   - Implement proper triple checking logic
+   - Ensure proper return values
+4. Fix the multiple checking condition using || instead of &&
+5. Add proper array handling and parameter passing between functions
+
+The code needs significant restructuring to meet the assignment requirements for checking triples of adjacent elements in a sequence.
+</feedback_summary>

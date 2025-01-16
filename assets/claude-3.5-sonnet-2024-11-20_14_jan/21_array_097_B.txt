@@ -1,0 +1,67 @@
+I'll grade the student's submission following the provided format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.3 - 0.2
+   TOTAL.......................6.0
+*/
+
+#include <stdio.h>
+int maggiori5Pari (int array[],int dim){
+	int i;  
+	int esiste=0;   
+	i=0;
+	for(i=0;i<dim-2;i++)    
+		if(((array[i]>=5 && array[i+1]>=5 && array[i+2]<5)
+		|| (array[i]>=5 && array[i+1]<5 && array[i+2]>=5)
+		|| (array[i]<5 && array[i+1]>=5 && array[i+2]>=5))&&
+		((array[i]%2==0 && array[i+1]%2==0 && array[i+2]%2==0)
+		|| (array[i]%2==0 && array[i+1]%2==0 && array[i+2]%2!=0)
+		|| (array[i]%2==0 && array[i+1]%2!=0 && array[i+2]%2==0)
+		|| (array[i]%2!=0 && array[i+1]%2==0 && array[i+2]%2==0))) 
+			esiste=1; 
+			else  								
+				esiste=0; 
+	//******** RETURN VALUE IS BASED ON LAST TRIPLE -1.5
+	return esiste;
+	}
+
+int main(int argc, char **argv)
+{
+	int dimensione; 
+	int i=0;     
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+	printf("Programma che verifica per una sequenza di numeri interi se ogni tripla di numeri contiene \n esattamente due valori maggiori di 5 e almeno due valori pari. \n"); 
+	printf("Lunghezza array: ");
+	scanf("%d",&dimensione);     
+	int array[dimensione];
+	printf("Riempi l'array: ");  
+	for(i=0;i<dimensione;i++)
+		scanf("%d",&array[i]);
+	//******** BADLY INDENTED -0.2
+	if(maggiori5Pari(array, dimensione))           
+		printf("Ogni tripla contiene due numeri maggiori di 5 e almeno due pari"); 
+		else 
+			printf("Ci sono triple che non contengono due numeri maggiori di 5 e almeno due pari"); 
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the logic for checking exactly two numbers >= 5
+- Proper implementation of checking for at least two even numbers
+- Good user interaction in main function
+- Appropriate array handling and input collection
+
+Areas for Improvement:
+- The function's return value is based only on the last triple checked, which is incorrect for universal verification
+- Code indentation needs improvement for better readability
+- Output messages could be more specific and clearer
+- The logic should maintain the result across all triples instead of resetting it each time
+
+Key Recommendations:
+1. Modify the function to maintain a boolean flag that stays true only if ALL triples satisfy the conditions
+2. Use consistent indentation throughout the code
+3. Make output messages more precise and informative
+4. Consider using a more structured approach to the logical conditions for better readability
+</feedback_summary>

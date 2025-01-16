@@ -1,0 +1,67 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.0 = 6.0 - 1.0
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................6.8
+*/
+
+#include <stdio.h>
+int restoDivisione(int*seq, int l){
+    int i=0;       
+    int esistente=0;  
+    //******** ARRAY INDEX OUT OF BOUNDS CHECK IS CORRECT (i<l-2) BUT POOR INDENTATION -0.5
+    while(i<l-2 && !esistente)
+        //******** ALL POSSIBLE COMBINATIONS ARE CORRECTLY CHECKED, BUT INDENTATION IS POOR -0.5
+        if((seq[i]%seq[i+1]==seq[i+2])||(seq[i]%seq[i+2]==seq[i+1])||
+           (seq[i+1]%seq[i+2]==seq[i])||(seq[i+1]%seq[i]==seq[i+2])||
+           (seq[i+2]%seq[i]==seq[i+1])||(seq[i+2]%seq[i+1]==seq[i]))
+            esistente=1;
+        else
+            i++;
+    return esistente;
+}
+int main(){
+    int lunghezza;     
+    int esiste;        
+    printf("Ciao utente, prima di cominciare  quanti interi vuoi introdurre?: ");
+    scanf("%d", &lunghezza);
+    int sequenza[lunghezza];     
+    for(int i=0; i<lunghezza; i++){
+        printf("Dammi un intero: ");
+        scanf("%d", &sequenza[i]);
+    }
+    esiste=restoDivisione(sequenza, lunghezza);
+    //******** UNCLEAR MESSAGE WITH POOR FORMATTING -0.2
+    if(esiste==1){
+        printf("Nella sequenza esiste una tripla di interi consecutivi in cui ");
+        printf("uno dei tre e' uguale al resto della divisione degli altri due.");
+    }
+    else{
+        printf("Nella sequenza non esiste una tripla di interi in cui ");
+        printf("uno dei tre e' uguale al resto della divisione degli altri due.");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the algorithm logic
+- Proper array bounds checking in the function
+- All possible combinations for remainder checking are included
+- Correct parameter passing and return value handling
+- Good user interaction flow in main
+
+Areas for Improvement:
+- Code indentation needs to be more consistent and clear
+- Output messages could be more clearly formatted
+- Consider using proper code blocks with curly braces for if/while statements
+- Consider handling edge cases (like division by zero)
+
+Key Recommendations:
+- Use consistent indentation for better code readability
+- Add proper code blocks using curly braces
+- Format output messages more clearly
+- Consider adding input validation for edge cases
+- Use more descriptive variable names (instead of 'esistente')
+</feedback_summary>

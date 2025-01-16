@@ -1,0 +1,65 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.3 = 6.0 - 1.5 - 0.2 - 1.0
+   MAIN PROGRAM (max 2.0):....1.3 = 2.0 - 0.5 - 0.2
+   TOTAL......................4.6
+*/
+
+#include <stdio.h>
+int Multipli(int sequenza[], int lunghezza) {
+    //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+    //******** HOW TO CONSIDER 0? -0.2
+    int risultato=1;
+    for(int z=0; z<lunghezza-2 && risultato==1; z++) {
+        if(sequenza[z]%sequenza[z+1]!=0  &&
+        sequenza[z]%sequenza[z+1]!=0 && 
+        sequenza[z+1]%sequenza[z]!=0  &&
+        sequenza[z+1]%sequenza[z+2]!=0 &&
+        sequenza[z+2]%sequenza[z]!=0  &&
+        sequenza[z+2]%sequenza[z+1]!=0)
+            risultato=0;
+    }
+    return risultato;
+}
+
+int main() {
+    //******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+    int lunghezza=0;
+    int a=0; 
+    printf("Ciao utente, quanto vuoi che sia lunga la sequenza?\n");
+    scanf("%d", &lunghezza);
+    int sequenza[lunghezza];
+    for(int x=0; x<lunghezza; x++) { 
+        printf("Inserisci un intero, in posizione %d\n", x);
+        scanf("%d", &sequenza[x]);
+    }
+    //******** UNCLEAR OUTPUT MESSAGE -0.2
+    a=Multipli(sequenza, lunghezza);
+    if(a==1)
+        printf("In tutte le terne degli elementi adiacenti %c presente un multiplo di uno degli altri due\n", 138);
+    if(a==0)
+        printf("Non in tutte le terne degli elementi adiacenti %c presente un multiplo di uno degli altri due\n", 138);
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct basic program structure with separate function and main
+- Proper array iteration within bounds
+- Good use of boolean flag (risultato) to stop checking once a violation is found
+
+Areas for Improvement:
+- The condition for checking multiples in the triple is incorrect. It should check if at least one number is a multiple of another, not if none are multiples
+- Array should be declared after getting the length input
+- Output messages could be clearer and avoid using special characters
+- Need to consider edge cases like zero values in the sequence
+- The logic for checking multiples should be simplified and more clearly structured
+
+Key Recommendations:
+1. Restructure the multiple checking condition to verify if AT LEAST ONE number is a multiple of another, rather than checking if none are
+2. Move array declaration after length input validation
+3. Simplify the output messages and avoid using special characters
+4. Add handling for edge cases (especially zero values)
+5. Consider using more descriptive variable names and adding comments to explain the logic
+</feedback_summary>

@@ -1,0 +1,107 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)......... 2.0 = 5.0 - 1.5 - 1.0 - 0.5
+countNumbers (2).... 1.7 = 2.0 - 0.3
+readNumbers (2)..... 1.7 = 2.0 - 0.3
+writeNumbers(1)..... 1.0
+TOTAL............... 6.4/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimoPari(int *seq, int lunghezza){
+    //******** INCORRECT IMPLEMENTATION: Function checks if sum is even instead of maximum being even -1.5
+    //******** BASE CASE: Cannot access 3 components when length <= 2 -0.5
+    int check;
+    if(lunghezza <= 2){
+        check = 1;
+    }
+    else{
+        //******** LOGIC ERROR: Should check if maximum of triple is even, not sum -1.0
+        if((seq[0]+seq[1]+seq[2] % 2== 0)){  
+            check = massimoPari(seq+1, lunghezza-1);
+        }
+        else{
+            check = 0;
+        }
+    }
+    return check;
+}
+
+int quantiNumeri() {
+    int V[30]; 
+    int i=0;
+    //******** COUNTER NOT INITIALIZED -0.3
+    int count = 0;
+    FILE *fp = fopen("interi.dat", "rb");
+    if(fp != NULL){
+        while(fread(&(V[i]),sizeof(int), 1,fp)){ 
+            count = count +1;                    
+        }
+    }
+    fclose(fp);
+    return count;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    int i=0;
+    FILE *fp = fopen("interi.dat", "rb");
+    //******** MISSING ERROR HANDLING FOR FILE OPEN FAILURE -0.3
+    if(fp != NULL){ 
+        while(fread(&(sequenza[i]),sizeof(int), 1 ,fp)){
+            i++;
+        }
+        fclose(fp);
+    }
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    int i;
+    FILE *fp = fopen("interi.dat", "wb");
+    for(i=0; i<lunghezza; i++){
+        fwrite(&(sequenza[i]),sizeof(int), 1, fp);
+    }
+    fclose(fp);
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- File I/O operations are generally well-implemented
+- Basic program structure is clear and organized
+- Binary file handling is correctly implemented
+- Write numbers function is correctly implemented
+
+Areas for Improvement:
+1. massimoPari function:
+   - Should check if maximum of triple is even, not the sum
+   - Base case needs revision to handle arrays of length <= 2
+   - Logic for checking even maximum needs to be corrected
+
+2. File Operations:
+   - Add proper error handling for file operations
+   - Initialize counter variables properly
+   - Add checks for NULL file pointers
+
+3. Program Logic:
+   - Output messages should be more descriptive
+   - Improve error handling throughout the program
+
+Key Recommendations:
+1. Revise the massimoPari function to:
+   - Correctly find maximum of three consecutive numbers
+   - Check if maximum is even
+   - Handle base cases properly
+
+2. Add proper error handling:
+   - Check for file open failures
+   - Initialize variables properly
+   - Add appropriate error messages
+
+3. Improve output messages to clearly indicate what is being checked
+</feedback_summary>

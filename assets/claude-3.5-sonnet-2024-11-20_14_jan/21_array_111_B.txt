@@ -1,0 +1,70 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.3 = 6.0 - 1.5 - 0.2
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................6.3
+*/
+
+#include <stdio.h>
+int maggiori5Pari(int array[],int l){
+    int i;  
+    int c=1; 
+    //******** WRONG CONDITION ON INDEX, SHOULD BE i < l-2 INSTEAD OF i<=l-3 -1.5
+    for(i=0;i<=l-3&&c!=0;i++){
+        //******** CONDITION IS COMPLICATED AND NOT VERY READABLE -0.2
+        if(!((array[i]>=5&&array[i+1]>=5)
+        ||(array[i+1]>=5&&array[i+2]>=5)
+        ||(array[i+2]>=5&&array[i]>=5))||(array[i+1]>=5&&array[i+2]>=5&&array[i]>=5)){
+            c=0;
+        }
+            else if(!((array[i]%2==0 && array[i+1]%2==0)
+            ||(array[i+1]%2==0 &&array[i+2]%2==0)
+            ||(array[i+2]%2==0&&array[i]%2==0)
+            ||(array[i]%2==0&&array[i+1]%2==0&&array[i+2]%2==0))){
+                c=0;
+            }
+    }
+    return c;
+}
+int main()
+{
+    int lunghezza;
+    int i;
+    int risultato;
+    printf("Ciao utente quanto %c lunga la tua sequenza?\n",138);
+    scanf("%d",&lunghezza);
+    int sequenza[lunghezza];
+    for(i=0;i<lunghezza;i++){
+        printf("Introduci l'intero all'indice %d\n",i);
+        scanf("%d",&sequenza[i]);
+    }
+    risultato=maggiori5Pari(sequenza,lunghezza);
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    if(risultato){
+        printf("La tua sequenza contiene esattemente due elementi maggiori o uguali a 5 ed almeno due elementi pari!!");
+    }
+    else{
+        printf("La tua sequenza NON contiene esattamente due elementi maggiori o uguali a 5 ed almeno due elementi pari!!");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the main function structure
+- Proper array handling and user input collection
+- Correct logic for checking both conditions (>=5 and even numbers)
+- Good use of boolean flag for tracking conditions
+
+Areas for Improvement:
+- The loop condition in maggiori5Pari should use i < l-2 instead of i <= l-3 to properly check all triples
+- The logical conditions, while correct, are written in a way that makes them difficult to read and maintain
+- Output messages could be more specific about the properties being checked for consecutive triples
+
+Key Recommendations:
+- Simplify the logical conditions by breaking them into smaller, more readable parts
+- Fix the loop boundary condition to ensure proper array traversal
+- Improve output messages to clearly specify that the properties apply to consecutive triples
+- Consider adding input validation for array length
+</feedback_summary>

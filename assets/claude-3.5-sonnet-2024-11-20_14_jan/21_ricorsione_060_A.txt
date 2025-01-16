@@ -1,0 +1,91 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)............3.5 = 5.0 - 1.0 - 0.5
+countNumbers (2).......2.0
+readNumbers (2)........1.7 = 2.0 - 0.3
+writeNumbers (1).......0.7 = 1.0 - 0.3
+TOTAL..................7.9/10
+*/
+
+#include <stdio.h>
+int massimoPari(int v[], int n){
+    //******** base case incorrect - should check if n<=2 -1.0
+    int esiste=1;
+    if(n<3)
+        esiste=1;
+    else
+        //******** complex logic could be simplified using a helper function -0.5
+        esiste=((v[0]>v[1] && v[0]>v[2] && v[0]%2==0)
+        || (v[1]>v[0] && v[1]>v[2] && v[1]%2==0)
+        || (v[2]>v[0] && v[2]>v[1] && v[2]%2==0)) && massimoPari(v+1,n-1);
+    return esiste;
+}
+
+void scriviNumeri(int v[], int n){
+    FILE *fp=fopen("numeri.dat","wb");
+    //******** missing file close in error case -0.3
+    if(fp==NULL)
+        printf("Impossibile aprire il file! \n");
+    else
+        for(int i=0; i<n;i++)
+            fwrite(&(v[i]),sizeof(int),1,fp);
+        fclose(fp);
+}
+
+int quantiNumeri(){
+    int numero,cont=0;
+    FILE *fp=fopen("numeri.dat","rb");
+    if(fp==NULL)
+        printf("Impossibile aprire il file! \n");
+    else
+        while(fread(&(numero),sizeof(int),1,fp)>0)
+            cont++;
+    fclose(fp);
+    return cont;
+}
+
+void leggiNumeri(int v[], int n){
+    FILE *fp=fopen("numeri.dat","rb");
+    //******** missing file close in error case -0.3
+    if(fp==NULL)
+        printf("Impossibile aprire il file! \n");
+    else
+        for(int i=0; i<n; i++)
+            fread(&(v[i]),sizeof(int),1,fp);
+    fclose(fp);
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of file I/O operations
+- Correct use of binary file operations
+- Proper implementation of array handling
+- Good structure and organization of code
+
+Areas for Improvement:
+1. massimoPari function:
+   - Base case needs revision to properly handle arrays of length ≤ 2
+   - Consider simplifying the recursive logic using helper functions
+   
+2. File handling:
+   - Add proper file closure in error cases
+   - Consider returning error codes instead of just printing messages
+
+3. Code structure:
+   - Function prototypes should be at the beginning of the file
+   - Consider more descriptive variable names
+
+Key Recommendations:
+1. Revise the base case in massimoPari to check for n<=2
+2. Add proper file closure in all error cases
+3. Consider implementing error handling that returns status codes
+4. Move function prototypes to the top of the file
+5. Add more comprehensive error checking for file operations
+
+The code is functional but could be more robust with these improvements.
+</feedback_summary>

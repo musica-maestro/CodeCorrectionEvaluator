@@ -1,0 +1,91 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........2.0 = 5.0 - 1.5 - 1.0 - 0.5
+countNumbers (2).....1.0 = 2.0 - 0.5 - 0.5
+readNumbers (2)......1.5 = 2.0 - 0.5
+writeNumbers(1)......0.5 = 1.0 - 0.5
+TOTAL................5.0
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int min(int *seq){
+    int min;
+    //******** ERROR IN CALCULATING MINIMUM OF THREE INTEGERS - INCORRECT LOGIC AND ASSIGNMENT -1.5
+    if(seq[0]<seq[1] && seq[0]<seq[2]){
+        seq[0]=min;
+    }else if(seq[1]<seq[0] && seq[1]<seq[2]){
+                seq[1]=min;
+    }else if(seq[2]<seq[0] && seq[2]<seq[3]){
+                seq[2]=min;   
+    }return min;
+}
+
+int minimoDispari(int *seq, int lunghezza){
+    //******** BASE CASE MISSING FOR TRIPLETS (SHOULD BE LENGTH <= 2) -0.5
+    int ris;
+    if(lunghezza<=1){
+        ris=1;
+    }else{
+        //******** RECURSION SHOULD BE ON ARRAY LENGTH, INCORRECT RECURSIVE IMPLEMENTATION -1.0
+        ris=((min(seq)%2!=0) && minimoDispari(seq, lunghezza-1));
+    }   
+    return ris;
+}
+
+int quantiNumeri() {
+    FILE* fp=fopen("interi.dat","rb");
+    //******** MISSING FILE EXISTENCE CHECK AND COUNTING LOGIC -0.5
+    //******** MISSING RETURN VALUE -0.5
+    fclose(fp);
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE* fp=fopen("interi.dat","rb");
+    //******** MISSING FILE EXISTENCE CHECK -0.5
+    fread(sequenza, sizeof(int), lunghezza, fp);
+    fclose(fp);
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE* fp=fopen("interi.dat","wb");
+    //******** INCORRECT NUMBER OF ELEMENTS IN FWRITE (1 INSTEAD OF LUNGHEZZA) -0.5
+    fwrite(sequenza, sizeof(int), 1, fp); 
+    fclose(fp);
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic file I/O operations implemented
+- Program structure follows assignment requirements
+- Main function properly handles user interaction
+
+Areas for Improvement:
+1. Minimum Function:
+   - The min() function has incorrect logic for finding minimum
+   - Assignment operations are reversed (should assign to min, not array elements)
+
+2. Recursive Implementation:
+   - Base case needs to consider triplets (length <= 2)
+   - Recursion should properly traverse array length
+   - Logic for checking odd minimum needs revision
+
+3. File Operations:
+   - Add file existence checks (if(fp == NULL))
+   - quantiNumeri() needs proper counting implementation
+   - scriviNumeri() should write all elements (use lunghezza instead of 1)
+
+Key Recommendations:
+1. Revise minimum calculation logic
+2. Implement proper base case for recursion
+3. Add error checking for file operations
+4. Complete the quantiNumeri() function implementation
+5. Fix fwrite to handle correct number of elements
+
+</feedback_summary>

@@ -1,0 +1,68 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....2.0 = 6.0 - 1.5 - 1.0 - 1.5
+   MAIN (max 2.0):....1.0 = 2.0 - 0.5 - 0.5
+   TOTAL:....3.0
+*/
+
+#include <stdio.h>
+int dueUnaCifra(int **seq[], int lunghezza) { 
+    //******** INCORRECT PARAMETER TYPE - should be int seq[] not int **seq[] -1.5
+    int verifica = 1;
+    int i = 1; 
+    //******** ARRAY INDEX OUT OF BOUNDS, should be i < lunghezza - 2 -1.0
+    while((i<=lunghezza) && verifica) { 
+        //******** CONDITION ON THE TRIPLE IS WRONG - incorrect comparison logic -1.5
+        if((seq[i]>9 && seq[i+1]>9) || (seq[i]>9 && seq[i+2]>9) || (seq[i+2]>9 && seq[i+1]>9)) {
+            i++;
+        }else{
+            verifica = 0;
+        }
+    }
+    return verifica;
+}
+
+int main() {
+    int lunghezza;
+    //******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+    int seq[lunghezza];
+    printf("Ciao, sono un programma che controlla le terne di una sequenza che mi dai e guarda se sono composte da almeno due caratteri da una cifra, dimmi quanto la vuoi fare lunga!!\n");
+    scanf("%d", &lunghezza);
+    printf("inserisci gli interi della sequenza!!\n");
+    for(int i = 0; i < lunghezza; ++i) {
+        printf("Dammi un intero!\n");
+        scanf("%d", &seq[i]);
+    }
+    //******** NON-EXPLANATORY OUTPUT -0.5
+    printf("se in ogni terna ci sono almeno due numeri composti da una sola cifra l'istanza è positiva,\n");
+    printf("mentre se anche in una sola terna della sequenza non ci sono almeno due numeri composti da una sola cifra l'istanza è negativa\n");
+    printf("il valore dell'istanza corrisponde a: %d\n", dueUnaCifra(seq, lunghezza));
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Attempt to implement the required functionality
+- User interaction implementation in main
+
+Areas for Improvement:
+1. Function Implementation:
+   - Fix parameter type for seq array
+   - Correct array bounds checking
+   - Revise triple checking logic to properly verify single-digit numbers
+   
+2. Main Program:
+   - Move array declaration after getting length
+   - Improve output messages clarity
+   - Add input validation
+
+Key Recommendations:
+1. Change function parameter to int seq[] instead of int **seq[]
+2. Fix array indexing to prevent out-of-bounds access
+3. Revise the logic for checking single-digit numbers in triples
+4. Implement proper array declaration after getting length
+5. Make output messages more clear and concise
+6. Add input validation for array length and elements
+</feedback_summary>

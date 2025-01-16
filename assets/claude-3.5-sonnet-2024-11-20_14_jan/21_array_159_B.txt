@@ -1,0 +1,67 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.2 - 0.5
+   MAIN PROGRAM (max 2.5):....2.2 = 2.5 - 0.3
+   TOTAL......................7.5
+*/
+
+#include <stdio.h>
+int maggiori5Pari (int s[], int l){
+    int verificata;
+    verificata =1;
+    int i=0;
+    //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+    while(i<l-2 && verificata){
+        if((((s[i]%2==0)&&(s[i+1]%2==0))
+        ||((s[i]%2==0)&&(s[i+2]%2==0))
+        ||((s[i+2]%2==0)&&(s[i+1]%2==0)))
+        && ((((s[i]>=5)&&(s[i+1]>=5)&&(s[i+2]<5))
+        ||((s[i]>=5)&&(s[i+2]>=5)&&(s[i+1]<5))||((s[i+1]>=5)&&(s[i+2]>=5)&&(s[i]<5)))))
+            i++;
+        else
+            verificata=0;
+    }
+    return verificata;
+}
+
+int main(){
+    int dimensione;
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+    printf("Caro utente, sono un programma che verifica se in una sequenza, in ogni tripla ci siano esattamente 2 elementi maggiori o uguali a 5 ");
+    printf("e almeno 2 di ordine pari.\n\n");
+    printf("Quanti elementi desidera inserire?   ");
+    scanf("%d", &dimensione);
+    int sequenza[dimensione];
+    for(int i=0; i<dimensione; i++){
+        printf("Inserisci un bel numero:    ");
+        scanf("%d", &sequenza[i]);
+    }
+    if(maggiori5Pari(sequenza, dimensione))
+        printf("Ogni tripla di elementi soddisfa la propriet%c.\n\n", 133);
+    else
+        printf("Esiste almeno una tripla che non soddisfa la propriet%c.\n\n",133);
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the universal verification logic
+- Proper array handling and bounds checking
+- Correct implementation of the two required conditions (exactly two ≥5 and at least two even numbers)
+- Good user interaction in main function
+- Proper function parameters and return value
+
+Areas for Improvement:
+- The condition in the maggiori5Pari function could be more readable by breaking it down into smaller, more manageable parts
+- The output messages could be more specific about which property is being verified
+- Consider adding more descriptive variable names (e.g., 'verificata' could be 'isValid' or 'propertyHolds')
+
+Key Recommendations:
+- Break down complex conditions into smaller, well-named boolean variables for better readability
+- Provide more detailed output messages that explicitly state the properties being checked
+- Consider adding input validation for array size
+- Use more descriptive variable names to improve code readability
+</feedback_summary>
+
+The student's implementation is generally correct and well-structured. The main deductions are minor and relate to code readability and output clarity rather than functional issues. The solution correctly implements both required checks (exactly two elements ≥5 and at least two even elements) and properly handles the universal verification across all consecutive triples in the array.

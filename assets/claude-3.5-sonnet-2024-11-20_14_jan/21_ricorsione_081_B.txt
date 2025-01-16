@@ -1,0 +1,92 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........3.5 = 5.0 - 1.5
+countNumbers (2).....2.0
+readNumbers (2)......2.0
+writeNumbers(1)......1.0
+TOTAL................8.5/10
+*/
+
+#include <stdio.h>
+int minimoDisp(int *, int dim);
+void scriviNumeri(int *, int dim);
+int quantiNumeri();
+void leggiNumeri(int *, int);
+
+int main() {
+    // Main function implementation is correct
+}
+
+int minimoDisp(int *seq, int dim) {
+    int ris = 1;
+    if(dim > 2) {
+        int min = seq[0];
+        if(seq[1] < min)
+            min = seq[1];
+        else if(seq[2] < min)
+            min = seq[2];
+        //******** The minimum must be odd, not divisible by 3 -0.5
+        ris = (min % 3 == 0) && minimoDisp(seq+1, dim-1);
+    }          
+    return ris;
+}
+
+//******** The recursive implementation is incorrect - should check for odd minimum -1.0
+
+void scriviNumeri(int *seq, int dim) {
+    FILE *fp = fopen("interi.dat", "wb");
+    if(fp == NULL)
+        puts("Salvataggio fallito!");
+    else {
+        fwrite(seq, sizeof(int), dim, fp);
+        fclose(fp);
+    }
+}
+
+int quantiNumeri() {
+    int count = 0;
+    FILE *fp = fopen("interi.dat", "rb");
+    if(fp == NULL)
+        puts("Impossibile leggere il file!");
+    else {
+        int num;
+        while(fread(&num, sizeof(int), 1, fp))
+            ++count;
+        fclose(fp);
+    }
+    return count;
+}
+
+void leggiNumeri(int *seq, int dim) {
+    FILE *fp = fopen("interi.dat", "rb");
+    if(fp == NULL)
+        puts("Imposibile leggere il file!");
+    else {
+        fread(seq, sizeof(int), dim, fp);
+        fclose(fp);
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of file handling functions (writeNumbers, readNumbers, countNumbers)
+- Proper error checking for file operations
+- Good structure and organization of code
+
+Areas for Improvement:
+- The minimoDisp function has a logical error in checking for odd minimums:
+  - Currently checks if minimum is divisible by 3 instead of being odd
+  - The recursive implementation needs to properly check each consecutive triplet
+- The base case handling could be improved for better edge cases
+
+Key Recommendations:
+1. Modify the minimoDisp function to check if the minimum is odd (use min % 2 == 1)
+2. Review the recursive logic to ensure all consecutive triplets are properly checked
+3. Consider adding more descriptive error messages for file operations
+4. Add input validation for array dimensions
+
+The code shows good understanding of file operations but needs improvement in the core recursive algorithm implementation.
+</feedback_summary>

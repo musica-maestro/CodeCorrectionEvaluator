@@ -1,0 +1,105 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* 
+maxEven (5)......... 1.5 = 5.0 - 1.5 - 1.0 - 1.0
+countNumbers (2).... 0.5 = 2.0 - 1.0 - 0.5
+readNumbers (2)..... 0.5 = 2.0 - 1.0 - 0.5
+writeNumbers(1)..... 0.4 = 1.0 - 0.4 - 0.2
+TOTAL............... 2.9
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimoPari(int *seq, int lunghezza){
+    //******** Recursion is done incorrectly - accessing invalid memory locations -1.5
+    int vero = 0;
+    int max;
+    max=seq[lunghezza]; 
+    //******** Accessing array out of bounds -1.0
+    if (seq[lunghezza+1]>max) 
+        max=seq[lunghezza+1];
+    //******** Base case is incorrect - should check if length <= 2 -1.0
+    if (lunghezza<3)
+        printf("non ci sono abbastanza elementi \n"); 
+    else {
+        if ((max%2 == 0)&&massimoPari(seq+2,lunghezza-2))
+            vero = 1;
+    }
+    return vero;
+}
+
+int quantiNumeri() {
+    //******** Function implementation is incomplete and incorrect -1.0
+    int i;
+    int numero;
+    int quanti; 
+    FILE *fp=fopen("numeri.dat", "rb");
+    //******** Incorrect NULL check syntax -0.5
+    if (i==NULL)  
+        printf("niente da leggere\n");
+    fread(&i,numero,1,fp); 
+    while(i!=NULL,i>0,i++)
+    //******** Missing function return and proper implementation
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    //******** Incorrect file reading implementation -1.0
+    int numero;
+    FILE *fp=fopen("numeri.dat", "rb");
+    //******** Wrong NULL check on length parameter -0.5
+    if (lunghezza==NULL)
+        printf("niente da leggere\n");
+    do{
+        fread(&lunghezza,numero,1,fp);
+        for (lunghezza=0;lunghezza++;)
+        lunghezza=sequenza[lunghezza];
+    }
+    while(lunghezza!=NULL); 
+    return(sequenza,lunghezza); 
+    //******** File close after return statement -0.2
+    fclose(fp); 
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    int i;
+    //******** Wrong file mode for writing -0.4
+    FILE *fp=fopen("numeri.dat", "rb");
+    if (lunghezza==NULL)
+        fwrite(&i,lunghezza,1,fp);  
+    //******** Missing error handling for file operations -0.2
+    fclose(fp);
+}
+
+[Rest of the code...]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is in place
+- Main function handles user interaction appropriately
+- File operations are attempted with proper function separation
+
+Areas for Improvement:
+1. massimoPari function:
+   - Fix array access bounds
+   - Implement correct base case for recursion
+   - Properly handle triplet maximum calculation
+
+2. File Operations:
+   - Use correct file modes (wb for writing, rb for reading)
+   - Implement proper error handling for file operations
+   - Fix file reading/writing logic
+
+3. quantiNumeri function:
+   - Complete the implementation to properly count numbers
+   - Add proper return value
+   - Fix while loop condition
+
+Key Recommendations:
+1. Review array bounds and access patterns
+2. Study recursive function implementation
+3. Learn proper file handling techniques
+4. Add proper error checking for all file operations
+5. Complete incomplete function implementations
+</feedback_summary>

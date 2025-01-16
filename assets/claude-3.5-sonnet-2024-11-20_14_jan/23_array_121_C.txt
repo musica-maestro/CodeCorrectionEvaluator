@@ -1,0 +1,64 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.0 = 6.0 - 2.0 - 1.0
+   MAIN PROGRAM (max 2.0):....0.5 = 2.0 - 0.5 - 1.0
+   TOTAL.......................3.5
+*/
+
+#include <stdio.h>
+int dueunacifra(int array[],int lunghezza){
+	int output=1;
+	//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lunghezza - 2 -1.0
+	for(int i=0;i<lunghezza-2&&output==1;i++){
+		//******** CONDITION ON THE TRIPLE IS WRONG - DOESN'T CHECK FOR POSITIVE NUMBERS PROPERLY -2.0
+		if(((array[i]<10&&array[i]>=0)&&(array[i+1]<10&&array[i+1]>=0))||   
+		   ((array[i]<10&&array[i]>=0)&&(array[i+2]<10&&array[i+2]>=0))||
+		   ((array[i+1]<10&&array[i+1]>=0)&&(array[i+2]<10&&array[i+2]>=0)))
+			output=0;
+	}
+    return output;
+}
+int main(){
+	int lunghezza;
+	printf("buongiorno utente immetti la lunghezza della sequenza:\n");
+	scanf("%d",&lunghezza);
+	//******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+	int array[lunghezza];
+	//******** INCORRECT LOOP STRUCTURE - PRINTS RESULT FOR EACH INPUT INSTEAD OF ONCE AT THE END -1.0
+	for(int i=0;i<lunghezza;i++){
+		printf("immetti il valore %d della sequenza:\n", i);
+		scanf("%d",&array[i]);
+		if(dueunacifra(array,lunghezza)) 
+			printf("tutte le triple di elementi adiacenti della sequenza sono presenti almeno due numeri composti da una solo cifra ");
+		else
+			printf("non in tutte le triple di elementi adiacenti della sequenza sono presenti almeno due numeri composti da una solo cifra");
+	}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic function structure is present
+- Handles array processing
+- Attempts to implement the required logic for checking triples
+
+Areas for Improvement:
+1. Function Implementation:
+- The logic for checking triples is reversed (returns 0 when it should return 1)
+- Array bounds checking needs correction to avoid overflow
+- Should properly validate for positive single-digit numbers
+
+2. Main Program:
+- Result printing should occur after all inputs are collected, not during input
+- Array declaration should follow after getting the length
+- Input validation for positive numbers is missing
+
+Key Recommendations:
+1. Fix the triple-checking logic in dueunacifra function
+2. Move the result printing outside the input loop
+3. Add proper input validation for positive numbers
+4. Correct array bounds checking in the loop condition
+5. Restructure the main function to separate input collection from result display
+
+</feedback_summary>

@@ -1,0 +1,67 @@
+I'll grade the student's submission following the provided format and criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........1.0 = 6.0 - 1.5 - 1.5 - 1.0 - 1.0
+   MAIN PROGRAM (max 2.0):....0.5 = 2.0 - 1.0 - 0.5
+   TOTAL.......................1.5/8.0
+*/
+
+#include <stdio.h>
+//******** MISSING PARAMETERS FOR THE FUNCTION int seq[] AND length -1.5
+int restoDivisione (int seq, int lungh[i]) 
+{
+    int i=0;
+    //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+    if ((i%i+1%==i+2 && i+1%i+2%==i), || i+2%i%==i+1)
+        //******** MISSING IF PART (VERY BAD) -1.0
+        else ((i+1%i+2%==i+3 && i+2%i+3%==i+1), || i+3%i+1%==i+2)
+    {
+    printf("quanti numeri vuoi inserire\n");
+    //******** THE TEXT REQUIRES THE PRINT TO BE DONE IN THE MAIN, NOT IN THE FUNCTION -1.0
+    scanf("%d", i);
+    }
+}
+int main()
+{
+    //******** MISSING DECLARATION OF THE ARRAY -1.0
+    printf("inserisci la sequenza di numeri\n", );
+    //******** INCORRECT READING, SHOULD BE &seq[i] -0.5
+    scanf ("%d%d%d%d%d")
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure with main function and attempt at implementing required function
+- Includes some user interaction elements
+
+Areas for Improvement:
+1. Function Implementation:
+   - Function parameters are incorrectly defined - should accept array and length
+   - Logic for checking remainder of division is incorrect
+   - Missing proper if-else structure
+   - User interaction should be in main, not in the function
+
+2. Main Program:
+   - Missing array declaration
+   - Incomplete scanf implementation
+   - Missing proper user interaction as specified in requirements
+   - Missing function call to restoDivisione
+
+Key Recommendations:
+1. Restructure restoDivisione function to:
+   - Accept correct parameters (int array[] and int length)
+   - Implement proper logic for checking remainders
+   - Return boolean result (0 or 1)
+   - Remove user interaction code
+
+2. Improve main function to:
+   - Properly declare array after getting length from user
+   - Implement proper array input
+   - Add proper function call with array and length
+   - Handle output based on function return value
+
+3. Study array handling and parameter passing in C
+4. Review modulo operation and remainder checking logic
+</feedback_summary>

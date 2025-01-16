@@ -1,0 +1,83 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)......... 1.5 = 5.0 - 1.5 - 1.0 - 1.0
+countNumbers (2).... 1.5 = 2.0 - 0.3 - 0.2
+readNumbers (2)..... 0.0 = 2.0 - 2.0
+writeNumbers(1)..... 0.0 = 1.0 - 1.0
+TOTAL............... 3.0
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+int massimoPari(int *seq, int lunghezza){
+    int tutte=1;    
+    //******** INCORRECT BASE CASE: should be length<=2 -1.0
+    //******** ERROR: = is assignment, should be == for comparison -1.0
+    if(lunghezza=3)
+    {
+        //******** LOGIC ERROR: Not checking all consecutive triplets -1.5
+        if( ((seq[0]>seq[1] && seq[0]>seq[2])&&seq[0]%2==0) ||
+            ((seq[1]>seq[0] && seq[1]>seq[2])&&seq[1]%2==0) ||
+            ((seq[2]>seq[0] && seq[2]>seq[1])&&seq[2]%2==0) )
+                tutte=1;
+    }
+    else{
+        tutte= massimoPari(seq+1, lunghezza-1); 
+    }                                           
+}
+
+int quantiNumeri() {
+    int conta;
+    FILE* fp= fopen("interi.dat", "rb");
+    //******** MISSING FILE OPEN CHECK -0.3
+    //******** MISSING COUNTER INITIALIZATION -0.2
+}
+
+//******** MISSING IMPLEMENTATION -2.0
+void leggiNumeri(int* sequenza, int lunghezza) {
+}
+
+//******** MISSING IMPLEMENTATION -1.0
+void scriviNumeri(int* sequenza, int lunghezza) {
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is in place
+- Main function handles user input appropriately
+- Attempt at recursive implementation for massimoPari function
+
+Areas for Improvement:
+1. massimoPari function:
+   - Base case is incorrectly implemented
+   - Assignment operator used instead of comparison
+   - Not properly checking all consecutive triplets
+   - Missing return statement
+
+2. File Operations:
+   - quantiNumeri: Missing file open validation and counter initialization
+   - leggiNumeri: Function implementation completely missing
+   - scriviNumeri: Function implementation completely missing
+
+3. General Issues:
+   - Missing error handling for file operations
+   - Incomplete implementation of required functionality
+
+Key Recommendations:
+1. Fix the massimoPari function:
+   - Use correct base case (length <= 2)
+   - Implement proper recursive logic for checking consecutive triplets
+   - Add proper return statements
+
+2. Implement missing file operation functions:
+   - Add proper file open/close handling
+   - Implement reading and writing functionality
+   - Add error checking for file operations
+
+3. Add proper documentation and error handling throughout the code
+</feedback_summary>

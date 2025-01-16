@@ -1,0 +1,105 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....2.8 = 6.0 - 1.5 - 0.5 - 0.2 - 1.0
+   MAIN PROGRAM (max 2.0):....1.3 = 2.0 - 0.5 - 0.2
+   TOTAL.......................4.1
+*/
+
+#include <stdio.h>
+int divisioneTripla(int triplaDaDividere[])
+{
+    int resti[6];
+    int i = 0;
+    int k = 0;
+    int isTrue = 0;
+    resti[0] = triplaDaDividere[0] % triplaDaDividere[1];
+    resti[1] = triplaDaDividere[0] % triplaDaDividere[2];
+    resti[2] = triplaDaDividere[1] % triplaDaDividere[0];
+    resti[3] = triplaDaDividere[1] % triplaDaDividere[2];
+    resti[4] = triplaDaDividere[2] % triplaDaDividere[0];
+    resti[5] = triplaDaDividere[2] % triplaDaDividere[1];
+    for(i=0;i<6;i++)
+    {
+        //******** PRINT A MESSAGE FOR EVERY TRIPLE YOU EXAMINE! -1.0
+        if(resti[i] == triplaDaDividere[0] || resti[i] == triplaDaDividere[1] || resti[i] == triplaDaDividere[2])
+        {
+            printf("La proprieta e' verificata \n");
+            //******** ACCENTED CHARACTERS ARE NOT ALLOWED -0.5
+            isTrue = 1;
+        }
+        i++;
+        //******** INCORRECT INCREMENT CAUSES SKIPPING OF ELEMENTS -1.5
+    }
+    for(i=0;i<6;i++)
+    {
+        printf("%d", resti[i]);
+    }
+    return isTrue;
+}
+
+int restoDivisione(int array[], int lunghezza)
+{
+    int j=0;
+    int tripla[3];
+    int isProprietaVerificata = 0;
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lunghezza - 2 -1.0
+    for(int i=0;i<lunghezza-2;i++)
+    {
+        tripla[j] = array[i];
+        tripla[j+1] = array[i+1];
+        tripla[j+2] = array[i+2];
+        isProprietaVerificata = divisioneTripla(tripla);
+        i++;
+        //******** INCORRECT INCREMENT CAUSES SKIPPING OF TRIPLES -0.2
+    }
+    return isProprietaVerificata;
+}
+
+int main()
+{
+    int i;
+    printf("Quanti interi ha la sequenza? \n");
+    scanf("%d", &i);
+    //******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+    int sequenza[i];
+    for (int j = 0; j < i; j++)
+    {
+        printf("Inserisci l'intero numero %d \n", j+1);
+        scanf("%d", &sequenza[j]);
+    }
+    //******** UNCLEAR MESSAGE -0.2
+    if (restoDivisione(sequenza, i) == 1)
+    {
+        printf("\n Nella sequenza ESISTE una terna di elementi adiacenti in cui uno dei tre e' il resto della divisione degli altri due");
+    }
+    else
+    {
+        printf("\n Nella sequenza NON ESISTE una terna di elementi adiacenti in cui uno dei tre e' il resto della divisione degli altri due");
+    }
+    printf("%d", restoDivisione(sequenza, i));
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic structure of the solution is present
+- Correct implementation of array operations
+- Good separation of concerns between functions
+
+Areas for Improvement:
+- Fix array bounds checking in restoDivisione function
+- Remove duplicate i++ in loops that causes elements to be skipped
+- Remove accented characters from output messages
+- Avoid printing verification messages for every triple check
+- Declare arrays after getting their size
+- Make output messages clearer and more concise
+- Remove redundant function call at the end of main
+
+Key Recommendations:
+1. Fix the loop increment logic to check all elements properly
+2. Implement proper array bounds checking
+3. Clean up output messages and remove redundant prints
+4. Follow standard C programming conventions for output strings
+5. Optimize the array declaration timing
+</feedback_summary>

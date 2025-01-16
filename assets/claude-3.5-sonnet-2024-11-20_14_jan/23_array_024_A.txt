@@ -1,0 +1,67 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....3.3 = 6.0 - 1.5 - 0.2 - 1.0
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................5.1
+*/
+
+#include <stdio.h>
+int multipli(int s[], int lunghezza){	
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lunghezza - 2 -1.0
+	for (int i = 0; i < lunghezza-2; ++i){
+        //******** TWO COMBINATIONS ON THE TRIPLE CONDITION ARE MISSING -1.5
+		if (s[i]%s[i+1]==0 || s[i]%s[i+2]==0 || s[i+1]%s[i]==0 || s[i+1]%s[i+2]==0 || s[i+2]%s[i]==0 || s[i+2]%s[i]==0 ){	
+		}
+		else{
+			return 0;	
+		}
+	}
+	return 1;
+}
+
+int main(int argc, char const *argv[]){
+	int l;	
+	printf("ciao utente, quanti interi ha la sequenza?\n");
+	scanf("%d", &l);
+	int s[l];	
+	printf("per favore, inserisci gli interi della sequenza:\n");
+	for (int i = 0; i < l; ++i){
+		scanf("%d",&s[i]);
+	}
+	int risultato;
+    //******** HOW TO CONSIDER 0? -0.2
+	risultato=multipli(s,l);
+	if (risultato==1){
+        //******** UNCLEAR OUTPUT MESSAGE -0.2
+		printf("in tutte le terne di elementi adiacenti della sequenza c'%c almeno un elemento multiplo di uno degli altri due\n",138 );
+	}
+	else{
+		printf("non in tutte le terne della sequenza almeno un numero %c multiplo di uno degli altri due \n",138);
+	}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic function structure is correct
+- Main program handles user interaction appropriately
+- Input/output flow is logical
+- Array handling is generally correct
+
+Areas for Improvement:
+- Array bounds checking needs correction in the multipli function
+- The condition for checking multiples in triples is incomplete
+- Edge case handling for zero values should be considered
+- Output messages could be clearer and more informative
+
+Key Recommendations:
+1. Fix the array bounds check in the for loop to prevent buffer overflow
+2. Complete the multiple checking condition to include all possible combinations
+3. Add handling for zero values in the input
+4. Improve output message clarity
+5. Consider using more descriptive variable names
+6. Add input validation for array length
+
+The code shows good understanding of the basic concepts but needs attention to detail in implementation and edge cases.
+</feedback_summary>

@@ -1,0 +1,62 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.0 = 6.0 - 1.0
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL......................6.8
+*/
+
+#include <stdio.h>
+int restoDivisione(int seq[],int lung) {
+    int i=0; 
+    int verificata=0; 
+    while(i<lung-2 && !verificata) {
+            //******** CONDITION ON THE TRIPLE IS MISSING ONE COMBINATION (seq[i+2] % seq[i] == seq[i+1]) -1.0
+            if((seq[i] % seq[i+1] == seq[i+2]) ||
+                (seq[i] % seq[i+2] == seq[i+1]) ||
+                (seq[i+1] % seq[i+2] == seq[i]))
+                verificata=1;
+            else
+                i++;
+        }
+    return verificata;
+}
+int main() {
+    int n; 
+    printf("Ciao utente! Quanto vuoi lunga la sequenza da verificare?\n");
+    scanf("%d", &n);
+    int seq[n];
+    int i; 
+    for(i=0;i<n;i++) {
+        printf("Dammi un intero:\n");
+        scanf("%d", &seq[i]);
+    }
+    if(restoDivisione(seq,n)) {
+        //******** UNCLEAR MESSAGE, SHOULD BE MORE SPECIFIC -0.2
+        printf("Esiste una terna di elementi adiacenti che soddisfa la condizione\n");
+    }
+    else{
+        printf("Non esiste una terna che soddisfa la condizione"); 
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of existential verification approach
+- Proper array bounds checking with (i<lung-2)
+- Good use of boolean flag (verificata) to control loop execution
+- Well-structured main function with proper user interaction
+
+Areas for Improvement:
+- The remainder check in restoDivisione() is missing one combination: seq[i+2] % seq[i] == seq[i+1]
+- Output messages could be more specific about what condition is being checked
+- Consider adding input validation for array length n
+- Consider handling division by zero cases
+
+Key Recommendations:
+1. Add the missing combination to the remainder check condition
+2. Make output messages more descriptive and specific
+3. Add input validation for array length and division operations
+4. Consider adding comments to explain the logic of the remainder checking conditions
+</feedback_summary>

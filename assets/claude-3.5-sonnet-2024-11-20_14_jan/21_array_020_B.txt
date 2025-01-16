@@ -1,0 +1,66 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.3 = 6.0 - 1.5 - 0.2
+   MAIN PROGRAM (max 2.5):....2.5
+   TOTAL......................6.8
+*/
+
+#include <stdio.h>
+int maggiori5Pari(int array[], int l){
+    int esiste=1;
+    int i=0;
+    while(i<l-2 && esiste){
+        //******** CONDITION IS COMPLICATED AND NOT VERY READABLE -0.2
+        //******** WRONG CONDITION: LOGIC ERROR IN CHECKING EXACTLY TWO >= 5 -1.5
+        if((array[i]<5 && array[i+1]<5 && array[i+2]<5)
+        || (array[i]>=5 && array[i+1]>=5 && array[i+2]>=5)
+        || ((array[i]<5 && array[i+1]<5)
+        || (array[i]<5 && array[i+2]<5)
+        || (array[i+1]<5 && array[i+2]<5)) ||
+          ((array[i]%2!=0 && array[i+1]%2!=0) || (array[i]%2!=0 && array[i+2]%2!=0) || (array[i+1]%2!=0 && array[i+2]%2!=0)))
+          esiste=0;
+        else
+            i++;
+    }
+    return esiste;
+}
+
+int main(int argc, char **argv){
+    int lunghezza;
+    printf("Ciao utente, questo e' un  programma che prende una sequenza di interi e verifica se all'interno di essa, ogni tripla di elementi consecutivi contiene\n");
+    printf("esattamente due elementi maggiori o uguali di 5 ed almeno due elementi pari.\n");
+    printf("\n\nCaro utente, quanti interi vuoi inserire?\n");
+    scanf("%d", &lunghezza);
+    int sequenza[lunghezza];
+    for(int i=0; i<lunghezza; i++){
+        printf("Inserire intero, prego..\n");
+        scanf("%d", &sequenza[i]);
+    }
+    if(maggiori5Pari(sequenza, lunghezza))
+        printf("Ogni tripla di elementi consecutivi contiene esattamente due elementi maggiori o uguali di 5 ed almeno due elementi pari!\n");
+    else
+        printf("Esiste almeno una tripla che non contiene esattamente due interi maggiori o uguali a 5 o che non ha almeno due interi pari!\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct array bounds checking in the loop (i<l-2)
+- Proper main program structure with clear user interaction
+- Good input/output messages explaining the program's purpose
+- Correct function return type and parameter passing
+
+Areas for Improvement:
+- The condition checking for exactly two elements >= 5 and at least two even elements is overly complicated and contains logical errors
+- The condition structure could be simplified for better readability
+- The logic for checking exactly two elements >= 5 needs revision
+
+Key Recommendations:
+- Restructure the condition to separately check:
+  1. Count of elements >= 5 (should be exactly 2)
+  2. Count of even elements (should be at least 2)
+- Consider using separate counter variables for better clarity
+- Break down the complex condition into smaller, more manageable parts
+- Add comments to explain the logic of complex conditions
+</feedback_summary>

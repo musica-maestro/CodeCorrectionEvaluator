@@ -1,0 +1,77 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.5 = 6.0 - 1.5
+   MAIN PROGRAM (max 2.5):....2.2 = 2.5 - 0.3
+   TOTAL.......................6.7
+*/
+
+int ugualiCompresi(int interi[], int lunghezza); 
+int ugualiCompresi(int interi[], int lunghezza){
+    int esiste=0;        
+    int somma=0;        
+    int uguali=0;        
+    //******** ITERATION LIMITS ARE INCORRECT - SHOULD BE i < lunghezza-2 -1.5
+    for(int i=0; i<lunghezza-3; i++)        
+    {       
+        if( (interi[i]+interi[i+1]>=10 && interi[i]+interi[i+1]<=20)
+        || (interi[i+1]+interi[i+2]>=10 && interi[i+1]+interi[i+2]<=20)
+        || (interi[i]+interi[i+2]>=10 && interi[i]+interi[i+2]<=20))
+        {
+            somma=1;        
+            if( (interi[i]==interi[i+1] && interi[i]!=interi[i+2])
+            || (interi[i+1]==interi[i+2] && interi[i+1]!=interi[i])
+            || (interi[i]==interi[i+2] && interi[i]!=interi[i+1]))
+            {
+                uguali=1;    
+                if(uguali && somma){
+                    esiste=1;
+                }
+            }
+            else
+                i++;  
+        }
+        else
+            i++;
+    }
+    return esiste;
+}
+
+#include <stdio.h>
+int main(int argc, char **argv)
+{
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+    printf("Caro utente sono un programma che ti informa se esiste una tripla di elementi\n che ha due elementi con somma compresa tra 10 e 20 e due elementi uguali\n");
+    int lunghezza;
+    printf("\nInserisci la lunghezza della sequenza\n");
+    scanf("%d", &lunghezza);
+    int interi[lunghezza];
+    printf("\nInserisci %d elementi\n", lunghezza);
+    for(int i=0; i<lunghezza; i++)
+        scanf("%d", &interi[i]);
+    if(ugualiCompresi(interi,lunghezza))
+        printf("\nesiste una tripla di elementi che ha due elementi con somma compresa tra 10 e 20 e due elementi uguali\n");
+    else
+        printf("\nNON esiste una tripla di elementi che ha due elementi con somma compresa tra 10 e 20 e due elementi uguali\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the logic for checking sums between 10 and 20
+- Proper handling of exactly two equal elements condition
+- Well-structured main function with clear user interaction
+- Good use of boolean flags for tracking conditions
+
+Areas for Improvement:
+- The loop iteration limit in ugualiCompresi should be i < lunghezza-2 to properly check all valid triples
+- The output messages could be more precise in describing the properties being checked
+- The increment of i inside the conditions creates potential skipping of valid triples
+- Consider removing the redundant i++ statements in the else clauses
+
+Key Recommendations:
+- Fix the loop boundary condition to ensure all valid triples are checked
+- Simplify the control flow by removing the extra i++ statements
+- Make the output messages more specific about the conditions being verified
+- Consider adding input validation for the array length
+</feedback_summary>

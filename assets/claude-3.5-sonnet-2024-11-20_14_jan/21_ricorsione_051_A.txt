@@ -1,0 +1,105 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)............2.0 = 5.0 - 1.5 - 1.0 - 0.5
+countNumbers (2).......1.4 = 2.0 - 0.3 - 0.3
+readNumbers (2)........0.8 = 2.0 - 0.4 - 0.5 - 0.3
+writeNumbers(1)........0.0 = 1.0 - 1.0
+TOTAL..................4.2
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimoPari(int *seq, int lunghezza){
+    //******** Base case is incorrect - should be lunghezza <= 2 -1.0
+    if(lunghezza<=3){
+        ris=1;
+    }
+    else{
+        int massimoTripla;
+        //******** Using if-else instead of more efficient max calculation -0.5
+        if(seq[0]>seq[1] && seq[0]>seq[2]){
+            massimoTripla=seq[0];
+        }else{
+            if(seq[1]>seq[2]){
+                massimoTripla=seq[1];
+            }else{massimoTripla=seq[2];}
+        }
+        //******** Recursion should be on array length, not shifting array -1.5
+        ris= ((massimoTripla%2==0) && (massimoPari(seq+1, lunghezza-1)));
+    }
+    return ris;
+}
+
+int quantiNumeri() {
+    //******** Counter not initialized -0.3
+    int lun;  
+    int garbage;
+    FILE *fp= fopen("interi.dat", "rb"); 
+    //******** Missing file open check -0.3
+    if(fp!=NULL){
+        while(fread(&garbage, sizeof(int), 1,fp)>0){
+            lun++;
+        }
+    }
+    else{
+        printf("File non trovato o vuoto! \n"); 
+    }
+    fclose(fp);
+    return lun;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE *fp=fopen("interi.dat", "rb");
+    if(fp!=NULL){
+        for(int i=0; i<lunghezza; i++){
+            //******** Incorrect fread usage - using stdin instead of fp -0.4
+            //******** Incorrect parameter order in fread -0.5
+            fread(&(sequenza[i]), sizeof(int), stdin);
+        }
+    }
+    else{
+        //******** Missing semicolon -0.3
+        printf("Non ci sono numeri nel file! \n") 
+    }
+}
+
+//******** Empty function implementation -1.0
+void scriviNumeri(int* sequenza, int lunghezza) {
+}
+
+[Rest of the main function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic file I/O structure implemented
+- Recursive approach attempted for maxEven function
+- Main function properly handles user input
+
+Areas for Improvement:
+- massimoPari (maxEven) function:
+  * Incorrect base case implementation
+  * Inefficient recursion approach using array shifting
+  * Maximum calculation could be simplified
+
+- File handling:
+  * Missing proper initialization of counter variables
+  * Incorrect usage of fread function
+  * Missing error checking for file operations
+  * Empty writeNumbers implementation
+
+- Code structure:
+  * Missing semicolons
+  * Incomplete error handling
+  * Inefficient algorithmic choices
+
+Key Recommendations:
+1. Revise the recursive implementation to work with array indices
+2. Implement proper file handling with error checks
+3. Complete the writeNumbers function implementation
+4. Initialize all variables before use
+5. Add proper error handling throughout the code
+</feedback_summary>

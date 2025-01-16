@@ -1,0 +1,61 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........1.0 = 6.0 - 1.5 - 0.5 - 3.0
+   MAIN PROGRAM (max 2.5):....1.0 = 2.5 - 0.5 - 0.5 - 0.5
+   TOTAL.......................2.0
+*/
+
+#include <stdio.h>
+int main(int argc, char **argv)
+{
+    //******** FUNCTION WAS REQUIRED, NOT EVERYTHING IN MAIN -1.5
+    int l;                
+    int i;                        
+    int risultato;
+    //******** UNINITIALIZED VARIABLE 'ris' USED LATER -1.0
+    printf("Ciao utente quanto %c lunga la tua sequenza?\n",138);
+    scanf("%d",&l);
+    int sequenza[l];
+    for(i=0;i<l;i++){
+        printf("Introduci l'intero all'indice %d\n",i);
+        scanf("%d",&sequenza[i]);
+    }
+    //******** IF FUNCTION IS WRITTEN BELOW, YOU MUST DECLARE THE PROTOTYPE -0.5
+    ris=compresiMultiplidi3(sequenza,l);
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    if(ris){
+    printf("Esiste una tripla di elementi consecutivi che contiene almeno due elementi il cui valore è compreso fra -10 e  10");
+    printf("e che contiene esattamente due elementi che sono multipli di 3");
+    }
+    else{
+    //******** FORMAT SPECIFIER FOR AN INTEGER IS %d (UNUSED PARAMETER 138) -0.5
+    printf("Mi dispiace, ma non esiste una tripla di elementi consecutivi che contiene almeno due elementi il cui valore è compreso fra -10 e  10", 138);
+    printf("e che contiene esattamente due elementi che sono multipli di 3");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Input/output interaction with user is implemented
+- Array allocation and input reading is correct
+
+Areas for Improvement:
+- Missing required function implementation: The compresiMultiplidi3 function should be defined separately
+- Function prototype is missing for compresiMultiplidi3
+- Variable 'ris' is used without initialization
+- Output formatting needs improvement
+- Unnecessary parameter in printf statement
+
+Key Recommendations:
+1. Implement the compresiMultiplidi3 function separately with the required logic
+2. Add function prototype at the beginning of the file
+3. Initialize all variables before use
+4. Remove unnecessary format parameter in printf
+5. Improve output message clarity
+6. Consider adding input validation for array length
+
+The main issues are the missing function implementation and various technical errors in the main program. The core functionality for checking consecutive triples is completely absent, which is the primary requirement of the assignment.
+</feedback_summary>

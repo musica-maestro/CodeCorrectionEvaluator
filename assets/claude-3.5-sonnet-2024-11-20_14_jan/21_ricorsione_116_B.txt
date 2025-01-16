@@ -1,0 +1,96 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........4.0 = 5.0 - 1.0
+countNumbers (2).....2.0
+readNumbers (2)......2.0
+writeNumbers(1)......0.7 = 1.0 - 0.3
+TOTAL................8.7
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int minimo(int a, int b, int c){
+    int min;
+    if(a<=b && a<=c)
+        min= a;
+    else{
+        if(b<=a && b<=c)
+            min= b;
+        else
+            min= c;
+    }
+    return min;
+}
+
+int minimoDispari(int *seq, int lunghezza){
+    int verifica;
+    //******** The base case should be length<=2 (because you need to consider a triplet of elements) -1.0
+    if(lunghezza<3)
+        verifica=1;
+    else
+        verifica= (minimo(seq[0], seq[1], seq[2])%2!=0) && minimoDispari(seq+1, lunghezza-1);
+    return verifica;
+}
+
+int quantiNumeri() {
+    int quanti=0;
+    FILE*fp= fopen("interi.txt","r");
+    if(fp==NULL)
+        puts("lista vuota");
+    else{
+        int app;
+        while(fscanf(fp, "%d", &app)!=EOF)
+            quanti++;
+        printf("ci sono %d interi\n", quanti);
+        puts("quantiNumeri eseguita\n\n");
+        fclose(fp);
+    }
+    return quanti;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE*fp= fopen("interi.txt","r");
+    if(fp==NULL)
+        puts("lista vuota");
+    else{
+        for(int i=0; i<lunghezza; i++)
+            fscanf(fp, "%d", &sequenza[i]);
+        puts("leggiNumeri eseguita\n\n");
+        fclose(fp);
+    }
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE*fp= fopen("interi.txt","w"); 
+    //******** you don't check if fopen was successful -0.3
+    for(int i=0; i<lunghezza; i++)
+        fprintf(fp, "%d ", sequenza[i]);
+    puts("scriviNumeri eseguita\n\n");
+    fclose(fp);
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of file reading and counting functions
+- Good implementation of the minimum finding helper function
+- Proper file handling with open/close operations
+- Clear recursive approach in minimoDispari function
+
+Areas for Improvement:
+- The base case in minimoDispari function should check for length <= 2 since triplets are being evaluated
+- Missing file opening check in scriviNumeri function
+- Consider adding more descriptive error messages for file operations
+- The output messages could be more descriptive about what conditions are being checked
+
+Key Recommendations:
+1. Modify the base case in minimoDispari to properly handle sequences shorter than 3 elements
+2. Add error checking for file operations in scriviNumeri
+3. Improve output messages to better describe the program's operations
+4. Consider adding input validation for array lengths and file operations
+</feedback_summary>

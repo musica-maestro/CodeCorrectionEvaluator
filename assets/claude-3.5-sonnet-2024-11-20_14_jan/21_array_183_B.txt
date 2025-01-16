@@ -1,0 +1,71 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.0 = 6.0 - 1.5 - 1.0 - 0.5
+   MAIN PROGRAM (max 2.5):....1.0 = 2.5 - 1.0 - 0.5
+   TOTAL......................4.0
+*/
+
+#include <stdio.h>
+int maggiori5Pari(int v[],int x){
+    int a,b,r1=1,r2=1;
+    //******** WRONG CONDITION ON INDEX i < x-2 -1.5
+    for(int i=0; i<x-2; i++){ 
+        a=0;
+        b=0;
+        //******** INCORRECT LOOP BOUND - SHOULD CHECK i TO i+2 FOR TRIPLE -1.0
+        for(int j=i; j<3;j++){  
+            if(v[j]>=5)
+            a++;
+            if(v[i]%2==0)
+            b++;
+        }
+        if(a!=2)
+            r1=0;
+        if(b<2)
+            r2=0;
+    }                   
+    return (r1 && r2);  
+}                       
+int main(){
+//******** UNINITIALIZED VARIABLE USED FOR ARRAY SIZE -1.0
+int i, lunghezza, sequenza[lunghezza]; 
+    printf("PROGRAMMA CHE aANALIZZA UNA SERIE DI INTERI E DICE SE IN OGNI TRIPLA CI SONO DUE ELEMENTI >=5 E ALMENO DUE PARI ");
+    printf("\nQuanti numeri vuoi controllare?");
+    scanf("%d", &lunghezza);
+    for(int i=0; i<lunghezza; i++){
+        printf("\nInserisci un numero: ");
+        scanf("%d", &sequenza[i]);
+    }
+    //******** OUTPUT IS POORLY EXPRESSED -0.5
+    if(maggiori5Pari(sequenza, lunghezza))
+        printf("La sequenza rispetta le condizioni"); 
+    else
+        printf("La sequenza NON rispetta le condizioni");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic structure of the function and main program is present
+- Attempt to check both conditions (>=5 and even numbers)
+- Input/output interaction with user is implemented
+
+Areas for Improvement:
+1. Function Implementation:
+   - The loop for checking triples is incorrect (j<3 instead of j<i+3)
+   - The condition for checking consecutive elements needs to be fixed
+   - The even number check is only being done on v[i], not on all elements in the triple
+
+2. Main Program:
+   - Array size must be declared after reading lunghezza
+   - Output messages should be more specific about what conditions are being checked
+   - Variable initialization issues need to be addressed
+
+Key Recommendations:
+1. Fix the triple checking loop to properly examine consecutive elements
+2. Modify array declaration to occur after size input
+3. Make output messages more descriptive
+4. Ensure proper initialization of all variables
+5. Implement proper bounds checking for array access
+</feedback_summary>

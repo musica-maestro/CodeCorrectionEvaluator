@@ -1,0 +1,103 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)............4.2 = 5.0 - 0.5 - 0.3
+countNumbers (2).......1.7 = 2.0 - 0.3
+readNumbers (2)........1.7 = 2.0 - 0.3
+writeNumbers (1).......0.8 = 1.0 - 0.2
+TOTAL..................8.4/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimo3(int *seq)
+{
+    int max=seq[0]; 
+    for(int i=0; i<3; i++) { 
+        if (seq[i]>max) { 
+            max=seq[i];
+        }
+    }
+    return max;
+}
+
+int massimoPari(int *seq, int lunghezza)
+{
+    int res=0; 
+    int max; 
+    //******** base case: l==3 is part of the recursive step. If you put it in the base case, you need to repeat the check "maximum of 3 evens" twice -0.3
+    if (lunghezza==3) { 
+        max=massimo3(seq);
+        res=(max%2)==0;
+    } else if (lunghezza>3) { 
+        max=massimo3(seq);
+        //******** it is a universal check, && -0.5
+        res=((max%2)==0)&&massimoPari(seq+1,lunghezza-1);
+    }
+    return res; 
+}
+
+int quantiNumeri()
+{
+    int res=0; 
+    FILE*fp=fopen("interi.dat","rb"); 
+    //******** missing file closure -0.3
+    if (fp==NULL) printf("Non ho potuto aprire il file per leggere quanti interi ci sono.\n"); 
+    else {
+        int temp; 
+        while(fread(&temp,sizeof(int),1,fp)>0) 
+            res++;
+    }
+    return res;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza)
+{
+    FILE*fp=fopen("interi.dat","rb"); 
+    //******** missing file closure -0.3
+    if (fp==NULL) printf("Non ho potuto aprire il file per leggere gli interi.\n"); 
+    else {
+        while(fread(sequenza,sizeof(int),1,fp)>0 && lunghezza>0) { 
+            sequenza++;
+            lunghezza--;
+        }
+    }
+}
+
+void scriviNumeri(int* sequenza, int lunghezza)
+{
+    FILE*fp=fopen("interi.dat","wb"); 
+    //******** missing file closure -0.2
+    if(fp==NULL) printf("C'è stato un errore nel salvataggio"); 
+    else {
+        fwrite(sequenza,sizeof(int),lunghezza,fp); 
+    }
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of file I/O operations
+- Correct implementation of maximum finding in triplets
+- Proper parameter passing and array handling
+- Clear program structure with well-defined functions
+
+Areas for Improvement:
+- File handling needs improvement - missing fclose() calls in multiple functions
+- The recursive implementation of massimoPari could be more efficient
+- Base case handling in massimoPari could be improved
+- Error handling for file operations could be more robust
+
+Key Recommendations:
+1. Always close files after operations using fclose()
+2. Restructure the base case in massimoPari to avoid redundant checks
+3. Use proper logical operators for universal checks in recursive functions
+4. Improve error handling messages and add appropriate return values for file operation failures
+5. Consider adding input validation for array lengths and file operations
+
+The code is functional but could benefit from these improvements for better reliability and efficiency.
+</feedback_summary>

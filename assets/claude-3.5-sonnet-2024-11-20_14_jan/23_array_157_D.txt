@@ -1,0 +1,76 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.8 = 6.0 - 0.2
+   MAIN PROGRAM (max 2.0):....2.0
+   TOTAL.......................7.8
+*/
+
+#include <stdio.h>
+int esisteF(int a,int b,int c){
+    int h;
+    //******** HANDLING OF ZERO DIVISION CASES COULD BE MORE ROBUST -0.2
+    if((b != 0 && a%b == c) || (a != 0 && b%a == c)){
+        h = 1;
+    }else if((c != 0 && a%c == b) || (a != 0 && c%a == b)){
+        h = 1;
+    }else if((c != 0 && b%c == a ) || (b != 0 && c%b == a)){
+        h = 1;
+    }else{
+        h = 0;
+    }
+    return h;
+}
+
+int restoDivisione(int *x,int n){
+    int esiste = 0;
+    for(int i = 0;i < n-2 && esiste == 0;i++){
+        if(esisteF(x[i],x[i+1],x[i+2]) == 1){
+            esiste = 1;
+        }
+    }
+    return esiste;
+}
+
+int main(){
+    int n = -1,esiste = 0;
+    do{
+        printf("Quanti interi devono essere inseriti? Ricorda che la lunghezza deve essere un numero intero positivo: ");
+        scanf("%d",&n);
+    }while(n < 0);
+    int x[n];
+    for(int i = 0;i < n;i++){
+        printf("\nInserire un elemento intero che avra' come indice %d : ",i);
+        scanf("%d",&x[i]);
+    }
+    esiste = restoDivisione(x,n);
+    if(esiste){
+        printf("\nEsiste una tripla di elementi adiacenti in cui uno dei tre e' il resto della divisione degli altri due, 'esiste' ha valore %d\n", esiste);
+    }else{
+        printf("\nNon esiste una tripla di elementi adiacenti in cui uno dei tre e' il resto della divisione degli altri due, 'esiste' ha valore %d\n", esiste);
+    }
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the existential verification algorithm
+- Well-structured main function with proper user interaction
+- Good input validation for array size
+- Comprehensive check for all possible remainder combinations
+- Efficient use of early termination in the search loop
+
+Areas for Improvement:
+- The zero handling in division operations could be more robust
+- Consider adding more detailed error messages for invalid inputs
+- Could benefit from more descriptive variable names (e.g., 'h' could be 'found' or 'exists')
+
+Key Recommendations:
+- Add more comprehensive error handling for division operations
+- Consider adding input validation for array elements
+- Use more descriptive variable names to improve code readability
+- Add comments to explain the logic in the esisteF function
+</feedback_summary>
+
+The student's submission is very good overall, with only minor improvements possible. The code correctly implements the required functionality and follows good programming practices. The main deduction is for the handling of zero cases in divisions, though the current implementation is still functional.

@@ -1,0 +1,85 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........2.0 = 6.0 - 1.5 - 1.5 - 1.0
+   MAIN PROGRAM (max 2.5):....1.7 = 2.5 - 0.5 - 0.3
+   TOTAL......................3.7
+*/
+
+#include <stdio.h>   
+int UgualiCompresi(int array[], int dim)
+{
+    int i;
+    int verifica;
+    verifica=0;
+    //******** CONDITION IS MISSING! THE FUNCTION ALWAYS RETURNS 0 -1.5
+    //******** EXACTLY TWO ELEMENTS MUST BE EQUAL (THE THIRD MUST BE DIFFERENT). YOUR CODE CHECKS FOR ALL THREE BEING EQUAL -1.5
+    for(i=0; i<dim-2; i++) 
+    {
+        if((array[i]+array[i+1]>10 && array[i]+array[i+1]<20)
+        || (array[i+1]+array[i+2]>10 && array[i+1]+array[i+2]<20)
+        || (array[i]+array[i+2]>10 && array[i]+array[i+2]<20))
+        {
+            if((array[i]==array[i+1]) && (array[i+1]==array[i+2]))
+            {
+                verifica=0;
+            }
+        }
+        //******** ELEMENTS WITH A SUM BETWEEN 10 AND 20 DO NOT HAVE TO BE NECESSARILY EQUAL -1.0
+        if((array[i]==array[i+1]) && array[i+1]==array[i+2])
+        {
+            verifica=0;
+        }
+    }
+    return verifica;
+}
+
+int main()
+{
+    printf("array esonero\n");
+    int i;
+    int n;
+    printf("inserisci la sequenza\n"); 
+    scanf("%d", &n);
+    int array[n];
+    printf("inserisci gli elementi all'interno della sequenza\n");
+    for(i=0; i<n; i++)
+    {
+        scanf("%d", &array[i]);
+    }
+    printf("verfico la condizione\n");
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    if(UgualiCompresi(array, n))
+    {
+        printf("la condizione si verifica\n");
+    }
+    else   
+    {
+        //******** YOU DO NOT EXPLAIN THE MEANING OF THE OUTPUT (A BIT SCARCE) -0.3
+        printf("la condizione non si verfifica\n");
+    }
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct array handling and memory allocation
+- Proper loop structure for iterating through triples
+- Good user interaction in main function
+- Correct parameter passing to the function
+
+Areas for Improvement:
+- The function logic is incorrect as it always returns 0 (verifica is never set to 1)
+- The condition for exactly two equal elements is implemented incorrectly (currently checks for all three being equal)
+- The relationship between equal elements and elements with sum between 10-20 is not properly implemented
+- Output messages could be more descriptive and informative
+- The function should return 1 when the conditions are met, but currently always returns 0
+
+Key Recommendations:
+1. Modify the function to properly check for exactly two equal elements (not three)
+2. Implement the correct logic to return 1 when conditions are met
+3. Separate the checks for sum between 10-20 and equality of elements
+4. Improve output messages to clearly indicate what condition was or wasn't satisfied
+5. Add more detailed comments to explain the logic
+</feedback_summary>

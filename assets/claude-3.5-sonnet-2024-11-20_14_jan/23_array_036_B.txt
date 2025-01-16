@@ -1,0 +1,61 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.0):....2.0
+   TOTAL.......................7.3
+*/
+
+#include <stdio.h>
+int duePositivi(int *a, int l)
+{
+    //******** INCORRECT INDENTATION!!!! -0.5
+	int i;		
+	int tutti = 1;		
+	for(i = 0; i < l - 2 && tutti; i++)		
+		if(!((a[i] > 0 && a[i + 1] > 0 && a[i + 2] <= 0) ||		
+			(a[i] <= 0 && a[i + 1] > 0 && a[i + 2] > 0) ||
+			(a[i] > 0 && a[i + 1] <= 0 && a[i + 2] > 0)))
+            //******** DO YOU CONSIDER 0 POSITIVE OR NEGATIVE? -0.2
+			tutti = 0;
+	return tutti;
+}
+int main()
+{
+	int lunghezza;		
+	printf("Caro utente, di che lunghezza vuoi la sequenza? ");
+	scanf("%d", &lunghezza);
+	int sequenza[lunghezza];
+	for(int i = 0; i < lunghezza; i++)
+	{
+		printf("Inserisci un elemento della sequenza: ");
+		scanf("%d", &sequenza[i]);
+	}
+	if(duePositivi(sequenza, lunghezza))
+		printf("\nIn tutte le triple ci sono esattamente due interi positivi!\n");
+	else
+		printf("\nNon ci sono esattamente due interi positivi in ogni tripla.\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the universal verification logic
+- Proper array bounds checking (i < l - 2)
+- Well-structured main function with clear user interaction
+- Appropriate use of boolean flag (tutti) to stop checking once a violation is found
+- Complete coverage of all possible combinations for two positives in a triple
+
+Areas for Improvement:
+- Code indentation needs to be consistent throughout the function
+- The handling of zero values should be more explicit in the logic
+- Consider using more descriptive variable names (tutti could be allValid or similar)
+
+Key Recommendations:
+- Use consistent indentation for better code readability
+- Add comments explaining the logic for handling zero values
+- Consider using braces for all control structures, even single-line ones
+- Use more descriptive variable names in English for better code maintainability
+</feedback_summary>
+
+The student's implementation is generally very good, with only minor issues. The function correctly implements the universal verification logic required to check for exactly two positive numbers in each triple. The main program handles user interaction appropriately and provides clear feedback. The main deductions are for indentation issues and ambiguity in handling zero values.

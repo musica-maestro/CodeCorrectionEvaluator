@@ -1,0 +1,68 @@
+I'll grade the student's submission following the provided format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................6.0
+*/
+
+#include <stdio.h>
+int maggiori5Pari(int array[],int len){
+	int tutti =1;
+	//******** WRONG CONDITION ON INDEX i < length - 2 (should check triples) -1.5
+	for (int i=1;i<len-1;i++){
+		//******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+		//******** MISSING CHECK FOR EVEN NUMBERS IN TRIPLE -0.5
+		if ( !((array[i]>=5 && array[i+1]>=5 && array[i-1]<5)||
+		(array[i]<5 && array[i+1]>=5 && array[i-1]>=5)||
+		(array[i]>=5 && array[i+1]<5 && array[i-1]>=5))){
+			tutti=0;
+		} 
+	}
+	return tutti;
+	}
+int main()
+{	int len ;
+	printf("Salve quanti interi si vogliono inserire ?\n");
+	scanf("%d",&len);
+	int array[len];
+	for (int i=0;i<len;i++){
+		printf("Prego inserire il %d numero",i+1);
+		scanf("%d",&array[i]);
+		}
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+	if (maggiori5Pari(array,len)==1){
+		printf("SI, ogni tripla contiene 2 elementi maggiori o uguali a 5\n");}
+	else
+		printf("NO, ogni tripla contiene 2 elementi maggiori o uguali a 5\n");
+	return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is correct
+- Main function handles user input appropriately
+- Function returns correct boolean value type
+- Proper use of loops and conditional statements
+
+Areas for Improvement:
+1. Function Implementation:
+   - The loop condition should be i < len-2 to properly check triples
+   - Missing verification for even numbers in triples
+   - Condition structure could be more readable and maintainable
+   - Consider breaking down complex conditions into smaller, clearer parts
+
+2. Main Program:
+   - Output messages should clearly specify both conditions (>=5 and even numbers)
+   - Consider adding input validation for array length
+   - Could improve user interface messages clarity
+
+Key Recommendations:
+1. Modify the loop condition to properly iterate through triples
+2. Add checks for even numbers in each triple
+3. Restructure the complex condition for better readability
+4. Improve output messages to clearly indicate both required conditions
+5. Consider breaking down the complex logic into smaller, more manageable functions
+
+</feedback_summary>

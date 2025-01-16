@@ -1,0 +1,72 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.2 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................7.3
+*/
+
+#include <stdio.h>
+int ugualiCompresi(int *a, int l)
+{
+    int i=0;
+    int compresi=0;
+    while (i<l-2 && !compresi)
+    {
+        //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+        if ((a[i]+a[i+1]>=10 && a[i]+a[i+1]<=20) || (a[i]+a[i+2]>=10 && a[i]+a[i+2]<=20) || (a[i+1]+a[i+2]>=10 && a[i+1]+a[i+2]<=20))
+        {
+            //******** CONDITION IS COMPLICATED BUT CORRECT -0.5
+            if ((a[i]==a[i+1] && a[i]!=a[i+2]) || (a[i]==a[i+2] && a[i]!=a[i+1]) || (a[i]!=a[i+1] && a[i+1]==a[i+2]))
+            {
+                compresi=1;
+            }
+        }
+        i++;
+    }
+    return compresi;
+}
+int main()
+{
+    int lunghezza;  
+    int x;
+    printf("Inserisci numero di interi: "); 
+    scanf("%d", &lunghezza);
+    int array[lunghezza];
+    for (x=0; x<lunghezza; x++)
+    {
+        printf("Inserisci il %d numero: ", x+1);
+        scanf("%d", &array[x]);
+    }
+    if (ugualiCompresi(array, lunghezza))
+    {
+        //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+        printf("\n\nL'instanza e' positiva, nella sequenza esiste una tripla con esattamente 2 interi la cui somma e' compresa fra 10 e 20 e esistono esattamente 2 interi uguali nella estessa tripla");
+    }
+    else
+    {
+        printf("\n\nL'instanza e' negativa, nella sequenza NON esiste una tripla con esattamente 2 interi la cui somma e' compresa fra 10 e 20 o NON esistono esattamente 2 interi uguali nella estessa tripla");
+    }
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for finding triples with required properties
+- Proper array bounds checking in the loop condition
+- Good use of boolean flag to control loop execution
+- Correct implementation of input reading and array population
+- Proper parameter passing and return values
+
+Areas for Improvement:
+- The conditions in the function, while correct, could be more readable by breaking them down into smaller parts or using intermediate variables
+- The output messages could be more specific and clearer about which properties were found or not found
+- Consider adding input validation for the array length
+
+Key Recommendations:
+- Break down complex conditions into smaller, more readable parts using intermediate boolean variables
+- Improve output messages to be more precise about the properties being checked
+- Add input validation to ensure array length is positive and reasonable
+- Consider adding comments to explain the logic of the complex conditions
+</feedback_summary>

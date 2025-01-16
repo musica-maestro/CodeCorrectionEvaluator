@@ -1,0 +1,72 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):....2.0 = 6.0 - 1.5 - 1.5 - 1.0
+   MAIN PROGRAM (max 2.5):....1.5 = 2.5 - 0.5 - 0.3 - 0.2
+   TOTAL.......................3.5
+*/
+
+#include <stdio.h>
+int ugualiCompresi(int a[], int l){
+    int verifica=0;
+    int i=0;
+    while(i<l-2){ 
+    //******** CONDITION IS COMPLICATED AND NOT VERY READABLE -0.2
+    //******** THE SUM OF THE SAME TWO ELEMENTS MUST BE IN THE RANGE OF 10 TO 20. YOUR CONDITION WOULD BE TRUE FOR CASES LIKE [6,22,0] -1.5
+    //******** ELEMENTS WITH A SUM BETWEEN 10 AND 20 DO NOT HAVE TO BE NECESSARILY EQUAL -1.0
+    if((a[i]+a[i+1]>=10 && a[i]+a[i+1]<=20)
+    ||(a[i]+a[i+2]>=10 && a[i]+a[i+2]<=20)
+    ||(a[i+1]+a[i+2]>=10 && a[i+1]+a[i+2]<=20 ) &&
+    ((a[i]==a[i+1]) || (a[i]==a[i+2]) || (a[i+1]==a[i+2])))
+        verifica=1;
+            else
+                i++;
+        }
+        return verifica;
+    }
+    int main(){
+        int length;
+        int y;
+        printf("programma che restituisce 1 se esiste almeno una tripla di interi in cui due elementi hanno somma compresa tra 10 e 20\n");
+        //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+        printf("quani valori vuoi inserire nell'array?/n");
+        scanf("%d", &length);
+        int sequenza[length];
+        //******** BADLY INDENTED -0.2
+    for(int i=0;i<length;i++){
+            printf("introduci un intero");
+            scanf("%d",&sequenza[i]);
+        }
+        if(ugualiCompresi(sequenza,length))
+        printf("esiste almeno una tripla di elementi tale che la somma di due elementi %c compresa tra 10 e 20", 138);
+        else
+            printf("non esiste una tripla di elementi tale che la somma di due elementi %c compresa tra 10 e 20", 138);
+    }
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Function implements the core logic for checking triples
+- Main program handles user input and output appropriately
+- Array bounds are correctly checked in the loop condition
+
+Areas for Improvement:
+- The logical condition in the ugualiCompresi function needs revision:
+  * Should separate the sum condition from the equality condition
+  * Should ensure exactly two elements are equal, not more
+  * Should properly handle cases where elements with sum between 10-20 don't need to be the same elements that are equal
+- Code formatting and indentation needs improvement
+- Output messages could be more precise and descriptive
+- The condition structure could be simplified for better readability
+
+Key Recommendations:
+1. Restructure the condition to clearly separate:
+   - Check for sum between 10 and 20
+   - Check for exactly two equal elements
+2. Improve code indentation and formatting
+3. Make output messages more specific and clear
+4. Simplify the logical conditions for better maintainability
+5. Add more detailed comments to explain the logic
+
+</feedback_summary>

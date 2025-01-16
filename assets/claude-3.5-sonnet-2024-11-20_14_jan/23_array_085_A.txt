@@ -1,0 +1,69 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL......................5.8
+*/
+
+#include <stdio.h>
+int multipli(int a[], int l){
+    int i; 
+    int tMulti=1; 
+    //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+    for(i=0; i<l-2 && tMulti; i++)
+        if((a[i]%a[i+1]!=0&&a[i]%a[i+2]!=0)&&(a[i+1]%a[i]!=0&&a[i+1]%a[i+2]!=0)&&(a[i+2]%a[i]!=0&&a[i+2]%a[i+1]!=0))
+            tMulti=0;
+    //******** INCORRECT INDENTATION -0.5
+    return tMulti;
+}
+
+int main(){
+    int n; 
+    int uscita=1; 
+    while(uscita){
+        printf("Ciao utente, questo programma verifica se in una sequenza di interi ogni terna consecutiva di numero ci sia almeno un numero che e' multiplo di uno dei 2 numeri\n");
+        printf("quanti numeri vuoi inserire ?\n");
+        scanf("%d", &n);
+        while(n<3){
+            printf("questo programma funziona se inserisci almeno 3 interi\n");
+            printf("quanti numeri vuoi inserire ?\n");
+            scanf("%d", &n);
+        }
+        int array[n]; 
+        for(int i=0 ; i<n ; i++){
+            printf("inserisci il %d%c numero : ", i+1, 167);
+            scanf("%d", &array[i]);
+        }
+        //******** UNCLEAR OUTPUT MESSAGE -0.2
+        if(multipli(array, n))
+            printf("La sequenza contiene tutte terne consecutive in cui c'%c un numero multiplo dell'altro", 138);
+        else
+            printf("la sequenza non contiene per ogni terna consecutiva un numero multiplo di uno dei due numeri nella terna\n");
+        printf("\nvuoi inserire un'altra sequenza ?\n");
+        printf("-- digita 1 per 'si' oppure 0 per 'no' --\n");
+        scanf("%d", &uscita);
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of array bounds checking (i<l-2)
+- Good input validation for minimum sequence length
+- Proper loop structure for continuous program execution
+- Appropriate use of boolean flag (tMulti) for verification
+
+Areas for Improvement:
+- The condition for checking multiples in the triple is incorrect. It should check if at least one number is a multiple of another, not if none are multiples
+- Code indentation needs improvement for better readability
+- Output messages could be clearer and more informative
+- Function name in main ("multipli") doesn't match the function definition ("multipli")
+
+Key Recommendations:
+1. Revise the triple checking condition to properly verify if at least one number is a multiple of another
+2. Use consistent indentation throughout the code
+3. Make output messages more clear and descriptive
+4. Ensure consistent function naming between declaration and calls
+5. Consider adding more detailed error messages and input validation
+</feedback_summary>

@@ -1,0 +1,68 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.0 = 6.0 - 1.0
+   MAIN PROGRAM (max 2.5):....2.3 = 2.5 - 0.2
+   TOTAL.......................7.3
+*/
+
+#include <stdio.h>
+ int isComp (int n) {
+	 return (n>=-10 && n<=10);
+ }
+ int isMult3 (int m) {
+	 return (m%3 == 0);
+ }
+ int compresiMultipli3 (int array[], int lungh) {
+	 int i;   
+	 int risultato = 0; 
+	 for (i=0; i<lungh-2; i++)
+		if ( ( (isComp(array[i]) && isComp(array[i+1])) || (isComp(array[i]) && isComp(array[i+2]))
+			|| (isComp(array[i+1]) && isComp(array[i+2])) )
+			&& ( (isMult3(array[i]) && isMult3(array[i+1]) && !(isMult3(array[i+2])))
+			|| (isMult3(array[i]) && !(isMult3(array[i+1])) && isMult3(array[i+2])) ||
+			(!(isMult3(array[i])) && isMult3(array[i+1]) && isMult3(array[i+2])) ) )
+			risultato = 1;
+		//******** WITH RETURN INSIDE THE LOOP YOU STOP AT THE FIRST ITERATION -1.0
+		return risultato;
+ }
+ int main () {
+	 int lunghIN;      
+	 printf("\nCiao utente! Quanti interi contiene la tua sequenza? ");
+	 scanf("%d", &lunghIN);
+	 int seq[lunghIN];
+	 printf("\nBene! Adesso inserisci gli elementi:\n");
+	 for (int i=0; i<lunghIN; i++)
+		 scanf("%d", &seq[i]);
+	//******** NOT INDENTED! -0.2
+	if (compresiMultipli3(seq, lunghIN)) {
+		printf("\nBuone notizie! La sequenza da te introdotta possiede almeno una tripla di elementi");
+		printf(" consecutivi che contiene almeno due elementi il cui valore %c compreso fra -10", 130);
+		printf(" e 10 e che contiene esattamente due multipli di 3\n\n");
+	}
+	else {
+		printf("\nPessime notizie! La sequenza da te introdotta non possiede neanche una tripla di elementi");
+		printf(" consecutivi che contiene almeno due elementi il cui valore %c compreso fra -10", 130);
+		printf(" e 10 e che contiene esattamente due multipli di 3\n\n");
+	}
+ }
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of helper functions isComp and isMult3
+- Good problem decomposition with separate functions for each check
+- Clear and informative user messages
+- Proper handling of array input and processing
+- Correct implementation of the conditions for checking both range and multiples of 3
+
+Areas for Improvement:
+- The return statement in compresiMultipli3 is placed immediately after the if statement, causing the function to exit after checking only the first triple. This should be moved outside the loop to check all possible triples.
+- Code indentation in the main function could be improved for better readability
+- The function could be structured more efficiently to avoid deeply nested conditions
+
+Key Recommendations:
+- Move the return statement outside the loop to check all possible triples in the array
+- Improve code formatting and indentation for better readability
+- Consider breaking down the complex condition into smaller, more readable parts using intermediate boolean variables
+</feedback_summary>

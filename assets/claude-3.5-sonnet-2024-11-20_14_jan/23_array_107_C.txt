@@ -1,0 +1,90 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):....3.3 = 6.0 - 1.0 - 1.0 - 0.5 - 0.2
+   MAIN (max 2.0):.......1.5 = 2.0 - 0.5
+   TOTAL..................4.8
+*/
+
+#include <stdio.h>
+int dueUnaCifra(int array[], int dimensione) {	
+	int condizione=1;	
+	//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < dimensione - 2 -1.0
+	for(int i=0; i<dimensione-3 && condizione; i++) 
+	{
+		//******** CONDITION ON THE TRIPLE IS WRONG - MISSING POSITIVE NUMBER CHECK -1.0
+		if ((array[i]<10&&array[i+1]<10)||(array[i]<10&&array[i+2]<10)||
+			(array[i+1]<10&&array[i+2]<10)||(array[i]<10&&array[i+1]<10&&array[i+2]<10))	
+			//******** SETTING THE VARIABLE TO 1 IS NOT NECESSARY -0.5
+			condizione;	
+		else 																				
+			condizione=0;	
+	}
+	return condizione;
+}
+int main() {
+	int lunghezza;
+	printf("Questo programma riceve in input una sequenza di interi positivi e verifica che ogni\n");
+	printf("tripla di elementi adiacenti contenga almeno due numeri composti da una cifra \n");
+	printf("\nQuanti elementi ha la sequenza? ");
+	scanf("%d", &lunghezza);	
+	if (lunghezza>=3)			
+	{
+		int sequenza[lunghezza];	
+		for(int i=0; i<lunghezza; i++)
+		{
+			printf("Inserisci l'elemento di indice %d:  ", i);
+			scanf("%d", &sequenza[i]);	
+		}
+		int positivi=1;
+		//******** WITHOUT THE BOOLEAN VARIABLE IN THE CONDITION, EVEN IF YOU FIND A TRIPLE THAT DOES NOT SATISFY THE PROPERTY, YOU CONTINUE TO CHECK -0.2
+		for(int j=0; j<lunghezza&&positivi; j++)
+		{
+			if(sequenza[j]>0)	
+				positivi;
+			else				
+				positivi=0;
+		}
+		if (positivi==1)	
+			{
+			dueUnaCifra(sequenza, lunghezza);	
+			if(dueUnaCifra(sequenza, lunghezza)==1)
+				printf("Ogni tripla della sequenza ha almeno due numeri da una cifra! ");
+			if(dueUnaCifra(sequenza, lunghezza)==0)
+				printf("Non tutte le triple della sequenza hanno almeno due numeri da una cifra! ");
+			}
+		if (positivi==0)	
+			printf("Tutti gli elementi della sequenza devono essere positivi! ");
+	}
+	else	
+		//******** NON-EXPLANATORY OUTPUT -0.5
+		printf("La sequenza non ha un numero di elementi sufficiente per verificare almeno una tripla. ");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct overall program structure with separate function and main
+- Proper input validation for sequence length
+- Good handling of positive number verification
+- Clear user interaction with descriptive prompts
+
+Areas for Improvement:
+1. Function Implementation:
+   - Fix array bounds checking in the loop condition
+   - Correct the logic for checking single-digit numbers
+   - Remove unnecessary condition assignment
+   - Improve efficiency of triple checking logic
+
+2. Main Program:
+   - Make output messages more clear and specific
+   - Improve the efficiency of positive number checking
+   - Consider combining similar if conditions for output
+
+Key Recommendations:
+1. Change the loop condition to `i < dimensione - 2` to properly check all triples
+2. Simplify the triple checking condition and ensure proper positive number validation
+3. Remove redundant condition assignments
+4. Make output messages more specific and informative
+5. Consider using a more efficient approach for checking positive numbers
+</feedback_summary>

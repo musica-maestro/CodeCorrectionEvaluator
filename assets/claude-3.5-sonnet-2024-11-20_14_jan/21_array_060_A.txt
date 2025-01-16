@@ -1,0 +1,75 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.5 = 6.0 - 0.5
+   MAIN PROGRAM (max 2.5):....2.2 = 2.5 - 0.3
+   TOTAL.......................7.7
+*/
+
+#include <stdio.h>
+int somma (int a, int b){
+	return (a+b>=10 && a+b<=20);
+}
+ int ugualiCompresi (int array[], int lunghezza){
+	 int i=0; 
+	 int compresi=0; 
+	 //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+	 while (!compresi && i<lunghezza-2){
+		 if ((array[i]==array[i+1] && array[i]!=array[i+2]) ||
+		 (array[i]==array[i+2] && array[i]!=array[i+1]) ||
+		 (array[i+1]==array[i+2] && array[i]!=array[i+1])){
+			 if (somma(array[i], array[i+1]) || somma(array[i], array[i+2]) || somma(array[i+1], array[i+2])){
+				 compresi = 1;
+			 }
+			 else
+				 i++;
+		 }
+		 else
+			 i++;
+	 }
+	 return compresi;
+ }
+int main(int argc, char **argv)
+{
+	int l; 
+	printf("Ciao utente! sono un programma che verifica se in una sequenza di interi da te inserita (di almeno 3 numeri)\n");
+	printf("esita una tripla di elementi consecutivi tale che almeno due elementi della tripla hanno somma compresa fra\n");
+	printf("10 e 20 compresi ed esattamente due elementi della tripla uguali fra loro.\n");
+	printf("Comincia dicendomi la lunghezza della tua sequenza: ");
+	scanf("%d", &l); 
+	while(l<3){
+		printf("Mi dispiace ma devi inserire almeno 3 interi! Riprova: ");
+		scanf("%d", &l);
+	}
+	int s[l]; 
+	printf("Ora dimmi gli elementi della sequenza\n");
+	for (int i=0;i<l;i++)
+		scanf("%d", &s[i]);
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+	if (ugualiCompresi(s, l)){
+		printf("La tua sequenza contiene una tripla con esattamente due elementi uguali e con due elementi la cui somma %c compresa tra 10 e 20 inclusi!\n", 138);
+	}
+	else
+		printf("La tua sequenza NON contiene una tripla con esattamente due elementi uguali e con due elementi la cui somma %c compresa tra 10 e 20 inclusi.\n", 138);
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for checking exactly two equal elements
+- Proper handling of array bounds and consecutive triples
+- Good input validation for minimum sequence length
+- Helper function 'somma' correctly implements range check
+- Well-structured main program with clear user interaction
+
+Areas for Improvement:
+- The condition checking in ugualiCompresi could be more readable by breaking it into smaller, clearer conditions
+- Output messages could be more specific about which properties were found/not found in the sequence
+- Consider using more descriptive variable names (e.g., 'found' instead of 'compresi')
+
+Key Recommendations:
+- Break down complex conditions into smaller, more readable parts using intermediate boolean variables
+- Enhance output messages to be more specific about the properties being checked
+- Add comments to explain the logic of complex conditions
+- Consider using more descriptive variable names to improve code readability
+</feedback_summary>

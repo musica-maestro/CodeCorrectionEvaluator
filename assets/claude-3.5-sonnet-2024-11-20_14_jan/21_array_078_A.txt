@@ -1,0 +1,77 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.5):....2.2 = 2.5 - 0.3
+   TOTAL.......................7.5
+*/
+
+#include <stdio.h>
+int ugualiCompresi(int sequenza[], int lunghezza){
+    int i=0;               
+    int ugualiCompresi;    
+    ugualiCompresi=0;      
+    //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+    while(i<lunghezza-2 && !ugualiCompresi){
+        if(((sequenza[i]==sequenza[i+1] && sequenza[i]!=sequenza[i+2]) &&
+        		((sequenza[i]+sequenza[i+1]>=10 && sequenza[i]+sequenza[i+1]<=20)
+        		||(sequenza[i]+sequenza[i+2]>=10 && sequenza[i]+sequenza[i+2]<=20)
+        		||(sequenza[i+1]+sequenza[i+2]>=10 && sequenza[i+1]+sequenza[i+2]<=20)))
+        || ((sequenza[i]==sequenza[i+2] && sequenza[i]!=sequenza[i+1]) &&
+        		((sequenza[i]+sequenza[i+1]>=10 && sequenza[i]+sequenza[i+1]<=20)
+        		|| (sequenza[i]+sequenza[i+2]>=10 && sequenza[i]+sequenza[i+2]<=20)
+        		|| (sequenza[i+1]+sequenza[i+2]>=10 && sequenza[i+1]+sequenza[i+2]<=20)))
+        || ((sequenza[i+1]==sequenza[i+2] && sequenza[i]!=sequenza[i+1]) &&
+       			 ((sequenza[i]+sequenza[i+1]>=10 && sequenza[i]+sequenza[i+1]<=20)
+       			 ||(sequenza[i]+sequenza[i+2]>=10 && sequenza[i]+sequenza[i+2]<=20)
+       			 ||(sequenza[i+1]+sequenza[i+2]>=10 && sequenza[i+1]+sequenza[i+2]<=20))))
+            ugualiCompresi=1;
+        else
+            i++;
+    }
+    return ugualiCompresi;
+}
+
+int main(){
+    int dimensione;
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+    printf("Caro utente, questo programma controlla se, nella sequenza de te inserita,\n");
+    printf("esiste almeno una tripla di elementi consecutivi tale che almeno due elementi della tripla\n");
+    printf("abbiano somma compresa tra 10 e 20 ed esattamente due elementi della tripla siano uguali tra loro\n");
+    printf("Inserisci un carattere che indica la lunghezza dellla sequenza:\n");
+    scanf("%d", &dimensione);
+    int array[dimensione];
+    for(int i=0; i<dimensione; i++){
+        printf("Inserisci un intero:\n");
+        scanf("%d", &array[i]);
+    }
+    if(ugualiCompresi(array, dimensione)){
+        printf("Esiste almeno una tripla di elementi consecutivi tale che almeno due elementi della tripla\n");
+        printf("abbiano somma compresa tra 10 e 20 ed esattamente due elementi della tripla siano uguali tra loro\n");
+    }
+    else{
+        printf("Non esiste alcuna tripla di elementi consecutivi tale che almeno due elementi della tripla\n");
+        printf("abbiano somma compresa tra 10 e 20 ed esattamente due elementi della tripla siano uguali tra loro\n");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for checking consecutive triples
+- Proper handling of array bounds and index limits
+- Complete implementation of both required functions
+- Correct handling of the equality condition for exactly two elements
+- Proper implementation of the sum range check (10-20)
+
+Areas for Improvement:
+- The condition in the ugualiCompresi function is quite complex and could be made more readable by breaking it down into smaller logical parts or using helper variables
+- The output messages could be more concise and clearer about the specific properties being checked
+- Consider adding input validation for the array size
+
+Key Recommendations:
+- Break down complex conditions into smaller, more manageable parts using intermediate boolean variables
+- Improve readability by adding comments explaining the logic of complex conditions
+- Consider adding input validation to ensure the array size is positive and reasonable
+- Make output messages more concise while maintaining clarity about the sequence properties being checked
+</feedback_summary>

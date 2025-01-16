@@ -1,0 +1,83 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)......... 1.0 = 5.0 - 1.5 - 1.0 - 1.5
+countNumbers (2).... 1.4 = 2.0 - 0.3 - 0.3
+readNumbers (2)..... 1.2 = 2.0 - 0.5 - 0.3
+writeNumbers(1)..... 0.5 = 1.0 - 0.3 - 0.2
+TOTAL............... 4.1
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+int massimoPari(int *seq, int l){
+    int trovato;
+    //******** base case is incorrect - should check for l<=2 -1.0
+    if(l<3)
+        trovato =0;
+        else{ 
+            //******** incorrect logic for finding maximum and checking if even -1.5
+            if(((seq[0]%2==0)> (seq[1]&&seq[2]) ) 
+            || ((seq[1]%2==0)>(seq[0]&&seq[2]))
+            || ((seq[2]%2==0)>(seq[0]&&seq[1])) && seq+1, l-1)
+                trovato=1;                     
+        }
+    //******** missing return statement -1.5
+}
+
+int quantiNumeri() {
+    int quanti=0;
+    //******** counter not initialized properly -0.3
+    //******** missing file operations to count numbers -0.3
+    return quanti;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE*fp=fopen("interi.dat", "rb");
+    //******** missing NULL check for file pointer -0.3
+    //******** incorrect fread syntax - should not use & with sequenza -0.5
+    fread(&sequenza, lunghezza, *fp); 
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE*fp=fopen("interi.dat","wb"); 
+    //******** missing NULL check for file pointer -0.3
+    fwrite(&sequenza,lunghezza,*fp);
+    //******** missing fclose() -0.2
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic file I/O structure implemented
+- Main function handles user interaction appropriately
+- Proper use of binary file operations
+
+Areas for Improvement:
+1. massimoPari function:
+   - Incorrect base case implementation
+   - Logic for finding maximum and checking if even needs revision
+   - Missing return statement
+   - Should implement proper recursion
+
+2. quantiNumeri function:
+   - Needs proper implementation to count numbers in file
+   - Should initialize counter correctly
+   - Missing file operations
+
+3. File operations:
+   - Need to add NULL checks for file pointers
+   - Correct fread/fwrite syntax
+   - Add proper file closure
+   - Fix parameter handling in file operations
+
+Key Recommendations:
+1. Implement proper recursion in massimoPari function
+2. Add proper file handling with error checks
+3. Complete the quantiNumeri function implementation
+4. Fix syntax issues in file reading/writing operations
+5. Add proper return statements and error handling
+</feedback_summary>

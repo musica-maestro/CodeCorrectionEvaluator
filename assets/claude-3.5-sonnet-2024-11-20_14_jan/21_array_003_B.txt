@@ -1,0 +1,72 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.0 - 0.5 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL......................6.0
+*/
+
+#include <stdio.h>
+int maggiori5Pari(int interi[], int lunghezza){
+    int i=0;   
+    int tripla;
+    int uguali;
+    int pari;
+    tripla=0;  
+    //******** CONDITION IS COMPLICATED AND NOT VERY READABLE -0.2
+    while(i<lunghezza-2 && !tripla){ 
+        //******** WRONG CONDITION: THIRD CONDITION HAS INCOMPLETE COMPARISON WITH 5 -1.0
+        if(((interi[i]>=5) && (interi[i+1]>=5) && (interi[i+2]<5)) ||               
+            ((interi[i+1]>=5) && (interi[i+2]>=5) && (interi[i]<5)) ||             
+            ((interi[i]>=5) && (interi[i+2]) && (interi[i+1])<5)){
+                uguali=1;
+                //******** = INSTEAD OF == IN CONDITION CHECK -0.5
+                if((uguali=1) && (pari=1))
+                    tripla=1; 
+                }
+        i++;     
+    }
+    return tripla;       
+}
+
+int main()
+{    
+    int lunghezza;
+    printf("quanti numeri vuoi inserire nella sequenza\n");
+    scanf("%d", &lunghezza);
+    int sequenza[lunghezza];
+    for(int i=0; i<lunghezza; i++){
+        printf("quali numeri vuoi inserire?\n");       
+        scanf("%d", &sequenza[i]);
+    }
+    int tripla;
+    tripla=maggiori5Pari(sequenza, lunghezza);
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    if(tripla)
+        printf("tutte le triple inserite rispettano le condizioni date\n");
+        else
+            printf("non tutte le triple rispettano le condizioni date\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct array bounds checking in the main loop
+- Proper function structure with parameters and return value
+- Good user interaction implementation in main()
+- Correct use of array indexing for accessing elements
+
+Areas for Improvement:
+- The condition checking for exactly two elements ≥5 is incomplete in the third case
+- Assignment operators (=) are used instead of equality operators (==) in condition checks
+- The output messages could be more specific about what conditions are being tested
+- Code readability could be improved by better organizing complex conditions
+- The logic for checking even numbers could be simplified
+
+Key Recommendations:
+1. Fix the comparison in the third condition of the if statement to properly check for values ≥5
+2. Replace assignment operators (=) with equality operators (==) in conditions
+3. Make output messages more descriptive of the specific conditions being tested
+4. Break down complex conditions into smaller, more readable parts
+5. Consider using separate boolean variables to track conditions for better clarity
+</feedback_summary>

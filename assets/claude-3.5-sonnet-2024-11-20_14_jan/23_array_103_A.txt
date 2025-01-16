@@ -1,0 +1,68 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.0 = 6.0 - 1.5 - 0.5
+   MAIN (max 2.0):.......1.8 = 2.0 - 0.2
+   TOTAL..................5.8
+*/
+
+#include <stdio.h>
+int Multiplo (int array[], int lunghezza) {
+	int verificato = 1; 
+	int i = 0;
+	//******** CONDITION ON THE TRIPLE IS WRONG -1.5
+	while ( i < lunghezza - 2 ) {
+		if ( !(array[i]%array[i+1] == 0) && !(array[i]%array[i+2] == 0) ) { 
+			if ( !(array[i+1]%array[i] == 0) && !(array[i+1]%array[i+2] == 0) ) { 
+				if ( !(array[i+2]%array[i+1] == 0) && !(array[i+2]%array[i] == 0) ) { 
+					verificato = 0; 
+				}
+			}
+		}
+		i++; 
+	}
+	//******** INCORRECT INDENTATION -0.5
+	return verificato;
+}
+int main () {
+	int lunghezza;
+	int verificato;
+	printf("\nIn questo programma verifichiamo se per ciascuna terna di elementi adiacenti della sequenza, ci sia almeno un elemento della terna multiplo di uno degli altri due");
+	printf("\nCiao utente, quanto deve essere lunga la sequenza?  ");
+	scanf("%d", &lunghezza);
+	int array[lunghezza]; 
+	for ( int i = 0; i < lunghezza; i++ ) {
+		printf("\nInserisci un numero:  ");
+		scanf("%d", &array[i]);
+	}
+	verificato = Multiplo ( array, lunghezza);
+	//******** UNCLEAR OUTPUT MESSAGE -0.2
+	if ( verificato == 0 ) {
+		printf("\nIl mutiplo di uno degli altri due elementi della terna non %c stato trovato in tutte le terne della sequenza", 138);
+	}
+	else {
+		printf("\nIn tutte le terne di elementi adiacenti della sequenza %c presente almeno un elemento multiplo di uno degli altri due", 138);
+	}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct function structure with appropriate parameters
+- Proper array handling and bounds checking
+- Good user interaction in main function
+- Correct implementation of the verification logic concept
+
+Areas for Improvement:
+- The condition for checking multiples is overly complex and incorrect. The logic should use OR (||) instead of AND (&&) since we need at least one multiple relationship, not all of them
+- Code indentation needs to be consistent throughout the function
+- Output messages could be clearer and more precise
+- Consider adding input validation for array length
+
+Key Recommendations:
+- Simplify the multiple checking logic using OR operations
+- Maintain consistent indentation throughout the code
+- Improve output message clarity
+- Add input validation for array length and elements
+- Consider handling edge cases like zeros or negative numbers
+</feedback_summary>

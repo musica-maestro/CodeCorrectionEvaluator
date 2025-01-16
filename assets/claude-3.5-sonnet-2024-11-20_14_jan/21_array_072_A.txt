@@ -1,0 +1,62 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................7.3
+*/
+
+#include <stdio.h>
+int ugualiCompresi( int array[], int lunghezza){
+	int esiste;   
+	esiste=0;   
+	int i;     
+	i=0;
+	while(i<lunghezza-2 && !esiste){
+		//******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+		if((array[i]+array[i+1]>=10 && array[i]+array[i+1]<=20)||(array[i]+array[i+2]>=10 && array[i]+array[i+2]<=20)||(array[i+1]+array[i+2]>=10 && array[i+1]+array[i+2]<=20)){
+			//******** CONDITION IS COMPLICATED BUT CORRECT -0.5
+			if((array[i]==array[i+1] && array[i]!=array[i+2]) || (array[i]==array[i+2] && array[i]!=array[i+1]) || (array[i+1]==array[i+2]&&array[i+1]!=array[i]))
+				esiste=1;
+		}
+		else
+			i++;
+	}
+	return esiste;
+}
+int main(){
+	int lunghezza;   
+	printf("caro utente, inserisci la lunghezza della sequenza\n");
+	scanf("%d", &lunghezza);
+	int array[lunghezza];
+	for(int i=0; i<lunghezza; i++){
+		printf("inserisci un intero\n");
+		scanf("%d", &array[i]);
+	}
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+	if(ugualiCompresi(array, lunghezza))
+		printf("esiste una tripla di elementi consecutivi tale che almeno due elementi della tripla hanno somma compresa fra 10 e 20 ed esattamente due elementi della tripla sono fra loro uguali\n");
+	else
+		printf("Non esiste una tripla di elementi consecutivi tale che almeno due elementi della tripla hanno somma compresa fra 10 e 20 ed esattamente due elementi della tripla sono fra loro uguali\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for finding triples with required properties
+- Proper array bounds checking in the loop condition
+- Correct handling of the equality condition (exactly two elements equal)
+- Good implementation of the main function with proper user interaction
+- Correct use of boolean flag for existential verification
+
+Areas for Improvement:
+- The conditions in the function could be more readable by breaking them into smaller, more manageable parts
+- The output messages could be more concise while still maintaining clarity
+- Consider using more descriptive variable names (e.g., 'found' instead of 'esiste')
+
+Key Recommendations:
+- Break down complex conditions into smaller, more readable parts using intermediate boolean variables
+- Improve output message clarity while maintaining completeness
+- Consider adding input validation for array length (ensuring it's positive)
+- Use more descriptive variable names to improve code readability
+</feedback_summary>

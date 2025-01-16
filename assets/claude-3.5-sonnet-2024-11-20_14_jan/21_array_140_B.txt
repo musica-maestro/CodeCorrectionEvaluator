@@ -1,0 +1,76 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................7.3
+*/
+
+#include <stdio.h>
+int maggiori5Pari (int array[], int l){
+    int i;  
+    i = 0;
+    int verificato;   
+    verificato = 1;
+    //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+    while((i < l-2) && verificato){
+        if ((array[i] >= 5 && array[i+1] >= 5) || (array[i+1] >= 5 && array[i+2] >= 5) || (array[i+2] >= 5 && array[i] >= 5)){
+            if (array[i] >= 5 && array[i+1] >= 5 && array[i+2] >= 5)
+                verificato = 0;
+            else{
+               if ((array[i]%2==0 && array[i+1]%2==0) || (array[i+1]%2==0 && array[i+2]%2==0) || (array[i]%2==0 && array[i+2]%2==0))
+                i++;
+              else  
+                verificato = 0;
+         }
+            }
+        else 
+            verificato = 0;
+    }
+    //******** MISSING CONDITION! -0.5
+    return verificato;
+}
+
+int main(int argc, char **argv)
+{
+    printf("Caro utente questo programma verifica se ogni tripla di elementi consecutivi \n");
+    printf("in una sequenza di interi contiene esattamente due elementi maggiori o uguali a %d \n", 5);
+    printf("e almeno due numeri pari");
+    int l;
+    printf("quanti interi vuoi inserire%c\n", '?');
+    scanf("%d", &l);
+    int array[l];
+    printf("quali interi vuoi inserire%c\n", '?');
+    for (int i=0; i<l; i++)
+        scanf("%d", &array[i]);
+    int res;
+    res=maggiori5Pari(array,l);
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    if (res == 1)
+        printf("nella sequenza la proprieta' e' verificata\n");
+    else
+        printf("la proprieta' non e' verificata");
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of array handling and input reading
+- Good use of boolean flag (verificato) for control flow
+- Proper array bounds checking with (i < l-2)
+- Correct implementation of even number checking using modulo operator
+
+Areas for Improvement:
+- The conditions in the maggiori5Pari function are correct but could be more readable and better structured
+- The output messages could be more specific about which property is being verified
+- Some edge cases might not be properly handled when checking for exactly two elements >= 5
+- The function could benefit from additional input validation
+
+Key Recommendations:
+- Restructure the conditions to make them more readable and maintainable
+- Enhance output messages to clearly specify the properties being checked
+- Add input validation for array length (l should be >= 3)
+- Consider breaking down complex conditions into smaller, more manageable parts
+- Add more detailed comments explaining the logic of the conditions
+</feedback_summary>

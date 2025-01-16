@@ -1,0 +1,70 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.5 = 6.0 - 1.5
+   MAIN PROGRAM (max 2.5):....2.5
+   TOTAL.......................7.0
+*/
+
+#include <stdio.h>
+#define MAX 100
+int ugualiCompresi(int interi[], int lunghezza) {
+    int i;            
+    int trovato;      
+    i = 0;            
+    trovato = 0;      
+    while(i<lunghezza-2 && !trovato)
+        //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+        //******** EXACTLY TWO ELEMENTS MUST BE EQUAL (THE THIRD MUST BE DIFFERENT). E.G., IF THE TRIPLE IS 5 5 5, YOUR CONDITION IS SATISFIED -1.5
+        if((((interi[i]+interi[i+1]>=10) && (interi[i]+interi[i+1]<=20))
+        || ((interi[i]+interi[i+2]>=10) && (interi[i]+interi[i+2]<=20))
+        || ((interi[i+1]+interi[i+2]>=10) && (interi[i+1]+interi[i+2]<=20)))
+        && ((interi[i]==interi[i+1]) || (interi[i]==interi[i+2])
+        || (interi[i+2]==interi[i+1])))
+            trovato = 1;
+        else
+            i++;            
+        return trovato;
+}
+int main() {
+    int i;           
+    int n;           
+    int x[MAX];      
+    int tripla;
+    printf("Ciao! Di quanti elementi %c composta la sequenza? ", 138);
+    scanf("%d", &n);
+    printf("Adesso inserisci la sequenza di interi: \n");
+    for(i=0; i<n; i++)
+        scanf("%d", &x[i]);
+    tripla = ugualiCompresi(x,n);        
+    if(tripla==1)
+        printf("Esiste una tripla dove la somma di due interi %c compresa fra 10 e 20 e due esattamente uguali\n", 138);
+    else
+        printf("Non esiste una tripla dove la somma di due interi %c compresa fra 10 e 20 e due esattamente uguali\n", 138);
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of array traversal and boundary checking
+- Proper user interaction in main function
+- Good variable initialization
+- Correct implementation of the sum range check (10-20)
+
+Areas for Improvement:
+- The condition checking for exactly two equal elements needs revision. Currently, it allows for all three elements to be equal, which shouldn't be the case
+- The code readability could be improved by breaking down the complex condition into smaller, more manageable parts
+- Consider using more descriptive variable names and adding comments to explain the logic
+
+Key Recommendations:
+- Modify the equality check to ensure exactly two elements are equal (not three)
+- Break down the complex condition into separate boolean variables for better readability
+- Add comments explaining the logic of the conditions
+- Consider using more descriptive variable names than 'trovato' and 'tripla'
+</feedback_summary>
+
+The main deductions come from:
+1. The condition allowing three equal elements when it should only allow exactly two (-1.5)
+2. Complex, hard-to-read condition structure (-0.2)
+
+The main function is implemented correctly with proper user interaction and array handling, so no deductions were made there.

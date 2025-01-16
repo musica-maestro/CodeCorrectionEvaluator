@@ -1,0 +1,103 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)............2.0 = 5.0 - 1.5 - 1.0 - 0.5
+countNumbers (2).......1.5 = 2.0 - 0.5
+readNumbers (2)........1.0 = 2.0 - 0.5 - 0.5
+writeNumbers(1)........0.5 = 1.0 - 0.5
+TOTAL..................5.0
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+int massimoPari(int *seq, int lunghezza)
+{
+    //******** Missing base case for length < 3 -1.0
+    int pari; int somma;
+    if (lunghezza<=1)
+    {
+        pari = 1;
+    }
+    else
+    {
+        //******** Incorrect logic - should check maximum of triple, not sum -1.5
+        somma=seq[0]+seq[1]+seq[2];
+        //******** Incorrect recursive step - should check all triples -0.5
+        pari = somma%2==0 && massimoPari(seq+1, lunghezza-1);
+    }
+    return pari;
+}
+
+int quantiNumeri() {
+    FILE *fp = fopen("interi.txt", "r");
+    //******** Missing file open check (fp==NULL) -0.3
+    int contatore=0;
+    int numero;
+    //******** Using fread for text file instead of fscanf -0.2
+    while (fread(&numero, sizeof(int), 1, fp)>0)
+    {         
+        contatore++;
+    }
+    return contatore;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE *fp = fopen("interi.txt", "r");
+    int i;  
+    //******** i not initialized -0.3
+    while (i<lunghezza)
+    {    
+        //******** Using fread for text file -0.2
+        fread(&(sequenza[i]), sizeof(int), 1, fp);
+        printf("Numero letto: %d", sequenza);
+        i++;
+    }
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE *fp = fopen("interi.txt", "w");
+    int i;
+    //******** i not initialized -0.3
+    while (i<lunghezza)
+    {   
+        //******** Using fwrite for text file -0.2
+        fwrite(sequenza, sizeof(int), 1, fp);
+        sequenza++;
+        i++;
+    }
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic recursive structure implemented
+- File operations framework present
+- Good main() function organization with user interaction
+
+Areas for Improvement:
+1. massimoPari function:
+   - Implement proper base case for length < 3
+   - Fix logic to check maximum of triple instead of sum
+   - Correct recursive step to check all consecutive triples
+
+2. File Operations:
+   - Add file open error checking
+   - Use appropriate file operations (fscanf/fprintf for text files)
+   - Initialize counter variables
+   - Close files after operations
+
+3. General:
+   - Consistent error handling
+   - Proper variable initialization
+   - Use appropriate file I/O functions for text files
+
+Key Recommendations:
+1. Review recursive function implementation, especially base cases
+2. Learn proper text file handling in C
+3. Add error checking for file operations
+4. Initialize all variables before use
+5. Close files after operations
+</feedback_summary>

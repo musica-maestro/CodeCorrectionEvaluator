@@ -1,0 +1,79 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....3.3 = 6.0 - 1.5 - 0.2 - 0.5 - 0.5
+   MAIN (max 2.0):.......1.8 = 2.0 - 0.2
+   TOTAL.................5.1
+*/
+
+#include<stdio.h>
+int duePositivi(int numeri[], int lunghezza){
+    int positivi;  
+    positivi = 1; 
+    //******** CONDITION ON THE TRIPLE IS WRONG - FIRST/LAST ELEMENTS ALONE DON'T DETERMINE CORRECTNESS -1.5
+    if((numeri[0] < 0) || (numeri[lunghezza -1] < 0) )  
+        positivi = 0;
+    else{
+        int i = 1; 
+        //******** INCORRECT LOOP CONDITION (i < lunghezza || !positivi) WILL CAUSE ARRAY BOUNDS ERROR -0.5
+        while(i < lunghezza || !positivi){ 
+        //******** DO YOU CONSIDER 0 POSITIVE OR NEGATIVE? NEEDS CLARIFICATION -0.2
+        if((numeri[i-1] < 0  && numeri[i] > 0 && numeri[i+1] < 0) ||  
+           (numeri[i-1] < 0  && numeri[i] < 0 && numeri[i+1] < 0) ||
+           (numeri[i-1] < 0  && numeri[i] > 0 && numeri[i+1] > 0) ||
+           (numeri[i-1] > 0  && numeri[i] > 0 && numeri[i+1] < 0) )
+            positivi = 0;  
+        else      
+            i++;  
+        }
+        return positivi;
+    }
+}
+
+int main(){
+    int lunghezza; 
+    printf("Ciao inserisci quanti numeri vuoi inserire\n");
+    scanf("%d", &lunghezza);
+    int numeri[lunghezza]; 
+    for(int i = 0; i < lunghezza; i++){
+        printf("Inserire il numero\n");
+        scanf("%d", &numeri[i]);
+    }
+    //******** UNCLEAR MESSAGE IN OUTPUT -0.2
+    if(duePositivi(numeri,lunghezza) == 1){
+        printf("tutte le triple della sequenza hanno come elemntoa adiacente un numero positivo");
+    }  
+    else{
+        printf("non tutte o nessuna  tripla della sequenza hanno come elemnto adiacente un numero positivo");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic structure of the function and main program is present
+- Correct parameter passing between main and function
+- Proper array handling for input
+
+Areas for Improvement:
+1. Function Logic:
+   - The initial check of first/last elements is incorrect for determining triple properties
+   - The loop condition needs to be fixed to prevent array bounds errors
+   - The logic for checking exactly two positives in each triple needs revision
+   - Need to clarify how zero values should be handled
+
+2. Code Structure:
+   - Loop condition should be modified to properly iterate through triples
+   - Array bounds checking needs to be more careful
+
+3. User Interface:
+   - Output messages should be clearer and more precise
+   - Consider adding input validation
+
+Key Recommendations:
+1. Modify the function to properly check for exactly two positive numbers in each triple
+2. Fix the loop condition to prevent array bounds errors
+3. Clarify how zero values should be handled
+4. Improve output messages for better clarity
+5. Add proper array bounds checking when examining triples
+</feedback_summary>

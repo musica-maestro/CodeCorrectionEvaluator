@@ -1,0 +1,68 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.2 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................7.3
+*/
+
+#include <stdio.h>
+int compresoDieciVenti (int seq[], int q, int k  ){      
+    return (seq[q]+seq[k])<=20  &&  (seq[q]+seq[k])>=10 ;
+}
+
+int ugualiCompresi (int arr[], int l) {
+    int ugualieCompresi; 
+    ugualieCompresi=0;
+    int i; 
+    //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+    for(i=0; (i<l-2)&&(!ugualieCompresi) ; i++){
+        if ( (  compresoDieciVenti(arr,i,i+1) || compresoDieciVenti(arr,i+1,i+2) || compresoDieciVenti(arr,i,i+2) )
+        && ( arr[i]==arr[i+1]  || arr[i+1]==arr[i+2] || arr[i]==arr[i+2] ))
+            ugualieCompresi=1;
+    }
+    return ugualieCompresi;
+}
+
+int main() {
+    int l; 
+    int i ; 
+    printf("Ciao sono un programma che verifica se almeno una tripla\n");
+    printf("di una sequenza di interi rispetta le seguenti condizioni:\n");
+    printf("1) La somma di due elementi e' compresa tra 10 e 20");
+    printf("2) Almeno due elementi sono uguali fra loro\n");
+    printf("Inserisci la lunghezza della sequenza:\n");
+    scanf("%d",&l);
+    int sequenza[l];
+    for(i=0;i<l;i++){
+        printf("\nInserisci il numero della sequenza\n");
+        scanf("%d",&sequenza[i]);
+    }
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    if(ugualiCompresi(sequenza,l))
+        printf("La stringa contiene almeno una terna con due numeri che hanno somma compresa fra dieci e venti e due numeri uguali fra loro");
+    else
+        printf("La stringa non contiene almeno una terna con due numeri che hanno somma compresa fra dieci e venti e due numeri uguali fra loro");
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for checking consecutive triples
+- Proper array bounds checking in the loop condition
+- Good separation of concerns with helper function compresoDieciVenti
+- Correct implementation of the existential verification
+- Proper user interaction in main function
+
+Areas for Improvement:
+- The condition in the ugualiCompresi function could be more readable by breaking it into smaller logical parts
+- Output messages could be more specific and clearer about which properties were found/not found in the sequence
+- Consider adding more descriptive variable names (e.g., 'found' instead of 'ugualieCompresi')
+
+Key Recommendations:
+- Break down complex conditions into smaller, more readable parts using intermediate boolean variables
+- Improve output messages to be more specific about the properties being checked
+- Use more descriptive variable names to improve code readability
+- Consider adding input validation for array length
+</feedback_summary>

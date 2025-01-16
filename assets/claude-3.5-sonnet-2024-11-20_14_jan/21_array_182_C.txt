@@ -1,0 +1,76 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........2.5 = 6.0 - 1.5 - 1.0 - 1.0
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................4.5
+*/
+
+#include <stdio.h>
+int compresiMultipli3(int vt[], int ll){
+	int j;
+	//******** UNINITIALIZED VARIABLE v1, v2, v3 USING UNINITIALIZED j -1.0
+	int f = 1;      
+	int v1 = ((vt[j]<=-10) && (vt[j] <= 10));           
+	int v2 = ((vt[j+1]<= -10) && (vt[j+1] <= 10));
+	int v3 = ((vt[j+2]<= -10) && (vt[j+2] <= 10));   
+	//******** ITERATION LIMITS INCORRECT, SHOULD BE j<ll-2 -1.0
+	for(j=0;j<ll-3;j++){   
+		//******** EXTREMELY CONVOLUTED AND WRONG CONDITION -1.5
+		if(((v1) && (v2)) || ((v1) && (v3))
+		|| ((v2) && (v3))){
+		if(!((vt[j]%3==0) && (vt[j+1]%3==0) || (vt[j]%3==0) && (vt[j+2]%3==0) || (vt[j+1]%3==0) && (vt[j+2]%3==0))){
+			f = 0;
+		}
+		}
+		}
+	return f;
+	}
+int main()
+{
+	int l,i;
+	printf("Insercisi la lunghezza dell array\n");
+	scanf("%d",&l);
+	int v[l];
+	for(i = 0; i<l; i++){
+		printf("inserisci il numero %d: ",i+1);
+		scanf("%d",&v[i]);
+		} 
+		//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+		if(compresiMultipli3(v,l))
+			printf("esiste una tiripla di interi vera");
+			else  
+				printf("non esiste un tripla di interi vera");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Main function correctly handles array input
+- Function returns appropriate boolean result
+
+Areas for Improvement:
+1. Variable Initialization:
+   - Variables v1, v2, v3 are using uninitialized j
+   - These checks should be inside the loop
+
+2. Loop Implementation:
+   - The loop condition should be j<ll-2 to avoid array bounds issues
+   - The logic for checking consecutive triples needs revision
+
+3. Condition Logic:
+   - The conditions for checking values between -10 and 10 are incorrect
+   - The multiple of 3 checking logic is overly complicated
+   - The logic needs to properly verify exactly two multiples of 3
+
+4. Output Messages:
+   - The output messages should be more descriptive about what property was found or not found
+
+Key Recommendations:
+1. Initialize all variables before use
+2. Simplify the condition checks and make them more readable
+3. Fix the loop bounds to properly check consecutive triples
+4. Make the output messages more informative about the specific conditions being tested
+5. Restructure the logic to properly check for exactly two multiples of 3 and at least two values between -10 and 10
+</feedback_summary>

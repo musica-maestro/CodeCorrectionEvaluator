@@ -1,0 +1,70 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.0 = 6.0 - 1.5 - 1.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................5.0
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+int maggiori5Pari(int v[],int l){
+	int verifica=1; 
+	int i =0;
+	//******** WRONG CONDITION ON INDEX i < l - 2 -1.5 (should check all triples)
+	while(i<l-3&&verifica){ 
+		//******** WRONG CONDITION: Does not check for exactly 2 elements >= 5 and at least 2 even numbers -1.5
+		if(!((v[i-1]>=5&&v[i]>=5)&&(v[i]%2==0&&v[i-1]%2==0))) 
+			verifica=0; 
+		else 
+			i++;
+	}
+	return verifica;
+}
+int main()
+{
+	int n;
+	printf("Caro utente sono un programma che ti conferma se in ogni tripla di valori\n");
+	printf("Esistono due valori che sono maggiori o uguali a 5 , e se due dei valori sono pari\n");
+	printf("inserisci la dimensione della sequenza : \n");
+	scanf("%d",&n);
+	int sequenza[n];
+	for(int i=0;i<n;i++){
+		printf("inserisci il %d valore :",i);
+		scanf("%d",&sequenza[i]);
+	}
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+	if(maggiori5Pari(sequenza,n))
+		printf("l'istanza %c positiva !",138);
+		else
+			printf("l'istanza %c negativa !",138);
+	return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Main function handles user input appropriately
+- Function returns correct type for boolean result
+
+Areas for Improvement:
+1. Function Logic:
+   - The condition in while loop should be i < l-2 to properly check all triples
+   - The logic for checking triples is incorrect:
+     * Should verify exactly 2 elements >= 5
+     * Should verify at least 2 even numbers
+     * Current implementation misses checking consecutive triples properly
+
+2. Main Program:
+   - Output messages could be more specific about what properties are satisfied/not satisfied
+   - Consider adding input validation for array size
+
+Key Recommendations:
+1. Modify the function to properly check each triple by:
+   - Fixing the loop condition to i < l-2
+   - Implementing correct logic to count elements >= 5 and even numbers in each triple
+   - Consider using separate counters for elements >= 5 and even numbers
+2. Improve output messages to clearly indicate which properties were checked
+3. Add input validation for array size to ensure it's at least 3 (minimum needed for a triple)
+</feedback_summary>

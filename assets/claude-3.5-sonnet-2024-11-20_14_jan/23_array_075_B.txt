@@ -1,0 +1,79 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....1.8 = 6.0 - 1.5 - 1.5 - 1.0 - 0.2
+   MAIN (max 2.0):.......1.8 = 2.0 - 0.2
+   TOTAL..................3.6
+*/
+
+#include<stdio.h>
+int funzione_2_positivi(int sequenza[], int size){
+    int ris=0;
+    if(ris==0){
+        int j=0;
+        //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < size - 2 -1.0
+        //******** CONDITION ON THE TRIPLE IS WRONG (j==2 in loop condition prevents checking) -1.5
+        for(int i = 0; i < size - 2&&j==2; i++ ){
+            //******** THIS WAY YOU CHECK IF THERE ARE AT LEAST TWO POSITIVES, NOT EXACTLY TWO -1.5
+            for(int z = i;z < i + 2; z++){
+                if(sequenza[i] > 0){
+                    j++;
+                }
+            }
+        }
+        if ( j == 2 )  
+            ris = 1;
+    }                  
+    return ris;
+}
+
+int main(){
+    int size;
+    printf("inserisci il numero di elementi della sequenza: ");
+    scanf("%d",&size);
+    int sequenza[size];
+    //******** UNCLEAR MESSAGE -0.2
+    for(int i=0; i<size; i++){
+        printf ("inserisci numero nella sequenza: ");
+        scanf("%d", &sequenza[i]);
+    }
+    if(funzione_2_positivi(sequenza, size)){
+        printf("ogni tripla di elementi contiene esattamente 2 numeri positivi\n");
+    }
+    else
+        printf("ogni tripla di elementi non contiene esattamente 2 numeri positivi\n");
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Main function correctly handles user input and array creation
+- Good output message clarity for results
+- Proper function parameter passing
+
+Areas for Improvement:
+- The logic for checking triples is fundamentally flawed:
+  - The loop condition (j==2) prevents proper iteration through all triples
+  - The inner loop doesn't properly check consecutive triples
+  - The counting mechanism doesn't ensure exactly two positives per triple
+
+- Array bounds checking needs correction:
+  - Current implementation may miss checking some triples
+  - Inner loop range is incorrect for checking triples
+
+Key Recommendations:
+1. Revise the triple-checking logic:
+   - Remove j==2 from the outer loop condition
+   - Properly iterate through consecutive triples
+   - Implement correct counting for exactly two positives
+
+2. Fix array bounds:
+   - Ensure proper iteration through all possible triples
+   - Correct the inner loop to check all three elements in each triple
+
+3. Implement proper counting mechanism:
+   - Reset counter for each triple
+   - Check all three elements in each triple
+   - Verify exactly two positives, not at least two
+</feedback_summary>

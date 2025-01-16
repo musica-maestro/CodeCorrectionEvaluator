@@ -1,0 +1,86 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)............3.0 = 5.0 - 1.5 - 0.5
+countNumbers (2).......2.0
+readNumbers (2)........2.0
+writeNumbers(1)........1.0
+TOTAL..................8.0/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimoPari(int a[], int n){
+    int v = 1; 
+    //******** Base case should be n<=2 since we need triplets -0.5
+    if (n>2) {
+        //******** Logic error in checking maximum even number (a[n-2]%3==0 instead of a[n-3]%2==0) -1.5
+        v = ((a[n-1]>a[n-2] && a[n-1]>a[n-3] && a[n-1]%2==0)
+        || (a[n-2]>a[n-1] && a[n-2]>a[n-3] && a[n-2]%2==0)
+        || (a[n-3]>a[n-1] && a[n-3]>a[n-2] && a[n-2]%3==0)) && massimoPari(a, n-1);
+    }                                    
+    return v;
+}
+
+int quantiNumeri() {
+     FILE *fp = fopen("interi.dat", "rb"); 
+     int letto; 
+     int i = 0; 
+     int a; 
+    if (fp) {
+        letto = fread(&a, sizeof(int), 1, fp);
+        if (letto) ++i;
+        while (letto) {
+            letto = fread(&a, sizeof(int), 1, fp);
+            if (letto) ++i; 
+        }
+    } else printf("File non aperto correttamente"); 
+    fclose(fp);
+    return i;
+}
+
+void leggiNumeri(int a[], int n) {
+    FILE *fp = fopen("interi.dat", "rb"); 
+    if (fp) { 
+        for(int i=0; i<n; ++i) {
+             fread(&a[i], sizeof(int), 1, fp);
+        }
+    }
+    fclose(fp);
+}
+
+void scriviNumeri(int a[], int n) {
+    FILE *fp = fopen("interi.dat", "wb");
+    for (int i =0; i<n; ++i) {
+        fwrite(&a[i], sizeof(int), 1, fp);
+    }
+    fclose(fp);
+}
+
+[Rest of main() function...]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Well-implemented file handling functions (readNumbers, writeNumbers, countNumbers)
+- Proper file opening/closing and error checking
+- Good implementation of binary file operations
+- Clear main function structure with user interaction
+
+Areas for Improvement:
+- The massimoPari (maxEven) function has some logical errors:
+  1. The base case should check for n<=2 since we need triplets
+  2. There's a typo in the last condition (a[n-2]%3==0 should be a[n-3]%2==0)
+  3. The recursive implementation could be more elegant
+
+Key Recommendations:
+1. Fix the base case in massimoPari to properly handle arrays with less than 3 elements
+2. Correct the even number check in the last condition of massimoPari
+3. Consider using a helper function to make the recursive logic clearer
+4. Add more robust error checking for file operations
+5. Add input validation for array length in main function
+
+The code is generally well-structured and functional, with the main issues concentrated in the recursive maxEven implementation.
+</feedback_summary>

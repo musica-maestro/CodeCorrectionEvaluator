@@ -1,0 +1,68 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....2.0 = 6.0 - 1.5 - 1.5 - 1.0
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL........................3.8
+*/
+
+#include <stdio.h>
+int dueUnaCifra(int* seq, int n){
+    int tripla=1;
+    int i;
+    i=0;
+    //******** COMPARING AN INTEGER WITH A CHARACTER! -1.5
+    //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+    while(i<n-2 && tripla){
+        if(!((seq[i]>='0' && seq[i]<='9') && (seq[i+1]>='0' && seq[i+1]<='9')) || 
+            ((seq[i+1]>='0' && seq[i+1]<='9') && (seq[i+2]>='0' && seq[i+2]<='9')) ||
+            ((seq[i]>='0' && seq[i]<='9') && (seq[i+2]>='0' && seq[i+2]<='9')))
+            tripla=0;
+        else
+            i++;
+    }
+    //******** THIS IS A UNIVERSAL VERIFICATION, NOT AN EXISTENTIAL ONE -1.0
+    return tripla;
+}
+
+int main() {
+    int n;
+    printf("Quanti interi vuoi introdurre? ");
+    scanf("%d", &n);
+    int seq[n];
+    for(int i=0; i<n; i++){
+        printf("Inserisci un intero: ");
+        scanf("%d", &seq[i]);
+    }
+    //******** UNCLEAR MESSAGE -0.2
+    if(dueUnaCifra(seq, n))
+        printf("Non sono presenti almeno due numeri composti da una sola cifra");
+    else
+        printf("sono presenti due numeri composti da una sola cifra");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Main function handles user input correctly
+- Array allocation and input collection are implemented properly
+
+Areas for Improvement:
+1. Logic Issues:
+   - The function compares integers with characters ('0' to '9'), which is incorrect
+   - The triple condition logic is incorrect - should check for actual single-digit numbers
+   - The verification approach should be universal (checking all triples) rather than existential
+
+2. Implementation Issues:
+   - Need to use proper integer comparison (0-9) instead of character comparison
+   - Output messages could be clearer and more descriptive
+   - The logic for checking single-digit numbers needs revision
+
+Key Recommendations:
+1. Replace character comparisons with proper integer comparisons:
+   - Use (seq[i] >= 0 && seq[i] <= 9) instead of (seq[i]>='0' && seq[i]<='9')
+2. Revise the triple checking logic to properly verify at least two single-digit numbers
+3. Make output messages more clear and descriptive
+4. Implement proper universal verification for all triples in the sequence
+</feedback_summary>

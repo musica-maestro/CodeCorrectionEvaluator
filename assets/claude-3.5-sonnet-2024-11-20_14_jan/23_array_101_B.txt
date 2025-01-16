@@ -1,0 +1,64 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.8 = 6.0 - 1.0 - 0.2
+   MAIN PROGRAM (max 2.0):....2.0
+   TOTAL.......................6.8
+*/
+
+#include <stdio.h>
+int isPos(int a){
+	return (a>0);
+}
+int duePositivi(int seq[], int d){
+    int i=0; 
+    int verifica=1; 
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < d - 2 -1.0
+    while(verifica&&i<d-2){
+    	if((isPos(seq[i])&&isPos(seq[i+1])&&!isPos(seq[i+2]))||
+    	  (isPos(seq[i])&&isPos(seq[i+2])&&!isPos(seq[i+1]))||
+    	  (isPos(seq[i+1])&&isPos(seq[i+2])&&!isPos(seq[i])))
+    		i++;
+    	else
+    		verifica=0;
+    }
+    //******** DO YOU CONSIDER 0 POSITIVE OR NEGATIVE? -0.2
+    return verifica;
+}
+int main(){
+	int l;  
+	printf("Caro utente,\n");
+	printf("Benvenuto nel programma.\n");
+	printf("Inserisci la lunghezza della tua sequenza di numeri:\n");
+	scanf("%d", &l);
+	int sequenza[l]; 
+	for(int i=0; i<l; i++){
+		printf("Inserisci un intero per la tua sequenza:\n");
+		scanf("%d", &sequenza[i]);
+	}
+	if(duePositivi(sequenza, l))
+		printf("In ogni tripla di elementi della sequenza sono presenti esattamente due positivi.\n");
+	else
+		printf("In ogni tripla di elementi della sequenza non sono presenti esattamente due positivi.\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of the main function with clear user interaction
+- Correct implementation of the universal verification logic
+- Clear and informative output messages
+- Good use of helper function isPos() for code readability
+- Proper parameter passing and function structure
+
+Areas for Improvement:
+- Array bounds checking in duePositivi() needs correction to prevent accessing elements beyond array bounds
+- The handling of zero values should be explicitly defined and documented
+- Consider adding input validation for array length
+
+Key Recommendations:
+- Fix the array bounds check in the while loop condition to i < d-2
+- Document or handle the case of zero values explicitly
+- Consider adding input validation to ensure array length is positive and reasonable
+- Add comments to explain the logic of the triple checking conditions
+</feedback_summary>

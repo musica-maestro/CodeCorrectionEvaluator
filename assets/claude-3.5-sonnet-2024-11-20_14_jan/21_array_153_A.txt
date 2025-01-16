@@ -1,0 +1,75 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........2.0 = 6.0 - 1.5 - 1.5 - 1.0
+   MAIN PROGRAM (max 2.5):....1.7 = 2.5 - 0.5 - 0.3
+   TOTAL.......................3.7
+*/
+
+#include <stdio.h>
+int  UgualiCompresi(int intero[], int lunghezza){
+int valore; 
+//******** VARIABLE IS NOT INITIALIZED -1.0
+int somma; 
+for(int i=0; i<lunghezza-2;i++){
+//******** CALCULATING THE SUM OF ALL THREE ELEMENTS IN THE TRIPLE INSTEAD OF CHECKING IF AT LEAST TWO ELEMENTS HAVE A SUM BETWEEN 10 AND 20 -1.5
+if(intero[i]== intero[i+1] && intero[i+2] == intero[i+2]){ 
+	somma=intero[i]+intero[i+1]+intero[i+2];
+	if(somma<=20){   
+      if(somma>=10){  
+		valore=1;
+	  }
+	}
+}
+else {
+i++;
+}
+}
+return valore;
+//******** CONDITION THAT EXACTLY TWO ELEMENTS ARE EQUAL IS MISSING -1.5
+}
+
+int main(){
+int l; 
+printf("Utente inserici la lunghezza della sequenza\n");
+scanf("%d", &l);
+int intero[l];
+printf("inserici gli interi all'interno della sequenza\n");
+for(int i=0; i<l; i++){
+scanf(" %d ", &intero[i]); 
+}
+printf("la sequenza inserita ha valore %d ", UgualiCompresi(intero,l)); 
+//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+//******** BADLY INDENTED -0.3
+}  
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Main function correctly reads array length and elements
+- Function attempts to implement the required logic
+
+Areas for Improvement:
+1. Logic Issues:
+   - The function doesn't correctly check for exactly two equal elements
+   - Sum calculation should check pairs of elements, not all three
+   - Variable 'valore' needs initialization
+
+2. Implementation Issues:
+   - The condition intero[i+2] == intero[i+2] is always true
+   - The else clause with i++ could skip important triples
+   - Output message should clearly explain what the return value means
+
+3. Style and Structure:
+   - Code indentation needs improvement
+   - Output messages should be more descriptive
+
+Key Recommendations:
+1. Initialize all variables before use
+2. Implement correct logic for checking exactly two equal elements
+3. Modify sum checking to consider pairs of elements
+4. Improve output message clarity
+5. Fix code indentation
+6. Remove unnecessary else clause with i++ increment
+</feedback_summary>

@@ -1,0 +1,75 @@
+I'll grade the student's submission following the provided format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.5 = 6.0 - 1.5
+   MAIN PROGRAM (max 2.5):....2.5
+   TOTAL.......................7.0
+*/
+
+#include <stdio.h>
+ int isCompreso(int n){
+	 return (n>=(-10) && n<=10);
+ }
+ int isMultiplo3(int n){
+	 return (n%3==0);
+ }
+  int compresiMultipli3(int seq[], int dim){
+	  int esiste=0; 
+	  int i=0; 
+	  while(i<dim-2 && esiste==0){
+		  if ((isCompreso(seq[i]) && isCompreso(seq[i+1])) || (isCompreso(seq[i+1]) && isCompreso(seq[i+2])) || (isCompreso(seq[i]) && isCompreso(seq[i+2]))){
+			  //******** LOGICAL ERROR: isMultiplo3(i) should be isMultiplo3(seq[i]) -1.0
+			  if (((isMultiplo3(seq[i]) && isMultiplo3(seq[i+1])) && !isMultiplo3(seq[i+2]))
+			  || ((isMultiplo3(i) && isMultiplo3(seq[i+2])) && !isMultiplo3(seq[i+1]))
+			  || ((isMultiplo3(seq[i+2]) && isMultiplo3(seq[i+1])) && !isMultiplo3(seq[i]))){
+				  esiste =1;
+			  }else{ 
+				  i++; 
+			  }
+		  }else{ 
+		  i++;
+		}
+	}
+	return esiste;
+  }
+//******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+//******** CONDITION IS COMPLICATED BUT CORRECT -0.3
+
+int main(int argc, char **argv)
+{
+	int dim=0; 
+	printf("Quanti interi vuoi inserire? ");
+	scanf("%d", &dim);
+	int seq[dim]; 
+	for (int i=0; i<dim; i++){
+		printf("Inserisci un intero: ");
+		scanf("%d", &seq[i]);
+	}
+	if (compresiMultipli3(seq, dim)){
+		printf("Esiste almeno una tripla che soddisfa le proprietà!\n");
+	}else{
+		printf("Non esiste alcuna tripla che soddisfa la proprietà!\n");
+	}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of helper functions isCompreso and isMultiplo3
+- Proper array bounds checking in the main loop
+- Good user interaction in main function
+- Correct implementation of the existential verification logic
+- Proper use of boolean flag for loop control
+
+Areas for Improvement:
+- There's a critical bug in the multiples of 3 checking condition where isMultiplo3(i) is used instead of isMultiplo3(seq[i])
+- The conditions, while functionally correct, are quite complex and could be more readable
+- Consider breaking down complex conditions into smaller, more manageable parts
+- Consider adding comments to explain the logic of complex conditions
+
+Key Recommendations:
+- Fix the bug in the multiples of 3 checking condition
+- Consider refactoring the complex conditions into separate helper functions for better readability
+- Add meaningful comments to explain the logic of the conditions
+- Consider using more descriptive variable names to improve code readability
+</feedback_summary>

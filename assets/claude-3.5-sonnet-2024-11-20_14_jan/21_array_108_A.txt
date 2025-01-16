@@ -1,0 +1,72 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.5):....2.5
+   TOTAL.......................7.8
+*/
+
+#include <stdio.h>
+int ugualiCompresi(int seq[], int l) {
+    int i;                
+    int verificata;        
+    verificata = 0;            
+    i = 0;
+    while(i<l-2 && !verificata) {
+        //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+        if((((seq[i]==seq[i+1]) && (seq[i]!=seq[i+2])) || ((seq[i]==seq[i+2]) && (seq[i]!=seq[i+1])) ||
+            ((seq[i+1]==seq[i+2]) && (seq[i+1]!=seq[i]))) && ((seq[i]+seq[i+1]>=10 && seq[i]+seq[i+1]<=20)
+            || (seq[i]+seq[i+2]>=10 && seq[i]+seq[i+1]<=20)
+            || (seq[i+1]+seq[i+2]>=10 && seq[i]+seq[i+1]<=20)))
+            verificata = 1;            
+        else
+            i++;        
+    }
+    //******** IF THE FUNCTION IS WRITTEN BELOW, YOU MUST DECLARE ITS PROTOTYPE -0.5
+    return verificata;
+}
+
+int main() {
+    int l;            
+    printf("Ciao! Sono un programma che, data una sequenza di interi, verifica se esiste una tripla di elementi ");
+    printf("consecutivi tale che almeno due elementi della tripla hanno somma compresa fra 10 e 20 ed esattamente ");
+    printf("due elementi della tripla sono fra loro uguali\n");
+    printf("Quanti interi vuoi inserire?\n");
+    scanf("%d", &l);
+    int seq[l];
+    for(int i=0; i<l; i++) {
+        printf("Introduci un intero: ");
+        scanf("%d", &seq[i]);
+    }
+    printf("\n");
+    if(ugualiCompresi(seq,l)) {
+        printf("\nEsiste nella sequenza una tripla di elementi consecutivi tale che almeno due elementi della tripla ");
+        printf("hanno somma compresa fra 10 e 20 (estremi inclusi) ed esattamente due elementi della tripla ");
+        printf("sono fra loro uguali.\n\n");
+    }
+    else {
+        printf("\nNON esiste nella sequenza una tripla di elementi consecutivi tale che almeno due elementi della ");
+        printf("tripla hanno somma compresa fra 10 e 20 (estremi inclusi) ed esattamente due elementi della tripla ");
+        printf("sono fra loro uguali.\n\n");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the main function with proper user interaction
+- Correct array bounds checking in the while loop
+- Proper handling of both conditions (sum between 10-20 and exactly two equal elements)
+- Clear and informative output messages
+
+Areas for Improvement:
+- The function should have a prototype declaration before main
+- The condition in the if statement could be more readable by breaking it into smaller logical parts
+- Consider using more meaningful variable names instead of 'verificata' and 'l'
+
+Key Recommendations:
+- Add function prototype at the beginning of the file
+- Break down complex conditions into smaller, more readable parts using intermediate boolean variables
+- Consider adding input validation for array length
+- Use more descriptive variable names to improve code readability
+</feedback_summary>

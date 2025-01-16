@@ -1,0 +1,67 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.2 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.2 - 0.3
+   TOTAL.......................7.3
+*/
+
+#include <stdio.h>
+int ugualiCompresi(int interi[],int l) {
+    int i=1;        
+    int esiste=0;   
+    //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+    while(i<l-1 && !esiste) {
+        if(((interi[i-1]+interi[i]>=10 && interi[i-1]+interi[i]<=20)
+        || (interi[i]+interi[i+1]>=10 && interi[i]+interi[i+1]<=20)
+        || (interi[i-1]+interi[i+1]>=10 && interi[i-1]+interi[i+1]<=20))
+        && ((interi[i]==interi[i-1] && interi[i]!=interi[i+1])
+        || (interi[i]==interi[i+1] && interi[i]!=interi[i-1])
+        || (interi[i-1]==interi[i+1] && interi[i-1]!=interi[i])))
+            esiste=1;
+        else 
+            i++;
+    }
+    return esiste;
+}
+
+int main() {
+    //******** BADLY INDENTED -0.2
+    int lunghezza;  
+    printf("Ciao utente sono un programma che controlla se esiste almeno una tripla di elementi consecutivi tale che almeno due elementi hanno una somma comprese tra 10 e 20 ed esattamente due elementi uguali tra loro\n") ;
+    printf("Tra quanti interi vuoi controllare?\n");
+    scanf("%d", &lunghezza);
+    int x[lunghezza];  
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+    for(int i=0;i<lunghezza;i++) {
+        printf("introduci un intero:");
+        scanf("%d", &x[i]);
+    }
+    if(ugualiCompresi(x,lunghezza))
+        printf("\nEsiste almeno una terna che soddisfa la richiesta\n");
+    else
+        printf("\nNon esiste almeno una terna che soddisfa la richiesta\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for checking consecutive triples
+- Proper handling of array bounds
+- Correct implementation of the equality condition for exactly two elements
+- Good implementation of the sum range check (10-20)
+- Proper user interaction in main function
+
+Areas for Improvement:
+- Code readability could be enhanced by breaking down complex conditions
+- Main function output messages could be more specific about what conditions are being checked
+- Code indentation needs improvement for better readability
+- Consider adding more descriptive variable names
+
+Key Recommendations:
+1. Break down complex conditions into smaller, more readable parts using intermediate boolean variables
+2. Improve code formatting and indentation
+3. Make output messages more specific about the conditions being checked
+4. Add comments to explain complex logic
+5. Consider using more descriptive variable names than 'esiste' and 'lunghezza'
+</feedback_summary>

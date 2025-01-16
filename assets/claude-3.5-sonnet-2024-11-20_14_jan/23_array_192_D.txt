@@ -1,0 +1,64 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.3 = 6.0 - 1.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.0):....1.3 = 2.0 - 0.5 - 0.2
+   TOTAL......................5.6
+*/
+
+#include<stdio.h>
+int restoDivisione(int* array, int l){
+	int resto=0;
+	//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < l - 2 -1.0
+	for(int i=0; i<=l-3;i++){
+		//******** TWO OR THREE COMBINATIONS ON THE TRIPLE CONDITION ARE MISSING -0.5
+		if((array[i]==(array[i+1]%array[i+2]))||(array[i]==(array[i+2]%array[i+1]))||
+		   (array[i+1]==(array[i]%array[i+2]))||(array[i+1]==(array[i+2]%array[i]))||
+		   (array[i+2]==(array[i]%array[i+1]))||(array[i+2]==(array[i+1]%array[i])))
+			resto=1;
+	}
+	//******** HOW DO YOU CONSIDER 0? -0.2
+	return resto;
+}
+
+int main(){
+	int l;
+	printf("Quanto %c lunga la tua sequeza di interi: ", 138);
+	scanf("%d", &l);
+	//******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+	int array[l];
+	printf("\nOra dammi una sequenza di interi: ");
+	for(int i=0; i<=l-1;i++)
+		scanf("%d", &array[i]);
+	if(l<=2)
+		printf("\nLa tua sequenza di interi %c troppo corta per essere analizzata", 138);
+	//******** UNCLEAR MESSAGE -0.2
+	if(restoDivisione(array, l))
+		printf("\nEseiste una terna di elementi adiacenti nella sequenza in cui uno %c\nil resto della divisione degli altri due", 138);
+	else
+		printf("\nNon esiste alcuna terna di elementi consecutivi in cui uno %c\nil resto della divsione degli altrie due", 138);
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the basic algorithm structure
+- Proper function separation between main and restoDivisione
+- Good handling of array traversal
+- Comprehensive check for all possible remainder combinations
+
+Areas for Improvement:
+- Array bounds checking needs correction to prevent buffer overflow
+- Consider edge cases involving zero in divisions
+- Array declaration should follow after length input
+- Messages could be clearer and more precise
+- Some remainder combinations might be missing from the check
+
+Key Recommendations:
+1. Fix the array bounds in the for loop to use i < l - 2
+2. Add explicit handling for cases involving zero in divisions
+3. Move array declaration after length validation
+4. Improve output message clarity
+5. Review and complete all possible remainder combinations in the check
+6. Add input validation for array length and elements
+</feedback_summary>

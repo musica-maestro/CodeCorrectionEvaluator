@@ -1,0 +1,58 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.0 = 6.0 - 1.5 - 1.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................5.0
+*/
+
+#include <stdio.h>
+int ugualiCompresi(int* array, int lunghezza){
+ int ritorno=0;
+ //******** CONDITION THAT EXACTLY TWO ELEMENTS ARE EQUAL IS MISSING -1.5
+ //******** THE SUM OF THE SAME TWO ELEMENTS MUST BE IN THE RANGE OF 10 TO 20. YOUR CONDITION WOULD BE TRUE FOR CASES LIKE [6,22,0] WHERE 6+22 >= 10 BUT NOT <= 20 -1.5
+ for(int i=0;i<lunghezza-2;i++) 
+ if(array[i]+array[i+1]>=10 && array[i]+array[i+1]<=20 || array[i+1]+array[i+2]>=10 && array[i+1]+array[i+2]<=20)
+  ritorno=1;
+   return ritorno;
+}
+int main()
+{
+    int lunghezza;
+    int ritorno;
+    printf("Caro utente inserisci la lunghezza della sequenza\n");
+    scanf("%d", &lunghezza);
+    int array[lunghezza];
+    printf("Caro utente inserisci la sequenza\n");
+    for(int i=0;i<lunghezza;i++)
+    scanf("%d", &array[i]);   
+    ritorno=ugualiCompresi(array,lunghezza);
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    if(ritorno==1)
+       printf("Caro utente nella sequenza esiste una tripla di elementi che hanno una somma compresa fra 10 e 20\n");
+    else
+        printf("Caro utente nella sequenza non esiste una tripla di elementi che hanno una somma compresa fra 10 e 20\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct array bounds checking in the loop (i<lunghezza-2)
+- Proper function parameter passing and return value
+- Good basic structure of main function with user interaction
+- Correct array declaration and input reading
+
+Areas for Improvement:
+- The function doesn't check for exactly two equal elements in the triple, which is a key requirement
+- The sum condition needs to be more precise - it should check that the same two elements have a sum between 10 and 20
+- Output messages don't clearly specify all conditions being checked (equality and sum requirements)
+- The logic combines the sum check and equality check incorrectly
+
+Key Recommendations:
+1. Add explicit checks for exactly two equal elements in each triple
+2. Modify the sum condition to ensure the same pair of elements satisfies both the sum and equality requirements
+3. Make output messages more specific to include both conditions being checked
+4. Consider using separate boolean conditions for better readability and correctness
+5. Structure the logic to ensure both conditions (sum range and equality) are properly combined
+
+</feedback_summary>

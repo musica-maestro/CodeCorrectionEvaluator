@@ -1,0 +1,86 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)........... 4.0 = 5.0 - 1.0
+countNumbers (2)..... 1.7 = 2.0 - 0.3
+readNumbers (2)...... 1.7 = 2.0 - 0.3
+writeNumbers(1)...... 0.7 = 1.0 - 0.3
+TOTAL................ 8.1
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int minimoDispari(int *seq, int lunghezza){
+    //******** The base case should be length<=2 (because you need to consider a triplet of elements) -1.0
+    if(lunghezza==3) 
+        risultato=1;
+    else{
+        minimo=seq[0];
+        if(seq[1] < minimo && seq[1] < seq[2])
+            minimo=seq[1];
+        else if(seq[2] < minimo && seq[2] < seq[1])
+            minimo=seq[2];
+        risultato=(minimo % 2 != 0) && minimoDispari(seq+1, lunghezza-1);
+    }
+    return risultato;
+}
+
+int quantiNumeri() {
+    int quanti=0;
+    FILE *fp = fopen("interi.dat", "rb");
+    //******** you don't check if the file opening failed if(fp==NULL) before using fp -0.3
+    if(fp==NULL)
+        printf("Apertura file non riuscita!\n");
+    else{
+        int numero;
+        while(fread(&numero, sizeof(int), 1, fp))
+            quanti++;
+    }
+    fclose(fp);
+    return quanti;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE *fp = fopen("interi.dat", "rb");
+    //******** you don't check if the file opening failed if(fp==NULL) before using fp -0.3
+    if(fp==NULL)
+        printf("Apertura file non riuscita!\n");
+    else
+        fread(sequenza, sizeof(int), lunghezza, fp);
+        fclose(fp);
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE *fp = fopen("interi.dat", "wb");
+    //******** you don't check if the file opening failed if(fp==NULL) before using fp -0.3
+    if(fp==NULL)
+        printf("Salvataggio non riuscito!\n");
+    else
+        fwrite(sequenza, sizeof(int), lunghezza, fp);
+        fclose(fp);
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of file I/O operations
+- Correct use of binary file operations (fread/fwrite)
+- Well-structured main function with clear user interaction
+- Proper memory management for arrays
+
+Areas for Improvement:
+- The base case in minimoDispari function needs revision. It should handle cases where length <= 2
+- File operations should check for NULL before proceeding with read/write operations
+- Error handling in file operations could be more robust
+- Code indentation could be improved for better readability
+
+Key Recommendations:
+1. Modify the base case in minimoDispari to handle arrays with length <= 2
+2. Add proper error handling for file operations before attempting to use the file pointer
+3. Consider adding error return values for file operation functions
+4. Maintain consistent code indentation throughout the program
+</feedback_summary>

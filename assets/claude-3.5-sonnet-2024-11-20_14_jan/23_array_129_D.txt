@@ -1,0 +1,69 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.8 = 6.0 - 1.0 - 0.2
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................6.6/8.0
+*/
+
+#include <stdio.h>  
+int RestoDivisione(int lung,int array[]){
+    int i=0;
+    int trovato=0;
+//******** TWO OR THREE COMBINATIONS ON THE TRIPLE CONDITION ARE MISSING -1.0
+do {
+if((array[i]%array[i+1]==array[i+2])||(array[i+1]%array[i]==array[i+2])||
+   (array[i+1]%array[i+2]==array[i])||(array[i+2]%array[i+1]==array[i])||
+   (array[i]%array[i+2]==array[i+1])||(array[i+2]%array[i]==array[i+1])){
+    trovato=1;
+}else{
+    i++;
+} 
+//******** HOW DO YOU CONSIDER 0? -0.2
+}while(i<lung-2&&trovato==0);
+return trovato;
+}
+
+int main(){
+    int lung,i,risultato;
+    printf("inserire la lunghezza dell array\n");
+    scanf("%d",&lung);
+    printf("la lunghezza dell array e' %d \n",lung);
+    int array[lung];
+    for( i=0;i<lung;i++){
+        printf("inserire un numero\n");
+        scanf("%d",&array[i]);
+    }
+    printf("i numeri presenti nell array sono:\n");
+    for( i=0;i<lung;i++){
+        printf("%d\n",array[i]);
+    }
+    risultato=RestoDivisione(lung,array);
+//******** UNCLEAR MESSAGE -0.2
+    if(risultato==1){
+        printf("esiste una terna di elementi adiacenti nell array  in cui uno dei tre elementi dell array e' il resto  della divisione degli altri due\n");
+    }else{
+        printf("  non esiste una terna di elementi adiacenti nell array  in cui uno dei tre elementi dell array e' il resto  della divisione degli altri due\n");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the do-while loop structure
+- Proper array traversal considering adjacent triples
+- Good implementation of the main function with user interaction
+- Clear variable naming and logical flow
+
+Areas for Improvement:
+- The remainder check doesn't cover all possible combinations between three numbers
+- No handling for division by zero cases
+- Output messages could be more concise and clearer
+- Consider edge cases when working with remainders
+
+Key Recommendations:
+1. Add all possible combinations for remainder checking between three numbers
+2. Implement validation for division by zero
+3. Make output messages more concise and user-friendly
+4. Add input validation for array length and elements
+</feedback_summary>

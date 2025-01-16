@@ -1,0 +1,69 @@
+I'll grade the student's submission following the provided format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........6.0
+   MAIN PROGRAM (max 2.5):....2.2 = 2.5 - 0.3
+   TOTAL.......................8.2
+*/
+
+#include <stdio.h>
+int compreso(int n) {return n >= -10 && n <= 10;}
+int multiplo(int n) {return n%3 == 0;}
+int compresiMultipli3(int seq[], int l)
+{
+    int esiste = 0;
+    short i = 0;
+    while(!esiste && i < l - 2)
+    {
+        if( ((compreso(seq[i]) && compreso(seq[i+1])) ||
+            (compreso(seq[i+1]) && compreso(seq[i+2])) ||
+            (compreso(seq[i]) && compreso(seq[i+2])))  &&
+            ((multiplo(seq[i]) && multiplo(seq[i+1]) && !multiplo(seq[i+2])) ||
+            (multiplo(seq[i]) && multiplo(seq[i+2]) && !multiplo(seq[i+1])) ||
+            (multiplo(seq[i+1])&& multiplo(seq[i+2]) && !multiplo(seq[i]))))
+                esiste = 1;
+        else
+            i++;
+    }
+    return esiste;
+}
+int main()
+{
+    int l;
+    printf("Quanti interi ha la sequenza?\n");
+    scanf("%d", &l);
+    int seq[l];
+    for(short i = 0; i < l; i++)
+    {
+        printf("\nInserisci l'elemento numero %d: ",i+1);
+        scanf("%d", &seq[i]);
+    }
+    if(compresiMultipli3(seq, l))
+        printf("\nEsiste una tripla di elementi consecutivi che contiene almeno due elementi il cui valore e' compreso tra -10 e 10 e che contienedue elementi multipli di 3\n");
+    else
+        printf("\nNon esiste una tripla di elementi consecutivi che contiene almeno due elementi il cui valore e' compreso tra -10 e 10 e che contienedue elementi multipli di 3\n");
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the required function compresiMultipli3
+- Proper use of helper functions (compreso and multiplo) to improve code readability
+- Correct handling of array bounds in the loop (i < l - 2)
+- Efficient use of boolean flag (esiste) to control loop execution
+- Correct implementation of the conditions for both requirements (numbers between -10 and 10 and multiples of 3)
+
+Areas for Improvement:
+- The output messages could be more specific and better formatted. Consider breaking down the long message into multiple lines or adding specific details about which elements satisfy the conditions.
+- Consider adding input validation for the sequence length to ensure it's positive and reasonable.
+
+Key Recommendations:
+- Improve output message clarity and formatting
+- Add input validation for array length
+- Consider using more descriptive variable names (e.g., 'found' instead of 'esiste')
+- Add comments to explain the complex logical conditions in the main if statement
+</feedback_summary>
+
+The student's implementation is very good overall, with just minor improvements needed in the user interface aspects. The core algorithm is correctly implemented with proper handling of all cases and efficient boolean control flow.

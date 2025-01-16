@@ -1,0 +1,69 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL......................5.8
+*/
+
+#include <stdio.h>
+int duePositivi(int s[], int l){
+    int verifica; 
+    int i; 
+    verifica=1; 
+    i=0;
+    //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+    while(verifica&&i<l-2){ 
+        if((s[i]>0&&s[i+1]>0)||(s[i+2]>0&&s[i]>0)||(s[i+1]>0&&s[i+2]>0))
+            i++;
+        else
+        verifica=0;
+    }
+    //******** SETTING THE VARIABLE TO 1 IS NOT NECESSARY, BUT SAVED BY BOOLEAN IN LOOP CONDITION -0.5
+    return verifica;
+}
+
+int main(){
+    int dimensione; 
+    printf("Quanti numeri vuoi inserire?\n");
+    scanf("%d", &dimensione);
+    int a[dimensione];
+    int i;
+    for(i=0; i<dimensione; i++){ 
+        printf("Inserisci un numero.\n");
+        scanf("%d", &a[i]);
+    }
+    //******** UNCLEAR MESSAGE -0.2
+    if(duePositivi(a, dimensione))
+        printf("Rispetta l'istanza");
+    else
+        printf("Non rispetta l'istanza");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct function structure with proper parameters
+- Appropriate use of boolean flag for verification
+- Good array handling and loop implementation
+- Basic input/output functionality implemented correctly
+
+Areas for Improvement:
+- The triple condition logic is incorrect. It should check for exactly two positives, but current implementation checks for at least two positives
+- The initialization of verifica=1 is redundant given the while loop condition
+- Output messages could be more descriptive and clear to users
+- Consider adding input validation for array size
+
+Key Recommendations:
+1. Modify the triple condition to check for exactly two positives by using proper logical combinations
+2. Make output messages more descriptive (e.g., "The sequence contains exactly two positive numbers in each triple" vs "Rispetta l'istanza")
+3. Consider adding input validation for the array size to prevent negative or extremely large values
+4. Remove redundant variable initialization where not necessary
+</feedback_summary>
+
+The main issues in this submission are:
+1. The logic for checking exactly two positives in each triple is incorrect
+2. The output messages are not very clear or informative
+3. There's some redundant code that could be optimized
+
+Despite these issues, the overall structure is good and the main functionality is mostly present, leading to a total score of 5.8/8.0.

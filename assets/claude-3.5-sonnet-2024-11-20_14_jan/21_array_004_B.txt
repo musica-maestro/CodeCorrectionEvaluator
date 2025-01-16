@@ -1,0 +1,62 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.2 - 0.5
+   MAIN PROGRAM (max 2.5):....2.5
+   TOTAL.......................7.8
+*/
+
+#include <stdio.h>
+int maggiori5Pari(int sequenza[], int lunghezza) {
+    int i;
+    int verificato;
+    verificato = 1;
+    //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+    for(i=0; i<lunghezza-2 && verificato; i++)
+        if(!(((sequenza[i]>=5 && sequenza[i+1]>=5 && sequenza[i+2]<5)
+        ||(sequenza[i+1]>=5 && sequenza[i+2]>=5 && sequenza[i]<5)|
+        |(sequenza[i]>=5 && sequenza[i+2]>=5 && sequenza[i+1]<5)) &&
+        ((sequenza[i]%2==0 && sequenza[i+1]%2==0)
+        ||(sequenza[i+1]%2==0 && sequenza[i+2]%2==0)
+        ||(sequenza[i]%2==0 && sequenza[i+2]%2==0)
+        ||(sequenza[i]%2==0 && sequenza[i+1]%2==0 && sequenza[i+2]%2==0))))
+            verificato=0;
+    return verificato;
+}
+
+//******** MISSING FUNCTION PROTOTYPE -0.5
+int main() {
+    int i;
+    int lunghezza;
+    printf("Inserisci la lunghezza della tua sequenza: ");
+    scanf("%d", &lunghezza);
+    int sequenza[lunghezza];
+    for(i=0; i<lunghezza; i++){
+        printf("\nInserisci il %d%c elemento: ", i+1, 167);
+        scanf("%d", &sequenza[i]);
+    }
+    if(maggiori5Pari(sequenza, lunghezza)==1)
+        printf("La sequenza inserita contiene esattamente due valori maggiori o uguali a 5 e almeno due elementi pari\n");
+    else
+        printf("La sequenza inserita NON contiene esattamente due valori maggiori o uguali a 5 e almeno due elementi pari\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for checking exactly two elements ≥5 and at least two even elements
+- Proper array bounds checking in the loop
+- Good user interaction in main() with clear prompts
+- Appropriate use of boolean flag (verificato) for universal verification
+- Clear output messages indicating the result
+
+Areas for Improvement:
+- The condition in the maggiori5Pari function is complex and could be more readable by breaking it down into smaller logical parts
+- Missing function prototype before main()
+- Consider adding input validation for the sequence length
+
+Key Recommendations:
+- Break down the complex condition into smaller, more readable sub-conditions using intermediate boolean variables
+- Add the function prototype at the beginning of the file
+- Consider adding bounds checking for the sequence length input
+-

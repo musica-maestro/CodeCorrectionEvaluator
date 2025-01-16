@@ -1,0 +1,77 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....2.0 = 6.0 - 2.0 - 1.5 - 0.5
+   MAIN (max 2.0):....1.0 = 2.0 - 0.5 - 0.5
+   TOTAL:....3.0
+*/
+
+#include <stdio.h>
+int dueUnaCifra(int seq[], int dim){
+int i; 
+	for(i=0;i<dim-2;i++){ 
+		//******** THIS IS A UNIVERSAL VERIFICATION, NOT AN EXISTENTIAL ONE - RETURNS TOO EARLY -2.0
+		if((seq[i]<=9 && seq[i+1]<=9 && seq[i+2]>9) ||
+		   (seq[i]<=9 && seq[i+1]>9 && seq[i+2]<=9) ||
+		   (seq[i]>9 && seq[i+1]<=9 && seq[i+2]<=9)){
+			return 1; 
+		} 
+		else
+			return 0; 
+}
+//******** CONDITION ON THE TRIPLE IS WRONG - SHOULD CHECK FOR AT LEAST TWO SINGLE DIGITS -1.5
+//******** 2 RETURNS IS NOT STRUCTURED PROGRAMMING -0.5
+}
+
+int main()
+{
+	int i;
+	int lung;
+	//******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+	int numeri[lung]; 
+	printf("Sono un programma che verifica se in tutte le triple di adiacenti esiste un numero a due cifre" );
+	printf("Inserisci quanti interi vuoi mettere in una sequenza da verificare ");
+	scanf("%d", &lung);
+	for(i=0;i<lung; i++){
+		printf("\ndammi un numero ");
+		scanf("%d", &numeri[i]);
+	}
+	//******** NON-EXPLANATORY OUTPUT -0.5
+	if(dueUnaCifra(numeri, lung)){
+		printf("La verifica e' positiva");  
+	}
+else
+	printf("La verifica e' negativa non tutte le terne hanno un numero di due cifre");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Function and main program are separated
+- Input/output interaction is implemented
+
+Areas for Improvement:
+1. Logic Implementation:
+   - The function returns after checking only the first triple instead of verifying all triples
+   - The condition for checking single digits needs to be reversed (should check for at least two single digits)
+
+2. Code Structure:
+   - Multiple return statements make the code less maintainable
+   - Array declaration should occur after getting its size
+   - Output messages could be more clear and informative
+
+3. Algorithm Design:
+   - The verification should continue through all triples (universal verification)
+   - The logic for checking single digits needs to be corrected
+
+Key Recommendations:
+1. Implement a proper universal verification by:
+   - Using a boolean variable to track the condition
+   - Checking all triples before returning the final result
+2. Restructure the code to use a single return statement
+3. Fix array declaration order in main
+4. Improve output messages clarity
+5. Correct the logic for checking single-digit numbers in triples
+
+</feedback_summary>

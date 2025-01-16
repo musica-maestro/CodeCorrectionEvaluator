@@ -1,0 +1,111 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........3.5 = 5.0 - 1.0 - 0.5
+countNumbers (2).....2.0
+readNumbers (2)......1.7 = 2.0 - 0.3
+writeNumbers(1)......0.7 = 1.0 - 0.3
+TOTAL................7.9/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void delay(int sec){
+    int millisec = 1*sec;
+    clock_t start = clock();
+    while(clock() < start + millisec);
+}
+
+int minimoDispari(int *seq, int lunghezza){
+    int tripla; 
+    //******** The base case should be length<=2 (because you need to consider a triplet of elements) -0.5
+    if(lunghezza<3)
+        tripla = 1;
+    else    
+        //******** Recursion should be done on the array length -1.0
+         tripla = (((seq[lunghezza-1]<seq[lunghezza-2] && seq[lunghezza-1]<seq[lunghezza-3]) && seq[lunghezza-1]%2!=0) ||
+                ((seq[lunghezza-2]<seq[lunghezza-1] && seq[lunghezza-2]<seq[lunghezza-3]) && seq[lunghezza-2]%2!=0) ||
+                ((seq[lunghezza-3]<seq[lunghezza-1] && seq[lunghezza-3]<seq[lunghezza-2]) && seq[lunghezza-3]%2!=0)) &&
+                minimoDispari(seq, lunghezza-1);
+    return tripla;
+}
+
+int quantiNumeri() {
+    int count = 0;  
+    FILE* fp = fopen("interi.txt", "r");
+    if(fp!=NULL){   
+        int n;
+        while(fscanf(fp, "%d", &n)!=EOF)
+            count++;
+        fclose(fp);
+    }
+    return count;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE* fp = fopen("interi.txt", "r");
+    if(fp==NULL)    
+        printf("\nFile non trovato.\n");
+    else{   
+        //******** Variable lunghezza shadows parameter -0.3
+        int lunghezza = quantiNumeri();
+        for(int i=0; i<lunghezza; i++)
+            fscanf(fp, "%d", &sequenza[i]);
+        fclose(fp);
+        delay(1000);
+        printf("\n");
+        printf("\nSto recuperando la sequenza");
+        delay(1000); printf(".");
+        delay(1000); printf(".");
+        delay(1000); printf(".");
+        delay(1000);
+        printf("\n====================\n");
+        printf("Sequenza recuperata.\n");
+        printf("====================\n\n\n");
+    }
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE* fp = fopen("interi.txt", "w");
+    //******** Missing file open check if(fp==NULL) -0.3
+    if(fp==NULL)    
+        printf("\nSalvataggio sequenza non riuscito.\n");
+    else{   
+        for(int i=0; i<lunghezza; i++)
+            fprintf(fp, "%d ", sequenza[i]); 
+        fclose(fp); 
+        printf("\nSalvataggio effettuato.\n");
+    }
+}
+
+[Rest of main() function...]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of file I/O operations in quantiNumeri()
+- Proper file handling with open/close operations
+- Good error messaging for file operations
+- Correct implementation of basic file reading and writing functions
+
+Areas for Improvement:
+- The minimoDispari function's recursion implementation needs revision:
+  * Base case should handle arrays of length ≤ 2 properly
+  * Recursion should be performed on array length more effectively
+- File handling could be more robust:
+  * Add consistent NULL checks for file operations
+  * Avoid variable shadowing in leggiNumeri function
+- Code organization:
+  * Consider separating the delay/UI elements from core functionality
+  * Add more descriptive error messages
+
+Key Recommendations:
+1. Revise the recursive implementation to properly handle base cases
+2. Add consistent error checking for all file operations
+3. Fix variable shadowing in leggiNumeri function
+4. Consider splitting UI/delay functionality from core file operations
+5. Add more comprehensive error handling and user feedback
+</feedback_summary>

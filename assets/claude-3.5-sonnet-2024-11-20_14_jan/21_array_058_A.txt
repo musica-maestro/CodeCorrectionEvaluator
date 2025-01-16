@@ -1,0 +1,64 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.5 = 6.0 - 1.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................6.5
+*/
+
+#include <stdio.h>
+int ugualiCompresi(int *array, int lunghezza) {
+	int i;             
+	int risultato = 0; 
+	int somma;         
+	int uguaglianze;   
+	//******** CONDITION ON INDEX IS WRONG i < length-2 -1.5
+	for (i = 2; i < lunghezza; i++) {
+		somma = array[i-2] + array[i-1] + array[i];
+		uguaglianze = (array[i] == array[i-1]) + (array[i-1] == array[i-2]) + (array[i] == array[i-2]);
+		if ((uguaglianze == 1) && (somma >= 10 && somma <= 20)) {
+			risultato = 1;
+			break;
+		}
+	}
+	return risultato;
+}
+
+int main(int argc, char **argv) {
+	int i;         
+	int lunghezza; 
+	printf("Di quanti numeri %c composta la sequenza?\n", 138);
+	scanf("%d", &lunghezza);
+	int array[lunghezza]; 
+	for(i = 0; i < lunghezza; i++) {
+		printf("Inserisci il numero #%d\n", i+1);
+		scanf("%d", &array[i]);
+	}
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+	if (ugualiCompresi(array, lunghezza))
+		printf("La sequenza rispetta la condizione\n"); 
+	else
+		printf("La sequenza non rispetta la condizione\n");
+	return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of the equality check logic using the uguaglianze variable
+- Proper use of break statement to exit loop when condition is found
+- Well-structured main function with clear user interaction
+- Correct implementation of array input
+
+Areas for Improvement:
+- The loop condition in ugualiCompresi should be i < lunghezza-2 to avoid array bounds issues
+- The output messages should be more specific about what condition the sequence satisfies
+- Consider adding input validation for the array length
+- The sum calculation checks all three elements together instead of pairs
+
+Key Recommendations:
+1. Fix the loop bounds to prevent potential array access violations
+2. Make output messages more descriptive to clearly indicate what property was checked
+3. Consider adding bounds checking for array length input
+4. Review the problem requirements carefully regarding the sum condition between pairs of elements
+</feedback_summary>

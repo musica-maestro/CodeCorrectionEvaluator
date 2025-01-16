@@ -1,0 +1,98 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)............3.0 = 5.0 - 1.0 - 0.5 - 0.5
+countNumbers (2).......1.2 = 2.0 - 0.5 - 0.3
+readNumbers (2)........1.2 = 2.0 - 0.5 - 0.3
+writeNumbers(1)........0.7 = 1.0 - 0.3
+TOTAL..................6.1/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimoPari(int *seq, int lunghezza){
+    int verificata=0;
+    //******** Base case should be lunghezza<=2 since we need triplets -0.5
+    if(lunghezza<3) 
+        verificata=1;
+    else {
+        //******** Complex and error-prone way to check maximum of triplet -1.0
+        verificata=((seq[lunghezza-1]>seq[lunghezza-2] && seq[lunghezza-1]>seq[lunghezza-3] && seq[lunghezza-1]%2==0)
+        || (seq[lunghezza-2]>seq[lunghezza-1] && seq[lunghezza-2]>seq[lunghezza-3] && seq[lunghezza-2]%2==0)
+        || (seq[lunghezza-3]>seq[lunghezza-1] && seq[lunghezza-3]>seq[lunghezza-2] && seq[lunghezza-3]%2==0))
+        &&  massimoPari(seq,lunghezza-1);
+    }
+    return verificata;
+}
+
+int quantiNumeri() {
+    int quanti=0;
+    int numero;
+    int seq;
+    FILE *fp=fopen("Numeri.dat","rb");
+    //******** Missing else after NULL check -0.3
+    if(fp==NULL) 
+        printf("File inesistente o impossibile da aprire\n");
+    else
+        while(!seq) {
+            //******** Incorrect loop condition for counting numbers -0.5
+            seq=fread(&numero,sizeof(int),1,fp);
+            quanti++;
+    }
+    fclose(fp);
+    return quanti;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE *fp=fopen("Numeri.dat","rb");
+    if(fp==NULL)
+        printf("Impossibile leggere il file\n");
+    else {
+        //******** Incorrect fread syntax - using &sequenza when sequenza is already an address -0.5
+        sequenza=fread(&sequenza,sizeof(int),lunghezza,fp); 
+        //******** Error in assignment - assigning int to pointer -0.3
+    }                                                       
+    fclose(fp);
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE *fp=fopen("Numeri.dat","wb");
+    //******** Missing NULL check for file opening -0.3
+    while(lunghezza!=0)
+        sequenza=fwrite(&sequenza,sizeof(int),lunghezza,fp);
+}
+
+[Rest of the main function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic file operations implemented
+- Recursive approach used for maxEven function
+- Proper file closing in most functions
+
+Areas for Improvement:
+1. massimoPari function:
+   - Base case needs correction to handle triplets properly
+   - Simplify the maximum checking logic
+   - Consider using a helper function for clarity
+
+2. File Operations:
+   - Add proper error handling for file operations
+   - Fix fread/fwrite syntax issues
+   - Improve file reading logic in quantiNumeri()
+
+3. General Structure:
+   - Add proper error handling throughout
+   - Fix pointer arithmetic in file operations
+   - Improve variable naming for clarity
+
+Key Recommendations:
+1. Implement proper NULL checks for all file operations
+2. Restructure massimoPari to handle triplets more efficiently
+3. Fix file reading/writing syntax using correct pointer handling
+4. Add proper error messages and handling
+5. Review and correct the binary file operations syntax
+</feedback_summary>

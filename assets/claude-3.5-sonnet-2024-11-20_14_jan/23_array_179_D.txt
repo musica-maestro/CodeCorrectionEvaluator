@@ -1,0 +1,79 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.8 = 6.0 - 1.0 - 0.2
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................6.6
+*/
+
+#include <stdio.h>
+int resto (int, int, int);
+int restoDivisione (int *, int);
+int main () {
+    printf ("sono un programma che analizza una sequenza e ti dico ");
+    printf ("se esiste almeno una tripla\nin cui un elemento %c ",138);
+    printf ("uguale al resto della divisione tra interi tra gli altri due,\n");
+    int lunghezza;        
+    printf ("inserisci la lunghezza della sequenza:\n");
+    do {
+        scanf ("%d",&lunghezza);
+        if (lunghezza<3)
+            printf ("devi inserire almeno tre valori, riprova\n");
+    } while (lunghezza<3);
+    int sequenza [lunghezza];        
+    printf  ("inserisci i %d valori:\n",lunghezza);
+    for (int i=0; i<lunghezza; i++)
+        scanf ("%d",&sequenza[i]);
+    //******** UNCLEAR MESSAGE -0.2
+    if (restoDivisione(sequenza,lunghezza)) {
+        printf ("si, esiste almeno una tripla in cui un elemento %c ",138);
+        printf ("uguale al resto della\ndivisione tra interi tra gli altri due\n");
+    }
+    else {
+        printf ("no, non esiste almeno una tripla in cui un elemento %c ",138);
+        printf ("uguale al resto della\ndivisione tra interi tra gli altri due\n");
+    }
+}
+
+int resto (int a, int b, int c) {
+    return (a == (b%c));
+}
+
+int restoDivisione (int s[], int l) {
+    int i = 0;            
+    int esiste = 0;        
+    //******** HOW DO YOU CONSIDER 0? -0.2
+    while (i<l-2 && !esiste) {
+        if (resto(s[i],s[i+1],s[i+2]) || resto(s[i],s[i+2],s[i+1]) ||
+            resto(s[i+1],s[i],s[i+2]) || resto(s[i+1],s[i+2],s[i]) ||
+            resto(s[i+2],s[i],s[i+1]) || resto(s[i+2],s[i+1],s[i])) {
+            esiste = 1;        
+        }
+        else
+            i++;        
+    }
+    //******** WITHOUT THE BOOLEAN VARIABLE IN THE CONDITION, EVEN IF YOU FIND A TRIPLE THAT SATISFIES THE PROPERTY, YOU CONTINUE TO CHECK -1.0
+    return esiste;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the existential verification algorithm
+- Proper handling of array bounds in the main loop
+- Good input validation for sequence length
+- Complete check of all possible combinations for each triple
+- Well-structured helper function (resto) for checking remainder condition
+
+Areas for Improvement:
+- The output messages could be clearer and more user-friendly
+- The code doesn't handle the case where one of the numbers is 0 in the division
+- The loop control could be more efficient by avoiding the need for the boolean flag
+- Consider adding more descriptive variable names for better code readability
+
+Key Recommendations:
+- Add validation for division by zero cases
+- Improve output messages to be more descriptive and user-friendly
+- Consider restructuring the loop to avoid using the boolean flag
+- Add comments to explain the logic of the triple checking combinations
+</feedback_summary>

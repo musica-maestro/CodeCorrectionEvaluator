@@ -1,0 +1,75 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........3.5 = 5.0 - 1.0 - 0.5
+countNumbers (2).....2.0
+readNumbers (2)......2.0  
+writeNumbers(1)......0.7 = 1.0 - 0.3
+TOTAL................8.2/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+//******** Missing function prototype for minimo() -0.3
+int minimoDispari(int *seq, int lunghezza){
+    int r;
+    if(lunghezza<3)
+        r=1;
+    else
+        //******** Incorrect logical operator for universal check (should use &&) -1.0
+        r= (!(minimo(seq[0],seq[1],seq[2])%2==0) && minimoDispari(seq+1, lunghezza-1));
+    return r;
+}
+
+int minimo(int a, int b, int c){
+    //******** Missing return for case when numbers are equal -0.5
+    if(a<b && a<c) return a;   
+    if(b<a && b<c) return b;
+    if(c<a && c<b) return c;
+}
+
+int quantiNumeri() {
+    int v[100], i=0;
+    FILE* file=fopen("interi.txt","r");
+    while(fscanf(file,"%d",&v[i])>0)
+        i++;
+    return  i;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE* file=fopen("interi.txt","r");
+    for(int i=0; i<lunghezza; i++)
+    fscanf(file,"%d",&sequenza[i]);
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE* file= fopen("interi.txt","w");
+    //******** Missing file open check (if(file==NULL)) -0.3
+    for(int i=0;i<lunghezza;i++)
+    fprintf(file,"%d ",sequenza[i]);
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of file reading and counting functions
+- Good recursive structure in minimoDispari function
+- Proper parameter passing and array handling
+
+Areas for Improvement:
+- The minimoDispari function needs better logical operators for universal checking
+- Function prototypes should be declared at the beginning
+- File operations need error checking
+- The minimo function should handle cases when numbers are equal
+
+Key Recommendations:
+1. Add proper error handling for file operations
+2. Declare function prototypes at the start of the program
+3. Fix the logical operator in minimoDispari to properly check all triplets
+4. Complete the minimo function to handle all possible cases
+5. Add comments to improve code readability
+</feedback_summary>

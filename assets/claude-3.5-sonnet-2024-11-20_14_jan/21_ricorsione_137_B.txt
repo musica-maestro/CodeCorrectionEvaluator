@@ -1,0 +1,85 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* 
+minOdd (5)........... 1.5 = 5.0 - 2.0 - 1.5
+countNumbers (2)..... 0.0 = 2.0 - 2.0
+readNumbers (2)...... 0.5 = 2.0 - 1.5
+writeNumbers(1)...... 0.3 = 1.0 - 0.7
+TOTAL................ 2.3
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+int minimoDispari(int *seq, int lunghezza){
+        int lungezza=0;                   
+        //******** MISSING BASE CASE -1.5
+        //******** INCORRECT LOGIC FOR MINIMUM ODD CHECK -2.0
+        if((seq[0] + seq[1] + seq[2])!=0)
+        lunghezza =1;
+}
+
+int quantiNumeri() {
+        //******** MISSING IMPLEMENTATION OF countNumbers FUNCTION -2.0
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+        //******** INCORRECT FILE OPENING SYNTAX -0.4
+        FILE *fp= ("interi.txt","r");
+        //******** MISSING PROPER FILE READING IMPLEMENTATION -1.5
+        if(fp==NULL)
+                printf("nulla da visualizzare");
+                else {
+                        printf("ecco gli interi");
+                }
+        fclose(fp);
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+        //******** INCORRECT FILE OPENING SYNTAX -0.4
+        FILE *fp= ("interi.txt","w");
+        //******** MISSING PROPER FILE WRITING IMPLEMENTATION -0.3
+        if(fp==NULL)
+                printf("nulla da visualizzare");
+        else {
+                printf("ecco gli interi");
+        }
+        fclose(fp);
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic file handling structure attempted
+- Main function properly handles user input
+- Proper file closure implemented
+
+Areas for Improvement:
+1. minimoDispari function:
+   - Missing base case for recursion
+   - Incorrect logic for checking odd minimum
+   - Need to implement proper triplet checking
+
+2. quantiNumeri function:
+   - Complete implementation missing
+   - Should count numbers from file
+
+3. leggiNumeri function:
+   - Fix file opening syntax (use fopen)
+   - Implement actual file reading logic
+   - Add proper error handling
+
+4. scriviNumeri function:
+   - Fix file opening syntax
+   - Implement actual file writing logic
+   - Add proper error handling
+
+Key Recommendations:
+1. Implement proper recursive logic in minimoDispari
+2. Complete the quantiNumeri function to count file elements
+3. Use proper file handling functions (fopen, fscanf/fread)
+4. Implement actual file reading and writing operations
+5. Add proper error checking and handling throughout
+</feedback_summary>

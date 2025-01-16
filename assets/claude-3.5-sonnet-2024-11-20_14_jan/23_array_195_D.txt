@@ -1,0 +1,66 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.0 = 6.0 - 1.0
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL......................6.8/8.0
+*/
+
+#include <stdio.h>
+int restoDivisione(int interi[], int lunghezza){
+	int esiste=0; 
+	int i=0;      
+	//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lunghezza - 2 -1.0
+	while(i<lunghezza-3 && !esiste){  
+         if( (interi[i]==(interi[i+1]%interi[i+2]))||
+         	 (interi[i]==(interi[i+2]%interi[i+1])) ||
+         	 (interi[i+1]==(interi[i]%interi[i+2])) ||
+         	 (interi[i+1]==(interi[i+2]%interi[i])) ||
+         	 (interi[i+2]==(interi[i]%interi[i+1])) ||
+         	 (interi[i+2]==(interi[i+1]%interi[i])) )
+         	esiste=1;
+         else
+         	i++;
+	}
+	return esiste;
+}
+int main(){
+	int dimensione; 
+	printf("Questo programma prende in input una sequenza di interi e ");
+	printf("verifica se esiste una tripla di interi consecutivi che \nsoddisfano ");
+	printf("la seguente condizione: uno dei tre deve essere il resto della divisione ");
+	printf("intera degli altri due. \n\n");
+	//******** UNCLEAR MESSAGE -0.2
+	printf("Caro utente, quanti numeri vuoi inserire nella sequenza?"); 
+	scanf("%d", &dimensione);
+	int sequenza[dimensione]; 
+	printf("\n");
+	for(int i=0;i<dimensione;i++){
+		printf("Inserisci un intero: ");
+		scanf("%d", &sequenza[i]);
+	}
+	if(restoDivisione(sequenza,dimensione))
+		printf("La tripla di interi cercate esiste!");
+	else
+		printf("La tripla di interi cercata non esiste!");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of all six possible remainder combinations in the triple check
+- Good use of boolean flag (esiste) for early termination
+- Well-structured main function with clear user interaction
+- Proper parameter passing and function structure
+
+Areas for Improvement:
+- Array bounds checking in restoDivisione function is incorrect (should be lunghezza-2 instead of lunghezza-3)
+- User prompts could be more professional and clearer
+- Consider adding input validation for array size
+
+Key Recommendations:
+1. Fix the array bounds check in the while loop condition to prevent potential buffer overflows
+2. Make user messages more professional and precise
+3. Consider adding input validation to ensure dimensione is positive and reasonable
+4. Add error checking for division operations to handle potential division by zero cases
+</feedback_summary>

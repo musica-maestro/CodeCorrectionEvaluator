@@ -1,0 +1,65 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.2 - 0.5
+   MAIN PROGRAM (max 2.5):....2.5
+   TOTAL.......................7.8
+*/
+
+#include <stdio.h>
+int maggiore5Pari(int array[], int n){
+	int tutte=1;				
+	int i=0;					
+	while (tutte && i<n-2){
+		//******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+		if (((array[i]>=5 && array[i+1]>=5 && array[i+2]<5)
+		|| (array[i]>=5 && array[i+2]>=5 && array[i+1]<5)
+		|| (array[i+2]>=5 && array[i+1]>=5 && array[i]<5)) &&
+		((array[i]%2==0 && array[i+1]%2==0)
+		|| (array[i+2]%2==0 && array[i+1]%2==0)
+		|| (array[i]%2==0 && array[i+2]%2==0) || (array[i]%2==0 && array[i+1]%2==0 && array[i+2]%2==0)))
+				i++; 
+		else 
+			tutte=0;
+	}
+	//******** MISSING A COMBINATION (NOT ALL THE PAIRS ARE CONSIDERED) -0.5
+	return tutte;
+}
+
+int main(){
+	int num; 					
+	printf("Caro utente,\nInserisci qui di seguito la lunghezza della tua sequenza di interi (maggiore di zero): ");
+	scanf("%d", &num);
+	int sequenza[num];			
+	for (int i=0; i<num; i++){
+		printf("Inserisci il %d%c numero intero della sequenza: ", i+1, 169);
+		scanf("%d",&sequenza[i]);
+	}
+	if (maggiore5Pari(sequenza, num)) 
+		printf("Ogni tripla della sequenza da te inserita ha esattamente due elementi maggiori di 5 ed almeno due elementi pari.");
+	else 
+		printf("Non tutte le triple della sequenza da te inserita hanno esattamente due elementi maggiori di 5 ed almeno due elementi pari.");
+	return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the main function with proper user interaction
+- Good array handling and input collection
+- Proper function structure with boolean flag approach
+- Correct loop termination condition (i<n-2)
+
+Areas for Improvement:
+- The condition in the maggiore5Pari function is correct but could be more readable by breaking it into smaller logical parts
+- The even number check could be more comprehensive - currently missing some combinations of pairs
+- Consider using more descriptive variable names and adding comments to explain complex logic
+
+Key Recommendations:
+- Break down complex conditions into smaller, more manageable parts using intermediate boolean variables
+- Add comments to explain the logic of complex conditions
+- Consider restructuring the even number check to ensure all possible combinations are covered
+- Use more descriptive variable names instead of generic ones like 'tutte'
+</feedback_summary>
+
+The student's implementation is generally good, with only minor issues in readability and completeness of the conditions. The main function is implemented perfectly, handling user input and output appropriately. The core logic is correct, though it could benefit from some structural improvements for better maintainability and readability.

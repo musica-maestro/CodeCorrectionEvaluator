@@ -1,0 +1,108 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)............3.0 = 5.0 - 1.5 - 0.5
+countNumbers (2).......1.5 = 2.0 - 0.3 - 0.2
+readNumbers (2)........1.2 = 2.0 - 0.5 - 0.3
+writeNumbers(1)........0.8 = 1.0 - 0.2
+TOTAL..................6.5
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimo(int n1,int n2, int n3) {
+    int massimo;
+    if (n1>n2 && n1>n3)
+        massimo=n1;            
+    else if (n2>n1 && n2>n3)
+        massimo=n2;            
+        else if (n3>n1 && n3>n2)
+            massimo=n3;        
+    return massimo;        
+}
+
+int massimoPari(int *seq, int lunghezza){
+    int verificato;            
+    //******** The base case should be length<=2 (because you need to consider a triplet of elements) -0.5
+    if (lunghezza<3)        
+        verificato=1;        
+        else            
+            //******** it is a universal check, && -1.5
+            verificato=(massimo(seq[0],seq[1],seq[2])%2==0)&&massimoPari(seq+1,lunghezza-1);        
+    return verificato;        
+}
+
+int quantiNumeri() {
+    int numero;            
+    //******** counter not initialized -0.3
+    int quanti=0;        
+    FILE *fp=fopen ("interi.dat","rb");        
+    if (fp==NULL)            
+        printf("Impossibile apprire il file\n");
+    else {        
+        while (fread(&numero,sizeof(int),1,fp))        
+        quanti++;                    
+    }
+    //******** missing file closure -0.2
+    return quanti;        
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    int numero;        
+    FILE*fp=fopen("interi.dat","rb");        
+    if (fp==NULL)                                
+        printf("Impossibile aprire il file");
+    else{        
+        //******** in fread you should not use &sequence, because sequence is already an address -0.3
+        while(fread(sequenza,sizeof(int),lunghezza,fp))        
+        //******** in the while loop reading file elements, i does not change -0.5
+        numero++;        
+    }
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE*fp=fopen("interi.dat","wb");            
+    if (fp==NULL)                                
+        printf("Impossibile salvare il file\n\n");
+        else                
+        {
+            fwrite(sequenza,sizeof(int),lunghezza,fp);        
+            printf("salvataggio effettuato\n\n");            
+            //******** missing file closure -0.2
+        }
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of the maximum function for three numbers
+- Correct file handling modes (rb/wb) for binary files
+- Basic structure of recursive solution is present
+- Main function properly handles both file input and user input cases
+
+Areas for Improvement:
+1. massimoPari function:
+   - Base case needs correction to handle arrays of length ≤ 2
+   - Logic for checking all triplets needs to use && operator correctly
+
+2. File Operations:
+   - Always close files after operations
+   - Fix fread parameter usage in leggiNumeri
+   - Initialize counters properly
+   - Improve error handling for file operations
+
+3. General Structure:
+   - Fix the counter increment logic in leggiNumeri
+   - Improve error handling messages
+
+Key Recommendations:
+1. Add fclose() after all file operations
+2. Correct the base case in massimoPari to properly handle arrays shorter than 3 elements
+3. Review the recursive logic to ensure all triplets are properly checked
+4. Initialize all counters before use
+5. Implement proper error handling for file operations
+</feedback_summary>

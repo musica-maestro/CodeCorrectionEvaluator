@@ -1,0 +1,67 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.0 = 6.0 - 1.5 - 0.5
+   MAIN (max 2.0):.......1.8 = 2.0 - 0.2
+   TOTAL..................5.8
+*/
+
+#include <stdio.h>
+int duePositivi(int array[], int n){
+    int i=0;  
+    int univers = 1; 
+    //******** CONDITION ON THE TRIPLE IS WRONG (missing some combinations) -1.5
+    while(i<n-2 && univers){
+        if((array[i]>=0 && array[i+1]>=0 && array[i+2]<0) || 
+           (array[i]>=0 && array[i+1]<0 && array[i+2]>=0) || 
+           (array[i]<0 && array[i+1]>=0 && array[i+2]>=0)){ 
+            i++;
+        }
+        else
+            univers = 0;
+    }
+    //******** SETTING univers TO 1 IS NOT NECESSARY, BUT SAVED BY BOOLEAN IN LOOP CONDITION -0.5
+    return univers;
+}
+
+int main(){
+    int i=0;
+    int n;
+    printf("Sono un programma che verifica se in array di valori interi dati iput tutte le triple hanno \n");
+    printf("esattamente due numeri positivi, includo lo zero tra i positivi\n");
+    printf("Inserisci la lunghezza dell'array in esame\n");
+    scanf("%d", &n);
+    //******** UNCLEAR MESSAGE -0.2
+    int array[n]; 
+    for(i=0;i<n;i++){ 
+        printf("Inserisci un valore intero\n");
+        scanf("%d", &array[i]);
+    }
+    if(duePositivi(array, n)){
+        printf("Ci sono esattamente due valori positivi per ogni tripla dell'array\n");
+    }
+    else{
+        printf("NON ci sono esattamente due valori positivi per ogni tripla dell'array\n");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of universal verification approach
+- Proper array bounds checking in the loop (i<n-2)
+- Good use of boolean flag for early termination
+- Well-structured main function with clear user interaction
+
+Areas for Improvement:
+- The triple condition check is incomplete. It should consider all possible combinations of two positive numbers in a triple
+- The initialization of univers to 1 is redundant since it's already initialized
+- Messages could be clearer and more descriptive
+- Consider adding input validation for array length n
+
+Key Recommendations:
+- Review and complete all possible combinations for two positive numbers in a triple
+- Add input validation for array length
+- Improve clarity of user messages
+- Consider using more meaningful variable names (e.g., 'valid' instead of 'univers')
+</feedback_summary>

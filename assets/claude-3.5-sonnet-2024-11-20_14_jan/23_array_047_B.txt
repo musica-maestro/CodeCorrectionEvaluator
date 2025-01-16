@@ -1,0 +1,61 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....3.8 = 6.0 - 1.5 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.0):....2.0
+   TOTAL........................5.8
+*/
+
+#include <stdio.h>
+int duePositivi(int a[], int l){
+    int i;    
+    int tutte=1;    
+    //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+    for(i=0;i<l-2&&tutte;i++)
+        if(!((a[i]>0&&a[i+1]>0&&a[i+2]<=0)||(a[i+2]>0&&a[i]>0&&a[i+1]<=0)||(a[i+1]>0&&a[i+2]>0&&a[i]<=0)))
+            tutte=0;
+        else
+            //******** SETTING THE VARIABLE TO 1 IS NOT NECESSARY (BECAUSE IT'S ALREADY 1) -0.5
+            tutte=1; 
+    //******** DO YOU CONSIDER 0 POSITIVE OR NEGATIVE? -0.2
+    return tutte;
+}
+
+int main(){
+    int i;    
+    int l;    
+    int tutte=1;    
+    printf("Buongiorno utente, inserisci il numero di interi che vuoi compongano la sequenza!\n");
+    scanf("%d", &l);    
+    int sequenza[l];    
+    printf("Ottimo, ora inserisci %d interi!\n", l);
+    for(i=0;i<l;i++)
+        scanf("%d", &sequenza[i]);
+    tutte=duePositivi(sequenza,l);    
+    if(tutte)
+        printf("Ogni terna di consecutivi ha esattamente due positivi!\n");
+    else
+        printf("Esiste almeno una terna in cui non ci sono esattamente due positivi!\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct array bounds checking in the loop (i<l-2)
+- Proper function parameter passing and return value
+- Well-structured main program with clear user interaction
+- Good output messages that clearly communicate the result
+
+Areas for Improvement:
+- The logic for checking exactly two positives in each triple needs revision. The current implementation doesn't correctly handle all cases
+- The code doesn't explicitly define how zero values should be treated (positive or non-positive)
+- Unnecessary reassignment of 'tutte=1' in the else clause since it's already 1
+- The triple condition could be simplified and made more readable
+
+Key Recommendations:
+1. Revise the triple condition logic to ensure it correctly identifies exactly two positive numbers
+2. Clearly define and document how zero values should be handled
+3. Remove redundant assignment in the else clause
+4. Consider using more descriptive variable names (e.g., 'allValid' instead of 'tutte')
+5. Add comments to explain the logic of the triple checking condition
+</feedback_summary>

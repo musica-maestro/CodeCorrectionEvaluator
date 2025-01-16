@@ -1,0 +1,86 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.0 = 6.0 - 1.5 - 1.5
+   MAIN PROGRAM (max 2.5):....1.0 = 2.5 - 1.0 - 0.5
+   TOTAL.......................4.0
+*/
+
+#include <stdio.h>
+int compresiMultipli3(int sequenza[], int lunghezza)
+{
+    int i=0, condizione=0; 
+    //******** ITERATION LIMITS INCORRECT (should be i<lunghezza-2) -0.5
+    while(i+2<lunghezza && condizione==0) 
+    {
+        //******** EXACTLY TWO ELEMENTS MUST BE DIVISIBLE BY 3 (THE THIRD MUST BE DIFFERENT). EXAMPLE: IF TRIPLE IS 3 12 6 YOUR CONDITION IS SATISFIED -1.5
+        if((sequenza[i]<10 && sequenza[i]>-10)&&(sequenza[i+1]<10 && sequenza[i+1]>-10)
+        ||(sequenza[i]<10 && sequenza[i]>-10)&&(sequenza[i+2]<10 && sequenza[i+2]>-10)
+        ||(sequenza[i+1]<10 && sequenza[i+1]>-10)&&(sequenza[i+2]<10 && sequenza[i+2]>-10)) 
+        {
+            //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+            if((sequenza[i]%3==0 && sequenza[i+1]%3==0)
+            ||(sequenza[i]%3==0 && sequenza[i+2]%3==0)
+            ||(sequenza[i+1]%3==0 && sequenza[i+1]%3==0)) 
+            {
+                condizione=1; 
+            }
+            else
+            {
+                i++; 
+            }
+        }
+        else
+        {
+            i++;
+        }
+    }
+    return condizione;
+}
+int main(int argc, char **argv)
+{
+    //******** YOU MUST READ THE ARRAY LENGTH FROM INPUT BEFORE DECLARING THE ARRAY -1.0
+    int lunghezza;
+    int sequenza[lunghezza];
+    int i=0;
+    printf("inserisci la lunghezza della sequenza/n"); 
+    scanf("%d",&lunghezza); 
+    for(i=0; i<lunghezza; i++)
+    {
+        printf("inserisci il valore all'interno della sequenza");
+        scanf("%d", &sequenza[i]);
+    }
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    if(compresiMultipli3(sequenza, lunghezza)) 
+    {
+        printf("i valori della sequenza verficano la condizione proposta");
+    }
+    else
+    {
+        printf("i valori della sequenza non verficano la condizione proposta");
+    }
+    return 0; 
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic structure of the function is present
+- Uses appropriate loop control with boolean flag
+- Implements the required function and main program structure
+- Handles user input and output appropriately
+
+Areas for Improvement:
+- Array declaration needs to be after reading the length
+- The condition for checking multiples of 3 is incorrect and needs to ensure exactly two elements are multiples of 3
+- Loop boundary condition should be i < lunghezza-2 for better clarity
+- Output messages should be more specific about what condition is being verified
+- Code readability could be improved with better formatting of complex conditions
+
+Key Recommendations:
+1. Always declare arrays after knowing their size
+2. Simplify complex conditions by breaking them into smaller, more readable parts
+3. Fix the logic for checking exactly two multiples of 3
+4. Provide more descriptive output messages
+5. Use proper loop boundary conditions for array traversal
+</feedback_summary>

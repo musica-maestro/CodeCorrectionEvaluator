@@ -1,0 +1,77 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....3.0 = 6.0 - 1.5 - 1.0 - 0.5
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................4.8
+*/
+
+#include<stdio.h>
+#include<stdlib.h>
+int dueUnaCifra(int a[], int len){
+    int count = 0;
+    //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+    for(int i = 0; i < len - 2; i++){ 
+        if(((a[i] < 10 && a[i+1] < 10) && (a[i] > -10 && a[i+1] > -10)) ||
+           ((a[i] < 10 && a[i+2] < 10) && (a[i] > -10 && a[i+2] > -10)) ||
+           ((a[i+1] < 10 && a[i+2] < 10) && (a[i+1] > -10 && a[i+2] > -10))){
+            count++; 
+        } else {
+            count = 0; 
+        }
+    } 
+    //******** THIS IS A UNIVERSAL VERIFICATION, NOT AN EXISTENTIAL ONE -1.0
+    if(count == len - 2) {
+        return 1;
+    } else {
+        return 0;  
+    }
+    //******** 2 RETURNS IS NOT STRUCTURED PROGRAMMING -0.5
+}
+
+int main(){
+    int len, chk;
+    printf("Di quanti interi sara' la sequenza? ");
+    scanf("%d", &len);
+    int array[len];
+    printf("Sequenza di %d interi.\n", len);
+    for(int i = 0; i < len; i++){
+        printf("%d di %d: ", i+1, len);
+        scanf("%d", &array[i]);
+    }
+    printf("Stampo array per verifica: \n");
+    for(int i = 0; i < len; i++){
+        printf("%d ", array[i]);
+    }
+    printf("\nInvoco dueUnaCifra:\n");
+    chk = dueUnaCifra(array, len);
+    //******** UNCLEAR MESSAGE -0.2
+    if(chk == 1){
+        printf("(chk = %d) - In tutte le triple di elementi adiacenti della sequenza sono presenti almeno due numeri composti da una sola cifra.\n", chk);
+    } else {
+        printf("(chk = %d) - In nessuna tripla di elementi adiacenti della sequenza sono presenti almeno due numeri composti da una sola cifra.\n", chk);
+    }
+    system("PAUSE");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct array bounds checking in the function
+- Good user interaction in main function
+- Clear variable naming
+- Proper parameter passing to function
+
+Areas for Improvement:
+- The logic for checking triples needs revision. The current implementation doesn't correctly verify if at least two numbers in each triple are single digits
+- The universal verification approach using count is incorrect - should check each triple independently
+- Code structure could be improved by avoiding multiple return statements
+- Output messages could be clearer and more precise
+
+Key Recommendations:
+1. Revise the triple checking logic to properly verify single-digit numbers
+2. Implement a boolean flag approach instead of counting
+3. Use structured programming with a single return statement
+4. Make output messages more precise and clear
+5. Consider positive numbers only as per assignment requirements
+</feedback_summary>

@@ -1,0 +1,74 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.0 - 1.0
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................5.8
+*/
+
+#include <stdio.h>
+int dueUnaCifra(int Array[],int l){
+	int r=1; 
+	int i=0; 
+	//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < l - 2 -1.0
+	while(i<l-1&&r==1){ 
+		//******** CONDITION ON THE TRIPLE IS WRONG -1.0
+		if((Array[i]>9&&Array[i+1]>9)||
+			(Array[i+1]>9)&&(Array[i+2>9])|| 
+			(Array[i]>9&&Array[i+2]>9)){ 
+		   	r=0;
+		}
+	else
+		i++; 
+	}
+	return r;
+}
+int main(){
+	int l;  
+	int r;  
+	printf("Salve utente, di quanto vuoi sia composta la tua sequenza di interi?\n");
+	scanf("%d",&l);  
+	int Array[l];     
+	printf("Adesso introduci gli interi che formano la tua sequenza.\n");
+	for(int i=0;i<l;i++){
+		scanf("%d",&Array[i]); 
+	}
+	r=dueUnaCifra(Array,l);  
+	//******** UNCLEAR MESSAGE -0.2
+	if(r==1){
+		printf("Tutte le terne contengono almeno due numeri di una sola cifra!\n");
+	}
+	else
+		printf("Non tutte le terne conengono almeno due numeri di una sola cifra.\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is correct
+- Function and main program separation is appropriate
+- Input/output interaction is implemented
+- Variable naming is clear and consistent
+
+Areas for Improvement:
+1. Array bounds checking:
+   - The while loop condition should be i < l - 2 to avoid accessing elements beyond array bounds
+   - Current implementation may cause buffer overflow
+
+2. Triple condition logic:
+   - The condition for checking single-digit numbers in triples is incorrect
+   - Should check for at least two single-digit numbers in each triple
+   - Current implementation has wrong logical operators combination
+
+3. Output messages:
+   - Messages could be more clear and precise
+   - Consider adding more descriptive feedback for users
+
+Key Recommendations:
+1. Fix the array bounds in the while loop condition
+2. Revise the triple checking logic to correctly identify when at least two numbers are single digits
+3. Improve output message clarity
+4. Consider adding input validation for array length and elements
+5. Add comments to explain the logic of the triple-checking algorithm
+
+</feedback_summary>

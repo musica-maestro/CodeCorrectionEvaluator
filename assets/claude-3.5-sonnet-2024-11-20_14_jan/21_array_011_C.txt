@@ -1,0 +1,82 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.5 = 6.0 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................7.5/8.5
+*/
+
+#include <stdio.h>
+int compreso(int n){
+    if(n>=-10 && n<=10){ 
+        return 1;
+    }
+    else
+        return 0;
+}
+
+int multiplo3(int n){
+    if(n%3==0){
+        return 1;
+    }
+    else
+        return 0;
+}
+
+int compresiMultipli3(int array[], int lunghezza){
+    int vero=0;  
+    int i=0;    
+    //******** CONDITION SLIGHTLY COMPLICATED BUT CORRECT, COULD BE MORE READABLE -0.5
+    while(i<lunghezza-2 && !vero){
+        if((compreso(array[i]) && compreso(array[i+1]))
+        || (compreso(array[i]) && compreso(array[i+2]))
+        || (compreso(array[i+1]) && compreso(array[i+2]))){
+            if((multiplo3(array[i]) && multiplo3(array[i+1]) && array[i+2]%3!=0)
+            || (multiplo3(array[i]) && multiplo3(array[i+2]) && array[i+1]%3!=0) ||
+            (multiplo3(array[i+1]) && multiplo3(array[i+2]) && array[i]%3!=0)){
+                vero=1;
+            }
+        }
+        i++;
+    }
+    return vero;
+}
+
+int main(){
+    printf("Ciao utente, quanti elementicontiene il tuo array? (minimo 3): \n");
+    int l;
+    scanf("%d", &l);
+    int a[l];
+    for(int i=0;i<l;i++){
+        printf("Inserisci il %d elemento dell'array: ", i+1);
+        scanf("%d", &a[i]);
+    }
+    //******** OUTPUT MESSAGE COULD BE MORE DESCRIPTIVE ABOUT THE SPECIFIC CONDITION -0.5
+    if(compresiMultipli3(a,l)){
+        printf("ISTANZA POSITIVA!\n");
+    }
+    else{
+        printf("ISTANZA NEGATIVA!\n");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for checking consecutive triples
+- Good separation of concerns with helper functions (compreso and multiplo3)
+- Proper array bounds checking in the main loop
+- Correct implementation of the boolean flag to exit the loop when a valid triple is found
+- Good input handling in main function
+
+Areas for Improvement:
+- The condition checks in compresiMultipli3 could be more readable by breaking them into smaller, more manageable parts
+- Output messages could be more descriptive to better explain what condition was met or not met
+- Consider adding input validation for the array length to ensure it's at least 3
+
+Key Recommendations:
+- Break down complex conditions into intermediate boolean variables for better readability
+- Enhance user feedback by providing more detailed output messages
+- Add input validation in the main function
+- Consider adding comments to explain the logic of complex conditions
+</feedback_summary>

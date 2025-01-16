@@ -1,0 +1,64 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.5 = 6.0 - 1.5
+   MAIN PROGRAM (max 2.5):....1.8 = 2.5 - 0.5 - 0.2
+   TOTAL.......................6.3
+*/
+
+#include <stdio.h>
+int UgualiCompresi(int *c, int lunghezza){
+    int i;
+    int tripla = 0;
+    i = 0;
+    //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+    while(i<lunghezza-2 && !tripla)
+        if(c[i]==c[i+1] && c[i]!=c[i+2]){
+            //******** THE SUM OF THE SAME TWO ELEMENTS MUST BE IN THE RANGE OF 10 TO 20. YOUR CONDITION WOULD BE TRUE FOR CASES LIKE [6,22,0] -1.5
+            if(c[i]+c[i+2]>=10 && c[i]+c[i+2]<=20)
+                tripla = 1;
+            else
+                i++;
+        }
+    return tripla;
+}
+
+int main() {
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    printf("Caro utente ti presentiamo con un problema che verifica se esiste una tripla di elementi ");
+    printf("consecutivi\n");
+    int Lun;  
+    printf("Quanto deve essere lungo la tua sequenza caro utente\n");
+    scanf("%d",&Lun);
+    int sequenza[Lun];
+    //******** BADLY INDENTED -0.2
+    for(int i=0;i<Lun;i++){
+        printf("Inserire gentilmente gli interi della sequenza: \n");
+        scanf("%d",&sequenza[i]);
+    }
+    if(UgualiCompresi(sequenza, Lun))
+        printf("Bravo e' giusto\n"); 
+    else
+        printf("Non ci siamo\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of array bounds checking in the loop
+- Proper function structure with parameters and return value
+- Basic functionality for finding consecutive triples is implemented
+- Good user interaction in main function
+
+Areas for Improvement:
+- The condition for checking sums between 10 and 20 needs revision to handle all cases correctly
+- Code indentation could be improved for better readability
+- Output messages should be more specific about what property was found/not found
+- The logic for checking equal elements and sums could be more clearly structured
+
+Key Recommendations:
+- Revise the sum condition to properly check if any two elements (not necessarily the equal ones) have a sum between 10 and 20
+- Improve code formatting and indentation
+- Make output messages more descriptive of the actual condition being tested
+- Consider adding more detailed error messages or example outputs to help users understand the results
+</feedback_summary>

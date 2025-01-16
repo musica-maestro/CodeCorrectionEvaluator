@@ -1,0 +1,83 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.2 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.2 - 0.3
+   TOTAL.......................7.3
+*/
+
+#include <stdio.h>
+int sommaCompresa(int n){
+    int verificata; 
+    verificata=0;
+    if(n>=10 && n<=20){
+        verificata=1;
+    }
+    return verificata;
+}
+int ugualiCompresi (int interi[], int lunghezza){
+    int i; 
+    int esiste; 
+    i=0;
+    esiste=0;
+    //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+    while(i<lunghezza-2 && !esiste){
+        if (((sommaCompresa(interi[i]+interi[i+1])==1)||(sommaCompresa(interi[i+1]+interi[i+2])==1)||
+        (sommaCompresa(interi[i]+interi[i+2])==1))&&((interi[i]==interi[i+1] && interi[i]!=interi[i+2])||
+        (interi[i+1]==interi[i+2] && interi[i+1]!=interi[i])||(interi[i]==interi[i+2] && interi[i]!=interi[i+1]))){
+            esiste=1; 
+        }
+        else{ 
+            i++;
+        }
+    }
+    return esiste;
+}
+int main(){
+    //******** BADLY INDENTED -0.2
+    int lunghezza; 
+    printf("Caro utente sono un programma che data una sequenza verifica se esiste una tripla di elementi consecutivi tale\n");
+    printf("che almeno due elementi della tripla hanno una somma compresa tra 10 e 20 ed esattamente due elementi della tripla\n");
+    printf("sono tra loro uguali\n");
+    printf("Quanto vuoi che sia lunga la tua sequenza?\n");
+    scanf("%d", &lunghezza);
+    int interi[lunghezza];
+    for (int i=0; i<lunghezza; i++){
+        printf("Introduci un intero:\n");
+        scanf("%d", &interi[i]);
+    }
+    int esiste = ugualiCompresi(interi, lunghezza); 
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+    if (esiste==1){
+        printf("Nella sequenza esiste una tripla di elementi consecutivi tale che almeno due elementi della tripla\n");
+        printf("hanno una somma compresa tra 10 e 20 ed esattamente due elementi della tripla sono uguali\n");
+    }
+    else{
+        printf("Nella sequenza non esiste una tripla di elementi consecutivi tale che almeno due elementi della tripla\n");
+        printf("hanno una somma compresa tra 10 e 20 ed esattamente due elementi della tripla sono uguali\n");
+    }
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for checking consecutive triples
+- Proper handling of array bounds
+- Good use of helper function for sum verification
+- Correct implementation of the exactly-two-equal-elements condition
+
+Areas for Improvement:
+- Code readability could be enhanced by breaking down complex conditions
+- Main program indentation needs improvement
+- Output messages could be more concise and specific
+- Consider using more descriptive variable names
+
+Key Recommendations:
+- Break down complex conditions into smaller, more readable parts using intermediate boolean variables
+- Use consistent indentation throughout the code
+- Make output messages more concise while maintaining clarity
+- Consider adding input validation for array length
+</feedback_summary>
+
+The student's implementation is generally correct and handles the requirements well. The main deductions are for code readability and presentation issues rather than functional problems. The logic for checking both the sum condition and the equality condition is correctly implemented, though it could be more clearly structured.

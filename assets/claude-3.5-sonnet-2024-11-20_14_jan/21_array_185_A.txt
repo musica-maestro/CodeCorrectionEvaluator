@@ -1,0 +1,73 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........2.0 = 6.0 - 1.5 - 1.5 - 1.0
+   MAIN PROGRAM (max 2.5):....1.7 = 2.5 - 0.5 - 0.3
+   TOTAL.......................3.7
+*/
+
+#include <stdio.h>
+int  ugualiCompresi(int interi[],int lunghezza){
+	int num=0;
+	int i=0; 
+	int somma;
+	//******** CALCULATING THE SUM OF ALL THREE ELEMENTS IN THE TRIPLE INSTEAD OF CHECKING IF AT LEAST TWO ELEMENTS HAVE A SUM BETWEEN 10 AND 20 -1.5
+	somma=(interi[i]>=10 && interi[i]<=20);
+	//******** CONDITION ON INDEX IS WRONG, SHOULD BE i < length-2 -1.5
+	while(i<=lunghezza-3 && num){
+		//******** CONDITION IS COMPLICATED AND INCORRECT - DOES NOT PROPERLY CHECK FOR EXACTLY TWO EQUAL ELEMENTS AND SUM BETWEEN 10-20 -1.0
+		if(!(interi[i-1]+interi[i]+interi[i+1]==somma)&&(!(interi[i]==interi[i-1])||(interi[i]==interi[i+1])))
+		  num=1; 
+		else     
+			i++; 
+	}
+	return num;
+}
+
+int main(){
+	int lunghezza;
+	printf("Caro utente sono un programma che calcola se in un array ci sono triple di interi con somma compresa tra 10 e 20\n");
+	printf("inserisci la lunghezza sella sequenza\n");
+	scanf("%d",&lunghezza);
+	int sequenza[lunghezza];
+	for(int i=0;i<lunghezza;i++){
+		printf("Introduci un intero\n");
+		scanf("%d",&sequenza[i]);
+	}
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+	//******** SAME OUTPUT MESSAGE FOR BOTH TRUE AND FALSE CASES -0.3
+		if(ugualiCompresi(sequenza,lunghezza))
+			printf("Nella sequenza esistono triple la cui somma %c compresa tra 10 e 20\n",138);
+		else
+			printf("Nella sequenza esistono triple la cui somma %c compresa tra 10 e 20\n",138);
+} 		
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Input handling for array length and elements
+- Function and main program separation
+
+Areas for Improvement:
+1. Function Logic:
+   - The condition for checking sums between 10 and 20 is incorrect
+   - The logic for verifying exactly two equal elements needs revision
+   - Array index bounds need correction to avoid out-of-bounds access
+
+2. Main Program:
+   - Output messages are identical for both true and false cases
+   - Messages should clearly specify the conditions being checked
+   - Output formatting could be more informative
+
+Key Recommendations:
+1. Revise the function logic to:
+   - Properly check for sums between 10 and 20 for pairs of elements
+   - Correctly verify exactly two equal elements in each triple
+   - Fix array bounds in the while loop condition
+
+2. Improve the main program by:
+   - Creating distinct output messages for positive and negative cases
+   - Making the output messages more descriptive and precise
+   - Adding input validation for array length
+</feedback_summary>

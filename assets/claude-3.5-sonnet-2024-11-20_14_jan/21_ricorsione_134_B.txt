@@ -1,0 +1,107 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* 
+minOdd (5)...........1.5 = 5.0 - 1.5 - 1.0 - 1.0
+countNumbers (2).....0.7 = 2.0 - 1.0 - 0.3
+readNumbers (2)......1.5 = 2.0 - 0.5
+writeNumbers(1)......0.2 = 1.0 - 0.4 - 0.4
+TOTAL................3.9
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int minimoDispariRic(int* seq , int l){ 
+    //******** missing base case -1.5
+    int minimo;
+    //******** minimo not initialized -1.0
+    for(int i=0;i<l-2;i++){
+        if(seq[i]<minimo){ 
+            minimo=seq[i];
+        }
+        else
+            //******** incorrect recursive call parameters -1.0
+            minimoDispariRic(i+1,l-1); 
+    }
+    return minimo;
+}
+
+int minimoDispari(int *seq, int lunghezza){
+    int verifica=0;
+    for(int i=0;i<lunghezza-2;i++){  
+        if( minimoDispariRic(seq,lunghezza)%2!=0) 
+            verifica=1;
+        else
+            minimoDispari (seq+1,lunghezza-1);
+            return verifica;
+    }
+}
+
+int quantiNumeri() {
+    int conta;  
+    //******** counter not initialized -0.3
+    FILE *fp=fopen("interi.dat","r");
+    //******** infinite loop condition -1.0
+    while(fp!=NULL){
+        conta++;
+    }
+    fclose(fp);
+    return conta;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE *fp=fopen("interi.dat","r");
+    if(fp!=NULL){
+        for(int i=0;i<lunghezza;i++){
+            //******** incorrect file reading syntax -0.5
+            fscanf(fp,"%d%*c",&sequenza[i]);
+        }
+        fclose(fp);
+    }
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE *fp=fopen("interi.dat","wb");
+    //******** incorrect memory allocation -0.4
+    fp=(int*)malloc(sizeof(int sequenza));
+    //******** incorrect file writing approach -0.4
+    fprintf(fp,"inserire i valori dell'array: "); 
+    //******** syntax error in for loop initialization
+    for(int i=;i<lunghezza ;i++)
+        fscanf(fp,"%d",&sequenza[i]); 
+    fclose(fp);
+}
+
+[... rest of the code remains unchanged ...]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic file I/O structure implemented
+- Main function handles user interaction appropriately
+- Proper file closure in most functions
+
+Areas for Improvement:
+1. minimoDispariRic function:
+   - Missing base case for recursion
+   - Uninitialized variables
+   - Incorrect recursive implementation
+
+2. File handling:
+   - Incorrect file reading/writing approaches
+   - Infinite loop in quantiNumeri()
+   - Uninitialized counter variables
+
+3. Memory management:
+   - Incorrect memory allocation in scriviNumeri
+   - Confusion between file pointer and integer pointer
+
+Key Recommendations:
+1. Implement proper base case for recursive function
+2. Initialize all variables before use
+3. Fix file reading/writing syntax
+4. Correct the infinite loop in quantiNumeri
+5. Review proper memory allocation techniques
+6. Use appropriate file handling methods for binary/text files
+</feedback_summary>

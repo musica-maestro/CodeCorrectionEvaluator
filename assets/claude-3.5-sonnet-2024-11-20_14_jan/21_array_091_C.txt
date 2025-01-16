@@ -1,0 +1,70 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.0 - 0.5 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................6.0
+*/
+
+#include <stdio.h>
+int compresiMultipli3 (int array[], int lunghezza){
+    int compresi=1;
+    //******** WRONG INITIALIZATION - Variables should start at 0, not 1 -1.0
+    int multipli3=1;
+    int verificato=0;
+    for(int i=0; i<lunghezza-2; i++){ 
+        for(int j=i; j<i+2; j++){        
+            if(array[j]<=10 && array[j]>=-10)    
+            compresi++;                            
+            if((array[j])%3==0)                    
+            multipli3++;                        
+        }
+        if(compresi==2 && multipli3==2){        
+            verificato=1;                        
+    }
+        else                                    
+            compresi=1; 
+            //******** INDENTATION ERROR - This line will always execute due to missing braces -0.5
+            multipli3=1;
+    }
+    return verificato;
+}
+
+int main()
+{
+    int lunghezza;
+    printf("inserire la lunghezza dell'array\n");    
+    scanf("%d", &lunghezza);
+    int array[lunghezza];
+    printf("Inserire la sequenza \n");
+    for(int i=0; i<lunghezza; i++)                    
+        scanf("%d", &array[i]);
+    if(compresiMultipli3(array, lunghezza)==1)                
+        printf("l'istanza del problema %c positiva", 138);
+    else
+        printf("l'istanza del problema %c negativa", 138);
+    //******** OUTPUT MESSAGE IS POORLY EXPRESSED - Does not clearly specify the property being checked -0.5
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct overall program structure with separate function and main
+- Proper array handling and input collection
+- Basic logic for checking consecutive triples is implemented
+- Correct loop bounds for checking triples
+
+Areas for Improvement:
+- Counter initialization: Variables compresi and multipli3 should be initialized to 0 instead of 1
+- Code structure: Missing braces in the else clause leads to incorrect logic flow
+- Output clarity: The result message could be more descriptive about what property was checked
+- Variable naming and comments could be improved for better code readability
+
+Key Recommendations:
+1. Initialize counter variables to 0 and adjust the comparison conditions accordingly
+2. Add proper braces around multi-line code blocks
+3. Provide more descriptive output messages that explain what conditions were checked
+4. Consider adding input validation for array length
+5. Add comments explaining the logic of the triple-checking algorithm
+</feedback_summary>

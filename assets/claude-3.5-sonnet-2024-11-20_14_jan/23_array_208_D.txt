@@ -1,0 +1,59 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.8 = 6.0 - 0.2
+   MAIN PROGRAM (max 2.0):....2.0
+   TOTAL.......................7.8
+*/
+
+#include <stdio.h>
+int restoDivisione(int* interi, int lunghezza){
+	int esiste=0;
+	int i=0;
+	//******** WITHOUT THE BOOLEAN VARIABLE IN THE CONDITION, EVEN IF YOU FIND A TRIPLE THAT SATISFIES THE PROPERTY, YOU CONTINUE TO CHECK -0.2
+	while(i<lunghezza-2 && !esiste) {
+		if((interi[i]%interi[i+1]==interi[i+2]) ||
+			(interi[i+1]%interi[i]==interi[i+2]) ||
+			(interi[i]%interi[i+2]==interi[i+1]) ||
+			(interi[i+2]%interi[i]==interi[i+1]) ||
+			(interi[i+2]%interi[i+1]==interi[i]) ||
+			(interi[i+1]%interi[i+2]==interi[i]))
+			esiste=1;
+		else
+			i++;
+	}
+	return esiste;
+}
+int main(){
+	int lunghezza;
+	printf("Quanti interi vuoi inserire? \n");
+	scanf("%d", &lunghezza);
+	int interi[lunghezza];
+	printf("Inserisci gli interi: \n");
+	for(int i=0; i<lunghezza; i++)
+		scanf("%d", &interi[i]);
+	if(restoDivisione(interi, lunghezza))
+		printf("Esiste nella sequenza inserita una tripla di elementi adiacenti tale che uno dei tre e' il resto della divisione degli altri due");
+	else
+		printf("Non esiste nella sequenza inserita una tripla di elementi adiacenti tale che uno dei tre e' il resto della divisione degli altri due");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the function parameters and return type
+- Proper array bounds checking in the loop condition
+- Complete check of all possible remainder combinations
+- Well-structured main function with clear user interaction
+- Clear and informative output messages
+- Correct array handling and memory management
+
+Areas for Improvement:
+- The loop control could be more efficient by incorporating the boolean flag directly in the while condition. This would eliminate the need for the separate boolean variable check.
+
+Key Recommendations:
+- Consider optimizing the loop structure to avoid unnecessary iterations after finding a valid triple
+- Could consider adding input validation for array length to ensure it's positive and reasonable
+</feedback_summary>
+
+The submission demonstrates a strong understanding of the problem and implements all required functionality correctly. The only minor issue is with the loop control structure, which could be more efficient. The main function handles user interaction well, and the output messages are clear and informative.

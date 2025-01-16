@@ -1,0 +1,59 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.0 - 1.0
+   MAIN PROGRAM (max 2.0):....2.0
+   TOTAL.......................6.0
+*/
+
+#include <stdio.h>
+int dueUnaCifra(int array[], int quanti){
+    int i = 0;
+    int tutte = 1;
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < quanti - 2 -1.0
+    while(i < quanti - 2 && tutte)
+        //******** CONDITION ON THE TRIPLE IS WRONG - Missing parentheses making logic unclear -1.0
+        if( !((array[i] >= 0 && array[i] <= 9) && (array[i+1] >= 0 && array[i+1] <= 9) ||
+              (array[i] >= 0 && array[i] <= 9) && (array[i+2] >= 0 && array[i+2] <= 9) ||
+              (array[i+1] >= 0 && array[i+1] <= 9) && (array[i+2] >= 0 && array[i+2] <= 9)) )
+            tutte = 0;
+        else
+            i++;
+return tutte;
+}
+
+int main(){
+    int lunghezza;
+    printf("Quanti interi mi vuoi dare? ");
+    scanf("%d", &lunghezza);
+    int sequenza[lunghezza];
+    printf("\nDammi %d interi:\n", lunghezza);
+    for (int i = 0; i < lunghezza; i++)
+        scanf("%d", &sequenza[i]);
+    if(dueUnaCifra(sequenza, lunghezza))
+        printf("\nIn ogni tripla adiacente della tua sequenza sono presenti almeno 2 numeri composti da una sola cifra.");
+    else
+        printf("\nNon in tutte le triple adiacenti della tua sequenza sono presenti 2 numeri composti da una sola cifra.");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the main function with proper user interaction
+- Good output messages that clearly explain the results
+- Proper function structure with boolean flag for universal verification
+- Correct parameter passing and array handling
+
+Areas for Improvement:
+- Array bounds checking in the while loop condition needs correction to prevent accessing invalid memory
+- The logical condition for checking triples could be better structured with proper parentheses
+- Consider adding input validation for positive integers as per assignment requirements
+
+Key Recommendations:
+- Fix the array bounds check by using i < quanti - 2
+- Restructure the triple-checking condition for better readability and correctness
+- Add input validation to ensure only positive integers are processed
+- Consider using better code formatting and indentation for improved readability
+</feedback_summary>
+
+The student's implementation is generally good but has some issues with array bounds checking and condition structure. The main function is well implemented with proper user interaction and clear output messages. The solution correctly implements the universal verification approach required for the problem.

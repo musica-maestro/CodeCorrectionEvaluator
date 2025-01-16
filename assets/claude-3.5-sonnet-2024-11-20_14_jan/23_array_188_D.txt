@@ -1,0 +1,67 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.3 = 6.0 - 1.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.0):....1.0 = 2.0 - 0.5 - 0.5
+   TOTAL.......................5.3
+*/
+
+#include <stdio.h>
+int restoDivisione(int sequenza[], int lunghezza){
+	int esiste=0;
+	//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lunghezza - 2 -1.0
+	for(int i=1; i<lunghezza-1 && esiste==0; i++){
+		if(sequenza[i]==sequenza[i-1]%sequenza[i+1] || sequenza[i]==sequenza[i+1]%sequenza[i-1]
+			|| sequenza[i-1]==sequenza[i]%sequenza[i+1] || sequenza[i-1]==sequenza[i+1]%sequenza[i]
+			|| sequenza[i+1]==sequenza[i]%sequenza[i-1] || sequenza[i+1]==sequenza[i-1]%sequenza[i])
+			esiste+=1;
+	}
+	//******** WITHOUT THE BOOLEAN VARIABLE IN THE CONDITION, EVEN IF YOU FIND A TRIPLE THAT SATISFIES THE PROPERTY, YOU CONTINUE TO CHECK -0.2
+	return esiste;
+}
+
+int main()
+{
+	int lunghezza; 
+	//******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+	int sequenza[lunghezza]; 
+	printf("Ciao utente, sono un programma che verifica se all'interno della sequenza\n");
+	printf("esiste una tripla di elementi interi adiacenti in cui uno dei tre e' il resto della\n");
+	printf("divisione degli altri due.\n\n");
+	printf("Inserire la lunghezza della sequenza: ");
+	scanf("%d", &lunghezza);
+	for(int i=0; i<lunghezza; i++){
+		printf("Inserire il %d' numero\n", i+1);
+		//******** INCORRECT READING, SHOULD BE &sequenza[i] -0.5
+		scanf("%d", &sequenza[i]);
+	}
+	restoDivisione(sequenza, lunghezza); 
+	if(restoDivisione(sequenza, lunghezza))
+		printf("Nella sequenza inserita esiste una terna di elementi adiacenti in cui uno dei tre e' il resto della divisione degl'altri due");
+	else
+		printf("Nella sequenza inserita non esiste una terna di elementi adiacenti in cui uno dei tre e' il resto della divisione degl'altri due");
+	return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the basic logic for checking remainder conditions
+- Good structure of the restoDivisione function
+- Clear user interaction messages
+- Proper use of function parameters and return values
+
+Areas for Improvement:
+- Array bounds checking needs correction: The loop should go up to lunghezza-2 to avoid accessing invalid memory
+- Array declaration should occur after getting the length from user input
+- The scanf in the input loop should use the & operator correctly
+- The boolean check in the loop condition could be optimized
+- Consider handling edge cases like division by zero
+
+Key Recommendations:
+1. Fix the array bounds in the loop condition to prevent buffer overflow
+2. Move the array declaration after getting the length input
+3. Correct the scanf usage in the input loop
+4. Consider adding input validation for array length and division by zero cases
+5. Optimize the loop termination condition when a valid triple is found
+</feedback_summary>

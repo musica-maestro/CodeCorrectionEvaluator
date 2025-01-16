@@ -1,0 +1,67 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........2.3 = 6.0 - 1.5 - 1.0 - 1.0 - 0.2
+   MAIN (max 2.0):...........0.5 = 2.0 - 0.5 - 0.5 - 0.5
+   TOTAL.....................2.8/8.0
+*/
+
+#include <stdio.h>
+int multipli(){
+    //******** MISSING PARAMETERS FOR THE FUNCTION int seq[] AND length -1.5
+    int lunghezza;    
+    int sequenza[lunghezza];    //******** YOU SHOULD NOT DECLARE THE ARRAY AND LENGTH, THEY MUST BE PASSED AS PARAMETERS -1.0
+    int terna[3];    
+    int valore=1;    
+    for(int i=0;i<(lunghezza-1);i++){ //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < l - 2 -1.0
+        terna[0]=sequenza[0+i];
+        terna[1]=sequenza[1+i];
+        terna[2]=sequenza[2+i];
+        if((terna[0]%terna[1]!=0||terna[0]%terna[2]!=0)||(terna[1]%terna[0]!=0||terna[1]%terna[2]!=0)||(terna[2]%terna[1]!=0||terna[2]%terna[0]!=0))
+            valore=0;
+    }
+    return valore;
+}
+int main(){
+    int lunghezza;
+    printf("Ciao, utente! Quanti interi ha la sequenza?");
+    scanf("%d",&lunghezza);
+    int sequenza[lunghezza];
+    printf("Introduci gli interi della sequenza:\n");
+    for(int i=0;i<lunghezza;i++){
+        scanf("%d",&sequenza[i]); //******** INCORRECT READING, SHOULD BE &seq[i] -0.5
+    }
+    multipli(sequenza[lunghezza],lunghezza); //******** seq[l] IS NOT AN ARRAY, BUT IS THE FIRST MEMORY LOCATION AFTER THE END OF THE ARRAY -0.5
+    int valore;
+    if(valore=0) //******** INCORRECT COMPARISON, SHOULD BE == -0.5
+        printf("Il multiplo di uno degli altri due elementi della terna non e' stato trovato in tutte le terne della sequenza.\n");
+    else
+        printf("Esiste almeno un elemento multiplo di uno degli altri due in tutte le terne adiacenti della sequenza.\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic structure of the solution is present
+- Attempt to implement the triple checking logic
+- Main program includes user interaction
+
+Areas for Improvement:
+1. Function Implementation:
+   - The multipli function needs proper parameters (array and length)
+   - Array bounds checking needs correction to avoid buffer overflow
+   - Don't declare array and length inside the function
+
+2. Main Program:
+   - Fix the array passing to multipli function
+   - Correct the comparison operator in the if statement
+   - Improve variable handling and initialization
+
+Key Recommendations:
+1. Modify the function signature to accept array and length parameters
+2. Fix array indexing in the for loop to prevent buffer overflow
+3. Remove redundant array and length declarations in the multipli function
+4. Correct the array passing in the main function call
+5. Use proper comparison operators (== instead of =)
+6. Initialize variables before using them
+</feedback_summary>

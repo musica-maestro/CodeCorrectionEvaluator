@@ -1,0 +1,99 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........4.0 = 5.0 - 1.0
+countNumbers (2).....2.0
+readNumbers (2)......2.0
+writeNumbers(1)......1.0
+TOTAL................9.0
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void leggiNumeri(int* array, int l)
+{
+    FILE* fp;
+    if(!(fp = fopen("interi.dat", "rb")))
+        printf("Errore nell'apertura del file\n");
+    else
+    {
+        fread(array, sizeof(int), l, fp);            
+        fclose(fp);
+        printf("Lettura effettuata\n");
+    }
+}
+
+int quantiNumeri()
+{
+    FILE* fp;
+    int cont = 0;
+    if(!(fp = fopen("interi.dat", "rb")))
+        printf("Errore nell'apertura del file\n");
+    else
+    {
+        int temp;
+        while(fread(&temp, sizeof(int), 1, fp) > 0)          
+            cont++;
+        fclose(fp);
+    }
+    return cont;
+}
+
+void scriviNumeri(int* array, int l)
+{
+    FILE* fp;
+    if(!(fp = fopen("interi.dat", "wb")))
+        printf("Errore nell'apertura del file\n");
+    else
+    {
+        fwrite(array, sizeof(int), l, fp);           
+        fclose(fp);                                  
+        printf("Scrittura effettuata\n");
+    }
+}
+
+int minimoDispari(int* array, int l)
+{
+    int ris = 0;
+    int minimo;
+    //******** Base case should check if l<=2 since we need triplets -0.5
+    //******** Minimum calculation should be after base case check -0.5
+    if(array[0] < array[1] && array[0] < array[2])
+            minimo = array[0];
+        else if(array[1] < array[0] && array[1] < array[2])
+            minimo = array[1];
+        else
+            minimo = array[2];
+    if(l == 3)
+        ris = (minimo % 2) != 0;
+    else                                    
+        ris = (minimo % 2) != 0 && minimoDispari(array + 1, l - 1);
+    return ris;
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of file operations (reading, writing, counting)
+- Proper file handling with open/close operations
+- Good error checking for file operations
+- Correct use of binary file operations
+
+Areas for Improvement:
+- The minimoDispari function has some structural issues:
+  1. The base case should check if l<=2 since we need triplets
+  2. The minimum calculation should occur after verifying we're not in the base case
+  3. The function could be more efficient by reorganizing the logic
+
+Key Recommendations:
+1. Restructure minimoDispari to first check the base case
+2. Move the minimum calculation after the base case check
+3. Consider adding more detailed error messages for file operations
+4. Add input validation for array length in main function
+
+The code is generally well-implemented, with the main issues being in the recursive function structure. The file operations are implemented correctly and efficiently.
+</feedback_summary>

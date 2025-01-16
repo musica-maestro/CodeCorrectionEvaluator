@@ -1,0 +1,65 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.2 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................7.3/8.5
+*/
+
+#include <stdio.h>
+int compresiMultipli3(int array[], int lung) {
+	int esiste = 0;
+	int i=0;
+	while(i<lung-2 && !esiste) {
+		//******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+		if(((array[i]<=10 && array[i]>=-10) && (array[i+1]<=10 && array[i+1]>=-10)
+		||(array[i]<=10 && array[i]>=-10) && (array[i+2]<=10 && array[i+2]>=-10)
+		|| (array[i+1]<=10 && array[i+1]>=-10) && (array[i+2]<=10 && array[i+2]>=-10))
+			&&((array[i]%3==0 && array[i+1]%3==0 && array[i+2]%3!=0)
+			|| (array[i]%3==0 && array[i+2]%3==0 && array[i+1]%3!=0)
+			||(array[i+2]%3==0 && array[i+1]%3==0 && array[i]%3!=0)))
+				esiste = 1;
+		else
+			i++;
+	}
+	return esiste;
+}
+int main(int argc, char **argv)
+{
+	int lung;
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+	printf("Programma che verifica se esiste una tripla di elementi consecutivi che contiene almeno due elementi il cui valore %c compreso fra -10 e 10(estremi inclusi) e che contiene esattamente due elementi multipli di 3",138);
+	printf("\nQuanti interi ha la sequenza?\n->");
+	scanf("%d",&lung);
+	int seq[lung];
+	printf("Introdurre gli interi della sequenza : \n");
+	for(int i=0;i<lung;i++) {
+		printf("seq[%d] = ",i+1);
+		scanf("%d",&seq[i]);
+	}
+	if(compresiMultipli3(seq,lung))
+		printf("Esiste una tripla di elementi consecutivi che contiene almeno due elementi il cui valore %c compreso fra\n -10 e 10(estremi inclusi) e che contiene esattamente due elementi multipli di 3\n",138);
+	else
+		printf("NON esiste una tripla di elementi consecutivi che contiene almeno due elementi il cui valore %c compreso fra\n -10 e 10(estremi inclusi) e che contiene esattamente due elementi multipli di 3\n",138);
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the existential verification logic
+- Proper use of boolean flag for loop control
+- Correct array bounds checking in the loop condition
+- Good implementation of the consecutive triplet checking
+- Proper input handling in main function
+
+Areas for Improvement:
+- The condition in the compresiMultipli3 function is correct but could be more readable by breaking it into smaller, more manageable parts
+- The output messages could be more concise and clearer about what properties are being checked
+- Consider using named constants for the range bounds (-10, 10) to improve code maintainability
+
+Key Recommendations:
+- Break down complex conditions into smaller, well-named boolean variables for better readability
+- Improve output messages to be more user-friendly and precise
+- Consider adding input validation for the sequence length
+- Use meaningful variable names (e.g., 'length' instead of 'lung') for better code clarity
+</feedback_summary>

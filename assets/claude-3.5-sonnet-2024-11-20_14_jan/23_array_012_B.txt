@@ -1,0 +1,71 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.2 - 0.5
+   MAIN PROGRAM (max 2.0):....2.0
+   TOTAL.......................7.3
+*/
+
+#include <stdio.h>
+int duePositivi(int s[], int l){
+	int bl = 1; 
+	int i = 0; 
+    //******** SETTING THE VARIABLE TO 1 IS NOT NECESSARY (BECAUSE IT'S ALREADY 1), BUT YOU SAVE IT BECAUSE YOU PLACED THE BOOLEAN IN THE LOOP CONDITION -0.5
+	while((i < l -2) && bl)
+	{
+		if (
+			!((s[i]>0 && s[i+1]>0 && s[i+2]<0)|| 
+			(s[i]>0 && s[i+1]<0 && s[i+2]>0)||
+			(s[i]<0 && s[i+1]>0 && s[i+2]>0))
+			)
+		{
+			bl = 0; 
+		}
+		i++; 
+	}
+	return bl;
+}
+
+//******** WITHOUT THE BOOLEAN VARIABLE IN THE CONDITION, EVEN IF YOU FIND A TRIPLE THAT DOES NOT SATISFY THE PROPERTY, YOU CONTINUE TO CHECK -0.2
+
+int main(){
+	int lunghezza; 
+	printf("Caro utente inserisci una lunghezza per la sequenza: \n");
+	scanf("%d", &lunghezza);
+	int sequenza[lunghezza];
+	for (int i = 0; i < lunghezza; ++i)
+	{
+		printf("Inserisci un intero: \n");
+		scanf("%d", &sequenza[i]);
+	}
+	if (duePositivi(sequenza, lunghezza))
+	{
+		printf("in ogni tripla di elementi adiacentici ci sono esattamente due numeri positivi\n");
+		printf("(maggiori stretti di 0)\n");
+	} else {
+		printf("in ogni tripla di elementi adiacentici NON ci sono esattamente due numeri positivi\n");
+	}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the universal verification logic
+- Proper handling of array bounds (i < l-2)
+- Complete implementation of all three possible combinations for two positives
+- Well-structured main function with clear user interaction
+- Clear output messages indicating the result
+
+Areas for Improvement:
+- The initialization of bl to 1 is redundant since it's already initialized to that value
+- The boolean variable in the loop condition could be optimized, though it works correctly
+- Consider adding input validation for the sequence length
+
+Key Recommendations:
+- Remove redundant initialization of bl
+- Consider adding input validation to ensure the sequence length is at least 3
+- Consider using more descriptive variable names (e.g., 'length' instead of 'lunghezza')
+- Add comments to explain the logic of the three combinations in the if condition
+</feedback_summary>
+
+The student's implementation is generally very good, with only minor issues. The function correctly implements the universal verification logic required to check if all triples contain exactly two positive numbers. The main program provides clear user interaction and proper output messages. The deductions are minimal and relate to optimization rather than correctness issues.

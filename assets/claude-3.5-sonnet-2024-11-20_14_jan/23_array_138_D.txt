@@ -1,0 +1,89 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................7.1/8.0
+*/
+
+#include <stdio.h>
+int restoDivisione(int array[], int l) {
+    //******** INCORRECT INDENTATION!!!! -0.5
+	int bVal=0;			
+	for (int i=0; i<l-2 && bVal==0; i++) {
+        //******** HOW DO YOU CONSIDER 0? -0.2
+		if (array[i]==0) {
+			if (array[i]==array[i+1]%array[i+2] || array[i]==array[i+2]%array[i+1] ||
+		 		array[i+1]==array[i]%array[i+2] || array[i+2]==array[i]%array[i+1]) {
+				bVal=1;
+			}
+		}
+		else {
+			if (array[i+1]==0) {
+				if (array[i]==array[i+1]%array[i+2] || array[i+1]==array[i]%array[i+2] ||
+					array[i+1]==array[i+2]%array[i] || array[i+2]==array[i+1]%array[i]) {
+					bVal=1;
+				}
+			}
+			else {
+				if (array[i+2]==0) {
+					if (array[i]==array[i+2]%array[i+1] || array[i+1]==array[i+2]%array[i] ||
+		 				array[i+2]==array[i]%array[i+1] || array[i+2]==array[i+1]%array[i]) {
+						bVal=1;
+					}
+				}
+				else {
+					if (array[i]==array[i+1]%array[i+2] || array[i]==array[i+2]%array[i+1] ||
+		 				array[i+1]==array[i]%array[i+2] || array[i+1]==array[i+2]%array[i] ||
+		 				array[i+2]==array[i]%array[i+1] || array[i+2]==array[i+1]%array[i]) {
+						bVal=1;
+					}
+				}
+			}
+		}
+	}
+	return bVal;
+}
+
+int main(int argc, char const *argv[]) {
+    //******** UNCLEAR MESSAGE -0.2
+	printf("Ciao! Questo programma verifica se in una sequenza di n interi esiste almeno una tripla ");
+	printf("di elementi adiacenti tali che uno dei tre %c il resto della divisione tra gli altri due\n\n", 138);
+	int n=0;								
+	printf("Inserisci la lunghezza n=");
+	scanf("%d", &n);
+	printf("\n");
+	int sequenza[n];						
+	printf("Ora digita %d interi\n", n);
+	for (int i=0; i<n; i++) {
+		scanf("%d", &sequenza[i]);
+	}
+	printf("\n");
+	int esisteTripla = restoDivisione(sequenza, n);
+	if (esisteTripla==1)
+		printf("SI, esiste una tripla di elementi dove uno dei tre %c il resto della divisione tra gli altri due\n", 138);
+	else
+		printf("NO, non esiste una tripla di elementi dove uno dei tre %c il resto della divisione tra gli altri due\n", 138);
+	return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the existential verification algorithm
+- Proper array bounds checking in the loop (i<l-2)
+- Complete check of all possible remainder combinations
+- Good structure of the main function with clear user interaction
+
+Areas for Improvement:
+- Code indentation needs to be consistent throughout the function
+- Better handling of zero values in divisions
+- Messages could be clearer and avoid using special characters (138)
+- Consider adding input validation for array length
+
+Key Recommendations:
+- Use consistent indentation (4 spaces or 1 tab)
+- Add validation for zero values to prevent undefined behavior
+- Use standard ASCII characters for output messages
+- Add input validation for the array length (n > 0)
+</feedback_summary>

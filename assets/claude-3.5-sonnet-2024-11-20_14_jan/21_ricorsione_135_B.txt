@@ -1,0 +1,66 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........3.7 = 5.0 - 1.0 - 0.3
+countNumbers (2).....1.7 = 2.0 - 0.3
+readNumbers (2)......2.0
+writeNumbers(1)......1.0
+TOTAL................8.4/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int minimoDispari(int *seq, int lunghezza){
+    int tripla;     
+    //******** The base case should be length<=2 (because you need to consider a triplet of elements) -1.0
+    if(lunghezza<3)
+        tripla = 1;
+    else
+        tripla = ((seq[0]<seq[1] && seq[0]<seq[2] && seq[0]%2==1) ||
+                 (seq[1]<seq[0] && seq[1]<seq[2] && seq[1]%2==1) ||
+                 (seq[2]<seq[1] && seq[2]<seq[0] && seq[2]%2==1)) &&
+                 minimoDispari(seq+1, lunghezza-1);
+    return tripla;
+}
+
+int quantiNumeri() {
+    FILE* fp = fopen("interi.dat", "rb");
+    int quanti;     
+    //******** counter not initialized -0.3
+    if(fp==NULL)
+        printf("Apertura file non riuscita!\n");
+    else {
+        int numero;     
+        while(fread(&numero, sizeof(int), 1, fp)>0) {
+            quanti++;
+        }
+        fclose(fp);
+    }
+    return quanti;
+}
+
+[Rest of the code remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of file operations (reading and writing)
+- Proper file handling with error checks
+- Clear main function structure with user interaction
+- Correct implementation of binary file operations
+
+Areas for Improvement:
+- Base case in minimoDispari function needs revision
+- Counter initialization missing in quantiNumeri function
+- The recursive implementation could be more efficient
+
+Key Recommendations:
+1. Modify the base case in minimoDispari to handle arrays of length ≤ 2 properly
+2. Initialize the counter variable in quantiNumeri
+3. Consider adding more descriptive error messages
+4. Add input validation for user choices in main function
+
+The code is generally well-structured and functional, but needs some minor adjustments to be more robust and reliable.
+</feedback_summary>

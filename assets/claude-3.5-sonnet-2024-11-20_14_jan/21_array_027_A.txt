@@ -1,0 +1,82 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................6.0
+*/
+
+#include <stdio.h>
+int ugualiCompresi(int array[],int lung){
+    int var=0;
+    int i=0;
+    while(i<lung-2&&!var){
+        //******** CONDITION IS COMPLICATED AND NOT VERY READABLE -0.2
+        //******** PARENTHESES ERROR MAKES LOGIC INCORRECT - WRONG OPERATOR PRECEDENCE -1.5
+        if((array[i]+array[i+1]>=10&&array[i]+array[i+1]<=20)
+        ||(array[i+1]+array[i+2]>=10&&array[i+1]+array[i+2]<=20)
+        &&(array[i]==array[i+1]||array[i+1]==array[i+2])){
+            var=1;
+            }
+        i++;
+        }
+    return var;
+    }
+
+int main(){
+    int lunghezza;
+    printf("ciao sono un programma che verifica in un array l'esistenza di una tripla di elementi \n");
+    printf("consecutivi tale che almeno due elementi della tripla hanno una somma compresa tra 10 e 20 \n");
+    printf("ed esattamente due elementi della tripla sono uguali \n");
+    printf("introduci il numero di elementi dell'array \n");
+    scanf("%d",&lunghezza);
+    if(lunghezza<3)
+        printf("gli elementi non sono sufficienti da formare una tripla \n");
+    else{
+        int array[lunghezza];
+        for(int i=0;i<lunghezza;i++){
+            printf("inserisci \n");
+            scanf("%d",&array[i]);
+            }
+        //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+        if(ugualiCompresi(array,lunghezza)){
+            printf("verificato \n");
+            }
+        else
+            printf("non verificato \n");
+        }
+    }
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct overall program structure
+- Proper array bounds checking
+- Good input handling for array length
+- Correct loop implementation for array traversal
+
+Areas for Improvement:
+1. Function Logic:
+   - The condition in the if statement needs better parentheses organization to ensure correct operator precedence
+   - The logic should be more clearly structured and readable
+   - Consider breaking down complex conditions into smaller, more manageable parts
+
+2. Output Messages:
+   - The verification messages should be more specific about what property was found or not found
+   - Consider adding more descriptive output messages that explain the result
+
+Key Recommendations:
+1. Restructure the condition check to be more clear:
+   ```c
+   bool hasValidSum = (array[i]+array[i+1]>=10 && array[i]+array[i+1]<=20) ||
+                     (array[i+1]+array[i+2]>=10 && array[i+1]+array[i+2]<=20);
+   bool hasExactlyTwoEqual = (array[i]==array[i+1] && array[i]!=array[i+2]) ||
+                            (array[i+1]==array[i+2] && array[i]!=array[i+1]);
+   if(hasValidSum && hasExactlyTwoEqual)
+   ```
+
+2. Improve output messages:
+   ```c
+   printf("La sequenza contiene/non contiene una tripla con le proprietà richieste\n");
+   ```
+</feedback_summary>

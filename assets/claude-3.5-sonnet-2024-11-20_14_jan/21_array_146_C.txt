@@ -1,0 +1,65 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.0 = 6.0 - 3.0
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................5.0
+*/
+
+#include <stdio.h>
+int compresiMultipli3(int seq[], int dim){
+    int i=0; 
+    int multipli3=0; 
+    while(i<dim-2 && !multipli3){
+        //******** CONDITION IS INCORRECT - CHECKS FOR VALUES BETWEEN -1 AND 10 INSTEAD OF -10 AND 10 -1.0
+        //******** MISSING CHECK FOR EXACTLY TWO MULTIPLES OF 3 IN THE TRIPLE -2.0
+        if(((seq[i]>=-1 && seq[i]<=10) && (seq[i+1]>=-1 && seq[i+1]<=10)) 
+        || ((seq[i]>=-1 && seq[i]<=10) && (seq[i+2]>=-1 && seq[i+2]<=10))
+        || ((seq[i+1]>=-1 && seq[i+1]<=10) && (seq[i+2]>=-1 && seq[i+2]<=10)))
+            multipli3=1;
+        else
+            i++;
+    }
+    return multipli3;
+}
+
+int main(int argc, char **argv)
+{
+    int dim; 
+    //******** OUTPUT MESSAGE IS NOT CLEAR ABOUT THE REQUIREMENT FOR EXACTLY TWO MULTIPLES OF 3 -0.5
+    printf("Questo programma verifica che in una sequenza esista una tripla di elementi consecutivi che contiene almeno ");
+    printf("due elementi il cui valore %c compreso fra -10 e 10 estrmi inclusi.\n\n", 138);
+    printf("Inserisci la dimensione della sequenza: ");
+    scanf("%d", &dim);
+    int seq[dim]; 
+    for(int i=0; i<dim; i++){
+        printf("inserisci un valore intero: ");
+        scanf("%d", &seq[i]);
+    }
+    if(compresiMultipli3(seq, dim))
+        printf("Nella sequenza esiste una tripla contenente almeno due interi con valore compreso fra -10 e 10.\n\n");
+    else
+        printf("Non esiste nessuna tripla della sequenza con almeno due interi compresi fra -10 e 10.\n\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good program structure with separate function and main
+- Proper array handling and loop implementation
+- Clear user interaction in main function
+- Correct use of boolean flag for existential verification
+
+Areas for Improvement:
+- The function doesn't check for exactly two multiples of 3 in the triple, which is a key requirement
+- The range check is incorrect (-1 to 10 instead of -10 to 10)
+- Output messages don't mention the requirement for exactly two multiples of 3
+- The logic for checking pairs of elements within range could be simplified
+
+Key Recommendations:
+1. Modify the function to include checks for exactly two multiples of 3 in each triple
+2. Correct the range check to be between -10 and 10 inclusive
+3. Update the output messages to clearly state all requirements
+4. Consider restructuring the condition to make it more readable and maintainable
+5. Add comments to explain the logic of the function
+</feedback_summary>

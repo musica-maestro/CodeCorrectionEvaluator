@@ -1,0 +1,81 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.0 - 1.0
+   MAIN PROGRAM (max 2.5):....2.5
+   TOTAL.......................6.5
+*/
+
+#include <stdio.h>
+int compresiMultipli3(int interi[], int lunghezza)
+{
+    int compresi;    
+    int i;            
+    compresi=0;        
+    i=0;            
+    //******** INDEX CONDITION WRONG - SHOULD BE i<lunghezza-2 TO AVOID ARRAY BOUNDS ACCESS -1.0
+    while(i<lunghezza && !compresi){
+        //******** CONDITION IS COMPLICATED AND CONTAINS LOGICAL ERROR IN CHECKING RANGE - SHOULD BE BETWEEN -10 AND 10, NOT OUTSIDE THIS RANGE -1.0
+        if((((interi[i]>=10 || interi[i]<=-10) && (interi[i+1]>=10 || interi[i+1]<=-10))
+        ||((interi[i]>=10 || interi[i]<=-10) && (interi[i+2]>=10 || interi[i+2]<=-10))
+        ||((interi[i+1]>=10 || interi[i+1]<=-10) && (interi[i+2]>=10 && interi[i+2]<=-10)))
+        &&
+        ((interi[i]%3==0 && interi[i+1]%3==0)
+        ||(interi[i]%3==0 && interi[i+2]%3==0)
+        ||(interi[i+1]%3==0 && interi[i+2]%3==0)))
+            compresi=1;
+        else    
+            i++;
+    }
+    return compresi;    
+}
+
+int main(int argc, char **argv)
+{
+    int l;    
+    printf("Questa applicazione chiede di introdurre una sequenza di interi e verifica se nella sequenza da te introdotta esiste una tripla tale che:\n");
+    printf("1) Contiene almeno due elementi il cui valore %c compreso tra 10 e -10.\n", 138);
+    printf("2) Contiene esattamente due elementi multipli di 3.\n");
+    printf("Quanti interi vuoi introdurre?\n");
+        scanf("%d", &l);
+    if(l<3)
+        do{
+            printf("Valore introdotto non valido. Puoi introdurre almeno 3 elementi.\n");
+            printf("Inserisci un nuovo valore: ");
+                scanf("%d", &l);
+        }while(l<3);
+    int sequenza[l];
+    for(int i=0; i<l; i++){
+        printf("Inserisci il %d%c intero: ", i+1, 167);
+            scanf("%d", &sequenza[i]);
+    }
+    if(compresiMultipli3(sequenza, l)){
+        printf("Nella sequenza esiste una tripla che contiene due elementi il cui valore %c compreso", 138);
+        printf(" tra -10 e 10, e una coppia di elementi multipli di 3.\n");
+    }
+    else{
+        printf("Nella sequenza non esiste una tripla di interi che contiene due elementi il cui valore %c compreso tra 10 e -10, e una coppia ", 138);
+        printf("di elementi multipli di 3.\n");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Well-structured main function with proper user interaction
+- Good input validation for sequence length
+- Clear output messages
+- Proper use of boolean flag for existential verification
+- Good implementation of loop control structure
+
+Areas for Improvement:
+- Array bounds checking in compresiMultipli3 function needs correction to prevent buffer overflow
+- The condition for checking numbers between -10 and 10 is implemented incorrectly (currently checks for numbers outside this range)
+- The logic could be simplified and made more readable by breaking down the complex condition
+
+Key Recommendations:
+- Modify the while loop condition to i<lunghezza-2 to prevent array access violations
+- Correct the range check condition to (interi[i]>=-10 && interi[i]<=10)
+- Consider breaking down the complex condition into smaller, more manageable parts using helper variables
+- Add comments to explain the logic of the complex conditions
+</feedback_summary>

@@ -1,0 +1,60 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.0 = 6.0 - 1.5 - 0.5
+   MAIN (max 2.0):.......1.8 = 2.0 - 0.2
+   TOTAL..................5.8
+*/
+
+# include <stdio.h>
+int duePositivi(int* array,int lunghezza){
+    int i=0; 
+    int universale=1; 
+    //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+    while(i<lunghezza-2 && universale){
+        if(!(array[i]>0 && array[i+1]>0 && array[i+2]>0))               
+            universale=0; 
+        else 
+            i++;
+    }
+    return universale;
+}
+
+int main(){
+    int lunghezza; 
+    printf("Ciao quanti interi vuoi inserire?   \n");
+    scanf("%d", &lunghezza);
+    int array[lunghezza]; 
+    for(int i=0; i<lunghezza;i++){
+        //******** UNCLEAR MESSAGE -0.2
+        printf("Inserisci l'intero sulla quale vuoi verificare la proprieta':   ");
+        scanf("%d", & array[i]);
+    }
+    if(duePositivi(array,lunghezza)) 
+        printf("La sequenza che hai inserito verifica la proprieta' ovvero esistono due interi positivi per ogni tripla ");
+    else 
+        printf("La sequenza che hai inserito NON verifica la proprieta' ovvero NON esistono due interi positivi per ogni tripla ");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct overall program structure with separate function and main
+- Proper array handling and parameter passing
+- Good use of boolean flag for universal verification
+- Clear user interaction in main function
+
+Areas for Improvement:
+- The triple condition check is incorrect. It currently checks if all three numbers are positive, while it should check for exactly two positive numbers
+- The output messages could be more concise and clearer
+- The condition should check for exactly two positive numbers in each triple using a combination of conditions like:
+  (array[i]>0 && array[i+1]>0 && array[i+2]<=0) || 
+  (array[i]>0 && array[i+1]<=0 && array[i+2]>0) ||
+  (array[i]<=0 && array[i+1]>0 && array[i+2]>0)
+
+Key Recommendations:
+- Revise the logic for checking exactly two positive numbers in each triple
+- Make user prompts more precise and clear
+- Consider adding input validation for array length
+- Add comments to explain the logic of the function
+</feedback_summary>

@@ -1,0 +1,103 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* 
+minOdd (5)...........2.0 = 5.0 - 1.5 - 1.0 - 0.5
+countNumbers (2).....1.0 = 2.0 - 0.5 - 0.5
+readNumbers (2)......1.5 = 2.0 - 0.5
+writeNumbers(1)......0.7 = 1.0 - 0.3
+TOTAL................5.2
+*/
+
+int minimoDispari(int *seq, int lunghezza){
+    //******** MISSING BASE CASE OR COMPLETELY WRONG -1.5
+    //******** THE BASE CASE SHOULD BE LENGTH<=2 -0.5
+    int risultato;
+    int minimo = seq[0];  
+    if(lunghezza==2)
+        risultato=1;
+        if(seq[1] < minimo)
+            minimo = seq[1];
+        //******** ARRAY ACCESS OUT OF BOUNDS - seq[2] when length=2 -1.0
+        if(seq[2] < minimo)
+            minimo = seq[2];
+        else{
+            minimo = (minimo % 2 != 0) && minimoDispari(seq + 1, lunghezza - 1);
+        }
+    return minimo;
+}
+
+int quantiNumeri() {
+    FILE *fp =  fopen("interi.dat","rb");
+    int lunghezza = 0;
+    int valore;
+    //******** INCORRECT LOGIC IN NULL CHECK (fp != NULL should print error when NULL) -0.5
+    if(fp != NULL)
+        printf("Nessun file!\n");
+    else{
+        while(fread(&valore,sizeof(int),1,fp)>0){
+            lunghezza++;
+        }
+    }
+    fclose(fp); 
+    return lunghezza;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE *fp =  fopen("interi.dat","rb");
+    //******** MISSING ERROR HANDLING FOR FAILED FILE OPEN -0.5
+    if(fp != NULL) 
+    {
+        for(int i=0; i<lunghezza;i++)
+        {
+            fread(&sequenza[i],sizeof(int),1,fp);
+        }
+    }
+    fclose(fp); 
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE *fp =  fopen("interi.dat","wb");
+    //******** MISSING ERROR HANDLING FOR FAILED FILE OPEN -0.3
+    if(fp != NULL)
+    {
+        for(int i=0; i<lunghezza;i++)
+        {
+            fwrite(&sequenza[i],sizeof(int),1,fp);
+        }
+    }
+    fclose(fp); 
+}
+
+[Rest of main() function...]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic file I/O operations implemented correctly
+- Proper use of binary file operations (fread/fwrite)
+- Consistent error checking for file operations
+- Good structure of separate functions for different operations
+
+Areas for Improvement:
+1. minimoDispari function:
+   - Missing proper base case for recursion
+   - Incorrect array access beyond bounds
+   - Logic for checking odd minimum needs revision
+
+2. File Operations:
+   - File opening error checking needs to be reversed (fp == NULL for error)
+   - Better error handling needed for file operations
+   - Should verify read/write operations success
+
+3. Program Logic:
+   - Array bounds checking needed
+   - Better handling of edge cases required
+
+Key Recommendations:
+1. Implement proper base case for recursion (when length <= 2)
+2. Fix array bounds checking in minimoDispari
+3. Correct file operation error handling
+4. Add proper verification of read/write operations
+5. Add input validation for array operations
+</feedback_summary>

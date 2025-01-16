@@ -1,0 +1,81 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):....1.0 = 6.0 - 1.5 - 0.5 - 0.5 - 1.5 - 1.0
+   MAIN PROGRAM (max 2.5):....0.3 = 2.5 - 0.5 - 0.5 - 1.0 - 0.2
+   TOTAL.......................1.3
+*/
+
+#include <stdio.h>
+//******** IF THE FUNCTION IS WRITTEN BELOW, YOU MUST DECLARE ITS PROTOTYPE -0.5
+int ugualiCompresi(int s[], int lunghezza);
+int i; \\variabile di esistenza   
+int trovato;
+//******** VARIABLE IS NOT INITIALIZED -1.0
+i=0;
+trovato=0;
+//******** CONDITION IS WRONG, MISSING PARENTHESIS AND WRONG OPERATOR -1.5
+while((i<=lunghezza-2 && !trovato){  
+    //******** = INSTEAD OF == IN EQUALITY COMPARISONS -0.5
+    if((((s[i]+s[i+1]<=20) && (s[i]+s[i+1]>=10))
+    || ((s[i]+s[i+2]<=20) && (s[i]+s[i+2]>=10)) ||
+    ((s[i+1]+s[i+2]<=20)&&(s[i+1]+s[i+2]>=10)))
+    && ((s[i]=s[i+1]) ||(s[i]=s[i+2])||(s[i+1]=s[i+2]))))
+        trovato=1;
+        else
+            i++;
+            //******** WITH A RETURN INSIDE THE LOOP, YOU STOP AT THE FIRST ITERATION -1.5
+            return trovato;
+}
+
+int main()
+{
+    printf("ciao utente, quanti interi vuoi inserire?\n");
+    scanf("%d", &lunghezza);
+    int sequenza[lunghezza];
+    //******** BADLY INDENTED -0.2
+    for(i=0; i<=lunghezza; i++)
+        printf("introduci gli interi: \n");
+        //******** &sequence[i] MISSING ARRAY INDEX -1.0
+        scanf("%d", &sequenza ); 
+        //******** PRINTF OUTSIDE THE LOOP -0.5
+        if(ugualiCompresi(sequenza, lunghezza))
+            printf("esiste una tripla con almeno due elementi che hanno somma compresa tra 10 e 20, ed esattamente due elementi uguali");
+            else
+                printf("non esiste una tripla con almeno due elementi che hanno somma compresa tra 10 e 20, ed esattamente due elementi uguali");
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure attempts to solve the required problem
+- Output messages clearly describe the result
+
+Areas for Improvement:
+1. Function Implementation:
+- Function prototype should be declared before use
+- Variables should be properly initialized within the function
+- Fix comparison operators (= vs ==)
+- Remove return statement from inside the loop
+- Correct the loop condition syntax
+
+2. Main Program:
+- Fix array input by adding proper array indexing in scanf
+- Improve code indentation
+- Keep printf statement for input prompt inside the loop
+- Fix array bounds checking in the loop
+
+Key Recommendations:
+1. Review C syntax for:
+   - Variable declarations and initialization
+   - Comparison operators (= vs ==)
+   - Array indexing
+2. Restructure the function to:
+   - Properly check for consecutive triples
+   - Return result only after checking all possible triples
+3. Improve main program to:
+   - Correctly read array elements
+   - Use proper loop structure for input
+4. Add proper code indentation for better readability
+</feedback_summary>

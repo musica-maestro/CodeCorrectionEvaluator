@@ -1,0 +1,95 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........4.0 = 5.0 - 1.0
+countNumbers (2).....2.0
+readNumbers (2)......2.0
+writeNumbers(1)......1.0
+TOTAL................9.0
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int condizione(int* seq){
+	int minimo=seq[0];
+	for(int i=1;i<3;i++){
+		if(seq[i]<minimo)
+			minimo=seq[i];
+	}
+	//******** Using a for loop to calculate minimum of triplet instead of direct comparison -1.0
+	return minimo%2;
+}
+
+int minimoDispari(int *seq, int lunghezza){
+	int ris = 1;
+	if(lunghezza>=3){
+		ris = condizione(seq) && minimoDispari(seq+1, lunghezza-1);
+	}
+	return ris;
+}
+
+int quantiNumeri() {
+	int letti=0;
+	FILE* fp = fopen("interi.dat","rb");
+	if(fp==NULL){
+		printf("Errore di lettura!\n\n");
+	} else {
+		int numero;
+		while(fread(&numero, sizeof(int), 1, fp)>0)
+			letti++;
+		fclose(fp);
+		printf("Numeri contati!\n\n");
+	}
+	return letti;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+	FILE* fp = fopen("interi.dat","rb");
+	if(fp==NULL){
+		printf("Errore di lettura!\n\n");
+	} else {
+		int i=0;
+		while(fread(sequenza+i, sizeof(int), 1, fp)>0)
+			i++;
+		fclose(fp);
+		printf("Numeri letti!\n\n");
+	}
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+	FILE* fp = fopen("interi.dat","wb");
+	if(fp==NULL){
+		printf("Errore di scrittura!\n");
+	} else {
+		fwrite(sequenza, sizeof(int), lunghezza, fp);
+		fclose(fp);
+		printf("Scrittura completata!\n");
+	}
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of file handling functions (readNumbers, writeNumbers, countNumbers)
+- Proper error checking for file operations
+- Good use of binary file operations
+- Clear main program structure with user interaction
+
+Areas for Improvement:
+- The minimumOdd implementation could be improved:
+  - The use of a for loop to find the minimum of three numbers is less efficient than direct comparisons
+  - The function name "condizione" could be more descriptive
+  - The implementation could be more straightforward without splitting into two functions
+
+Key Recommendations:
+- Refactor the minimum finding logic to use direct comparisons instead of a loop
+- Consider using more descriptive function names
+- Add more detailed error messages and user feedback
+- Consider adding input validation for array elements
+
+The code is generally well-structured and functional, with the main deduction coming from the implementation approach in the minimumOdd function. The file handling portions are particularly well done with proper error checking and cleanup.
+</feedback_summary>

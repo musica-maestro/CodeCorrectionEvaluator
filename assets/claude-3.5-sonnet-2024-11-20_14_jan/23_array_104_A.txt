@@ -1,0 +1,83 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....3.3 = 6.0 - 1.5 - 1.0 - 0.2
+   MAIN PROGRAM (max 2.0):....1.3 = 2.0 - 0.5 - 0.2
+   TOTAL.......................4.6
+*/
+
+#include <stdio.h>
+int multipli(int v[],int n);
+int main()
+{
+    int l; 
+    printf("Ciao utente sono un programma che data");
+    printf("numero una sequenza di interi verifica se ogni terna adiacente ci sia almeno");
+    printf("un elemento multiplo degli alti due\n");
+    printf("quanti interi contiene la tua sequenza? ");
+    scanf("%i",&l);
+    //******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+    int vet[l];
+    for(int i=0;i<l;i++) 
+    {
+        printf("inserisci il %i numero: ",i+1);
+        scanf("%i",&vet[i]);
+    }
+    //******** UNCLEAR OUTPUT MESSAGE -0.2
+    if(multipli(vet,l))
+        printf("in tutte le terne degli elementi c'e' almeno un elemento multiplo delgi altri due");
+    else
+        printf("in tutte le terne degli elementi non e' stato trovato almeno un elemento multiplo delgi altri due");
+}
+
+int multipli(int v[],int n)
+{
+    int cont;
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < n - 2 -1.0
+    for(int i=0;i<n-2;i++) 
+    {
+        cont=0; 
+        //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+        for(int j=i;j<i+2;j++)        
+            if(v[j]%v[j+1]==0 || v[j+1]%v[j]==0)
+                cont++; 
+        //******** HOW TO CONSIDER 0? -0.2
+        if(cont<1) 
+            return 0; 
+    }
+    return 1; 
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Main function implements required user interaction
+- Function returns correct boolean values (1/0)
+- Array handling is generally correct
+
+Areas for Improvement:
+1. Array bounds checking:
+   - The loop condition in multipli() should be i < n-2 to avoid accessing elements beyond array bounds
+   
+2. Triple condition verification:
+   - Current implementation only checks pairs of adjacent elements
+   - Should check all combinations within each triple
+   - Need to consider all three elements in each verification
+
+3. Code organization:
+   - Array declaration should follow after getting the length input
+   - Output messages could be clearer and more user-friendly
+
+4. Edge cases:
+   - Program doesn't handle the case when input numbers are 0
+   - No input validation for array length
+
+Key Recommendations:
+1. Fix the triple verification logic to check all combinations
+2. Add proper bounds checking in loops
+3. Implement input validation
+4. Improve output message clarity
+5. Consider edge cases like zero values
+6. Move array declaration after length input
+</feedback_summary>

@@ -1,0 +1,77 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....2.5 = 6.0 - 1.5 - 1.0 - 1.0
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................4.5
+*/
+
+#include <stdio.h>
+int compresiMultilpi3(int array[], int dimensione)
+{
+    //******** EXTREMELY CONVOLUTED AND WRONG CONDITION -1.5
+    //******** THIS IS AN EXISTENTIAL CHECK, NOT A UNIVERSAL ONE -1.0
+    int risultato=1; 
+    for(int i=0; i<dimensione; i++){  
+        //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i<dimensione-2 -1.0
+        if(i==0){  
+            if(!((array[i]>=-10 && array[i]<=10) && (array[i+1]>=-10 && array[i+1]<=10) && (!(array[i+2]>=-10 && array[i+2]<=10)))
+            || (((!(array[i]>=-10 && array[i]<=10))) && (array[i+1]>=-10 && array[i+1]<=10) && (array[i+2]>=-10 && array[i+2]<=10))
+            || ((array[i]>=-10 && array[i]<=10) && (!(array[i+1]>=-10 && array[i+1]<=10)) && (array[i+2]>=-10 && array[i+2]<=10)))
+            {
+            risultato=0;}
+                else{
+                if(!((array[i]%3==0 && array[i]%3==0) && (array[i+1]%3==0 && array[i+1]%3==0) && (!(array[i+2]%3==0 && array[i+2]%3==0)))
+            || ((!(array[i]%3==0 && array[i]%3==0)) && (array[i+1]%3==0 && array[i+1]%3==0) && (array[i+2]%3==0 && array[i+2]%3==0))
+            || ((array[i]%3==0 && array[i]%3==0) && (!(array[i+1]%3==0 && array[i+1]%3==0)) && (array[i+2]%3==0 && array[i+2]%3==0)))
+            {
+            risultato=0;}
+        }
+        }
+        [... rest of function code ...]
+    }
+return risultato;
+}
+
+int main()
+{
+    int lunghezza;
+    printf("Ciao, sono un programma che verifica che in ogni tripla della sequenza");
+    printf("ci siano 2 numeri tra -10 e 10 (estremi inclusi) e che esistano almeno 2 numeri divisibili per 3.\n");
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    printf("Inserisci la lunghezza della sequenza!\n");
+    scanf("%d",&lunghezza);
+    int sequenza[lunghezza];
+    printf("Inserisci i numeri della sequenza!\n");
+    for(int i=0; i<lunghezza; i++){
+        scanf("%d",&sequenza[i]);
+    }
+    int verifica;
+    verifica=compresiMultilpi3(sequenza, lunghezza);
+    if(verifica!=0)
+        printf("La sequenza rispetta i criteri iniziali!\n");
+        else
+            printf("La sequenza non rispetta i criteri iniziali!\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Input/output interaction with user is implemented
+- Array handling and function calls are correctly implemented
+
+Areas for Improvement:
+- The function logic is overly complicated and incorrect
+- Array bounds checking is missing, which could lead to buffer overflows
+- The condition checks are not properly implementing the requirements
+- The function implements a universal check instead of the required existential check
+- Output messages could be more specific about the criteria being checked
+
+Key Recommendations:
+- Simplify the logic by checking one triple at a time
+- Add proper array bounds checking (i < dimensione-2)
+- Implement an existential check (return 1 as soon as a valid triple is found)
+- Make the conditions more readable by breaking them into smaller parts
+- Improve output messages to clearly state what conditions are being verified
+</feedback_summary>

@@ -1,0 +1,75 @@
+I'll grade the student's submission following the provided format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........1.0 = 6.0 - 1.5 - 1.0 - 0.5 - 1.0 - 1.0
+   MAIN PROGRAM (max 2.5):....0.5 = 2.5 - 1.0 - 0.5 - 0.5
+   TOTAL.......................1.5
+*/
+
+#include <stdio.h>
+ int compresiMultipli3 (int sequenza[], int lunghezza){
+int compresi=0;
+int i=0;
+//******** LOOP CONDITION INCORRECT, SHOULD BE i<lunghezza-2 -1.0
+while(i<=lunghezza-3 && !compresi){
+//******** CONDITION IS INCORRECT AND POORLY FORMATTED -1.0
+if ((sequenza[i]>=-10||sequenza[i]<=10)&&(sequenza[i+1]>=-10
+||sequenza[i+1]<=10)&&(sequenza[i+2]<=-10||sequenza[i+2]>=10))
+if((sequenza[i]%3==0)&&(sequenza[i+1]%3==0)&&(sequenza[i+2]%3==1))
+compresi=1;
+else
+	i++;
+	else    
+		i++;
+		//******** RETURN STATEMENT OUTSIDE LOOP SCOPE -1.0
+		return compresi;
+}
+ }
+
+int main()
+{
+	int i;
+	int lunghezza;
+	//******** ARRAY DECLARED WITH UNINITIALIZED LENGTH -1.0
+	int sequenza[lunghezza]; 
+	printf("introduci il numero di interi della tua sequenza: \n");
+	scanf("%d", &lunghezza);
+	printf("introduci gli interi: \n"); 
+	//******** INCORRECT ARRAY INPUT, SHOULD BE A LOOP -0.5
+	scanf("%d", &sequenza[i]);
+	//******** INCORRECT FUNCTION CALL SYNTAX -0.5
+	compresiMultipli3(sequenza[lunghezza], lunghezza);
+	}
+
+//******** FUNCTION DECLARED AFTER MAIN WITHOUT PROTOTYPE -0.5
+compresimultipli3(int sequenza[], int lunghezza){
+    printf("esiste");    
+	printf("non esiste");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure attempt with main function and helper function
+- Attempt to implement the required functionality for checking consecutive elements
+
+Areas for Improvement:
+1. Function Implementation:
+- Fix the loop condition to properly check array bounds
+- Correct the logical conditions for checking values between -10 and 10
+- Properly scope the return statement within the function
+- Declare function prototype before main if defined after
+
+2. Main Program:
+- Initialize array length before declaring the array
+- Implement proper loop for reading array elements
+- Fix function call syntax
+- Improve output messages to be more descriptive
+
+Key Recommendations:
+1. Review array bounds and indexing in C
+2. Study proper function declaration and calling syntax
+3. Practice proper code formatting and organization
+4. Implement proper input validation and array initialization
+5. Use clear and descriptive output messages
+</feedback_summary>

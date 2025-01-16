@@ -1,0 +1,67 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.0):....2.0
+   TOTAL.......................6.0
+*/
+
+#include <stdio.h>
+int duePositivi (int SequenzaBase[], int lunghezzaBase){
+    int Esiste=0;      
+    int Contatore=0;    
+    //******** THIS WAY YOU CHECK IF THERE ARE AT LEAST TWO POSITIVES, NOT EXACTLY TWO -1.5
+    for (int i=0; i<lunghezzaBase-2; i++){
+        if ((SequenzaBase[i]>0 && SequenzaBase[i+1]>0)||(SequenzaBase[i]>0 && SequenzaBase[i+2]>0)||(SequenzaBase[i+1]>0 && SequenzaBase[i+2]>0))
+            Contatore=1;
+        else
+            Contatore=0;
+    }      
+    //******** SETTING THE VARIABLE TO 1 IS NOT NECESSARY (BECAUSE IT'S ALREADY 1), BUT YOU SAVE IT BECAUSE YOU PLACED THE BOOLEAN IN THE LOOP CONDITION -0.5
+    for (int i=0; i<lunghezzaBase-2; i++){
+        if (SequenzaBase[i]>0 && SequenzaBase[i+1]>0 && SequenzaBase[i+2]>0)
+            Contatore=0;
+    }  
+    if (Contatore==1)
+        Esiste=1;
+    else
+        Esiste=0;
+    return Esiste;
+}
+
+int main (){
+    int lunghezza;        
+    printf("Salve Utente, quanti numeri verrano inseriti nella sequenza?   ");
+    scanf("%d", &lunghezza);
+    int Sequenza[lunghezza]; 
+    for (int i=0; i<lunghezza; i++){
+        printf("Inserisca un numero:  ");
+        scanf("%d", &Sequenza[i]);
+    }
+    int Esiste=duePositivi(Sequenza, lunghezza); 
+    if (Esiste==1)
+        printf("\nIn tutte le triple di elementi adiacenti della \nsequenza ci sono esattamente due positivi.\n");
+    else
+        printf("\nIn tutte le triple di elementi adiacenti della \nsequenza non ci sono esattamente due positivi.\n");
+    printf("  Grazie.\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct main function implementation with proper user interaction
+- Good array handling and function parameter passing
+- Clear output messages
+- Proper loop bounds checking (i < lunghezzaBase-2)
+
+Areas for Improvement:
+- The logic for checking exactly two positives needs revision. The current implementation checks for at least two positives rather than exactly two
+- The second loop that checks for three positives could be combined with the first loop for better efficiency
+- The boolean flag (Contatore) usage could be simplified
+
+Key Recommendations:
+- Modify the condition to check for exactly two positives in each triple
+- Combine the two loops into one for better efficiency
+- Consider using more meaningful variable names (e.g., 'hasExactlyTwoPositives' instead of 'Contatore')
+- Consider adding input validation for the sequence length
+</feedback_summary>

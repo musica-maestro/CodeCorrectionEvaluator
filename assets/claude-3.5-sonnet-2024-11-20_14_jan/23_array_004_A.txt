@@ -1,0 +1,63 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.0):....1.5 = 2.0 - 0.5
+   TOTAL......................5.5/8.0
+*/
+
+#include <stdio.h>
+int multipli(int interi[], int dimensione){
+    int esiste = 1;      
+    int i = 0;           
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < dimensione - 2 -1.5
+    while(i<=dimensione-2 && esiste){
+        //******** CONDITION ON THE TRIPLE IS WRONG - LOGIC ERROR IN OR/AND OPERATORS -0.5
+        if(!(interi[i]%interi[i+1]==0 && interi[i]%interi[i+2]==0)||
+            (interi[i+1]%interi[i]==0 && interi[i+1]%interi[i+2]==0) ||
+            (interi[i+2]%interi[i]==0 && interi[i+2]%interi[i+1]==0))      
+            esiste = 0 ;
+        else
+            i++;
+    }
+    return esiste;
+}
+
+int main(){
+    int lunghezza;
+    printf("Ciao utente, sono un programma che verifica se in una terna appartenente ad una sequenza di interi, esiste almeno un elemento multiplo degli altri due\n\n");
+    printf("Inserisci la lunghezza della sequenza\n");
+    scanf("%d", &lunghezza);
+    //******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+    int sequenza[lunghezza];
+    for(int i=0; i<lunghezza; i++){
+        printf("Inserisci un intero\n");
+        scanf("%d", &sequenza[i]);
+    }
+    if(multipli(sequenza, lunghezza))
+        printf("In tutte le terne adiacenti esiste almeno un elemento multiplo di uno degli altri due\n");
+    else
+        printf("NON in tutte le terne adiacenti esiste un elemento multiplo degli altri due\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good overall program structure with separate function and main
+- Clear user interaction with appropriate prompts
+- Proper use of boolean flag for verification
+- Clear output messages
+
+Areas for Improvement:
+- Array bounds checking needs correction: The loop condition should be i < dimensione - 2 to avoid accessing elements beyond array bounds
+- The logic for checking multiples in triples needs revision. The current condition structure is overly complex and doesn't correctly implement the requirement
+- Array declaration should follow the length input to ensure proper memory allocation
+- Function name in main ("multipli") doesn't match the function declaration ("multipli")
+
+Key Recommendations:
+1. Fix the array bounds checking in the while loop
+2. Simplify and correct the multiple checking logic
+3. Move array declaration after getting the length input
+4. Ensure consistent function naming throughout the code
+5. Consider adding input validation for array length and elements
+</feedback_summary>

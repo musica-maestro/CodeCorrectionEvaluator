@@ -1,0 +1,65 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.3 = 6.0 - 1.5 - 0.2
+   MAIN (max 2.0):.......1.8 = 2.0 - 0.2
+   TOTAL..................6.1
+*/
+
+#include <stdio.h>
+int DuePositivi(int array[], int lunghezza){
+    int j=0; 
+    int z=1; 
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE j < lunghezza - 2 -1.5
+    while((j!=(lunghezza-2))&&z){ 
+        //******** DO YOU CONSIDER 0 POSITIVE OR NEGATIVE? -0.2
+        if((array[j]>=0&&array[j+1]>=0&&array[j+2]<=0)
+        ||(array[j]>=0&&array[j+1]<=0&&array[j+2]>=0)
+        ||(array[j]<=0&&array[j+1]>=0&&array[j+2]>=0)){
+                j++;
+            }
+            else{
+                z=0;
+            }
+        }
+    return z;
+}
+int main(){
+    int lunghezza;
+    printf("quanto la impostiamo lunga l'array?\n");
+    scanf("%d",&lunghezza);
+    printf("introduci i valori dell'array\n");
+    int array[lunghezza];
+    for(int i=0; i!=lunghezza; i++){
+        scanf("%d",&array[i]);
+    }
+    //******** UNCLEAR MESSAGE -0.2
+    if(DuePositivi(array,lunghezza)){
+        printf("esistono due interi positivi per ogni tripletta\n");
+    }
+    else{
+        printf("non esistono due interi positivi per ogni tripletta");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the universal verification approach
+- Good use of boolean flag (z) to control loop execution
+- Proper function structure with parameters and return value
+- Main function correctly handles user interaction and array input
+
+Areas for Improvement:
+- Array bounds checking needs correction: The condition j!=(lunghezza-2) could lead to array index out of bounds. Should use j < lunghezza-2
+- Zero handling is ambiguous: The code treats 0 as positive (>=0), but this should be clarified based on requirements
+- Output messages could be more clear and informative
+- Italian text in output messages might not be appropriate for an international context
+
+Key Recommendations:
+1. Fix array bounds checking to prevent potential buffer overflows
+2. Clarify zero handling according to requirements
+3. Make output messages more descriptive and clear
+4. Consider using English for output messages
+5. Add input validation for array length to ensure it's at least 3 (minimum needed for a triple)
+</feedback_summary>

@@ -1,0 +1,67 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.3 = 6.0 - 1.5 - 0.2
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL......................6.3
+*/
+
+#include <stdio.h>   
+int maggiori5Pari(int interi[], int lunghezza) {
+		int i = 0;
+		int triple = 1;
+    //******** WRONG CONDITION ON INDEX i <= length-3 SHOULD BE i < length-2 -1.5
+	while(i<=lunghezza-3 && triple) {
+		//******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+		if(		
+		((interi[i]>=5 && interi[i+1]>=5 && interi[i+2]<=5)  
+		|| (interi[i+1]>=5 && interi[i+2]>=5 && interi[i]<=5)
+		|| (interi[i]>=5 && interi[i+2]>=5 && interi[i+1]<=5)) &&		
+		((interi[i]%2!=0 && interi[i+1]%2!=0 && interi[i+2]%2==0)
+		|| (interi[i+1]%2!=0 && interi[i+2]%2!=0 && interi[i]%2==0)
+		|| (interi[i]%2!=0 && interi[i+2]%2!=0 && interi[i+1]%2==0))) 	
+			triple = 0; 	
+			else
+				i++;		
+	}
+	return triple;
+}
+
+int main(int argc, char **argv)
+{
+	int lunghezza;	
+	printf("Caro utente introduci pure la lunghezza della sequenza di interi: \n");
+	scanf("%d", &lunghezza);
+	int sequenza[lunghezza];
+	for(int i=0; i<lunghezza; i++) {	
+		printf("Prego introduci l'intero numero %d: \n", i+1);
+		scanf("%d", &sequenza[i]);
+	}
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+	if(maggiori5Pari(sequenza,lunghezza))
+		printf("Tutte le triple contengono esaattamente due interi >=5 e due interi pari\n");
+		else  
+			printf("Non tutte le triple contengono esattamente due interi >=5 e due interi pari\n");
+	return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the main function structure
+- Proper array allocation and input handling
+- Correct logic for checking both conditions (two numbers ≥5 and two even numbers)
+- Good use of boolean variable to control loop execution
+
+Areas for Improvement:
+- The loop condition in maggiori5Pari uses incorrect bounds (i<=lunghezza-3 instead of i<lunghezza-2)
+- The logic conditions, while correct, are difficult to read and could be simplified for better maintainability
+- Output messages could be more specific about the properties being checked
+- Code formatting and indentation could be improved for better readability
+
+Key Recommendations:
+1. Fix the loop boundary condition to prevent potential array access issues
+2. Break down complex conditions into smaller, more readable parts using intermediate variables
+3. Improve output messages to be more descriptive and precise
+4. Use consistent indentation throughout the code
+</feedback_summary>

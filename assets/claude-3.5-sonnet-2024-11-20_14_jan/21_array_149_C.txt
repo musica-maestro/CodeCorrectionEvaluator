@@ -1,0 +1,87 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........6.0
+   MAIN PROGRAM (max 2.5):....2.5
+   TOTAL.......................8.5
+*/
+
+#include <stdio.h>
+int almenoDueCompresi(int seq[], int i){
+	int ris; 
+	if(((seq[i]>=-10 && seq[i]<=10) && (seq[i+1]>=-10 && seq[i+1]<=10))
+	|| ((seq[i]>=-10 && seq[i]<=10) && (seq[i+2]>=-10 && seq[i+2]<=10))
+	|| ((seq[i+1]>=-10 && seq[i+1]<=10) && (seq[i+2]>=-10 && seq[i+2]<=10)))
+		ris=1;
+	else
+		ris=0;
+	return ris;
+ }
+
+int dueMultipli3(int seq[], int i){
+	int ris; 
+	if(((seq[i]%3 == 0) && (seq[i+1]%3 == 0) && (seq[i+2]%3 != 0))
+	|| ((seq[i]%3 == 0) && (seq[i+1]%3 != 0) && (seq[i+2]%3 == 0))
+	|| ((seq[i]%3 != 0) && (seq[i+1]%3 == 0) && (seq[i+2]%3 == 0)))
+		ris=1;
+	else
+		ris=0;
+	return ris;
+}
+
+int compresiMultipli3(int seq[], int lung){
+	int i=0; 
+	int esiste=0; 
+	while(i<lung-2 && !esiste){
+		if(almenoDueCompresi(seq, i) && dueMultipli3(seq, i))
+			esiste=1;
+		else
+			i++;
+	}
+	return esiste;
+}
+
+int main(){
+	int lung, ris;
+	printf("Inserisci la lunghezza della sequenza: ");
+	scanf("%d", &lung);
+	int seq[lung];
+	for(int i=0; i<lung; i++){
+		printf("Inserisci l'intero x%d: ", i+1);
+		scanf("%d", &seq[i]);
+	}
+	ris= compresiMultipli3(seq, lung);
+	if(ris)
+		printf("La tripla cercata esiste!\n"); 
+	else
+		printf("La tripla cercata NON esiste!\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the required functionality
+- Well-structured code with appropriate function decomposition
+- Proper handling of array bounds in the main loop
+- Efficient use of boolean flag for existential verification
+- Clear and correct implementation of both conditions (numbers between -10 and 10, and multiples of 3)
+- Good user interaction in main function
+
+Areas for Improvement:
+- Code comments could be added to improve readability
+- Variable names could be more descriptive (e.g., 'ris' could be 'result')
+- The output messages could be more specific about what properties were found
+
+Key Recommendations:
+- Add comments explaining the logic of each function
+- Use more descriptive variable names
+- Enhance output messages to be more informative about the specific conditions being met
+</feedback_summary>
+
+The student's submission fully meets all the requirements specified in the assignment. The code correctly implements:
+1. The function to check for at least two elements between -10 and 10
+2. The function to check for exactly two multiples of 3
+3. The main function with proper user interaction
+4. Correct handling of array bounds and loop conditions
+
+The solution is well-structured and efficient, using appropriate control structures and boolean flags for existential verification. No points were deducted as all functional requirements were met correctly.

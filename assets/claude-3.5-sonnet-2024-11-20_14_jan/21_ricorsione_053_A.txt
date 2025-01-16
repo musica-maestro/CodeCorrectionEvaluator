@@ -1,0 +1,98 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)......... 2.0 = 5.0 - 3.0
+countNumbers (2).... 1.7 = 2.0 - 0.3
+readNumbers (2)..... 1.5 = 2.0 - 0.5
+writeNumbers(1)..... 0.7 = 1.0 - 0.3
+TOTAL............... 5.9
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimoPari(int *a,int l){
+    //******** WRONG FUNCTION IMPLEMENTATION - Checks for sum being even instead of maximum being even -2.0
+    //******** MISSING BASE CASE FOR l<3 - Could cause array access issues -1.0
+    int pari=0;  
+    if (((a[0]+a[1]+a[2])%2==0) && massimoPari(a+1,l-1)) 
+        pari=1;
+    else
+        pari=0;
+    return pari;
+}
+
+int quantiNumeri(){
+    int quanti=0;
+    int a;
+    FILE *fp=fopen("interi.dat","rb");
+    //******** MISSING FILE CLOSE -0.3
+    if (fp==NULL)
+        printf("File vuoto \n");
+    else{
+        while(fread(&a,sizeof(int),1,fp)>0)
+            quanti++;
+    }
+    return quanti;
+}
+
+void leggiNumeri(int *a,int l){
+    FILE *fp=fopen("interi.dat","rb");
+    //******** MISSING FILE CLOSE -0.3
+    //******** MISSING ERROR HANDLING AFTER FILE OPEN FAILURE -0.2
+    if (fp==NULL)
+        printf("File vuoto \n");
+    else{
+        fread(a,sizeof(int),l,fp);
+    }
+}
+
+void salvataggio(int *a,int l){
+    FILE *fp=fopen("interi.dat","wb");
+    //******** MISSING FILE CLOSE -0.3
+    if (fp==NULL)
+        printf("File vuoto \n");
+    else{
+        fwrite(a,sizeof(int),l,fp);
+        printf("salvataggio effettuato \n");
+    }
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic file I/O operations implemented correctly
+- Good structure for reading and writing binary files
+- Clear menu-driven interface in main()
+
+Areas for Improvement:
+1. massimoPari function:
+   - Function checks for sum being even instead of maximum being even
+   - Missing proper base case for recursion
+   - Could cause array access violations for small arrays
+
+2. File Operations:
+   - Missing file closure in all file handling functions
+   - Error handling for file operations could be more robust
+   - Error messages could be more descriptive
+
+3. Function Implementation:
+   - The massimoPari function doesn't match the assignment requirements
+   - Should check for maximum even number in triplets instead of sum
+
+Key Recommendations:
+1. Implement proper maximum even check in massimoPari:
+   - Add base case for l<3
+   - Check maximum of triplet instead of sum
+   - Ensure proper recursive logic
+
+2. Improve file handling:
+   - Add fclose() after all file operations
+   - Implement better error handling
+   - Use more descriptive error messages
+
+3. Add proper documentation and comments to explain the logic
+</feedback_summary>

@@ -1,0 +1,61 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL......................5.8
+*/
+
+#include <stdio.h>
+int duePositivi(int array[],int lunghezza){
+    int verificato=1;      
+    //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+    for(int i=0;i<lunghezza-2;i++)  
+        if(!(array[i]>0 && array[i+1]>0 || array[i]>0 && array[i+2]>0 || array[i+1]>0 && array[i+2]>0))
+            verificato=0;
+    //******** SETTING THE VARIABLE TO 1 IS NOT NECESSARY, BUT SAVED BY BOOLEAN IN LOOP CONDITION -0.5
+    return verificato;
+}
+
+int main(){
+    int n;    
+    printf("ciao utente quanti interi vuoi introdurre? ");
+    scanf("%d",&n);
+    int array[n];
+    for(int i=0;i<n;i++){
+        printf("per favore introduci un intero: ");
+        scanf("%d",&array[i]);
+    }
+    //******** UNCLEAR MESSAGE -0.2
+    if(duePositivi(array,n))
+        printf("in tutte le triple ci sono esattamente due numeri positivi");
+    else
+        printf("non in tutte le triple ci sono esattamente due numeri positivi");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct array bounds checking in the loop (i < lunghezza-2)
+- Proper function structure with parameters and return value
+- Good user interaction in main function
+- Appropriate use of boolean flag for verification
+
+Areas for Improvement:
+- The condition for checking exactly two positives is incorrect. The current logic checks if at least two numbers are positive, not exactly two. The condition should verify that exactly two out of three numbers are positive in each triple.
+- The initialization of verificato=1 is redundant since it's already the default value
+- Output messages could be more clear and descriptive
+
+Key Recommendations:
+- Modify the triple condition to check for exactly two positive numbers. Consider using a counter for positive numbers in each triple
+- Add more descriptive output messages with examples of the triples being checked
+- Consider adding input validation for the array size
+- Add comments to explain the logic of the verification process
+</feedback_summary>
+
+The main issues in this submission are:
+1. The logical error in checking for exactly two positive numbers
+2. Unclear output messages
+3. Minor inefficiency in variable initialization
+
+The student shows good understanding of array manipulation and function structure, but needs to work on the precise implementation of the logical conditions for the problem requirements.

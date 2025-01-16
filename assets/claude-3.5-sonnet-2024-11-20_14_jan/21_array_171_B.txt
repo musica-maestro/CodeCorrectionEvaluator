@@ -1,0 +1,70 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................6.0
+*/
+
+#include <stdio.h>
+int maggiori5Pari(int vet[], int l){
+	int c=0; 
+	for(int i=0;i<l;i++){
+        //******** WRONG CONDITION ON INDEX i < l-2 (to avoid array bounds overflow) -1.5
+		c=0;
+	for(int j=i; j<i+3; j++) {  
+		if (vet[j]>=5){
+			c=c+1;}
+		}
+		if (!(c==2)) {
+			return 0;                  
+			} else {
+				//******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.5
+				if (!((vet[i]%2==0 && vet[i+1]%2==0)||(vet[i]%2==0 && vet[i+2]%2==0)||(vet[i+1]%2==0 && vet[i+2]%2==0))) {    
+					return 0;
+					}
+				}
+}
+return 1; 
+}
+
+int main(int argc, char **argv)
+{
+	printf("Caro utente sono un programma che calcola se all'inyternoi della sequenza che inserirai tutte le triple di elementi contengono esattamente due elementi maggiori o uglali a 5 ed almeno due elementi pari\n");
+	int l; 
+	printf("Per favore inserire lnghezza\n");
+	scanf("%d", &l);
+	int vet[l];
+	for(int i=0;i<l;i++){
+		printf("Per favore inserire n.%d\n", i+1);
+		scanf("%d", &vet[i]);
+		}
+		//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+		if (maggiori5Pari(vet, l)== 1) {
+				printf("La sequenza inserita rispetta le caratteristiche richieste\n"); 
+			} else {  
+				printf("La sequenza inserita NON rispetta le caratteristiche richieste\n"); 
+				}
+	return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the two conditions (exactly two elements ≥5 and at least two even elements)
+- Good structure of the main function with proper user interaction
+- Appropriate use of loops and conditional statements
+- Clear variable naming
+
+Areas for Improvement:
+- Array bounds checking: The loop condition in maggiori5Pari should be i < l-2 to avoid accessing elements beyond array bounds
+- Code readability: The condition for checking even numbers could be simplified or broken down into more readable parts
+- Output messages could be more specific about what properties the sequence satisfies or fails to satisfy
+- Consider adding input validation for array length
+
+Key Recommendations:
+1. Fix the array bounds issue by modifying the loop condition
+2. Break down complex conditions into smaller, more readable parts
+3. Enhance output messages to be more descriptive about the specific conditions being tested
+4. Add input validation for array length to ensure it's at least 3 (minimum needed for a triple)
+</feedback_summary>

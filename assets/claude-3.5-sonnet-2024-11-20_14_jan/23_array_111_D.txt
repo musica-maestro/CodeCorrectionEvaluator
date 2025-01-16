@@ -1,0 +1,65 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.5 = 6.0 - 1.0 - 0.5
+   MAIN PROGRAM (max 2.0):....1.9 = 2.0 - 0.1
+   TOTAL......................6.4
+*/
+
+#include <stdio.h>
+void insValori(int *x,int n){
+	printf("Ora inserisci i valori:");
+	for(int i=0;i<n;i++){                  
+		printf("\nValore n.%d: ",i+1);
+		scanf("%d",&x[i]);                 
+	}
+}
+
+int restoDivisione(int *x,int n){
+	int ris=0;                  
+	//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < n - 2 -1.0
+	for(int i=1;i<n-1;i++){ 
+		//******** TWO OR THREE COMBINATIONS ON THE TRIPLE CONDITION ARE MISSING -0.5
+		if( (x[i]%x[i-1]==x[i+1]) || (x[i-1]%x[i]==x[i+1]) ||
+		    (x[i]%x[i+1]==x[i-1]) || (x[i+1]%x[i]==x[i-1]) ||
+		    (x[i-1]%x[i+1]==x[i]) || (x[i+1]%x[i-1]==x[i]) )
+			ris=1;
+	}
+	return ris;
+}
+
+int main(){
+	int n;                       
+	int esito;                   
+	printf("Ciao utente. Inserisci il numero di valori: ");
+	scanf("%d",&n);
+	int x[n];                    
+	insValori(x,n);              
+	esito=restoDivisione(x,n);   
+	//******** MISSING SPACE -0.1
+	if(esito==1)
+		printf("Esiste una terna di valori consecutivi in cui uno dei tre e' il resto della divisione degli altri due.");
+	else
+		printf("NON esiste una terna di valori consecutivi in cui uno dei tre e' il resto della divisione degli altri due.");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good overall program structure with separate functions for input and processing
+- Clear variable naming and logical organization
+- Comprehensive output messages that clearly explain the results
+- Correct implementation of the main function requirements
+
+Areas for Improvement:
+- Array bounds checking in restoDivisione function needs correction to avoid potential buffer overflows
+- The modulo operation combinations could be more complete to cover all possible cases
+- Minor formatting issue with spacing in output messages
+- Consider adding input validation for array size n
+
+Key Recommendations:
+1. Modify the loop condition in restoDivisione to `i < n-2` to prevent array access violations
+2. Review and complete all possible modulo combinations for the triple check
+3. Add input validation for array size n to ensure it's positive and reasonable
+4. Maintain consistent spacing in output messages for better readability
+</feedback_summary>

@@ -1,0 +1,68 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.2 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................7.3
+*/
+
+#include <stdio.h>
+int ugualiCompresi(int array[], int lunghezza){
+    int valore=0; 
+    //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+    for(int i=0; i<lunghezza-2 && !valore;i++){ 
+        if(((array[i]+array[i+1]>=10 && array[i]+array[i+1]<=20)
+        ||(array[i]+array[i+1]+array[i+2]>=10 && array[i]+array[i+1]+array[i+2]<=20) ||
+        (array[i]+array[i+2]>=10 && array[i]+array[i+2]<=20)                           
+        ||(array[i+1]+array[i+2]>=10 && array[i+1]+array[i+2]<=20))                    
+        && ((array[i]==array[i+1] && array[i]!=array[i+2]) ||                          
+        (array[i]==array[i+2] && array[i]!=array[i+1])
+        || (array[i+1]==array[i+2] && array[i+1]!=array[i])))
+            valore=1;
+    }
+    return valore;
+}
+
+int main(){
+    int lunghezza; 
+    printf("Caro utente, quanti interi vuoi introdurre?\n");
+    scanf("%d",&lunghezza); 
+    int array[lunghezza];
+    for(int i=0; i<lunghezza; i++){ 
+        printf("Introduci un intero:\n");
+        scanf("%d", &array[i]);
+    }
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    if(ugualiCompresi(array,lunghezza)) 
+        printf("Nell'array esiste una tripla di interi consecutivi tale che almeno due elementi della tripla hanno una somma compresa tra 10 e 20(estremi inclusi) ed esattamente due elementi della tripla sono uguali fra loro");
+    else
+        printf("Nell'array non esiste una tripla di interi consecutivi tale che almeno due elementi della tripla hanno una somma compresa tra 10 e 20(estremi inclusi) ed esattamente due elementi della tripla sono uguali fra loro");
+    }
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for finding triples with required properties
+- Proper array bounds checking in the loop condition
+- Good use of boolean flag to stop searching once a valid triple is found
+- Correct handling of array input and length
+
+Areas for Improvement:
+- The condition in the ugualiCompresi function is quite complex and could be broken down into smaller, more readable parts
+- The output messages could be more concise while still maintaining clarity about the sequence properties
+- Consider adding input validation for the array length
+
+Key Recommendations:
+- Break down the complex condition into separate boolean variables with meaningful names
+- Simplify the output messages while keeping them informative
+- Add input validation to ensure the array length is positive and reasonable
+- Consider adding comments to explain the logic of the complex conditions
+</feedback_summary>
+
+The student's implementation is generally correct and handles the requirements well. The main deductions are for code readability and output message clarity. The function correctly checks for:
+1. Consecutive triples
+2. Sums between 10 and 20
+3. Exactly two equal elements
+4. All possible combinations within each triple
+
+The solution demonstrates good understanding of the problem but could benefit from better organization and presentation of the logic.

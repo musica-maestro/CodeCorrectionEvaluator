@@ -1,0 +1,67 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.0 = 6.0 - 1.0 - 1.0 - 1.0
+   MAIN PROGRAM (max 2.0):....1.0 = 2.0 - 0.5 - 0.5
+   TOTAL.......................4.0
+*/
+
+#include <stdio.h>
+int restoDivisione(int array[], int l){
+    int i=0;        
+    int risultato;    
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < l - 2 -1.0
+    for(int i=1; i<=l-2; i++){ 
+        //******** CONDITION ON THE TRIPLE IS WRONG (array indexing starts from 1) -1.0
+        if(((array[i+1]%array[i+2])==array[i]) || ((array[i+2]%array[i+1])==array[i]) ||
+            ((array[i]%array[i+2])==array[i+1]) || ((array[i+2]%array[i])==array[i+1]) ||
+            ((array[i+1]%array[i])==array[i+2]) || ((array[i]%array[i+1])==array[i+2])){
+            risultato = 1;
+        }
+        else
+            risultato = 0;
+    }
+    //******** RETURN THE CALCULATED VALUE ON THE LAST TRIPLE -1.0
+    return risultato;
+}
+
+int main(){
+    int lunghezza;        
+    int i;                
+    int esiste;            
+    printf("\nDi quanti elementi si compone la sequenza?\n");
+    scanf("%d", &lunghezza);
+    //******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+    int sequenza[lunghezza];
+    //******** INCORRECT READING, SHOULD BE &sequenza[i-1] (array indexing starts from 1) -0.5
+    for(i=1; i<=lunghezza; i++){
+        printf ("Inserire l'intero: ");
+        scanf("%d", &sequenza[i]);
+    }
+    esiste=restoDivisione(sequenza, lunghezza);
+    if(esiste==1)
+        printf("Esiste almeno una terna tale che un numero e' il resto degli altri due.");
+    else
+        printf("Non esiste nessuna terna tale che un numero e' il resto degli altri due.");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is correct
+- Function and main program separation is appropriate
+- Output messages are clear and informative
+
+Areas for Improvement:
+- Array indexing: The code uses 1-based indexing but arrays in C are 0-based
+- Array bounds checking: The loop condition in restoDivisione could cause buffer overflow
+- Logic implementation: The function returns only the result of the last triple check instead of checking for existence
+- Memory access: Array access starts from index 1, leaving the first element unused
+
+Key Recommendations:
+1. Use 0-based array indexing throughout the code
+2. Correct the loop bounds in restoDivisione to prevent buffer overflow
+3. Implement proper existential verification by returning 1 as soon as a valid triple is found
+4. Fix array access in the main function's input loop to use proper indexing
+5. Consider edge cases and array bounds when accessing array elements
+</feedback_summary>

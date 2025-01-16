@@ -1,0 +1,64 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.3 = 6.0 - 1.5 - 0.2
+   MAIN PROGRAM (max 2.0):....1.7 = 2.0 - 0.2 - 0.1
+   TOTAL......................6.0
+*/
+
+#include <stdio.h>
+int duePositivi(int seq[], int lunghezza) {
+    int tripla;
+    int i;        
+    tripla=0;   
+    i=0;
+    //******** THIS IS A UNIVERSAL VERIFICATION, NOT AN EXISTENTIAL ONE -1.5
+    while(i<lunghezza-2 && !tripla) {  
+        //******** DO YOU CONSIDER 0 POSITIVE OR NEGATIVE? -0.2
+        if((seq[i]>0 && seq[i+1]>0 && seq[i+2]<=0)||(seq[i]>0 && seq[i+2]>0 && seq[i+1]<=0)||(seq[i+1]>0 && seq[i+2]>0 && seq[i]<=0))
+          tripla=1;  
+        else
+           i++;
+    }
+   return tripla;
+}
+int main() {
+    int lunghezza;         
+    printf("caro utente, sono un programma che riceve una sequenza di interi\n");
+    printf("e verifca se per ogni tripla della sequenza ci sono esattamente due numeri posirivi\n");
+    //******** UNCLEAR MESSAGE -0.2
+    printf("quenti interi hai intenzione di introdurre?\n");
+    scanf("%d", &lunghezza);
+    int sequenza[lunghezza];
+    //******** MISSING SPACE -0.1
+    for(int i=0; i<lunghezza; i++) {
+        printf("inserisci un numero\n");
+        scanf("%d", &sequenza[i]);
+    }
+    if(duePositivi(sequenza, lunghezza))
+        printf("caro utnte in tutte le triple di elemti ci sono due interi positivi\n");
+    else
+       printf("caro utente non in tutte le triple ci sono due interi positivi\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct function parameters and return type
+- Proper array handling and iteration
+- Good user interaction in main function
+- Correct implementation of the triple checking logic
+
+Areas for Improvement:
+- The function implements an existential verification (stops when finding a triple that matches) instead of the required universal verification (should check all triples)
+- Ambiguous handling of zero values in the positive number checking
+- Some unclear user messages and typos in output text
+- Minor formatting issues with spacing
+
+Key Recommendations:
+- Modify the function to check all triples by removing the tripla flag and continuing the iteration
+- Clearly define how zero values should be handled (positive or non-positive)
+- Improve clarity of user messages
+- Add proper spacing in code for better readability
+- Consider adding input validation for array length
+</feedback_summary>

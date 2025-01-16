@@ -1,0 +1,120 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* 
+maxEven (5)............2.0 = 5.0 - 1.5 - 1.5
+countNumbers (2).......0.5 = 2.0 - 1.0 - 0.5
+readNumbers (2)........1.4 = 2.0 - 0.3 - 0.3
+writeNumbers(1)........0.5 = 1.0 - 0.5
+TOTAL..................4.4/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int massimo(int a,int c,int b)
+{
+    int max;
+    max=a;
+    if(b>max)
+        max=b;
+    else
+        max=c;
+    return max;
+}
+
+int massimoPari(int *seq, int lunghezza)
+{
+    int max; 
+    if(lunghezza<3)
+    {
+        max=1;
+        //******** Base case incorrect - should return true only if length < 3 -1.5
+    }
+    else
+    {
+        //******** Incorrect recursive logic - should use && for universal property -1.5
+        max = (massimo(seq[0],seq[1],seq[2])%2==0) && massimoPari(seq+1,lunghezza-1);
+    }
+    return max;
+}
+
+int quantiNumeri() {
+    int numero=0; 
+    FILE *fp = fopen("massimoPari.dat","rb");
+    //******** Counter not properly implemented for counting file numbers -1.0
+    if(fp!=NULL)
+    {
+        while(fread(numero,sizeof(int),1,fp))
+        {
+            numero++; 
+        }             
+    }                 
+    else
+        printf("Apertura file non avvenuta\n");
+    //******** Missing error handling return value -0.5
+    fclose(fp); 
+    return numero;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza)
+{
+    FILE *fp = fopen("massimoPari.dat","rb");
+    if(fp!=NULL)
+    {
+        //******** Incorrect fread syntax - should not use & with array -0.3
+        fread(sequenza,sizeof(int),lunghezza,fp);
+        fclose(fp);
+    }
+    else
+        //******** Should return error status instead of just printing -0.3
+        printf("Apertura non avvenuta\n");
+}
+
+void scriviNumeri(int* sequenza, int lunghezza)
+{
+    FILE *fp = fopen("massimoPari.dat","wb");
+    if(fp!=NULL)
+    {
+        //******** Incorrect fwrite syntax - using &sequenza instead of sequenza -0.5
+        fwrite(&sequenza,sizeof(int),lunghezza,fp);
+        fclose(fp);
+    }
+    else
+        printf("Salvataggio non avvenuto\n");
+}
+
+[Rest of main() function...]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic file operations implemented
+- Good structure with separate functions for different operations
+- Error checking for file operations included
+
+Areas for Improvement:
+1. massimoPari function:
+   - Base case needs correction for lengths < 3
+   - Recursive logic should use && for universal property check
+   - Should properly handle edge cases
+
+2. quantiNumeri function:
+   - Counter implementation needs revision
+   - Should properly handle file reading errors
+   - Return value should reflect error conditions
+
+3. File Operations:
+   - Fix fread/fwrite syntax with arrays
+   - Implement proper error status returns
+   - Use correct file handling patterns
+
+Key Recommendations:
+1. Revise the recursive logic in massimoPari to properly check all triplets
+2. Implement proper error handling and return values
+3. Fix array handling in file operations
+4. Add proper documentation and error messages
+5. Review binary file operations syntax
+
+</feedback_summary>

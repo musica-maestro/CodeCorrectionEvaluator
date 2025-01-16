@@ -1,0 +1,91 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........2.0 = 5.0 - 1.5 - 1.0 - 0.5
+countNumbers (2).....0.5 = 2.0 - 1.0 - 0.5
+readNumbers (2)......0.5 = 2.0 - 1.0 - 0.5
+writeNumbers(1)......0.3 = 1.0 - 0.4 - 0.3
+TOTAL................3.3
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+int minimoDispari(int *seq, int lunghezza){
+    int risultato; 
+    //******** base case incorrect - should check if length <= 2 -1.0
+    if(lunghezza<3)
+        risultato= 1;
+    //******** complex boolean logic makes code hard to maintain and error-prone -1.5
+    else if(((((seq[0]< seq[1]) && (seq[0]< seq[2]))) && (seq[0]%2 !=0))
+         || ((((seq[1]< seq[0]) && (seq[1]< seq[2]))) && (seq[1]%2!=0))
+         || ((((seq[2]< seq[1]) && (seq[2]< seq[0]))) && (seq[2]%2!=0)))
+        risultato = minimoDispari(seq+1, lunghezza-1);
+        //******** missing proper control flow structure -0.5
+        return risultato;
+}
+
+int quantiNumeri() {
+    FILE *fp = fopen("interi.txt", "r");
+    //******** missing file open check -0.3
+    int cont = 0;
+    //******** incomplete fscanf parameters -1.0
+    while(fscanf(fp, "", )) 
+        cont++;
+    //******** missing file closure -0.2
+    return cont;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    //******** missing "r" mode in fopen -0.5
+    FILE*fp = fopen("interi.txt"); 
+    //******** incorrect loop condition -0.5
+    for(int i = 0; sequenza<quantiNumeri(); i++){
+        //******** missing semicolon -0.2
+        fscanf(fp, "%d", sequenza[i]) 
+    }
+    //******** missing file closure -0.2
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE *fp = fopen("interi.txt", "w");
+    //******** missing file open check -0.3
+    for(int i = 0 ; i<lunghezza; i++){
+        //******** incorrect fprintf format -0.4
+        fprintf(fp, sequenza[i], lunghezza);
+    }
+    fclose(fp);
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic file I/O operations implemented
+- Main program structure is logical
+- Handles both user input and file operations
+
+Areas for Improvement:
+1. minimoDispari function:
+   - Incorrect base case implementation
+   - Complex boolean logic needs simplification
+   - Missing proper control flow structure
+
+2. File Operations:
+   - Need to add file open error checking
+   - Incomplete file handling (missing closures)
+   - Incorrect format specifiers in file operations
+
+3. Input Validation:
+   - Missing input validation for array lengths
+   - Incorrect loop conditions in file reading
+
+Key Recommendations:
+1. Add proper error checking for file operations
+2. Simplify the recursive function logic
+3. Fix format specifiers in file I/O operations
+4. Add proper input validation
+5. Ensure all files are properly closed after use
+6. Review and correct the base case in the recursive function
+</feedback_summary>

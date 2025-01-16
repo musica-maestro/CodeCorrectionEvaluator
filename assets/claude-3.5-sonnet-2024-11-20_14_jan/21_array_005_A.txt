@@ -1,0 +1,71 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.5 = 6.0 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................7.5/8.5
+*/
+
+#include <stdio.h>
+int ugualiCompresi(int array[], int lung) {
+    int tripla=0;
+    //******** ITERATION LIMITS ARE INCORRECT (should be i < lung-2) -0.5
+    for(int i=1;i<lung-1;i++) {  
+        int attuale=array[i];
+        int precedente=array[i-1];
+        int successivo=array[i+1];
+        int ugualiAttESucc=(attuale==successivo) && (attuale!=precedente);
+        int ugualiAttEPrec=(attuale==precedente) && (attuale!=successivo);
+        int ugualiSuccEPrec=(precedente==successivo) && (precedente!=attuale);
+        if( ( ugualiAttESucc ) || ( ugualiAttEPrec ) || ( ugualiSuccEPrec ) ) {
+            int sommaAttSucc=attuale+successivo;
+            int sommaAttPrec=attuale+precedente;
+            int sommaSuccPrec=successivo+precedente;
+            int compresoAttSucc=(sommaAttSucc>=10 && sommaAttSucc<=20);
+            int compresoAttPrec=(sommaAttPrec>=10 && sommaAttPrec<=20);
+            int compresoSuccPrec=(sommaSuccPrec>=10 && sommaSuccPrec<=20);
+            if(compresoAttSucc || compresoAttPrec || compresoSuccPrec) {
+                tripla=1;
+            }
+        }  
+    }
+    return tripla;
+}
+
+int main() {
+    int lung;
+    printf("inserisci lunghezza array\n");
+    scanf("%d", &lung);
+    int array[lung];
+    for(int i=0;i<lung;i++) {
+        printf("inserisci numero dell'array\n");
+        scanf("%d", &array[i]);
+    }
+    if(ugualiCompresi(array, lung)) {
+        //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+        printf("esiste una tripla che contiene almeno due elementi la cui somma sia compresa tra 10 e 20 e dove esattamente due elementi sono uguali tra loro\n");
+    }
+    else {
+        printf("non esiste una tripla che contiene almeno due elementi la cui somma sia compresa tra 10 e 20 e dove esattamente due elementi sono uguali tra loro");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the logic for checking exactly two equal elements
+- Good variable naming that makes the code readable
+- Proper breakdown of conditions into meaningful boolean variables
+- Correct implementation of the sum range check (10-20)
+- Well-structured main function with proper user interaction
+
+Areas for Improvement:
+- The loop iteration limits in the ugualiCompresi function should be from 0 to lung-2 to properly check all possible triples without going out of bounds
+- The output messages could be more concise while still maintaining clarity about what condition was found/not found
+- Consider adding input validation for the array length
+
+Key Recommendations:
+- Modify the loop bounds to: for(int i=0; i<lung-2; i++)
+- Make output messages more concise but still informative
+- Add input validation to ensure lung is positive before creating the array
+</feedback_summary>

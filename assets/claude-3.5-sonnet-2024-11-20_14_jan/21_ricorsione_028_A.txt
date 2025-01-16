@@ -1,0 +1,102 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)......... 2.5 = 5.0 - 1.5 - 1.0
+countNumbers (2).... 0.0 (function empty)
+readNumbers (2)..... 0.0 (function empty)
+writeNumbers(1)..... 0.0 (function empty)
+TOTAL............... 2.5/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+int massimoPari(int *seq, int lunghezza){
+    int res;
+    //******** Base case is incorrect - should check if length <= 2 -1.0
+    if(lunghezza<3) {
+        res=1;
+    }
+    else {
+        int max=seq[0]; 
+        //******** Using if-else chain instead of more efficient max calculation -1.5
+        if(seq[0]>seq[1] && seq[0]>seq[2])
+            max=seq[0];
+        else if(seq[1]>seq[0] && seq[1]>seq[2])
+                max=seq[1];
+            else if(seq[2]>seq[0] && seq[2]>seq[1])
+                    max=seq[2];
+        if(max%2==0 && massimoPari(seq+1, lunghezza-1))
+            res=1;
+        else
+            res=0;
+    }
+    return res;
+}
+
+//******** Empty function implementation -2.0
+int quantiNumeri() {
+}
+
+//******** Empty function implementation -2.0
+void leggiNumeri(int* sequenza, int lunghezza) {
+}
+
+//******** Empty function implementation -1.0
+void scriviNumeri(int* sequenza, int lunghezza) {
+}
+
+int main() {
+    int lunghezza;         
+    int scelta;                
+    printf("Vuoi introdurre una nuova sequenza (premi 1) oppure recuperarla da file (premi 2)? ");
+    scanf("%d",&scelta);
+    if(scelta==1) {
+        printf("Introduci la lunghezza della sequenza: ");
+        scanf("%d",&lunghezza);
+        int array[lunghezza];
+        printf("Scrivi %d elementi \n",lunghezza);
+        for(int i=0;i<lunghezza;i++)
+            scanf("%d",&array[i]);
+        if(massimoPari(array,lunghezza))
+            printf(" ... \n");
+        else
+            printf(" ... \n");
+        scriviNumeri(array,lunghezza);
+    }
+    else {
+        lunghezza = quantiNumeri();
+        int array[lunghezza];
+        leggiNumeri(array,lunghezza);
+        printf("Ecco la sequenza recuperata\n");
+        for(int i=0;i<lunghezza;i++)
+            printf("%d ", array[i]);
+        printf("\n");
+        if(massimoPari(array,lunghezza))
+            printf(" ... \n");
+        else
+            printf(" ... \n");
+        scriviNumeri(array,lunghezza);
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic recursive structure implemented in massimoPari function
+- Main function properly handles user input for both manual and file input modes
+- Correct use of dynamic array allocation based on input length
+
+Areas for Improvement:
+- The base case in massimoPari is incorrect and could lead to array access violations
+- Three required functions (quantiNumeri, leggiNumeri, scriviNumeri) are completely empty
+- Maximum calculation in massimoPari could be simplified and made more efficient
+- Output messages are not descriptive ("..." instead of meaningful messages)
+
+Key Recommendations:
+1. Implement the missing file handling functions (quantiNumeri, leggiNumeri, scriviNumeri)
+2. Fix the base case in massimoPari to properly handle arrays of length <= 2
+3. Simplify the maximum calculation logic using math functions or simpler comparisons
+4. Add meaningful output messages that explain the result of the even maximum check
+5. Add proper file handling with error checking in the file-related functions
+</feedback_summary>

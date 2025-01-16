@@ -1,0 +1,66 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.5 = 6.0 - 1.5
+   MAIN PROGRAM (max 2.5):....2.2 = 2.5 - 0.3
+   TOTAL.......................6.7
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+int ugualiCompresi(int array[],int lunghezza){
+	int triplaConsecutiva=1; 
+	int i; 
+	i=0; 
+	//******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+	while(i<lunghezza-2 && triplaConsecutiva){
+		//******** CALCULATING THE SUM OF ALL THREE ELEMENTS IN THE TRIPLE INSTEAD OF CHECKING IF AT LEAST TWO ELEMENTS HAVE A SUM BETWEEN 10 AND 20 -1.5
+		if((array[i]+array[i+1]>=10 && array[i]+array[i+1]<=20) &&  
+		  (array[i+1]+array[i+2]>=10 && array[i+1]+array[i+2]<=20) &&
+		  (array[i]==array[i+1] || array[i+1]==array[i+2])) 
+			triplaConsecutiva=0; 
+		else{
+			triplaConsecutiva=1;
+			i++;
+		}
+	}
+	return triplaConsecutiva;
+}
+int main(int argc, char **argv){
+	int dim;
+	printf("Questo programma calcola se in una stringa esiste una tripla la cui somma\n");
+	printf("%c compresa tra 10 e 20 e due dei elementi della tripla sono uguali\n",138);
+	printf("Inserisci la dimensione dell'array: ");   
+	scanf("%d",&dim);
+	int array[dim]; 
+	for(int i=0;i<dim;i++){
+		printf("inserisci il %d* numero: ",i+1);
+		scanf("%d",&array[i]);
+	}
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+	if(ugualiCompresi(array,dim))
+		printf("Esiste una tripla di elementi consecutivi compresi tra 10 e 20 con 2 elementi uguali\n");
+	else
+		printf("NON esiste una tripla di elementi consecutivi compresi tra 10 e 20 con 2 elementi uguali\n");
+	return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct array bounds checking in the loop
+- Proper function structure with parameters and return value
+- Good user interaction in main function
+- Appropriate variable initialization
+
+Areas for Improvement:
+- The logic for checking sums between 10 and 20 needs revision. Currently, it checks both pairs of consecutive elements, when it should check any pair within the triple
+- The code readability could be improved by breaking down the complex condition into smaller, more readable parts
+- Output messages could be more specific about what properties are being checked
+
+Key Recommendations:
+- Simplify the condition checking by breaking it into separate logical parts
+- Revise the logic to check for any pair of elements within the triple having a sum between 10 and 20
+- Improve output messages to be more precise about the conditions being checked
+- Consider using meaningful variable names and adding comments to explain complex logic
+</feedback_summary>

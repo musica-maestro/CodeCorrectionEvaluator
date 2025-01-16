@@ -1,0 +1,82 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........6.0
+   MAIN PROGRAM (max 2.5):....2.2 = 2.5 - 0.3
+   TOTAL.......................8.2
+*/
+
+#include <stdio.h>
+int dueMultipli(int x, int y, int z)
+{
+    int risultato = 0; 
+    if((x%3==0 && y%3==0 && z%3!=0) || (y%3==0 && z%3==0 && x%3!=0) || (x%3==0 && z%3==0 && y%3!=0) ){
+        risultato = 1;
+    }
+    return risultato;
+}
+
+int compreso(int x, int y, int z)
+{
+    int risultato = 0; 
+    if(((x >= -10 && x <= 10) && (y >= -10 && y <= 10))
+    || ((x >= -10 && x <= 10) && (z >= -10 && z <= 10)) ||
+        ((y >= -10 && y <= 10) && (z >= -10 && z <= 10))) {
+        risultato = 1;
+    }
+    return risultato;
+}
+
+int compresiMultipli3(int array[], int dim)
+{
+    int i = 0; 
+    int verificato = 0; 
+    while(i < dim - 2 && !verificato) {
+        if(compreso(array[i], array[i + 1], array[i + 2]) && dueMultipli(array[i],array[i+1],array[i+2])){
+            verificato = 1;
+        }else{
+            i++;
+        }
+    }
+    return verificato;
+}
+
+int main()
+{
+    int dim; 
+    printf("Gentile utente, dimmi quanti numeri vuoi inserire:");
+    scanf("%d", &dim);
+    int seq[dim]; 
+    for(int i = 0; i < dim; i++) {
+        printf("\n(%d) Inserisci un intero: ", i + 1);
+        scanf("%d", &seq[i]);
+    }
+    if(compresiMultipli3(seq, dim)) {
+        printf("\nLa sequenza contiene almeno una tripla che rispetta la condizione.\n");
+    } else {
+        //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+        printf("\nLa sequenza NON contiene NESSUNA una tripla che rispetta la condizione.\n");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Excellent modular design with separate functions for different checks
+- Correct implementation of the consecutive triple check
+- Proper array bounds checking in the main loop
+- Good use of boolean flag for early termination
+- Correct implementation of the multiple of 3 check
+- Proper range checking for values between -10 and 10
+
+Areas for Improvement:
+- The output message could be more specific about what conditions are being checked
+- Consider adding more descriptive output messages that explain the exact requirements being verified (exactly two multiples of 3 and at least two numbers between -10 and 10)
+
+Key Recommendations:
+- Enhance the output messages to be more descriptive and specific about the conditions being checked
+- Consider adding input validation for the array dimension
+- Add comments to explain the logic of each helper function
+</feedback_summary>
+
+The student's implementation is very well structured and correctly solves the problem. The only minor deduction is for the somewhat vague output message that doesn't clearly specify what conditions are being checked. The code demonstrates good programming practices with separate helper functions and proper control flow.

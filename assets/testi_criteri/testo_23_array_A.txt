@@ -1,0 +1,10 @@
+Design an algorithm to solve the following problem. Given a sequence of integers, check if for each triple of adjacent elements in the sequence, there is at least one element in the triple that is a multiple of one of the other two. For example, the sequence [3, 4, 2, 18, 9] is a positive instance of the problem because in the first triple (3,4,2), 4 is a multiple of 2; also in the second triple (4, 2, 18) 4 is a multiple of 2, while in the third triple (2,18,9), 18 is a multiple of 9. The sequence [3, 4, 5, 18, 9] is a negative instance of the problem because even in the first triple (3,4,5) no number is a multiple of another.
+
+(1 pt) Describe the specification of the problem briefly.
+(1 pt) Indicate what type of problem this is (accumulation, counting, existential verification, universal verification, search, minimum/maximum).
+(6 pt) A function multipli with parameters: 1) an array of integers; and 2) an integer representing the length of the array. The function returns 1 if in all the triples of adjacent elements in the sequence there is at least one element that is a multiple of one of the other two, otherwise it returns 0.
+(2 pt) A main function that handles user interaction. The main function should:
+· Ask the user how many integers the sequence has and read the user's response
+· Ask the user to enter the integers of the sequence, read the integers entered by the user, and store them in an array;
+· Call the multipli function, passing it a reference to the sequence of integers just read and its length;
+· Print a message informing the user whether in all the triples of adjacent elements of the sequence there is at least one element that is a multiple of one of the other two, or if a multiple of one of the other two elements of the triple was not found in all the triples of the sequence.

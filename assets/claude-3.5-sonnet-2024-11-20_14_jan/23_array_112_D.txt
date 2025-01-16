@@ -1,0 +1,58 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.0 = 6.0 - 1.0
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL......................6.8
+*/
+
+#include <stdio.h>
+int restoDivisione (int seq[], int lunghezza){
+    int risposta = 0;            
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lunghezza - 2 -1.0
+    for (int i = 0; i < lunghezza-1 && risposta == 0; i++){        
+        if(((seq[i] % seq[i+2]) == seq[i+1]) || ((seq[i+2] % seq[i]) == seq[i+1])){
+            risposta = 1;
+        }
+    }
+    return risposta;
+}
+int main(){
+    int n;
+    printf("Inserire grandezza array:");
+    scanf("%d", &n);
+    int sequenza[n];
+    for (int i = 0; i < n; i++){
+        printf("Inserire valore %d dell'array:", i+1);
+        scanf("%d", &sequenza[i]);
+    }
+    int risposta = restoDivisione(sequenza, n);
+    //******** UNCLEAR MESSAGE -0.2
+    if (risposta == 0) {
+        printf("Non e' presente una terna di elementi adiacenti in cui uno dei tre e' il resto della divisione tra gli altri due\n");
+    }else{
+        printf("Esiste una terna di elementi adiacenti in cui uno dei tre e' il resto della divisione tra gli altri due\n");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the basic algorithm logic
+- Good use of boolean flag (risposta) to stop searching once a valid triple is found
+- Proper function structure with parameters and return value
+- Well-structured main program with user interaction
+- Clear variable naming
+
+Areas for Improvement:
+- Array bounds checking in the restoDivisione function is incorrect. The loop should run until i < lunghezza - 2 to avoid accessing elements beyond array bounds
+- Output messages could be clearer and more concise
+- Consider adding input validation for array size n
+
+Key Recommendations:
+1. Fix the array bounds issue by modifying the loop condition to:
+   for (int i = 0; i < lunghezza-2 && risposta == 0; i++)
+2. Simplify and clarify output messages
+3. Add input validation for array size to ensure it's positive and reasonable
+4. Consider adding error handling for invalid inputs
+</feedback_summary>

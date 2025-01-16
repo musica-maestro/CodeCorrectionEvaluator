@@ -1,0 +1,67 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.0 - 1.0
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................6.0
+*/
+
+#include <stdio.h>
+int compresimultipli3(int *sequenza, int lunghezza){
+    int verifica = 0;                                            
+    int i=0;
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i<lunghezza-2 -1.0
+    while(i<lunghezza && !verifica){
+        if(((sequenza[i]>=-10 && sequenza[i]<=10)&&(sequenza[i+1]>=-10 && sequenza[i+1]<=10))&&(!(sequenza[i+2]>=-10 && sequenza[i+2]<=10)) ||
+            ((sequenza[i+1]>=-10 && sequenza[i+1]<=10) &&(sequenza[i+2]>=-10 && sequenza[i+2]<=10)&&(!(sequenza[i]>=-10 && sequenza[i]<=10)))||
+            ((sequenza[i]>=-10 && sequenza[i]<=10) && (sequenza[i+2]>=-10 && sequenza[i+2]<=10)&&(!(sequenza[i+1]>=-10 && sequenza[i+1]<=10)))&&
+            ((sequenza[i]%3==0 && sequenza[i+1]%3==0 && sequenza[i+2]%3!=0)
+            || (sequenza[i]%3==0 && sequenza[i+2]%3==0 && sequenza[i+1]%3!=0)||
+            (sequenza[i+1]%3==0 && sequenza[i+2]%3==0 && sequenza[i]%3!=0)))
+            verifica= 1;
+        else
+            i++;
+    }
+    //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -1.0
+    return verifica;
+}
+
+int main()
+{
+    int lunghezza;                            
+     printf("ciao sono unn programma che verifica se esiste almeno,\n");
+     printf("una tripla nella sequenza che rispetta la proprieta'\n");
+     printf("inserisci la lunghezza della tua sequenza: ");
+     scanf("%d", &lunghezza);
+     int sequenza[lunghezza];
+        for(int i=0; i<lunghezza; i++){
+            printf("inserisci un valore:");
+            scanf("%d", &sequenza[i]);
+        }
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    if(compresimultipli3(sequenza, lunghezza))
+      printf("la tua sequenza ha dato esito positivo\n\n");
+    else
+         printf("la tua sequenza ha dato esito negativo\n\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the basic logic for checking triples
+- Good use of boolean flag for verification
+- Proper array handling and user input collection
+- Correct implementation of the multiple of 3 check
+
+Areas for Improvement:
+- Array bounds checking: The while loop condition should be i<lunghezza-2 to prevent accessing memory outside the array bounds
+- Code readability: The condition in the if statement is overly complex and could be broken down into smaller, more readable parts
+- Output messages: The program's output messages could be more specific about what property was found or not found in the sequence
+- Consider adding input validation for the sequence length
+
+Key Recommendations:
+1. Add proper array bounds checking to prevent buffer overflows
+2. Break down complex conditions into smaller, more manageable parts using intermediate boolean variables
+3. Improve output messages to be more descriptive about the specific property being tested
+4. Add input validation for the sequence length to ensure it's positive and sufficient for checking triples
+</feedback_summary>

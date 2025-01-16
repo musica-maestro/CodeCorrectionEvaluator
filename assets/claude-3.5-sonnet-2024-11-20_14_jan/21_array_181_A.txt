@@ -1,0 +1,63 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.0 = 6.0 - 0.5 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................7.0
+*/
+
+#include <stdio.h>
+int ugualiCompresi(int v[], int n){
+    int esistenza=0; 
+    //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+    //******** CONDITION IS MISSING BREAK STATEMENT -0.5
+    for(int i=0; i<n-2 && esistenza==0; i++)
+        if(((v[i]+v[i+1]>=10 && v[i]+v[i+1]<=20)
+        || (v[i]+v[i+2]>=10 && v[i]+v[i+2]<=20)
+        || (v[i+1]+v[i+2]>=10 && v[i+1]+v[i+2]<=20))
+        && ((v[i]==v[i+1] && v[i]!=v[i+2])
+        || (v[i]==v[i+2] && v[i]!=v[i+1])
+        || (v[i+1]==v[i+2] && v[i+1]!=v[i])))
+           esistenza=1;
+        return esistenza;
+}
+int main()
+{
+    int ugualiCompresi(int v[], int n);
+    int a,n;
+    printf("Inserisci la lunghezza dell'Array: \n");
+    scanf("%d",&n);
+    int v[n];
+    for(int i=0; i<n; i++){
+        printf("Inserisci l'elemento di posizione %d nell'Array: \n",i+1);
+        scanf("%d",&v[i]);
+    }
+    a=ugualiCompresi(v,n);
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    if(a==1)
+        printf("Esiste una tripla di interi in cui almeno la somma di due elementi %c compresa tra 10 e 20 ed esattamente due elementi sono uguali tra loro. \n",138);
+    else
+        printf("Nessuna tripla di interi contiene due elementi la cui somma %c compresa tra 10 e 20 ed esattamente due elementi uguali tra loro. \n",138);
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for checking consecutive triples
+- Proper handling of array bounds
+- Correct implementation of the conditions for sum range and equality checking
+- Good input handling in main function
+
+Areas for Improvement:
+- Code readability could be enhanced by breaking down complex conditions
+- Missing break statement in the loop which could affect efficiency
+- Output messages could be more specific and clearer
+- The function's logic could be structured more clearly with better formatting
+
+Key Recommendations:
+1. Break down complex conditions into smaller, more readable parts using intermediate variables
+2. Add a break statement after setting esistenza=1 to improve efficiency
+3. Improve output messages to be more specific about what conditions were found
+4. Consider using better variable names (e.g., 'found' instead of 'esistenza')
+5. Use proper indentation and formatting to improve code readability
+</feedback_summary>

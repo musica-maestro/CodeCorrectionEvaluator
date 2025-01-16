@@ -1,0 +1,86 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.0 - 1.0
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL......................6.0
+*/
+
+#include <stdio.h>
+int maggiori5Pari (int seq[], int d);
+int verificaPari (int numero);
+int verificaMaggiore5 (int num);
+int main(int argc, char **argv)
+{
+    int dim; 
+    printf("Inserire la dimensione della sequenza desiderata: ");
+    scanf("%d", &dim);
+    int sequenza[dim];
+    printf("Sequenza:\n");
+    for (int i = 0; i < dim; i++)
+    {
+        printf("%d) ", i+1);
+        scanf("%d", &sequenza[i]);
+    }
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    if ( maggiori5Pari(sequenza, dim) )
+        printf("Ogni tripla di elementi contiene esattemente due elementi maggiori od uguali a 5 ed almeno due elementi pari\n"); 
+    else
+        printf("Alcune triple di elementi non contengono esattemente due elementi maggiori od uguali a 5 ed almeno due elementi pari\n"); 
+}
+
+int maggiori5Pari (int seq[], int d)
+{
+    int esito = 1; 
+    int contaPari; 
+    int contaNumMaggiori5; 
+    int ind; 
+    //******** UNINITIALIZED VARIABLE -1.0
+    while (esito && ind < d-2)
+    {
+        contaPari = 0;
+        contaNumMaggiori5 = 0;
+        for (int j = 0; j <= 2; j++)
+        {
+            if ( verificaPari(seq[ind+j]) ) 
+                contaPari++; 
+            if ( verificaMaggiore5(seq[ind+j]) )
+                contaNumMaggiori5++; 
+        }
+        //******** LOOP NEVER ENTERED! -1.0
+        if (contaNumMaggiori5 == 2 && contaPari >=2)
+            ind++; 
+        else
+            esito = 0; 
+    }
+    return esito; 
+}
+
+int verificaPari (int numero)
+{
+    return (numero % 2 == 0); 
+}
+
+int verificaMaggiore5 (int num)
+{
+    return (num >= 5); 
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good modular design with separate functions for checking even numbers and numbers ≥ 5
+- Correct implementation of the main function's input handling
+- Proper use of boolean returns for verification functions
+
+Areas for Improvement:
+- The variable 'ind' is used without initialization, which could lead to undefined behavior
+- The loop structure in maggiori5Pari may never be entered due to uninitialized 'ind'
+- Output messages could be more specific about the properties being checked
+
+Key Recommendations:
+- Initialize the 'ind' variable to 0 before the while loop
+- Review the loop logic to ensure all triples are properly checked
+- Make output messages more precise and user-friendly
+- Consider adding input validation for array size
+</feedback_summary>

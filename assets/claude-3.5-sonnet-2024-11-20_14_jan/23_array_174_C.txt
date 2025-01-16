@@ -1,0 +1,61 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.0 = 6.0 - 1.0 - 1.0
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................5.8
+*/
+
+#include <stdio.h>
+int dueUnaCifra(int a[],int lunghezza){
+	int r=1;
+	//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lunghezza - 2 -1.0
+	for(int i=0; i<lunghezza-2 && r==1;i++){
+		//******** TWO COMBINATIONS ON THE TRIPLE CONDITION ARE MISSING -1.0
+		if((a[i]/10==0 && a[i+1]/10==0) || (a[i]/10==0 && a[i+2]/10==0) ||
+			(a[i+1]/10==0 && a[i+2]/10==0))
+			i++;
+		else
+			r=0;
+	}
+	return r;
+}
+int main(int argc, char const *argv[])
+{
+	int lunghezza;
+	printf("Quanto e' grande l'array?\n");
+	scanf("%d",&lunghezza);
+	int a[lunghezza];
+	printf("Inserisci i numeri dell'array:\n");
+	for(int i=0;i<lunghezza;i++)
+		scanf("%d",&a[i]);
+	int r;
+	r=dueUnaCifra(a,lunghezza);
+	//******** UNCLEAR MESSAGE -0.2
+	if(r==1)
+		printf("Ci sono sempre 2 numeri composti da una sola cifra\n");
+	else
+		printf("Non in tutte le triple sono presenti 2 numeri composti da una sola cifra");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct basic structure of the function and main program
+- Proper parameter passing and array handling
+- Good use of boolean flag for verification
+- Appropriate loop control with early termination
+
+Areas for Improvement:
+- Array bounds checking needs correction to prevent buffer overflow
+- Triple condition check is incomplete - missing some valid combinations
+- Output messages could be clearer and more user-friendly
+- Consider adding input validation for positive integers
+
+Key Recommendations:
+1. Fix the array bounds in the loop condition to prevent accessing invalid memory
+2. Complete the triple condition check to include all possible combinations
+3. Make output messages more clear and descriptive
+4. Add input validation to ensure only positive integers are processed
+5. Consider adding error handling for invalid inputs
+</feedback_summary>

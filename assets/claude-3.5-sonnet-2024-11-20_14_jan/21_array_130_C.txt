@@ -1,0 +1,90 @@
+I'll grade the submission following the provided format and criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.0 = 6.0 - 1.5 - 1.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................5.0
+*/
+
+#include <stdio.h>
+int compresiMultipli3(int elementi[], int dimensione)
+{
+	int i, a, b, c, risultato;
+	risultato=0;
+	for(i=0;i<dimensione;i++){
+		//******** ITERATION LIMITS INCORRECT - should be i<dimensione-2 to avoid array bounds overflow -0.5
+		if(i<(dimensione-2)){
+			a=elementi[i];
+			b=elementi[i+1];
+			c=elementi[i+2];  
+			//******** EXACTLY TWO ELEMENTS MUST BE DIVISIBLE BY 3 (THE THIRD MUST BE DIFFERENT). CURRENT LOGIC ALLOWS ALL THREE TO BE MULTIPLES OF 3 -1.5
+			if((a<=10 && a>=-10) && (b<=10 && b>=-10) && (c<=10 && c>=-10)){
+				if((b<=10 && b>=-10) && (c<=10 && c>=-10)){
+					if(a%3==0 && b%3==0 && c%3==0){
+						risultato=0;
+					}
+					if(a%3!=0 && b%3!=0 && c%3!=0){
+						risultato=0;
+					}
+					else{
+						risultato=1;  
+					}
+				}
+				//******** REDUNDANT AND INCORRECT NESTED CONDITIONS - Logic is overly complicated and leads to wrong results -1.5
+				[... similar redundant code blocks omitted for brevity ...]
+			}
+		}
+		else{ 
+			[... similar redundant code blocks omitted for brevity ...]
+		}
+	}
+	return risultato;
+}
+
+int main(int argc, char **argv)
+{
+	int i, lunghezza;
+	printf("Quanti elementi ha l'array?\n");
+	scanf("%d", &lunghezza);
+	int array[lunghezza];
+	for(i=0;i<lunghezza;i++){
+		printf("Inserisci un intero\n");
+		scanf("%d", &array[i]);
+	}
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+	if(compresiMultipli3(array,lunghezza)){
+		printf("L'array e' nei parametri\n");  
+	}
+	else{
+		printf("L'array non e' nei parametri\n");
+	}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is correct
+- Main function handles user input appropriately
+- Array allocation and input reading are implemented correctly
+
+Areas for Improvement:
+1. Array bounds checking:
+   - Modify loop condition to prevent array overflow (i < dimensione-2)
+   - Consider edge cases when array size is less than 3
+
+2. Logic implementation:
+   - Simplify the nested conditions
+   - Fix the logic to properly check for exactly two multiples of 3
+   - Remove redundant condition checks
+
+3. Output clarity:
+   - Provide more descriptive output messages explaining what conditions were/weren't met
+
+Key Recommendations:
+1. Restructure the function to use a single loop checking consecutive triples
+2. Implement clear conditions for:
+   - Exactly two elements being multiples of 3
+   - At least two elements between -10 and 10
+3. Improve output messages to be more specific about the conditions being checked
+4. Remove redundant condition checks to make the code more maintainable
+</feedback_summary>

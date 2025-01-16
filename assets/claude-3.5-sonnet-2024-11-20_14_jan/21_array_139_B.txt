@@ -1,0 +1,70 @@
+I'll grade the student's submission following the provided format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........6.0
+   MAIN PROGRAM (max 2.5):....2.2 = 2.5 - 0.3
+   TOTAL.......................8.2
+*/
+
+#include <stdio.h>
+int maggiori5Pari (int arr[], int lung) {
+    int tutto = 1;
+    for (int i = 0; i < lung-2 && tutto == 1; i++) { 
+        int pari = 0;
+        int maggCin = 0;
+        for (int j = i; j < i+3; j++) {
+            if (arr[j] % 2 == 0) { 
+                pari=pari+1;
+            }
+            if (arr[j] >= 5) { 
+                maggCin=maggCin+1;
+            }
+        }
+        if (!(pari >= 2 && maggCin == 2)) {
+            tutto = 0;
+        }
+    }
+    return tutto;
+}
+int main(int argc, char **argv)
+{
+    int lung;
+    printf("Quanti interi ha la sequenza: ");
+    scanf("%i", &lung);
+    int arr[lung];
+    for (int i = 0; i < lung; i++) {
+        printf("Inserisci il %i intero: ", i+1); 
+        scanf("%i", &arr[i]);
+    }
+    if (maggiori5Pari(arr, lung)) {
+        printf("\n\nOgni tripla di numeri contiene esattamente due numeri maggiori o uguali a 5 e almeneo due numeri pari\n\n");
+    } else {
+        printf("\n\nOgni tripla di numeri NON contiene esattamente due numeri maggiori o uguali a 5 e almeneo due numeri pari\n\n");
+    }
+    //******** OUTPUT IS POORLY EXPRESSED (CONTAINS TYPO "almeneo") -0.3
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the function logic for checking triples
+- Proper use of boolean variable to track conditions
+- Efficient loop structure with early termination
+- Correct array bounds checking
+- Good implementation of counting both even numbers and numbers >= 5
+- Well-structured main function with proper user interaction
+
+Areas for Improvement:
+- The output message contains a typo ("almeneo" instead of "almeno")
+- Could improve readability by adding more descriptive variable names
+- Could add input validation for array length
+
+Key Recommendations:
+- Proofread output messages for spelling errors
+- Consider adding input validation to ensure lung is at least 3 (since we need to check triples)
+- Use more descriptive variable names (e.g., 'count_even' instead of 'pari')
+- Add comments to explain the logic of the function
+</feedback_summary>
+
+The student's implementation is very good overall, with only minor issues in the output formatting. The function correctly implements the required logic for checking triples of numbers, and the main program handles user interaction appropriately. The only deduction is for the poorly expressed output message containing a typo.

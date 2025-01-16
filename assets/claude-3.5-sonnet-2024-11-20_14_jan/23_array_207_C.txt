@@ -1,0 +1,69 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):....3.0 = 6.0 - 1.0 - 1.0 - 1.0
+   MAIN (max 2.0):....1.0 = 2.0 - 0.5 - 0.5
+   TOTAL:....4.0
+*/
+
+#include <stdio.h>
+int dueUnaCifra(int* interi, int lunghezza) {
+	int unaCifra; 
+	int i; 
+	unaCifra = 1; 
+	i = 0;
+	//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lunghezza - 2 -1.0
+	while(i<lunghezza-2 && unaCifra) {
+		//******** BEING BETWEEN 0 AND 9 IS WRITTEN AS interi[i] >= 0 && interi[i] <= 9 -1.0
+		if(!((interi[i]<10 && interi[i+1]<10) || (interi[i]<10 && interi[i+2]<10) || (interi[i+1]<10 && interi[i+2]<10))) {
+			unaCifra = 0; 
+		}
+		else {
+			i++; 
+		}
+	}
+	//******** EVEN -12635 IS LESS THAN 10, BUT IT DOESN'T HAVE A DIGIT. YOU SHOULD HAVE INCLUDED IN THE PRECONDITIONS THAT ONLY POSITIVE INTEGERS ARE ALLOWED -1.0
+	return unaCifra;
+}
+int main() {
+	int l; 
+	//******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+	int seq[l]; 
+	int i; 
+	printf("Caro utente, da quanti interi %c composta la tua sequenza?\n", 138);
+	scanf("%d", &l);
+	printf("Perfetto! Ora inserisci i numeri.\n");
+	for(i=0; i<l; i++) {
+		printf("Dammi un intero:"); 
+		//******** UNCLEAR MESSAGE -0.5
+		scanf("%d", &seq[i]);
+	}
+	if(dueUnaCifra(seq,l)) {
+		printf("In tutte le triple di elementi adiacenti della sequenza sono presenti almeno due numeri composti da una sola cifra.\n");
+	}
+	else {
+		printf("Non in tutte le triple di elementi adiacenti della sequenza sono presenti almeno due numeri composti da una sola cifra.\n");
+	}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the universal verification logic
+- Good structure of the main function with clear user interaction
+- Proper use of function parameters and return values
+
+Areas for Improvement:
+- Array declaration should occur after getting its length from user input
+- Need to validate that input numbers are positive integers
+- The condition for single-digit numbers should explicitly check for numbers between 0 and 9
+- Array bounds checking needs to be more precise
+- User messages could be clearer and more informative
+
+Key Recommendations:
+1. Move array declaration after reading the length
+2. Add input validation to ensure positive integers
+3. Modify the single-digit check to explicitly verify numbers are between 0 and 9
+4. Fix the array bounds checking in the while loop condition
+5. Make user prompts more descriptive and clear
+</feedback_summary>

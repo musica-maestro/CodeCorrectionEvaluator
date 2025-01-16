@@ -1,0 +1,63 @@
+I'll grade the student's submission following the provided format and criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.0 = 6.0 - 1.5 - 0.5
+   MAIN (max 2.0):.......1.8 = 2.0 - 0.2
+   TOTAL..................5.8
+*/
+
+#include <stdio.h>
+int duePositivi(int array[], int n){
+	int i=0, verifica=1;
+	//******** TWO OR THREE COMBINATIONS ON THE TRIPLE CONDITION ARE MISSING -1.5
+	while(verifica==1 && i<n-2){
+		if((array[i]>0 && array[i+1]>0 && array[i+2]<0) || (array[i]>0 && array[i+1]<0 && array[i+2]>0) || (array[i]<0 && array[i+1]>0 && array[i+2]>0)){
+			i++;
+		}else{
+			verifica=0;
+		}
+	}
+	//******** SETTING THE VARIABLE TO 1 IS NOT NECESSARY (BECAUSE IT'S ALREADY 1), BUT YOU SAVE IT BECAUSE YOU PLACED THE BOOLEAN IN THE LOOP CONDITION -0.5
+	return verifica;
+}
+int main(){
+	int n,i;
+	printf("Quanti interi ha la sequenza? ");
+	scanf("%d", &n);
+	int array[n];
+	for(i=0;i<n;i++){
+		printf("\nInserisci un intero: ");
+		scanf("%d", &array[i]);
+	}
+	//******** UNCLEAR MESSAGE -0.2
+	if(duePositivi(array, n)){
+		printf("In tutte le triple di elementi adiacenti vi sono esattamente due numeri positivi!");
+	}else{
+		printf("Non in tutte le triple di elementi adiacenti vi sono esattamente due numeri positivi!");
+	}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct overall program structure with separate function and main
+- Proper array handling and parameter passing
+- Good use of boolean flag for verification
+- Appropriate loop termination condition (i<n-2)
+
+Areas for Improvement:
+- The triple condition check is incomplete. The current implementation misses some valid combinations of two positive numbers. Consider all possible arrangements of two positive numbers in a triple.
+- The initialization of 'verifica' to 1 is redundant since it's already initialized to that value.
+- Output messages could be clearer and more concise.
+
+Key Recommendations:
+1. Complete the triple condition by including all possible combinations where exactly two numbers are positive:
+   - (pos, pos, neg)
+   - (pos, neg, pos)
+   - (neg, pos, pos)
+   - (neg, pos, neg)
+   - (pos, neg, neg)
+2. Simplify the boolean flag usage
+3. Make output messages more user-friendly and clearer in English or consistent in Italian
+4. Consider adding input validation for array size n
+</feedback_summary>

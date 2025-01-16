@@ -1,0 +1,77 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.0 = 6.0 - 2.0 - 1.0
+   MAIN PROGRAM (max 2.5):....2.2 = 2.5 - 0.3
+   TOTAL.......................5.2
+*/
+
+#include <stdio.h>
+int compresiMultipli3(int interi[], int len){
+	int i, tripla;
+	tripla=0;
+	i=0;
+	//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i<len-2 -1.0
+	while(i<len&&!tripla){ 
+	//******** EXTREMELY CONVOLUTED AND WRONG CONDITION -2.0
+	if((interi[i]%3==0&&interi[i+1]%3==0||interi[i+1]%3==0&& 
+	interi[i+2]%3==0||interi[i]%3==0&&interi[i+2]%3==0)&&    
+	(interi[i]>-10&&interi[i]<10)&&(interi[i+1]>-10&&interi[i+1]<10)|| 
+	(interi[i+2]>-10&&interi[i+2]<10)&&(interi[i+1]>-10&&interi[i+1]<10)||
+	(interi[i]>-10&&interi[i]<10)&&(interi[i+2]>-10&&interi[i+2]<10))
+		tripla=1;
+	else
+		i++;
+	}
+return tripla;
+}
+
+int main(){
+	int len;
+	printf("Sono un programma che legge una sequenza di interi e determina se ");
+	printf("esiste almeno una tripla di elementi contenente 2 valori compresi fra -10 e 10 ");
+	printf("e due di questi numeri devono essere multipli di 3\n");
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+	printf("Quanti interi hai intenzione di introdurre?   ");
+	scanf("%d",&len);
+	int sequenza[len];
+	for(int i=0; i<len; i++){
+		printf("Inserisci un intero:  ");
+		scanf("%d",&sequenza[i]);
+		}
+	if(compresiMultipli3(sequenza, len))
+		printf("Esistono\n"); 
+	else
+		printf("Non esistono\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is correct
+- Main function handles user interaction appropriately
+- Uses appropriate variable types and control structures
+- Correctly implements array input and function call
+
+Areas for Improvement:
+1. Array Bounds Safety:
+- The while loop condition should check i<len-2 to prevent array access out of bounds
+- Current implementation could lead to undefined behavior
+
+2. Condition Logic:
+- The condition in compresiMultipli3 is overly complicated and incorrect
+- Should clearly check for exactly two multiples of 3 and at least two numbers in range
+- Current implementation may give wrong results for some valid cases
+
+3. Output Messages:
+- The program output could be more specific about what conditions were found
+- Should clearly indicate what properties were found in the sequence
+
+Key Recommendations:
+1. Fix array bounds checking to prevent buffer overflows
+2. Simplify and correct the condition logic to properly check for:
+   - Exactly two multiples of 3
+   - At least two numbers between -10 and 10
+3. Improve output messages to be more descriptive of results
+4. Consider breaking down the complex condition into smaller, more manageable parts
+</feedback_summary>

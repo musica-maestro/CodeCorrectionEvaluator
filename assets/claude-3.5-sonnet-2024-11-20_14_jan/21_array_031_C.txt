@@ -1,0 +1,72 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.5 = 6.0 - 1.0 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL......................6.5
+*/
+
+#include <stdio.h>
+int compresiMultipliDi3(int sequenza[],int lunghezza){
+	int trovato=0;   
+	int i=0;   
+	while(i<lunghezza-2 && !trovato){
+		//******** CONDITION IS COMPLICATED AND NOT VERY READABLE -0.2
+		//******** LOGICAL ERROR IN RANGE CHECK: sequenza[i+1]<-10 && sequenza[i+1]<10 IS ALWAYS FALSE -1.0
+		if((((sequenza[i]>-10 && sequenza[i]<10)&&(sequenza[i+1]>-10 && sequenza [i+1]<10))||
+		  ((sequenza[i]>-10 && sequenza[i]<10)&&(sequenza[i+2]>-10 && sequenza[i+2]<10))||
+		  ((sequenza[i+1]<-10 && sequenza[i+1]<10)&&sequenza[i+2]<-10 && sequenza[i+2]<10))&&
+		  ((sequenza[i]%3==0 && sequenza[i+1]%3==0 && sequenza[i+2]%3!=0)||
+		  (sequenza[i]%3==0 && sequenza[i+1]%3!=0 && sequenza[i+2]%3==0)||
+		  (sequenza[i]%3!=0 && sequenza[i+1]%3==0 && sequenza[i+2]%3==0)))
+			  trovato=1;
+			  else 
+				  i++;
+	}
+	return trovato;
+}
+
+int main(int argc, char **argv)
+{
+	int lunghezza;  
+	printf("Ciao sono un programma che data una sequenza verifica ");
+	printf("se almeno due elementi sono compresi tra -10 e 10 ");
+	printf("ed inoltre verifico se ci sono esattamente due numeri multipli di 3\n");
+	printf("Quanti elementi deve avere la tua sequenza %c \n",63);
+	scanf("%d",&lunghezza);
+	int sequenza[lunghezza];  
+	for(int i=0;i<lunghezza;i++){
+		printf("Inserisci un intero\n");
+		scanf("%d",&sequenza[i]);
+	}
+		//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+		if(compresiMultipliDi3(sequenza,lunghezza)){
+			printf("Esiste una tripla consecutiva con almeno due elementi ");
+            printf("compresi tra -10 e 10 e che abbia esattamente due elemementi multipli di 3 \n");
+		}
+		else{
+			printf("Non esiste una tripla consecutiva con almeno due elementi ");
+            printf("compresi tra -10 e 10 e che abbia esattamente due elemementi multipli di 3 \n");
+		}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct overall program structure with separate function and main
+- Proper array handling and loop implementation
+- Good use of boolean flag for search termination
+- Correct implementation of consecutive triple checking
+
+Areas for Improvement:
+- The condition in the compresiMultipliDi3 function is overly complicated and contains a logical error in the range check
+- The output messages could be more specific about which elements satisfy the conditions
+- Code readability could be improved by breaking down the complex condition into smaller, more manageable parts
+
+Key Recommendations:
+- Simplify the condition by breaking it into smaller, clearly named boolean variables
+- Fix the range check for the second and third elements of the triple
+- Make output messages more specific by including the actual triple that satisfies the conditions
+- Consider adding input validation for array length
+- Use better formatting and indentation for the complex conditional statement
+</feedback_summary>

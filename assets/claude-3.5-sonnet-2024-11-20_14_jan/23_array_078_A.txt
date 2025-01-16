@@ -1,0 +1,65 @@
+I'll grade the student's submission following the provided format and criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........1.0 = 6.0 - 1.5 - 1.5 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.0):....0.0 = 2.0 - 1.0 - 1.0
+   TOTAL.......................1.0
+*/
+
+#include <stdio.h>
+//******** MISSING PARAMETERS FOR THE FUNCTION int seq[] AND length -1.5
+int multipli(int long,int b){
+printf("inserisci %d interi\n",a);
+//******** THE TEXT REQUIRES THE PRINT TO BE DONE IN THE MAIN, NOT IN THE FUNCTION -1.5
+	scanf("%d",&array);
+//******** DECLARING THE ARRAY IN THE LOOP! -1
+for (int i=0; i<a; i++);
+//******** CONDITION ON THE TRIPLE IS WRONG -1.5
+while()
+//******** INCORRECT INDENTATION!!!! -0.5
+};
+
+int main() {
+int a;
+int b;
+printf("Salve utente, quanti interi vuoi inserire?\n");
+scanf("%d",&a);
+printf("inserisci %d interi\n",a);
+	scanf("%d",&b);
+//******** MISSING DECLARATION OF THE ARRAY -1
+ris=multipli(a,b);
+//******** PRACTICALLY MISSING OUTPUT -1
+printf("")
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure attempt with main function and multipli function
+- Initial user interaction implementation
+
+Areas for Improvement:
+1. Function Implementation:
+   - The multipli function needs proper parameters (array and length)
+   - Remove I/O operations from the multipli function
+   - Implement proper triple checking logic
+   - Fix function syntax and add return statement
+
+2. Main Program:
+   - Declare array after getting its size
+   - Implement proper array input loop
+   - Add meaningful output messages
+   - Fix syntax errors (missing semicolon, undefined variable 'ris')
+
+Key Recommendations:
+1. Review function parameter declaration syntax
+2. Move all I/O operations to main function
+3. Implement proper array declaration and initialization
+4. Add complete logic for checking triples in the multipli function
+5. Fix indentation and code structure
+6. Add proper output messages for results
+7. Complete the while loop condition and implementation
+8. Fix all syntax errors and missing semicolons
+
+The code needs significant improvements to meet the assignment requirements. Focus on implementing the core logic for checking triples and proper program structure.
+</feedback_summary>

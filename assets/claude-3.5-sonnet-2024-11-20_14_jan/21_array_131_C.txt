@@ -1,0 +1,77 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................6.0
+*/
+
+#include <stdio.h>
+//******** ERROR IN "WITHIN THE RANGE" EXPRESSION: THIS DOES NOT EXPRESS "WITHIN THE RANGE". IT SHOULD BE -10<=seq[i]<=10 -1.5
+int compresiMultipli3(int seq[], int lunghezza)
+{
+	 int i;    
+         int tripla;    
+         i=0;
+	 tripla=0;
+	 while(i<lunghezza-2 && !tripla)
+	 {
+		 if(((-10<=seq[i]<=10 && -10<=seq[i+1]<=10 )
+		 || (-10<=seq[i]<=10 && -10<=seq[i+2]<=10 )
+		 || (-10<=seq[i+1]<=10 && -10<=seq[i+2]<=10 )) 	
+		 &&
+		 ((seq[i]%3==0 && seq[i+1]%3==0 && seq[i+2]%3!=0)
+		 || (seq[i]%3==0 && seq[i+1]%3!=0 && seq[i+2]%3==0)
+		 || (seq[i]%3!=0 && seq[i+1]%3==0 && seq[i+2]%3==0)))
+			 tripla=1;     
+		else
+			i++;
+	 }
+	 return tripla;
+}
+
+int main(int argc, char **argv)
+{
+	int lunghezza;    
+	printf("Caro utente, sono un programma che data una sequenza di interi ");
+	printf("verifica se esiste una tripla di elementi consecutivi che contiene almeno due elementi ");
+	printf("il cui valore %c compreso tra -10 e 10(estremi inclusi), e che contiene esattamente due elementi multipli di 3!!\n\n", 138);
+	printf("Quanto %c lunga la tua sequenza? ", 138);
+	scanf("%d", &lunghezza);
+	int sequenza[lunghezza];
+	for(int i=0; i<lunghezza; i++)
+	{
+		printf("Introduci un intero: ");
+		scanf("%d", &sequenza[i]);
+	}
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+	if(compresiMultipli3(sequenza,lunghezza))
+       {
+                printf("\nEsiste una tripla che contiene almeno due elementi il cui valore %c compreso fra -10 e 10,estremi inclusi, ", 138);
+		printf("e che contiene esattamente due elementi multipli di 3!!\n");
+	}
+	else {
+	printf("\nNon esiste una tripla che contiene almeno due elementi il cui valore %c compreso fra -10 e 10,estremi inclusi, ,", 138);
+		printf("e che contiene esattamente due elementi multipli di 3!!\n");
+        }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct overall program structure with separate function and main
+- Proper loop implementation to check consecutive triples
+- Good use of boolean flag (tripla) to control loop execution
+- Correct handling of array bounds in the loop condition
+
+Areas for Improvement:
+- The range check condition (-10<=seq[i]<=10) is incorrectly implemented in C. This should be written as (seq[i]>=-10 && seq[i]<=10)
+- Output messages could be more concise and clearer about the properties being checked
+- The code could benefit from better formatting and indentation for readability
+
+Key Recommendations:
+- Fix the range check conditions using proper boolean expressions
+- Simplify output messages to be more precise and user-friendly
+- Consider adding input validation for the sequence length
+- Use more descriptive variable names (e.g., 'found' instead of 'tripla')
+</feedback_summary>

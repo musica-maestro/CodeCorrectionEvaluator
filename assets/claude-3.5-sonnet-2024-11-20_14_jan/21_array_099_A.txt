@@ -1,0 +1,72 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.5):....1.7 = 2.5 - 0.5 - 0.3
+   TOTAL.......................5.7
+*/
+
+#include <stdio.h>
+int ugualiCompresi(int array[], int dimensione){
+    int i = 2; 
+    int risultato; 
+    //******** VARIABLE IS NOT INITIALIZED -1.5
+    for(i = 2; i < dimensione; i++){ 
+        //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+        if(((array[i] == array[i-1]) && (array[i-1] != array[i-2]))
+        || ((array[i] == array[i-2]) && (array[i-1] != array[i-2]))
+        || ((array[i-1] == array[i-2]) && (array[i-2] != array[i]))){
+            if(((array[i] + array[i-1] >= 10) && (array[i] + array[i-1] <= 20))
+            || ((array[i] + array[i-2] >= 10) && (array[i] + array[i-2] <= 20))
+            || ((array[i-1] + array[i-2] >= 10) && (array[i-1] + array[i-2] <= 20)))
+                risultato = 1;
+            else
+                risultato = 0;  
+        }
+        else
+            risultato = 0;
+    }
+    //******** RETURNS VALUE CALCULATED ON THE LAST TRIPLE -0.3
+    return risultato;
+}
+
+int main(int argc, char **argv)
+{
+    int d; 
+    int i; 
+    printf("Caro utente quanti interi vuoi inserire?:\n");
+    scanf("%d", &d);
+    int array[d];
+    for(i = 0; i < d; i++){
+        printf("Inserisca un valore:\n");
+        scanf("%d", &array[i]);
+    }
+    printf("I valori inseriti nell'array sono i seguenti:\n");
+    for(i = 0; i < d; i++)
+    printf("%d ", array[i]);
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    printf("Se all'interno dell'arry ci sono delle triple composte da 2(due) elementi uguali fra loro che sommati formano un numero compreso tra 10(dieci) e 20(venti) viene stampato 1(uno) altrimenti 0(zero):\n");
+    printf("| %d |", ugualiCompresi(array, d));
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for checking equal elements
+- Proper handling of array bounds
+- Good user interaction in main function
+- Correct implementation of sum range check (10-20)
+
+Areas for Improvement:
+- Initialize the 'risultato' variable before using it
+- The function returns the result of the last triple check instead of indicating if any triple satisfies the conditions
+- The output message could be more precise and clearer
+- The logic could be written more readably by breaking down complex conditions
+
+Key Recommendations:
+- Initialize all variables before use
+- Consider using a boolean flag to track if any triple satisfies the conditions
+- Break down complex conditions into smaller, more readable parts
+- Improve output messages to be more specific about what the program is checking
+- Consider adding input validation for array size
+</feedback_summary>

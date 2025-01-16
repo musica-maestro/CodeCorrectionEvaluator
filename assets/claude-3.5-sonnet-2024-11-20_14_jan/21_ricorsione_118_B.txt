@@ -1,0 +1,113 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........3.5 = 5.0 - 1.0 - 0.5
+countNumbers (2).....1.7 = 2.0 - 0.3
+readNumbers (2)......1.1 = 2.0 - 0.6 - 0.3
+writeNumbers(1)......0.7 = 1.0 - 0.3
+TOTAL................7.0
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int minimoDispari(int *seq, int lunghezza){
+    //******** Base case should be lunghezza<=2 since we need triplets -0.5
+    //******** Universal check should use && for all triplets -1.0
+    int ris;
+    int minimo;
+    if(lunghezza==3){
+        if(seq[0]<seq[1] && seq[1]<seq[2])
+            minimo=seq[0];
+        else if(seq[1]<seq[2] && seq[1]<seq[0])
+            minimo=seq[1];
+        else
+            minimo=seq[2];
+        ris=minimo%2!=0;
+    }else{
+        if(seq[lunghezza-1]<seq[lunghezza-2] && seq[lunghezza-1]<seq[lunghezza-3])
+            minimo=seq[lunghezza-1];
+        else if(seq[lunghezza-2]<seq[lunghezza-1] && seq[lunghezza-2]<seq[lunghezza-3])
+            minimo=seq[lunghezza-2];
+        else
+            minimo=seq[lunghezza-3];
+        ris=minimo%2!=0 && minimoDispari(seq, lunghezza-1);
+    }
+    return ris;
+}
+
+int quantiNumeri() {
+    //******** Counter not initialized -0.3
+    int n;
+    int l;
+    FILE*fp=fopen("interi.dat","rb");
+    if(fp==NULL)
+        printf("Ce qualche problema con il file\n");
+    else{
+        while(fread(&l,sizeof(int),1,fp)>0){
+            n++;
+        }
+        fclose(fp);
+    }
+    return n;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE* fp=fopen("interi.dat","rb");
+    int n,l;
+    n=quantiNumeri();
+    if(fp==NULL || n==0)
+        printf("Ce qualche problema con il file\n");
+    else{
+        //******** Don't need another array, sequenza is already passed as parameter -0.6
+        int sequenza[n]; 
+        int i; 
+        //******** i is not incremented in the loop -0.3
+        while(fread(&l,sizeof(int),1,fp)>0){
+            sequenza[i]=l;
+            i++;
+        }
+        printf("Lettura eseguita\n");
+        fclose(fp);
+    }
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE* fp=fopen("interi.dat","wb");
+    //******** Missing file open check (fp==NULL) -0.3
+    if(fp==NULL)
+        printf("Ce qualche problema con il file\n");
+    else{
+        fwrite(sequenza,sizeof(int),lunghezza,fp);
+        printf("salvataggio eseguito\n");
+        fclose(fp);
+    }
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of file I/O operations
+- Proper file closing in all functions
+- Clear structure and organization of code
+- Good error messages for file operations
+
+Areas for Improvement:
+- The minimoDispari function needs revision in its base case and recursive logic
+- File handling functions need better error checking
+- Variable initialization issues in quantiNumeri
+- Array handling in leggiNumeri needs optimization
+
+Key Recommendations:
+1. Revise the base case in minimoDispari to handle arrays of length ≤ 2
+2. Initialize counter variables before use
+3. Remove redundant array declaration in leggiNumeri
+4. Add proper file open validation checks
+5. Ensure loop counters are properly incremented
+6. Consider using proper boolean logic for universal checks in minimoDispari
+
+The code is functional but needs some improvements in robustness and efficiency.
+</feedback_summary>

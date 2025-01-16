@@ -1,0 +1,87 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........3.5 = 5.0 - 1.5
+countNumbers (2).....1.7 = 2.0 - 0.3
+readNumbers (2)......2.0
+writeNumbers(1)......1.0
+TOTAL................8.2/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int minimoDispari(int *seq, int l){      
+    int verificato;
+    //******** base case is correct but variable initialization is wrong - exists=1, does not exist=0 -1.5
+    if(l<3)
+        verificato=1;
+    else
+        verificato=((((seq[l-2]<seq[l-1])&&(seq[l-2]<seq[l-3]))&&(seq[l-2]%2!=0))||
+                   (((seq[l-1]<seq[l-2])&&(seq[l-1]<seq[l-3]))&&(seq[l-1]%2!=0))||
+                   (((seq[l-3]<seq[l-2])&&(seq[l-3]<seq[l-1]))&&(seq[l-3]%2!=0)))&& minimoDispari(seq,l-1);
+        return verificato;
+}
+
+int quantiNumeri() {
+    int quanti; 
+    //******** counter not initialized -0.3
+    FILE*fp=fopen("interi.txt","r");
+    if(fp==NULL)
+        printf("apertura file non riuscita!\n");
+    else{
+        int numero;
+        while(fscanf(fp,"%d ",&numero)!=EOF)
+            quanti++;
+            fclose(fp);
+    }
+    return quanti;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE*fp=fopen("interi.txt","r");
+    if(fp==NULL)
+        printf("apertura file non riuscita!\n");
+    else{
+        for(int i=0;i<lunghezza;i++)
+            fscanf(fp,"%d ",&sequenza[i]);
+            fclose(fp);
+    }
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE*fp=fopen("interi.txt","w");
+    if(fp==NULL)
+        printf("apertura file non riuscita!\n");
+    else{
+        for(int i=0;i<lunghezza;i++)
+            fprintf(fp,"%d ",sequenza[i]);
+            fclose(fp);
+    }
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of file reading and writing functions
+- Proper file handling with error checking
+- Good implementation of the main recursive structure
+- Clear separation of concerns between functions
+
+Areas for Improvement:
+- The minimoDispari function has incorrect initialization of the verification variable
+- The quantiNumeri function has an uninitialized counter variable
+- The recursive base case logic could be improved for better clarity
+
+Key Recommendations:
+1. Initialize the verificato variable to 0 (false) by default in minimoDispari
+2. Initialize the quanti counter variable in quantiNumeri
+3. Consider restructuring the recursive logic to make it more readable
+4. Add more descriptive error messages for file operations
+5. Consider adding input validation for array lengths and file operations
+
+The code is generally well-structured but needs some attention to initialization and error handling details.
+</feedback_summary>

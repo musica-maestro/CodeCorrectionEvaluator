@@ -1,0 +1,64 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.5):....2.5
+   TOTAL.......................7.8
+*/
+
+#include <stdio.h>
+int maggiori5Pari(int array[],int l){
+	int i;  
+	int verifica;   
+	verifica=1;   
+	i=0;
+	while(i<l-2 && verifica){
+		//******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+		if(!(((array[i]>=5 && array[i+1]>=5 && array[i+2]<5)||(array[i]>=5 && array[i+1]<5 && array[i+2]>=5) ||(array[i]<5 && array[i+1]>=5 && array[i+2]>=5))&&((array[i]%2==0 && array[i+1]%2==0)	||(array[i]%2==0 && array[i+2]%2==0)	||(array[i+2]%2==0 && array[i+1]%2==0)||(array[i]%2==0 && array[i+1]%2==0 && array[i+2]%2==0))))
+			   verifica=0;  
+		else
+			i++;
+	}
+	//******** IF THE FUNCTION IS BELOW, YOU MUST DECLARE THE PROTOTYPE -0.5
+return verifica;
+}
+int main()
+{
+ int l;  
+ printf("La lunghezza che desideri:  ");
+ scanf("%d", &l);
+int array[l]; 
+int i; 
+for(i=0;i<l;i++){
+	printf("%d%c intero della sequenza %c:  ",i+1,167,138);
+	scanf("%d", &array[i]);
+}
+	if(maggiori5Pari(array,l))
+		printf("Ogni tripla di elementi consecutivi contiene esattamente due elementi maggiori o uguali a 5 ed almeno due pari");
+	else
+		printf("Non %c vero che ogni tripla di elementi contiene esattamente due elementi maggiori o uguali a 5 ed almeno due pari",138);
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for checking triples
+- Proper array bounds checking in the while loop
+- Good user interaction in main function
+- Correct handling of both conditions (exactly two ≥5 and at least two even numbers)
+
+Areas for Improvement:
+- The condition in the if statement is very complex and could be broken down into smaller, more readable parts
+- Function prototype should be declared before main when the function is defined after it
+- Consider using more meaningful variable names than 'verifica' and 'l'
+- The complex boolean expression could be split into separate functions for better readability
+
+Key Recommendations:
+- Break down the complex condition into smaller, well-named helper functions
+- Add function prototype at the beginning of the file
+- Use more descriptive variable names
+- Consider adding input validation for array length
+- Add comments to explain the logic of complex conditions
+</feedback_summary>
+
+The student's implementation is generally correct and functional. The main deductions are for code readability and structure rather than functional issues. The program correctly implements the required logic for checking triples of numbers according to the specified conditions.

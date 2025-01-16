@@ -1,0 +1,115 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)......... 2.5 = 5.0 - 1.5 - 1.0
+countNumbers (2).... 2.0
+readNumbers (2)..... 2.0
+writeNumbers(1)..... 1.0
+TOTAL............... 7.5/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimo (int numero1,int numero2,int numero3){
+    int massimo;
+    if (numero1 >numero2 ){
+        if(numero2>numero3)
+            massimo = numero1;
+        else{
+            if(numero1>numero3)
+                massimo=numero1;
+            else
+                massimo = numero3;
+        }
+    }
+    else{
+        if (numero2>numero3)
+            massimo = numero2;
+        else
+            massimo = numero3;
+    }
+    return massimo; 
+}
+
+int ispari ( int n ){
+    int pari;
+    if ( n%2 == 0 )
+        pari = 1;
+    else
+        pari = 0;
+    return pari;
+}
+
+int massimoPari(int *seq, int lunghezza){
+    //******** The base case should be length<=2 (because you need to consider a triplet of elements) -1.0
+    //******** Recursion should be done on the array length -1.5
+    int mp; 
+    if (lunghezza==2){
+        mp = 1 ;
+    }
+    else{ 
+        mp = ispari(massimo(seq[lunghezza],seq[lunghezza-1],seq[lunghezza-2])) && massimoPari(seq,lunghezza-1); 
+    }    
+    return mp;
+}
+
+int quantiNumeri() {
+    FILE * fp = fopen("interi.dat","rb");
+    int numeri;
+    int letto=1;
+    int conto;
+    conto = 0;
+    while (letto){
+        letto=fread(&numeri,sizeof(int),1,fp);
+        if (letto)
+            conto++;
+    }
+    fclose(fp);
+    return conto;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE *fp = fopen ("interi.dat","rb");
+    for ( int i=0;i<lunghezza;i++){
+        fread(&sequenza[i],sizeof(int),1,fp);
+    }
+    fclose(fp);
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE *fp = fopen("interi.dat","wb");
+    for ( int i=0;i<lunghezza;i++){
+        fwrite(&sequenza[i],sizeof(int),1,fp);
+    }
+    fclose(fp);
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of file operations (reading, writing, counting)
+- Good separation of concerns with different functions
+- Proper file handling with open/close operations
+- Clear implementation of even number checking
+
+Areas for Improvement:
+- The recursive implementation of massimoPari needs revision:
+  - Base case should handle arrays of length ≤ 2
+  - Recursion should properly traverse the array length
+  - Array access needs bounds checking to prevent buffer overflows
+- Consider adding error checking for file operations
+- Add input validation for array lengths and user input
+
+Key Recommendations:
+1. Revise the recursive implementation to properly handle base cases
+2. Add bounds checking for array access
+3. Implement error handling for file operations
+4. Add input validation for user-provided values
+5. Consider adding more descriptive output messages
+</feedback_summary>
+
+The student's implementation is generally good, especially for file handling, but has some issues with the recursive implementation of the maxEven function. The main deductions come from the recursive implementation's problems with base cases and array traversal.

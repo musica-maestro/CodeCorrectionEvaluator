@@ -1,0 +1,72 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.5 = 6.0 - 1.5
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................6.3
+*/
+
+#include <stdio.h>
+#include <math.h>
+int isPos(int ver){
+	return ver>0;
+}
+int duePositivi(int a[], int l) {
+	int verificato = 1;
+	//******** CONDITION ON THE TRIPLE IS WRONG (missing some combinations) -1.5
+	for (int i = 0; i < l-2; i++) 
+	{							  
+		if(((!isPos(a[i])) && (!isPos(a[i+1])) && (!isPos(a[i+2]))) ||
+			(isPos(a[i]) && isPos(a[i+1]) && isPos(a[i+2])) ||
+			((!isPos(a[i])) && !isPos(a[i+1]) && isPos(a[i+2])) ||
+			((!isPos(a[i])) && isPos(a[i+1]) && (!isPos(a[i+2]))) ||
+			(isPos(a[i]) && (!isPos(a[i+1])) && (!isPos(a[i+2])))) 
+			verificato = 0;
+	}
+	return verificato;
+}
+int main(int argc, char const *argv[])
+{
+	int lung;
+	//******** UNCLEAR MESSAGE -0.2
+	printf("Caro utente, quanto %c lunga la sequenza? ", 138);
+	scanf("%d", &lung);
+	int s[lung];
+	for (int i = 0; i < lung; i++)
+		{
+			printf("Inserisci %d interi: ", lung-i);
+			scanf("%d", &s[i]);
+		}
+		printf("Ecco la tua sequenza: ");
+		for (int i = 0; i < lung; i++)
+		{
+			printf("%d ", s[i]);
+		}
+		printf("\n");
+		if (duePositivi(s,lung))
+			printf("La sequenza contiene esattamente 2 interi positivi per ogni tripla\n");
+		else
+			printf("La sequenza NON contiene esattamente 2 interi per ogni tripla\n");
+	return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the universal verification approach
+- Good separation of concerns with isPos helper function
+- Proper array bounds checking in the main loop
+- Clear output messages for results
+- Correct parameter passing to duePositivi function
+
+Areas for Improvement:
+- The triple condition check is incomplete. Some combinations that should return false are not covered
+- User prompts could be clearer and more professional (avoid using special characters)
+- Code formatting could be more consistent, especially in the main function
+
+Key Recommendations:
+- Review all possible combinations for triples containing exactly two positive numbers
+- Use standard ASCII characters for output messages
+- Maintain consistent indentation throughout the code
+- Consider adding input validation for array length
+</feedback_summary>

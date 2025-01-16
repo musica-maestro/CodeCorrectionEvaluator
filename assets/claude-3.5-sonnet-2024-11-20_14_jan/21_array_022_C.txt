@@ -1,0 +1,66 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.0 = 6.0 - 2.0 - 1.0
+   MAIN PROGRAM (max 2.5):....1.8 = 2.5 - 0.5 - 0.2
+   TOTAL.......................4.8
+*/
+
+#include <stdio.h>
+int compresiMultipli3(int array[],  int lunghezza){
+	int i=0;
+	int esiste =0;
+	while(i<(lunghezza-2) && !esiste){
+		if(((array[i]>=-10 && array[i]<=10) && (array[i+1]>=-10 && array[i+1]<=10))
+		|| ((array[i+1]>= -10 && array[i+1]<=10) && (array[i+2]>=-10 && array[i+2]<=10))
+		|| ((array[i]>=-10 && array[i]<=10) && (array[i+2]>=-10 && array[i+2]<=10)))
+			if(((array[i]%3==0) && (array[i+1]%3==0) && (array[i+2]%3!=0))
+			|| ((array[i]%3==0) && (array[i+1]%3!=0) && (array[i+2]%3==0)) |
+			| ((array[i]%3!=0) && (array[i+1]%3==0) && (array[i+2]%3==0))){
+				esiste =1;
+			}
+	}
+	i++;  //******** INCREMENT OF i OUTSIDE THE LOOP BODY - LOOP NEVER ADVANCES -2.0
+return esiste;
+}
+
+int main(int argc, char **argv)
+{
+	int l;
+	printf("Ciao utente sono un programma che analizza una sequenza di interi e restituisce 1 se in unsa tripla consecutiva almeno due elementi hanno valore compreso tra -10 e 10\n");
+	printf("e che contiene esattamente due interi multipli di 3, altrimenti restituisco 0\n");
+	printf("\n");
+	printf("inserisci il numero di interi della sequenza\n");
+	scanf("%d", &l);	 
+	int sequenza[l];
+	printf("adesso inserisci i valori della sequenza\n");
+	for(int i=0; i<l; i++)		
+		scanf("%d", &sequenza[i]);
+		//******** NOT PROPERLY INDENTED CODE -0.2
+		if(compresiMultipli3(sequenza, l)==1)  
+			printf("Nella sequenza di interi esiste una tripla che verifica l'istanza del problema!!!\n");
+			else 
+				printf("Nella sequenza di interi che hai inserito non ci sono triple che verificano l'istanza del problema\n");
+                //******** OUTPUT MESSAGE COULD BE MORE SPECIFIC ABOUT THE PROPERTIES BEING CHECKED -0.5
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct logic for checking elements within range [-10,10]
+- Proper implementation of checking for exactly two multiples of 3
+- Good user interaction in main function
+- Appropriate array declaration and input handling
+
+Areas for Improvement:
+- Critical loop control error: The increment of i is outside the while loop body, causing an infinite loop
+- Code indentation needs improvement for better readability
+- Output messages could be more specific about what conditions were met or not met
+- Consider using more structured formatting for complex conditional statements
+
+Key Recommendations:
+1. Move the i++ increment inside the while loop body
+2. Use consistent indentation throughout the code
+3. Make output messages more descriptive of the specific conditions being checked
+4. Consider breaking down complex conditions into smaller, more readable parts using intermediate boolean variables
+</feedback_summary>

@@ -1,0 +1,63 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.2 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................7.3
+*/
+
+#include <stdio.h>
+int ugualiCompresi(int array[], int size){
+    int i = 0;                                    
+    int verificata = 0;                            
+    //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+    while(i < size-2 && !verificata){
+         if((((array[i] + array[i+1]) >= 10 && (array[i] + array[i+1]) <= 20)
+         || ((array[i] + array[i+2]) >= 10 && (array[i] + array[i+2]) <= 20)
+            || ((array[i+1] + array[i+2]) >= 10 && (array[i+1] + array[i+2]) <= 20))
+            && ((array[i] == array[i+1] && array[i] != array[i+2])
+            || (array[i] == array[i+2] && array[i] != array[i+1])
+            || (array[i+1] == array[i+2] && array[i+1] != array[i])))
+            verificata = 1;                
+         else
+             i++;        
+     }
+    return verificata;
+ }
+
+int main(int argc, char **argv){
+    int lunghezza;                         
+    int verificata;                     
+    printf("Quanti elementi vuoi inserire nella sequenza?\n");
+    scanf("%d", &lunghezza);
+    int sequenza[lunghezza];            
+    for(int i = 0; i < lunghezza; i++){
+        printf("Inserisci l'elemento %d della'array:   ", i);
+        scanf("%d", &sequenza[i]);
+    }
+    verificata = ugualiCompresi(sequenza, lunghezza);             
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    if(verificata == 1)
+        printf("\nEsiste almeno una tripla in cui almeno due elementi hanno somma compresa tra 10 e venti ed esattamente due elementi sono uguali tra loro.\n");
+    else
+        printf("\nNon esiste nessuna tripla in cui almeno due elementi hanno somma compresa tra 10 e venti ed esattamente due elementi sono uguali tra loro.\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for checking consecutive triples
+- Proper handling of array bounds
+- Correct implementation of both conditions (sum between 10-20 and exactly two equal elements)
+- Good variable initialization and return values
+
+Areas for Improvement:
+- The condition in the function could be more readable by breaking it into smaller logical parts
+- Output messages could be more concise and clearer about the specific properties being checked
+- Consider using more descriptive variable names (verificata could be 'found' or 'hasValidTriple')
+
+Key Recommendations:
+- Break down complex conditions into smaller, more readable parts using intermediate boolean variables
+- Improve output messages to be more precise and user-friendly
+- Use more descriptive variable names to enhance code readability
+</feedback_summary>

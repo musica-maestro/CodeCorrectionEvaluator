@@ -1,0 +1,64 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.3 = 6.0 - 1.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.5):....2.5
+   TOTAL.......................6.8
+*/
+
+#include <stdio.h>
+int maggioriCinquePari(int seq[], int l) {
+	int maggiori=1;
+	int i=0;
+//******** WRONG CONDITION ON INDEX, SHOULD BE i < l - 2 -1.0
+while(i<=l-3 && maggiori) {
+	//******** CONDITION IS COMPLICATED AND NOT VERY READABLE -0.2
+	//******** CONDITION IS LOGICALLY CORRECT BUT POORLY STRUCTURED -0.5
+	if(!((seq[i]>=5 && seq[i+1]>=5 && !(seq[i+2]>=5))
+	|| (seq[i]>=5 && seq[i+2]>=5 && !(seq[i+1]>=5)) || (seq[i+1]>=5 && seq[i+2]>=5 && !(seq[i]>=5)) &&
+	(!(seq[i]%2==0 && seq[i+1]%2==0) || (seq[i+1]%2==0 && seq[i+2]%2==0) || (seq[i]%2==0 && seq[i+2]%2==0))))
+		maggiori=0;
+	else
+		i++;
+	}
+	return maggiori;
+}
+
+int main(int argc, char **argv)
+{
+	int lunghezza;
+	printf("quanti interi desideri introdurre?");
+	scanf("%d", &lunghezza);
+	int sequenza[lunghezza];
+	for(int i=0;i<lunghezza;i++) {
+		printf("inserisci un intero: ");
+		scanf("%d", &sequenza[i]);
+	}
+	if(maggioriCinquePari(sequenza,lunghezza)) {
+		printf("per ogni tripla di elementi consecutivi vi sono due elementi maggiori o uguali a 5 e almeno due pari\n");
+	}
+	else {
+		printf("per ogni tripla di elementi consecutivi non vi sono due elementi maggiori o uguali a 5 e almeno due pari\n");
+	}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the main function with proper user interaction
+- Appropriate array handling and function calls
+- Correct logic for checking both conditions (exactly two elements ≥5 and at least two even numbers)
+- Good use of boolean variable for loop control
+
+Areas for Improvement:
+- The loop condition should use i < l - 2 instead of i <= l - 3 for better readability and conventional array indexing
+- The logical condition in the if statement, while correct, is overly complex and hard to read
+- Consider breaking down the complex condition into smaller, more readable parts using intermediate boolean variables
+- Consider adding input validation for the array length
+
+Key Recommendations:
+- Restructure the condition check into smaller, more manageable parts
+- Use clearer variable names (e.g., 'length' instead of 'l')
+- Add comments to explain the logic of complex conditions
+- Use standard array indexing patterns (i < length - 2)
+</feedback_summary>

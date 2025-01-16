@@ -1,0 +1,61 @@
+I'll grade the student's submission following the provided format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........1.0 = 6.0 - 1.5 - 1.0 - 1.0 - 0.5 - 1.0
+   MAIN PROGRAM (max 2.5):....0.5 = 2.5 - 2.0
+   TOTAL.......................1.5
+*/
+
+#include <stdio.h>
+int	funzionemaggiori5Pari(int *arr, int len)
+{
+	int i;
+	int check;
+	check = 1;
+	i = 0;
+	//******** WRONG CONDITION - ARRAY IS NOT A STRING, SHOULDN'T CHECK FOR '\0' -1.0
+	while (arr[i] != '\0')  
+	{
+		//******** ASSIGNMENT INSTEAD OF COMPARISON (i = len) -0.5
+		if(i = len)
+			break;
+		//******** SYNTAX ERROR: INCOMPLETE ARRAY ACCESS arr[] -1.0
+		arr[]
+		i++;
+	}
+	//******** MISSING RETURN STATEMENT -1.0
+}
+//******** EMPTY MAIN FUNCTION - NO IMPLEMENTATION OF REQUIRED FUNCTIONALITY -2.0
+int main()
+{
+}
+//******** MISSING LOGIC FOR CHECKING TWO ELEMENTS >= 5 AND TWO EVEN ELEMENTS -1.5
+
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic function structure attempted
+- Variable initialization included
+
+Areas for Improvement:
+- The function lacks the core logic to check for the required conditions (two elements >= 5 and two even elements)
+- Array traversal is incorrect (using string termination check instead of array length)
+- Syntax error in array access
+- Main function is empty, missing all required functionality:
+  * Input length reading
+  * Array input handling
+  * Function call
+  * Result output
+
+Key Recommendations:
+1. Implement the core logic to check consecutive triples
+2. Use proper array bounds checking (i < len - 2)
+3. Complete the main function with user interaction
+4. Add proper return statements
+5. Fix the array access syntax
+6. Use comparison (==) instead of assignment (=) in conditions
+7. Remove string termination check ('\0') as this is an integer array
+
+The code needs significant work to meet the assignment requirements. Focus on implementing the core logic for checking triples and completing the main function's user interaction components.
+</feedback_summary>

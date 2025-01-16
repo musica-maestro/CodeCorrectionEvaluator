@@ -1,0 +1,111 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........4.7 = 5.0 - 0.3
+countNumbers (2).....2.0
+readNumbers (2)......2.0
+writeNumbers(1)......1.0
+TOTAL................9.7/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int calcolaMinimo(int a, int b, int c)
+{
+    int minimo; 
+    if (a < b)
+    {
+        if (a < c)
+            minimo = a;
+        else
+            minimo = c;
+    }
+    else
+    {
+        if (b < c)
+            minimo = b;
+        else
+            minimo = c;
+    }
+    return minimo;
+}
+
+int minimoDispari(int *seq, int lunghezza)
+{
+    int esito; 
+    //******** base case: l==3 is part of the recursive step. If you put it in the base case, you need to repeat the check "minimum of 3 odd" twice -0.3
+    if (lunghezza == 3)
+        esito = 1;
+    else
+        esito = (calcolaMinimo(seq[0], seq[1], seq[2]) % 2 != 0) && minimoDispari(seq+1, lunghezza-1);
+    return esito;
+}
+
+int quantiNumeri()
+{
+    int conta = 0; 
+    int num; 
+    FILE *fp = fopen("Numeri.dat", "rb"); 
+    if (fp != NULL)
+    {
+        while (fread(&num, sizeof(int), 1, fp) > 0)
+            conta++;
+        fclose(fp);
+        printf("Sequenza recuperata!\n");
+    }
+    else
+        printf("Niente da recuperare!\n");
+    return conta;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza)
+{
+    int num; 
+    int ind = 0; 
+    FILE* fp = fopen("Numeri.dat", "rb"); 
+    if(fp != NULL)
+    {
+        while (fread(&num, sizeof(int), 1, fp) > 0)
+        {
+            sequenza[ind] = num;
+            ind++;
+        }
+        fclose(fp);
+    }
+}
+
+void scriviNumeri(int* sequenza, int lunghezza)
+{
+    FILE* fp = fopen("Numeri.dat", "wb");
+    if (fp != NULL)
+    {
+        fwrite(sequenza, sizeof(int), lunghezza, fp);
+        fclose(fp);
+        printf("Sequenza salvata con successo!\n");
+    }
+    else
+        printf("Salvataggio fallito!\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of file handling functions (reading, writing, counting)
+- Proper error checking for file operations
+- Good implementation of minimum calculation function
+- Clean and well-structured code
+- Appropriate use of binary file operations
+
+Areas for Improvement:
+- The base case in minimoDispari function could be improved. Currently, it uses lunghezza == 3 as the base case, which leads to redundant checking of the minimum odd property. A better approach would be to use lunghezza <= 2 as the base case.
+- The recursive implementation could be more efficient by avoiding the repeated calculation of the minimum for overlapping triplets.
+
+Key Recommendations:
+- Modify the base case in minimoDispari to handle arrays of length <= 2
+- Consider adding more descriptive error messages for file operations
+- Add input validation for array length in the main function
+</feedback_summary>
+
+The student's implementation is very good overall, with only minor issues in the recursive function's base case. The file handling functions are implemented correctly and include proper error checking. The code is well-structured and follows good programming practices.

@@ -1,0 +1,63 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.5 = 6.0 - 1.0 - 0.5
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL......................6.3
+*/
+
+#include <stdio.h>
+int dueUnaCifra(int seq[], int lunghezza){
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lunghezza - 2 -1.0
+    for(int i=0; i<lunghezza-2; i++){
+        if(seq[i]<10 && seq[i+1]<10) ; 
+        else if(seq[i]<10 && seq[i+2]<10) ;
+        else if(seq[i+1]<10 && seq[i+2]<10) ;
+        else return 0;                                
+    }
+    //******** 2 RETURNS IS NOT STRUCTURED PROGRAMMING -0.5
+    return 1;  
+}
+int main(){
+    printf("Questo programma richiede una sequenza di numeri positivi. \n");
+    printf("Quanto e' lunga la tua sequenza? ");
+    int lunghezza;
+    scanf("%d", &lunghezza);
+    int seq[lunghezza];
+    for(int i=0; i<lunghezza; i++){
+        printf("Dammi un numero: ");
+        scanf("%d", &seq[i]);
+    }
+    int positive=1;
+    for(int i=0; i<lunghezza && positive==1; i++){
+        if(seq[i]<0) positive=0;
+    }
+    if(positive==1){
+        //******** UNCLEAR MESSAGE -0.2
+        if(dueUnaCifra(seq, lunghezza)==1) printf("Complimenti! In tutte le triple di elementi adiacenti ci sono almeno due numeri a singola cifra. \n");
+        if(dueUnaCifra(seq, lunghezza)==0) printf("Peccato! Non in tutte le triple di elementi adiacenti ci sono almeno due numeri a singola cifra. \n");
+    }
+    else printf("Errore: La tua sequenza ha almeno un numero negativo \n");        
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the triple checking logic
+- Good input validation for negative numbers
+- Clear main program structure with proper user interaction
+- Appropriate function parameters and return values
+
+Areas for Improvement:
+- Array bounds checking in dueUnaCifra function needs correction
+- Code structure could be improved by avoiding multiple returns
+- Output messages could be more precise and clear
+- Consider using more structured control flow
+
+Key Recommendations:
+1. Fix the array bounds checking by using i < lunghezza - 2
+2. Restructure the function to use a single return statement
+3. Make output messages more specific and user-friendly
+4. Consider using else if instead of multiple if statements for the output conditions
+</feedback_summary>

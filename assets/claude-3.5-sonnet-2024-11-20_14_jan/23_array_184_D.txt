@@ -1,0 +1,65 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.0 = 6.0 - 1.0
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................6.8
+*/
+
+#include <stdio.h>
+int restoDivisione(int *seq, int lunghezza){
+int esiste=0; 
+int i=0; 
+//******** INCORRECT INDENTATION -0.5
+	while(i<lunghezza-2 && !esiste){
+    //******** ONE COMBINATION ON THE TRIPLE CONDITION IS MISSING -1.0
+    if (seq[i]%seq[i+1]==seq[i+2] || (seq[i+1]%seq[i]==seq[i+2]) ||
+    	(seq[i]%seq[i+2]==seq[i+1]) || (seq[i+2]%seq[i]==seq[i+1]) ||
+    	(seq[i+1]%seq[i+2]==seq[i]) || (seq[i+2]%seq[i+1]==seq[i])){
+    	esiste=1;
+    }
+i++;
+	}
+return esiste;
+}
+int main(){
+	int lunghezza; 
+	printf("Ciao, sono un programma che calcola se esiste una tripla\n");
+	printf("contente un numero uguale al resto della divisione degli altri 2\n");
+	printf("Quanti interi vuoi inserire?"); 
+	scanf("%d", &lunghezza);
+	//******** UNCLEAR MESSAGE -0.2
+	int seq[lunghezza]; 
+	for (int i = 0; i < lunghezza; i++)
+	{
+		printf("Dammi un intero\n");
+		scanf("%d", &seq[i]);
+	}
+	if (restoDivisione(seq, lunghezza)){
+		printf("Esiste una tripla che rispetta le condizioni\n");
+	}
+	else {
+		printf("Non esiste una tripla che rispetta le condizioni\n");
+	}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the existential verification approach
+- Proper array bounds checking in the while loop
+- Good use of boolean flag to stop searching once a valid triple is found
+- Well-structured main function with clear user interaction
+
+Areas for Improvement:
+- Code indentation needs to be consistent throughout the function
+- The modulo operation combinations could be more comprehensive
+- User messages could be more specific about what conditions are being checked
+- Consider adding input validation for array length
+
+Key Recommendations:
+- Fix indentation to improve code readability
+- Add the missing modulo operation combination to ensure all possible cases are covered
+- Make user prompts more descriptive about the mathematical operation being performed
+- Consider adding input validation to handle edge cases and invalid inputs
+</feedback_summary>

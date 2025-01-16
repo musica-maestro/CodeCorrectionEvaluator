@@ -1,0 +1,74 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.0 = 6.0 - 1.0
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................6.8
+*/
+
+#include <stdio.h>
+int restoDivisione(int seq[], int l){
+int risultato=0;    
+int i=0;            
+//******** MISSING CHECK FOR ARRAY LENGTH < 3 -0.5
+while(i<l-2 && risultato!=1){
+	if((seq[i]==seq[i+1]%seq[i+2]) || (seq[i]==seq[i+2]%seq[i+1]) ||
+	   (seq[i+1]==seq[i]%seq[i+2]) || (seq[i+1]==seq[i+2]%seq[i]) ||
+	   (seq[i+2]==seq[i]%seq[i+1]) || (seq[i+2]==seq[i+1]%seq[i]))
+		risultato=1;
+	else
+		i++;
+}
+return risultato;
+}
+
+int main(){
+int x;   
+int r;   
+printf("caro utente, di quanti interi e' composta la tua sequenza?\n");
+scanf("%d", &x);
+//******** MISSING INPUT VALIDATION FOR X -0.2
+int seq[x];
+printf("dammi pure i valori della sequenza\n");
+for(int i=0;i<x;i++)
+	scanf("%d", &seq[i]);
+r=restoDivisione(seq,x);
+if(r==1){
+	printf("\nnella sequenza esiste almeno una tripla di cui uno dei valori e' il resto della divisione");
+    printf(" tra gli altri due\n");}
+if(r==0){
+	printf("\nnella sequenza non esistono triple in cui uno dei valori e' il resto della divisione");
+    printf(" tra gli altri due\n");}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the remainder check logic
+- Proper handling of all possible combinations in the triple
+- Good loop control with both index and result condition
+- Clear output messages explaining the results
+
+Areas for Improvement:
+- Add input validation for array length (x) to ensure it's positive and sufficient for forming triples
+- Add a check at the start of restoDivisione() to handle arrays with length < 3
+- Consider handling division by zero cases
+- Consider using more structured formatting for better readability
+
+Key Recommendations:
+1. Add input validation in main():
+```c
+if (x < 3) {
+    printf("La sequenza deve contenere almeno 3 numeri\n");
+    return 1;
+}
+```
+
+2. Add length validation in restoDivisione():
+```c
+if (l < 3) return 0;
+```
+
+3. Consider handling division by zero cases in the remainder calculations
+4. Use consistent indentation and bracing style for better code readability
+</feedback_summary>

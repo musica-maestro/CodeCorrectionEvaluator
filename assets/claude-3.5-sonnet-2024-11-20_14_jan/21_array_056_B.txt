@@ -1,0 +1,73 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.2 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL......................7.3
+*/
+
+#include <stdio.h>
+int maggiori5Pari(int *a, int l){
+    int verificata=1;
+    if(l<3){              
+        verificata=0;
+    }
+    else{
+        for(int i=0; i<l-2;i++){ 
+            //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+            if((a[i]<5 && a[i+1]<5) || (a[i]<5 && a[i+2]<5) || (a[i+1]<5 && a[i+2]<5) || (a[i]>=5 && a[i+1]>=5 && a[i+2]>=5)){
+                verificata=0;
+            }
+            else{          
+                //******** MISSING A COMBINATION (NOT ALL THE PAIRS ARE CONSIDERED) -0.5
+                if((a[i]%2!=0 && a[i+1]%2!=0) || (a[i]%2!=0 && a[i+2]%2!=0) || (a[i+1]%2!=0 && a[i+2]%2!=0)){
+                    verificata=0;
+                }
+            }
+        }
+    }
+    return verificata;
+}
+
+int main(int argc, char **argv)
+{   
+    int lunghezza; 
+    int i;
+    printf("Caro utente sono un programma che verifica se ogni tripla di interi presente nell'array inserito");
+    printf("contiene esattamente due elementi magggiori o uguali a 5 ed almeno due pari.\n");
+    printf("Inserisci la lunghezza dell'array\n");
+    scanf("%d",&lunghezza);
+    int array[lunghezza];
+    for(i=0; i<lunghezza; i++){ 
+        printf("Inserisci l'elemento dell'array in posizione %d\n", i);
+        scanf("%d", &array[i]);
+    }
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    if(maggiori5Pari(array, lunghezza)){
+        printf("ogni tripla dell'array contiene esattamente due elementi magggiori o uguali a 5 ed almeno due pari.\n");
+    }
+    else{
+        printf("Esiste almeno una tripla che non contiene esattamente due elementi magggiori o uguali a 5 ed almeno due pari.\n");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of array bounds checking
+- Proper handling of arrays shorter than 3 elements
+- Good basic structure of the function and main program
+- Appropriate use of loop control for checking consecutive triples
+
+Areas for Improvement:
+- The condition checking for elements ≥5 could be more readable and better structured
+- The even number checking logic misses some combinations of pairs
+- Output messages could be more specific and clearer
+- Code readability could be improved with better formatting and variable names
+
+Key Recommendations:
+- Restructure the conditions for checking elements ≥5 into smaller, more manageable parts
+- Review and complete all possible combinations for checking even numbers
+- Enhance output messages to be more precise about what conditions were or weren't met
+- Consider using more descriptive variable names (e.g., 'isValid' instead of 'verificata')
+</feedback_summary>

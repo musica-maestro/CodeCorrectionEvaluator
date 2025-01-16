@@ -1,0 +1,82 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.0 = 6.0 - 1.5 - 1.5
+   MAIN PROGRAM (max 2.5):....1.7 = 2.5 - 0.5 - 0.3
+   TOTAL.......................4.7
+*/
+
+#include <stdio.h>
+int ugualiCompresi(int array[],int lunghezzaArray)
+{
+    int i; 
+    int verifica; 
+    i=0; 
+    verifica=0; 
+    //******** NEVER ENTERS THE LOOP! Condition verifica is 0 -1.5
+    while((i<lunghezzaArray-2)&&verifica) 
+    {
+        //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+        if(((array[i]+array[i+1]>=10)&&(array[i]+array[i+1]<=20))
+        ||((array[i]+array[i+2]>=10)&&(array[i]+array[i+2]<=20))
+        ||((array[i+1]+array[i+2]>=10)&&(array[i+1]+array[i+2]<=20)))
+        {
+            //******** EXACTLY TWO ELEMENTS MUST BE EQUAL (THE THIRD MUST BE DIFFERENT) -1.5
+            if(((array[i]==array[i+1])||(array[i]==array[i+2])||(array[i+1]==array[i+2]))&&!((array[i]==array[i+1])&&(array[i]==array[i+2])&&(array[i+1]==array[i+2])))
+            {
+                verifica=1;
+            }
+            else
+                i++;
+        }
+        else
+            i++;
+    }
+    return verifica;
+}
+
+int main(int argc, char **argv)
+{
+    int lunghezzaArray; 
+    printf("quanti interi vuoi inserire? \n");
+    scanf("%d",&lunghezzaArray);
+    int array[lunghezzaArray]; 
+    printf("inserisci i %d interi\n",lunghezzaArray);
+    for (int i=0;i<lunghezzaArray;i++)
+    {
+        printf("inserisci valore");
+        scanf("%d",&array[i]);
+    }
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    if(ugualiCompresi(array,lunghezzaArray)==1)
+    {
+        printf("esise una tripla dove almeno due elementi danno un risultato compreso tra 10 e 20 e dove solo due elementi di questa somma sono uguali\n");
+    }
+    else
+        //******** YOU DO NOT EXPLAIN THE MEANING OF THE OUTPUT IS (A BIT SCARCE) -0.3
+        printf("non esise una tripla dove almeno due elementi danno un risultato compreso tra 10 e 20\n");
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic structure of the function and main program is present
+- Correct array handling and user input implementation
+- Attempt to check both conditions (sum range and equality)
+
+Areas for Improvement:
+- The while loop never executes due to verifica being initialized to 0
+- The logic for checking exactly two equal elements needs revision
+- The condition structure could be simplified for better readability
+- Output messages could be more precise and informative
+
+Key Recommendations:
+1. Fix the loop condition by either:
+   - Initializing verifica to 1, or
+   - Using !verifica in the condition
+2. Simplify the equality checking condition
+3. Improve output messages to clearly specify what conditions were/weren't met
+4. Consider restructuring the conditions for better readability
+5. Add more detailed error messages that explain both conditions (sum range and equality)
+</feedback_summary>

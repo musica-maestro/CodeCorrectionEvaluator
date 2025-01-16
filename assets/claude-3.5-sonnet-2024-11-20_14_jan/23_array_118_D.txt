@@ -1,0 +1,71 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.3 = 6.0 - 1.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL......................6.1/8.0
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+int restoDivisione(int array[], int lunghezza){
+    int siResto; 
+    int i;
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lunghezza-2 -1.0
+    for(i = 0; i < lunghezza-3; i++){ 
+        //******** WITHOUT BOOLEAN VARIABLE IN CONDITION, CONTINUES CHECKING AFTER FINDING VALID TRIPLE -0.2
+        if(((array[i] % array[i+1] == array[i+2]) || (array[i+2] % array[i] == array[i+1]) ||
+            (array[i+1] % array[i+2] == array[i]) || (array[i+2] % array[i+1] == array[i] ||
+                (array[i] % array[i+2] == array[i+1]) || (array[i+1] % array[i] == array[i+2]))))
+            siResto = 1;
+    }
+    //******** HOW DO YOU CONSIDER 0? -0.2
+    if(siResto != 1)  
+        siResto = 0;
+    return siResto;
+}
+
+int main(){
+    int n_intero;
+    printf("Utente inserisci la lunghezza della tua sequenza: ");
+    scanf("%d", &n_intero);
+    int sequenzaU[n_intero];
+    printf("\nAdesso inserisci gli elementi della tua sequenza:\n");
+    for(int i = 0; i < n_intero; i++){
+        scanf("%d", &sequenzaU[i]);
+        printf("Hai inserito il valore: %d\n", sequenzaU[i]);
+    }
+    printf("I valori della tua sequenza sono: ");
+    for(int i = 0; i < n_intero; i++){
+        printf("%d ", sequenzaU[i]);
+    }
+    //******** UNCLEAR MESSAGE -0.2
+    if(restoDivisione(sequenzaU, n_intero))
+        printf("\nLa sequenza contiene una tripla di elementi in cui uno dei tre %c il resto della divisione tra gli altri due\n", 138);
+    else
+        printf("\nLa sequenza NON contiene una tripla di elementi in cui uno dei tre %c il resto della divisione tra gli altri due\n", 138);
+    system("pause");
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of all required division remainder combinations
+- Good user interaction in main function
+- Clear input/output formatting
+- Proper function structure with parameters and return value
+
+Areas for Improvement:
+- Array bounds checking needs correction (should be lunghezza-2 instead of lunghezza-3)
+- Consider using a boolean variable in the loop condition to exit once a valid triple is found
+- Add explicit handling for zero values in divisions
+- Messages could be clearer without using special characters (138)
+
+Key Recommendations:
+1. Fix the array bounds in the for loop to prevent potential buffer overflows
+2. Optimize the loop to exit early when a valid triple is found
+3. Add explicit checks for division by zero
+4. Use standard ASCII characters for output messages instead of special characters
+5. Consider adding input validation for array length and elements
+</feedback_summary>

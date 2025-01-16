@@ -1,0 +1,76 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........1.0 = 6.0 - 1.5 - 1.5 - 0.5 - 1.5
+   MAIN PROGRAM (max 2.5):....1.5 = 2.5 - 0.5 - 0.5
+   TOTAL.......................2.5
+*/
+
+#include <stdio.h>
+	int ugualiCompresi (int array[], int l){
+	int ugualisomma=0;  
+	int i;      
+	//******** VARIABLE i IS NOT INITIALIZED -1.5
+	while(i<l-2 &&!ugualisomma){
+		//******** ERROR IN "WITHIN THE RANGE" EXPRESSION: SYNTAX ERROR IN CONDITION -1.5
+		if((array[i]+array[i+1]>=10&&<=20) || (array[i]+array[i+2]>=10&&<=20) || (array[i+1]+array[i+2]>=10&&<=20))
+	    if(array[i]==array[i+1] || array[i]==array[i+2] || array[i+1]==array[i+2])
+		//******** UNDEFINED VARIABLES somma AND uguali -1.5
+		somma=1;
+		uguali=1;  
+		else
+		//******** MISSING SEMICOLON AFTER i++ -0.5
+		i++   
+	return ugualisomma;
+
+int main(){
+	int l;   
+	int ugualisomma;
+	printf("Programma che verifica l'esistenza di una tripla all'interno della sequenza ");
+	printf("tale che la tripla contenga due elementi con somma compresa tra 10 e 20 ");
+	printf("e due elementi tra loro uguali\n");
+	printf("Inserire la lunghezza dell'array\n");
+	scanf("%d",&l);
+	//******** VARIABLE LENGTH ARRAYS NOT STANDARD IN C -0.5
+	int array[l];
+	for(int i=0;i<l;i++){
+		printf("Inserire gli elementi che compongono l'array\n");
+		scanf("%d",&array[i]);
+	}
+	ugualisomma=ugualiCompresi(array, l);
+	if(ugualisomma==1)
+		printf("La sequenza inserita rispetta le condizioni\n");
+		else
+		printf("La sequenza inserita non rispetta le condizioni\n");
+		//******** OUTPUT MESSAGE IS NOT SPECIFIC ENOUGH -0.5
+		return 0;  
+}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Main function handles user input correctly
+- Array input and function call implementation is correct
+
+Areas for Improvement:
+1. Function Implementation:
+   - Initialize variable i before using it in the while loop
+   - Fix the range checking syntax in the conditions
+   - Properly declare and use variables (somma, uguali)
+   - Add proper semicolons after statements
+
+2. Main Program:
+   - Use more specific output messages describing what conditions were met/not met
+   - Consider using static array allocation or dynamic memory allocation
+   - Improve code formatting and structure
+
+Key Recommendations:
+1. Always initialize variables before using them
+2. Fix syntax errors in conditional statements
+3. Use proper variable declarations and maintain consistent naming
+4. Add more detailed output messages
+5. Review C syntax fundamentals, especially regarding condition checking
+6. Implement proper error handling for edge cases
+</feedback_summary>

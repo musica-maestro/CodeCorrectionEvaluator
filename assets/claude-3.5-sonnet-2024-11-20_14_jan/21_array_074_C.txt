@@ -1,0 +1,68 @@
+I'll grade the student's submission following the provided format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.2 - 0.5
+   MAIN PROGRAM (max 2.5):....2.5
+   TOTAL.......................7.8
+*/
+
+#include <stdio.h>
+int compresiMultipli3(int seq[], int length){
+	int i = 0;
+	int ex = 0;  
+	while(i < length - 2 && !ex){  
+		//******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+		if((((seq[i] <= 10 && seq[i] >= -10) && (seq[i+1] <= 10 && seq[i+1] >= -10))
+		|| ((seq[i+1] <= 10 && seq[i+1] >= -10) && (seq[i+2] <= 10 && seq[i+2] >= -10))
+		|| ((seq[i] <= 10 && seq[i] >= -10) && (seq[i+2] <= 10 && seq[i+2] >= -10)))
+		&& (((seq[i] %3 == 0) && (seq[i+1] %3 == 0) && (seq[i+2] %3 != 0))
+		|| ((seq[i] %3 == 0) && (seq[i+1] %3 != 0) && (seq[i+2] %3 == 0))
+		|| ((seq[i] %3 != 0) && (seq[i+1] %3 == 0) && (seq[i+2] %3 == 0)))){
+			ex = 1;  
+		}
+		else{
+			i++;  
+		}
+	}
+	//******** MISSING A COMBINATION (NOT ALL THE PAIRS ARE CONSIDERED) -0.5
+	return ex;
+}
+
+int main(int argc, char **argv){
+	int length2 = 0;
+	printf("Quanto sarà lungo l'array?: ");
+	scanf("%d", &length2);
+	int seq2[length2];
+	for(int s = 0; s < length2; s++){
+		printf("Inserisci un numero: ");
+		scanf("%d", &seq2[s]);
+	}
+	if(compresiMultipli3(seq2,length2)){
+		printf("Esiste una tripla che rispetta le condizioni");
+	}
+	else{
+		printf("Non esiste una tripla che rispetta le condizioni");
+	}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the main function with proper user interaction
+- Proper array bounds checking in the while loop
+- Correct use of boolean flag (ex) to control loop execution
+- Appropriate handling of the three consecutive elements check
+
+Areas for Improvement:
+- The condition in the if statement is overly complex and could be broken down into smaller, more readable parts
+- The logic for checking pairs of elements between -10 and 10 misses some combinations
+- Consider using more descriptive variable names than 'ex' and 'seq'
+
+Key Recommendations:
+- Break down complex conditions into smaller, more manageable parts using intermediate boolean variables
+- Review and ensure all possible combinations of pairs are considered in the checks
+- Add comments to explain the logic of complex conditions
+- Use more descriptive variable names to improve code readability
+</feedback_summary>
+
+The student's implementation is generally good, with only minor issues in readability and completeness. The main function is implemented correctly, and the core logic works for most cases. The main areas for improvement are in code readability and ensuring all possible combinations are checked.

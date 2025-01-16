@@ -1,0 +1,96 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)............4.2 = 5.0 - 0.3 - 0.5
+countNumbers (2).......1.7 = 2.0 - 0.3
+readNumbers (2)........1.7 = 2.0 - 0.3
+writeNumbers(1)........0.7 = 1.0 - 0.3
+TOTAL..................8.3/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimo(int seq[], int l){  
+    int max = seq[0];
+    for(int i = 0; i<l; i++)
+        if(max < seq[i])
+            max = seq[i];
+    return max;
+}
+
+int massimoPari(int *seq, int lunghezza){
+    int res;
+    //******** Base case l==3 should not be in base case, needs to be part of recursive step -0.3
+    if(lunghezza == 3)  
+        res = (massimo(seq, 3)%2 == 0);  
+    else                
+        res = (massimo(seq, 3)%2 == 0) && massimoPari(seq+1,lunghezza-1);
+    return res;
+}
+
+int quantiNumeri() {
+    //******** Counter not initialized -0.3
+    int quanti;   
+    FILE *fp = fopen("interi.dat", "rb");  
+    if(fp!= NULL){
+        int num;
+        while(fread(&num, sizeof(int), 1, fp))   
+            quanti++;  
+    }
+    fclose(fp);  
+    return quanti;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE *fp = fopen("interi.dat", "rb");   
+    if(fp != NULL){   
+        //******** In fread you should not use &sequence, because sequence is already an address -0.3
+        fread(sequenza, sizeof(int), lunghezza, fp); 
+    }  
+    fclose(fp);  
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE *fp = fopen("interi.dat", "wb");
+    //******** Missing file opening check if(fp==NULL) -0.3
+    if(fp != NULL)  
+        fwrite(sequenza, sizeof(int), lunghezza, fp);
+    fclose(fp);  
+}
+
+//******** Output not very explanatory, does not explain what is being checked -0.5
+int main() {
+    int lunghezza; 		
+    int scelta;				
+    printf("Vuoi introdurre una nuova sequenza (premi 1) oppure recuperarla da file (premi 2)? ");
+    scanf("%d",&scelta);
+    // ... rest of main function
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good overall implementation of file operations
+- Correct recursive approach for checking even maximums
+- Proper file handling structure with open/close operations
+- Good separation of concerns between functions
+
+Areas for Improvement:
+- Base case handling in massimoPari function needs revision
+- File operation error checking could be more robust
+- Counter initialization in quantiNumeri function
+- More descriptive output messages needed
+- Parameter handling in fread operations needs correction
+
+Key Recommendations:
+1. Move the base case l==3 check to be part of the recursive step
+2. Initialize counters before use
+3. Add proper file opening error checks
+4. Make output messages more descriptive about what is being checked
+5. Review fread parameter handling to avoid using & with array parameters
+6. Add more comprehensive error handling for file operations
+
+The code is functional but could benefit from these improvements for better robustness and user experience.
+</feedback_summary>

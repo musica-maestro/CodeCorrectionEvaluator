@@ -1,0 +1,100 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* 
+maxEven (5)............3.5 = 5.0 - 1.0 - 0.5
+countNumbers (2).......1.7 = 2.0 - 0.3
+readNumbers (2)........1.7 = 2.0 - 0.3
+writeNumbers(1)........0.7 = 1.0 - 0.3
+TOTAL..................7.6/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int CalcoloMax(int *seq){
+    int max;
+    max=seq[0]; 
+    //******** Using direct comparisons instead of a loop for max calculation -0.5
+    if(seq[1] > max && seq[1] > seq[2])
+        max=seq[1];
+    else{
+        if(seq[2] > max && seq[2] > seq[1])
+            max=seq[2];
+    }
+    return max;
+}
+
+int massimoPari(int *seq, int lunghezza){
+    //******** Base case should be length<=2 since we need triplets -1.0
+    int verificato; 
+    if(lunghezza<3)
+        verificato = 1;
+    else verificato = CalcoloMax(seq) % 2 == 0 && massimoPari(seq+1,lunghezza-1);
+    return verificato;
+}
+
+int quantiNumeri() {
+    int conteggio = 0; 
+    int intero; 
+    FILE *fp = fopen("interi.dat","rb");
+    //******** Missing file closure -0.3
+    if(fp==NULL)
+        printf("Errore di apertura del file \n");
+    else{
+        while(fread(&intero,sizeof(int),1,fp) > 0)
+            conteggio++;
+    }
+    return conteggio;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE *fp = fopen("interi.dat","rb");
+    //******** Missing file closure -0.3
+    if(fp==NULL)
+        printf("Errore di apertura file \n");
+    else{
+        fread(sequenza,sizeof(int),lunghezza,fp);
+    }
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE *fp = fopen("interi.dat","wb");
+    //******** Missing file closure -0.3
+    if(fp==NULL)
+        printf("Errore apertura file \n");
+    else{
+        fwrite(sequenza,sizeof(int),lunghezza,fp);
+    }
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of binary file operations
+- Good basic structure of recursive solution for maxEven
+- Clear separation of concerns between functions
+- Proper parameter passing and array handling
+
+Areas for Improvement:
+1. Maximum Even Function:
+   - Base case needs revision to properly handle triplets
+   - Consider using a more robust method for finding maximum in triplets
+
+2. File Operations:
+   - Add file closure (fclose) after all file operations
+   - Improve error handling when file operations fail
+
+3. Code Structure:
+   - Consider adding function prototypes at the beginning
+   - Improve error handling messages to be more descriptive
+
+Key Recommendations:
+1. Modify the base case in massimoPari to check for length<=2
+2. Add fclose() after all file operations
+3. Implement more robust error handling for file operations
+4. Consider using a loop for finding maximum in triplets for better maintainability
+5. Add clear function prototypes at the start of the program
+</feedback_summary>

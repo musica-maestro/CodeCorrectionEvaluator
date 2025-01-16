@@ -1,0 +1,69 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.2 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL......................7.3
+*/
+
+#include <stdio.h>
+int isPari(int i){
+	return i%2==0;
+}
+int maggiore5(int i){
+	return i>=5;
+}
+int maggiore5Pari(int seq[ ], int lunghezza) {
+	int i;                
+	i=0;                 
+	int ogniTripla=1;   
+	//******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+	while(i<lunghezza-2 && ogniTripla) {   
+		if((maggiore5(seq[i]) && maggiore5(seq[i+1]) && !(maggiore5(seq[i+2])) )
+		|| (maggiore5(seq[i]) && maggiore5(seq[i+2]) && !(maggiore5(seq[i+1])))
+		|| (maggiore5(seq[i+1]) && maggiore5(seq[i+2]) && !(maggiore5(seq[i])))) {
+           if((isPari(seq[i]) && isPari(seq[i+1])) || (isPari(seq[i]) && isPari(seq[i+2])) || (isPari(seq[i+1]) && isPari(seq[i+2])))
+              i++;         
+		}
+		else
+			ogniTripla=0;   
+	}
+	return ogniTripla;
+ }
+int main(){
+	int l; 
+	printf("Ciao!Di quanti numeri %c composta la tua sequenza?\n",138);
+	scanf("%d",&l);
+	int sequenza[l];  
+	for(int i=0;i<l;i++) {
+		printf("Inserisci l'intero:\n");
+		scanf("%d",&sequenza[i]);
+	}
+	int ogniTripla=maggiore5Pari(sequenza,l);
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+	if(ogniTripla==1)
+		printf("Bene! In ogni tripla della tua sequenza almeno due elementi sono pari ed esattamente due maggiori o uguali di 5.\n");
+	else
+		printf("Mi dispiace ma nella tua sequenza non in tutte le triple esattamente due elementi sono maggiori o uguali a 5 e almeno due pari.\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for checking exactly two elements ≥5
+- Proper handling of even number verification
+- Good use of helper functions to improve code readability
+- Correct array bounds checking in the main loop
+- Proper implementation of the universal verification approach
+
+Areas for Improvement:
+- The condition structure in the maggiore5Pari function could be more readable by breaking it into smaller logical parts
+- Output messages could be more specific about which properties are being verified
+- Consider adding more descriptive variable names to improve code readability
+
+Key Recommendations:
+- Break down complex conditions into smaller, more manageable parts using intermediate boolean variables
+- Enhance output messages to clearly specify the conditions being checked
+- Consider adding input validation for array length
+- Use more descriptive variable names instead of generic ones like 'l' and 'i'
+</feedback_summary>

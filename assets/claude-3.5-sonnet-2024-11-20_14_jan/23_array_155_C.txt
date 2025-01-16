@@ -1,0 +1,74 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................5.8
+*/
+
+#include <stdio.h>
+int dueUnaCifra(int numeri[], int quanti)
+{
+    int trovato=-1;
+    int i=0;
+    //******** THIS IS A UNIVERSAL VERIFICATION, NOT AN EXISTENTIAL ONE -1.5
+    while (i<quanti-2 && trovato!=0)  
+    {
+        //******** TWO OR THREE COMBINATIONS ON THE TRIPLE CONDITION ARE MISSING -0.5
+        if((numeri[i]<10 && numeri[i+1]<10 && numeri[i+2]<10) || 
+           (numeri[i]<10 && numeri[i+1]<10) ||
+           (numeri[i]<10 && numeri[i+2]<10) ||
+           (numeri[i+1]<10 && numeri[i+2]<10))
+            trovato=1;
+        else
+            trovato=0;
+        i++;
+    }
+return trovato;
+}
+int main()
+{
+    int quanti;
+    int esiste=-1;
+    printf("Ciao utente, inserisci quanti numeri vuoi inserire nel tuo vettore. Mi raccomando deve essere un numero maggiore uguale a 3\n");
+    scanf("%d",&quanti);
+    if (quanti>=3)
+        {
+            int numeri[quanti];
+            for (int i=0;i<quanti;i++)
+            {
+                printf("inserisci il numero\n");
+                scanf("%d", &numeri[i]);
+            }
+            esiste=dueUnaCifra(numeri,quanti);
+            //******** UNCLEAR MESSAGE -0.2
+            if (esiste==1) 
+                printf("tutte le triple hanno almeno due numeri con una sola cifra!");
+            else
+                printf("non tutte le triple hanno almeno 2 numeri a una cifra");
+        }
+        else
+        printf("numero troppo basso");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct basic structure of the program with separate function and main
+- Proper array handling and user input collection
+- Basic implementation of the triple checking logic
+- Good input validation for minimum array length
+
+Areas for Improvement:
+- The function implementation uses an existential verification approach when a universal verification is required
+- The triple checking condition is incomplete and could miss some valid combinations
+- Output messages could be clearer and more informative
+- The logic for checking single-digit numbers could be more robust
+
+Key Recommendations:
+1. Restructure the function to properly implement universal verification
+2. Review and complete all possible combinations for checking triples
+3. Make output messages more descriptive and user-friendly
+4. Consider adding input validation for positive integers only
+5. Consider using more meaningful variable names (e.g., 'trovato' could be 'allTriplesSatisfyCondition')
+</feedback_summary>

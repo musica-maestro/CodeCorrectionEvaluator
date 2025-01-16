@@ -1,0 +1,66 @@
+I'll grade the student's submission following the provided format and criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.0 = 6.0 - 1.0
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................7.0
+*/
+
+#include <stdio.h>
+int compresiMultipli3(int array[], int n){
+    int esiste=0;
+    //******** ITERATION LIMITS INCORRECT (should be i<n-2) -1.0
+    for(int i=1;i<(n-1) && esiste==0;i++){
+        int c=0; 
+        int c3=0;  
+        for (int p=i-1;p<i+2;p++){
+            if (array[p]<=10 && array[p]>=-10){
+                c++;
+            }
+            if (array[p]%3==0){
+                c3++;
+            }
+        }
+        if(c>=2 && c3==2){
+            esiste=1;
+        }
+    }
+    return(esiste);
+}
+
+int main(int argc, char **argv)
+{
+    int n; 
+    printf("Inserisci numero interi: ");
+    scanf("%d", &n);
+    int array[n];
+    for (int i=0;i<n;i++){
+        printf("Inserisci intero: ");
+        scanf("%d", &array[i]);
+    }
+    if(compresiMultipli3(array,n)){
+        //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+        printf("Esiste una tripla di interi conseguitivi che contiene almeno due elementi il cui valore %c compreso tra -10 e 10 e che contiene esattamente 2 elementi mulitipli di 3 \n",138);
+    }
+    else{
+        printf("Non esiste una tripla di interi conseguitivi come la si cerca\n");
+    }   
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the boolean flag (esiste) to track solution existence
+- Proper counting of elements within range and multiples of 3
+- Good structure with separate function and main program
+- Clear variable naming that reflects their purpose
+
+Areas for Improvement:
+- The loop iteration limits in compresiMultipli3 function are incorrect. With i<(n-1), the last triple cannot be properly checked. It should be i<(n-2) to ensure all array elements are accessible within the inner loop.
+- The output message could be more specific about what properties were found or not found in the sequence.
+
+Key Recommendations:
+- Fix the loop boundary to properly check all possible triples by changing the condition to i<(n-2)
+- Enhance the output message to clearly specify the conditions being checked (values between -10 and 10, and exactly two multiples of 3)
+- Consider adding input validation for the array size n to ensure it's at least 3 (minimum needed for a triple)
+</feedback_summary>

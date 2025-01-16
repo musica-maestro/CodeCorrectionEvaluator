@@ -1,0 +1,65 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL......................5.8
+*/
+
+#include<stdio.h>
+//******** ACCENTED CHARACTERS ARE NOT ALLOWED IN FUNCTION NAME -0.5
+int proprietà(int a[], int ind){
+	return (a[ind]%a[ind+1]==0 || a[ind]%a[ind+2]==0 || a[ind+1]%a[ind]==0 || a[ind+1]%a[ind+2]==0 || a[ind+2]%a[ind]==0 || a[ind+2]%a[ind+1]==0);
+}
+
+int multipli(int array[], int dimensione){
+	int i; 
+	int check=1; 
+	//******** TWO COMBINATIONS ON THE TRIPLE CONDITION ARE MISSING -1.5
+	for(i=0;i<dimensione-2 && check;i++){
+		if(proprietà(array, i)==0) 
+			check=0;
+	}
+	return check;
+}
+
+int main(){
+	int lunghezza; 
+	int i;  
+	int verifica;  
+	printf("Ciao utente, quanti interi desideri introdurre nella tua sequenza? ");
+	scanf("%d", &lunghezza);
+	int sequenza[lunghezza];
+	for(i=0;i<lunghezza;i++){
+		printf("\nAdesso inserisci l'elemento %d: ", i+1);
+		scanf("%d", &sequenza[i]);
+	}
+	verifica=multipli(sequenza, lunghezza);
+	//******** UNCLEAR OUTPUT MESSAGE -0.2
+	if(verifica)
+		printf("\nAllora utente, in tutte le terne di elementi adiacenti della sequenza %c presente almeno un elemento multiplo degli altri due!", 138);
+	else
+		printf("\nAllora utente, almeno in una terna di elementi adiacenti della sequenza non %c presente almeno un elemento multiplo degli altri due!", 138);
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct overall program structure with separate functions
+- Proper implementation of universal verification logic
+- Good array bounds checking in the multipli function
+- Appropriate use of boolean flag (check) to stop processing when a condition is not met
+
+Areas for Improvement:
+- Function name should not contain accented characters as this can cause portability issues
+- The proprietà function doesn't cover all possible combinations for checking multiples
+- Output messages could be clearer and more concise
+- Consider using standard ASCII characters instead of extended ASCII (char 138)
+
+Key Recommendations:
+1. Use standard ASCII characters and avoid accented characters in identifiers
+2. Review and complete all possible multiple combinations in the checking logic
+3. Simplify output messages for better clarity
+4. Consider adding input validation for array size and elements
+5. Use more descriptive variable names (e.g., 'found' instead of 'check')
+</feedback_summary>

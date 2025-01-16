@@ -1,0 +1,71 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.0 = 6.0 - 1.5 - 1.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................5.0
+*/
+
+#include <stdio.h>
+ int Maggiore5(int seq[],int l){
+int i=0;
+int trovato=1;
+//******** WRONG CONDITION ON INDEX i < length - 2 -1.5 (while (i != length && !found))
+while(i!=l-1&&trovato==1){ 
+    //******** CONDITION IS COMPLICATED AND NOT VERY READABLE -0.2
+    //******** MISSING PARENTHESES CAUSING WRONG LOGIC -1.5
+    if((((seq[i]>=5&&seq[i+1]>=5)&&(seq[i+2]<5))
+    ||((seq[i+1]>=5&&seq[i+2]>=5)&&(seq[i]<5))
+    ||((seq[i]>=5&&seq[i+2]>=5)&&(seq[i+1]<5))
+    &&((seq[i]%2==0&&seq[i+1]%2==0)||(seq[i+1]%2==0&&seq[i+2]%2==0)||(seq[i]%2==0&&seq[i+2]%2==0))))
+         i++;
+         else
+             trovato=0;
+}
+return trovato;
+ }
+int main(int argc, char **argv){
+int l;
+printf("Utente inserisci la lunghezza della stringa:\n");
+scanf("%d",&l);
+printf("ora inserisci la tua stringa:\n");
+int seq[l];
+for(int i=0;i<=l-1;i++){
+    printf("Inserisci l'elemento: ");
+    scanf("%d",&seq[i]);
+}
+//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+if(Maggiore5(seq,l))
+    printf("Le terne presenti nella tua stringa soddisfano le caratteristiche richieste");
+    else
+        printf("Le terne presenti nella stringa non soddisfano le caratteristiche richieste");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Input handling for array elements is implemented correctly
+- Function returns appropriate boolean result
+
+Areas for Improvement:
+1. Loop Condition:
+   - The while loop condition should be i < l-2 to properly check all triples
+   - Current condition may lead to array bounds violation
+
+2. Logic Implementation:
+   - The condition checking for exactly two elements ≥5 and at least two even numbers is overly complicated
+   - Parentheses placement affects logic correctness
+   - Consider breaking down the condition into smaller, more readable parts
+
+3. Output Messages:
+   - Messages should be more specific about what properties are being checked
+   - Include details about the "exactly two ≥5" and "at least two even numbers" requirements
+
+Key Recommendations:
+1. Restructure the loop condition to prevent array bounds violation
+2. Break down the complex condition into smaller, clearer boolean expressions
+3. Improve output messages to be more descriptive and specific
+4. Add proper indentation for better code readability
+5. Consider adding input validation for array length
+</feedback_summary>

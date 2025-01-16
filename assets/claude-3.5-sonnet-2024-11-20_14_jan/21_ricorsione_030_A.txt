@@ -1,0 +1,89 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)......... 1.5 = 5.0 - 1.5 - 1.0 - 1.0
+countNumbers (2).... 0.0 (missing)
+readNumbers (2)..... 0.0 (missing)
+writeNumbers(1)..... 0.0 (missing)
+TOTAL............... 1.5/10
+*/
+
+#include <stdio.h>
+int massimoPari(int a[], int l){
+    int esiste;
+    if(l<3){
+        esiste=0;
+    }
+    else{
+        //******** Using complex boolean logic instead of calculating maximum of triplet -1.5
+        //******** Universal check should use && not || for all triplets -1.0
+        esiste=((a[0]>a[1] && a[1]>a[2] && a[0]>a[2] && a[0]%2==0)
+        ||(a[0]<a[1] && a[1]>a[2] && a[0]>a[2] && a[1]%2==0)       
+        ||(a[0]>a[1] && a[2]>a[1] && a[0]<a[2] && a[2]%2==0) && massimoPari(a+1, l-1));
+    }
+    return esiste;
+}
+
+int main() {
+    int lunghezza; 		
+    int scelta;				
+    printf("Vuoi introdurre una nuova sequenza (premi 1) oppure recuperarla da file (premi 2)? ");
+    scanf("%d",&scelta);
+    //******** Missing required file handling functions (writeNumbers, readNumbers, countNumbers) -1.0
+    if(scelta==1) {
+        printf("Introduci la lunghezza della sequenza: ");
+        scanf("%d",&lunghezza);
+        int array[lunghezza];
+        printf("Scrivi %d elementi \n",lunghezza);
+        for(int i=0;i<lunghezza;i++)
+            scanf("%d",&array[i]);
+        if(massimoPari(array,lunghezza))
+            printf(" ... \n");
+        else
+            printf(" ...\n");
+    }
+    else {
+        int array[lunghezza];
+        for(int i=0;i<lunghezza;i++)
+            printf("%d ", array[i]);
+        printf("\n");
+        if(massimoPari(array,lunghezza))
+            printf(" ... \n");
+        else
+            printf(" ... \n");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct base case check for array length < 3
+- Basic program structure with menu for user input
+- Attempt at recursive implementation
+
+Areas for Improvement:
+1. Maximum Even Function:
+   - Simplify the logic by first finding the maximum of three elements
+   - Use && operator for universal check across all triplets
+   - Improve recursive implementation clarity
+
+2. Missing Required Functions:
+   - Implement writeNumbers function for writing to file
+   - Implement readNumbers function for reading from file
+   - Implement countNumbers function for counting file elements
+
+3. File Handling:
+   - Add proper file opening/closing mechanisms
+   - Implement error checking for file operations
+   - Choose and implement either binary or text file handling
+
+Key Recommendations:
+1. Restructure massimoPari function to:
+   - First find maximum of triplet
+   - Check if maximum is even
+   - Use && for recursive checks
+2. Implement all required file handling functions
+3. Add proper error handling for file operations
+4. Improve output messages to be more descriptive
+</feedback_summary>

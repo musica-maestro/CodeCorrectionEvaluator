@@ -1,0 +1,68 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....2.3 = 6.0 - 1.0 - 1.5 - 1.0 - 0.2
+   MAIN (max 2.0):....1.0 = 2.0 - 0.5 - 0.5
+   TOTAL:....3.3
+*/
+
+#include <stdio.h>
+int restoDivisione(int seq[], int lung){
+    int i=0;
+    int esiste=0;
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lung - 2 -1.0
+    while(i<=lung-3 && !esiste){
+        //******** CONDITION ON THE TRIPLE IS MISSING RETURN VALUE -1.5
+        if((seq[i]%seq[i+1]==seq[i+2]) || (seq[i]%seq[i+2]==seq[i+1]) || (seq[i+1]%seq[i+2]==seq[i])||
+            (seq[i+1]%seq[i]==seq[i+2]) || (seq[i+2]%seq[i]==seq[i+1]) || (seq[i+2]%seq[i+1]==seq[i]) )
+            esiste=1;
+        else
+            i++;
+    }
+    //******** MISSING RETURN STATEMENT -0.2
+}
+
+int main(){
+    //******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+    int lunghezza;
+    int sequenza[lunghezza];
+    printf("Ciao utente quanti interi vuoi introdurre? ");
+    scanf("%d", &lunghezza);
+    for(int i=0; i<lunghezza; i++){
+        printf("Inserisci un intero: ");
+        scanf("%d", &sequenza[i]);
+    }
+    //******** NON-EXPLANATORY OUTPUT -0.5
+    if(restoDivisione(sequenza, lunghezza))
+        printf("Esiste una tripla che ha un elemento che %c uguale al resto della divione degli altri due! ", 138);
+    else
+        printf("NON esiste!"); 
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the triple condition check logic
+- Good use of boolean flag for existence check
+- Proper parameter passing to the function
+
+Areas for Improvement:
+1. Array Bounds:
+- The while loop condition should be i < lung - 2 to prevent array access out of bounds
+- Array should be declared after getting its length from user input
+
+2. Function Implementation:
+- Missing return statement in restoDivisione function
+- Function should explicitly return the esiste value
+
+3. Output Quality:
+- Messages should be more descriptive and professional
+- Avoid using extended ASCII characters (138) for special characters
+
+Key Recommendations:
+1. Add proper return statement to restoDivisione function
+2. Fix array bounds checking in the while loop
+3. Declare array after getting its size
+4. Improve output messages clarity
+5. Add input validation for array length and elements
+</feedback_summary>

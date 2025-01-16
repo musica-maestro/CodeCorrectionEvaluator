@@ -1,0 +1,63 @@
+I'll grade the student's submission following the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.3 = 6.0 - 1.5 - 0.2
+   MAIN PROGRAM (max 2.5):....2.5
+   TOTAL.......................6.8
+*/
+
+#include <stdio.h>
+int maggiori5Pari(int arr[], int lenght) {
+    int i=0; 
+    int verificata =1;
+    //******** WRONG CONDITION ON INDEX, SHOULD BE i < length - 2 -1.5
+    while (i<=lenght-3 && verificata) { 
+        //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+        if (!(((arr[i]<=5 && arr[i+1]>=5 && arr[i+2]>=5)||  
+               (arr[i]<=5 && arr[i+1]>=5 && arr[i+2]>=5) ||
+            (arr[i]>=5 && arr[i+1]<=5 && arr[i+2]>=5)) &&
+            ((arr[i]%2==0 && arr[i+1]%2==0 && arr[i+2]%2!=0) ||
+            (arr[i]%2==0 && arr[i+1]%2!=0 && arr[i+1]%2==0) ||
+            (arr[i]%2!=0 && arr[i+1]%2==0 && arr[i+2]%2==0))))
+                verificata=0; 
+        else 
+            i++;
+    }
+    return verificata; 
+}
+
+int main(int argc, char** argv) {
+    int i;
+    int lung;
+    printf("ciao utente, quanti numeri vuoi inserire nel vettore?\n");
+    scanf("%d", &lung);
+    int vett[lung];
+        for (i=0; i<lung; i++) { 
+            printf("inserisci l'elemento in posizione %d: \n", i);
+            scanf("%d", &vett[i]); 
+        }
+    if (maggiori5Pari(vett, lung)==1) 
+        printf("la sequenza che ha inserito rappresenta un'istanza positiva\n");
+    else
+        printf("la sequenza che ha inserito NON rappresenta un'istanza positiva\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the main function with proper user interaction
+- Good use of boolean flag (verificata) for loop control
+- Proper array handling and input collection
+- Clear output messages indicating the result
+
+Areas for Improvement:
+- The loop condition in maggiori5Pari should use i < length - 2 instead of i <= length - 3 for better readability and conventional array indexing
+- The logical condition checking for two elements >= 5 and two even elements is overly complicated and could be simplified for better readability
+- Consider breaking down the complex condition into smaller, more manageable parts using helper variables or functions
+
+Key Recommendations:
+- Restructure the loop condition to use standard array indexing patterns
+- Break down the complex logical condition into smaller, clearly named boolean expressions
+- Add comments explaining the logic of the condition checks
+- Consider using more descriptive variable names instead of 'verificata'
+</feedback_summary>

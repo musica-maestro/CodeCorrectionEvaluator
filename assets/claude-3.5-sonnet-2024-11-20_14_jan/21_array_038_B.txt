@@ -1,0 +1,74 @@
+I'll grade the student's submission following the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........2.0 = 6.0 - 1.5 - 1.5 - 1.0
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................4.0
+*/
+
+#include <stdio.h>
+int maggiori5Pari(int seq[],int lungh){
+    int tutti=1;
+    int i=0;
+    //******** WRONG CONDITION ON INDEX i < length - 2 -1.5
+    while(seq[i]<lungh-2 && tutti){
+        //******** CONDITION WRONG: EXACTLY TWO ELEMENTS MUST BE >= 5 (THE THIRD MUST BE < 5) -1.5
+        //******** WRONG CONDITION: MODULO BY 0 CAUSES UNDEFINED BEHAVIOR -1.0
+        if(((seq[i]>=5)==1 && (seq[i+1]>=5)==1 && (seq[i+2]>=5)==0)
+        || ((seq[i]>=5)==1 && (seq[i+1]>=5)==0 && (seq[i+2]>=5)==1)
+        || ((seq[i]>=5)==0 && (seq[i+1]>=5)==1 && (seq[i+2]>=5)==1) &&
+              (((seq[i]%0)==0 && (seq[i+1]%0)==0 && (seq[i+2]%0)==1)
+              || ((seq[i]%0)==0 && (seq[i+1]%0)==1 && (seq[i+2]%0)==0)
+              || ((seq[i]%0)==1 && (seq[i+1]%0)==0 && (seq[i+2]%0)==0) ||
+               ((seq[i]%0)==0 && (seq[i+1]%0)==0 && (seq[i+2]%0)==0)))
+            i++;
+            else
+                tutti=0;
+    }
+    return tutti;
+}
+
+int main(){
+    int lunghezza;
+    printf("Quanti interi vuoi introdurre?\n");
+    scanf("%d", &lunghezza);
+    int sequenza[lunghezza];
+    for(int i=0;i<lunghezza;i++){
+        printf("\nInserisci il %d intero: ", i+1);
+        scanf("%d", &sequenza[i]);
+    }
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    if(maggiori5Pari(sequenza,lunghezza))
+        printf("Tutte le triple della tua sequenza hanno esattamente due interi maggiori o uguali a 5 e almeno due interi pari");
+        else
+        printf("Non tutte le triple della tua sequenza hanno esattamente due interi maggiori o uguali a 5 e almeno due interi pari");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Main function correctly handles user input
+- Array allocation and input reading are properly implemented
+
+Areas for Improvement:
+1. Loop condition in maggiori5Pari:
+   - Should be i < lungh-2 to properly check all triples
+   - Current condition seq[i]<lungh-2 is incorrect and could cause array bounds issues
+
+2. Logic for checking triples:
+   - The condition for checking exactly two numbers ≥5 is overly complicated
+   - Using modulo 0 (%0) will cause runtime errors
+   - Should use seq[i]%2==0 to check for even numbers
+
+3. Output messages:
+   - Could be more specific about the properties being checked
+   - Should include examples or clearer explanation
+
+Key Recommendations:
+1. Fix the loop condition to properly iterate through array triples
+2. Simplify the conditions for checking numbers ≥5 and even numbers
+3. Use proper modulo operation (x%2==0) to check for even numbers
+4. Improve output messages clarity
+5. Add input validation for array length
+</feedback_summary>

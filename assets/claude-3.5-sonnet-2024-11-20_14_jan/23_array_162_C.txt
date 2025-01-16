@@ -1,0 +1,73 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.0 - 1.0
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................5.8
+*/
+
+#include <stdio.h>
+int dueUnaCifra(int* sequenza, int lunghezza){
+    int triple=1; 
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE j < lunghezza - 2 -1.0
+    for(int j=0;j<lunghezza;j++){ 
+        //******** CONDITION ON THE TRIPLE IS WRONG - CHECKS FOR EXACTLY ONE TWO-DIGIT NUMBER INSTEAD OF AT LEAST TWO SINGLE DIGITS -1.0
+        if(!((sequenza[j]>9 && sequenza[j+1]<=9 && sequenza[j+2]<=9)||
+             (sequenza[j]<=9 && sequenza[j+1]>9 && sequenza[j+2]<=9)||
+             (sequenza[j]<=9 && sequenza[j+1]<=9 && sequenza[j+2]>9))&&(triple==1))
+           triple=0;
+    }
+    return triple;
+}
+
+int main(){
+    int lunghezza; 
+    int risultato; 
+    printf("ciao utente, sono un programma che data una sequenza di interi individua se esiste o no in un tripla di numeri adiacenti della sequenza un e un solo numero a 2 cifre\n");
+    printf("quanti interi vuoi inserire?: ");
+    scanf("%d",&lunghezza);
+    int sequenza[lunghezza];
+    for(int i=0;i<lunghezza;i++){
+        printf("inserisci l'intero %d: ",i+1);
+        scanf("%d", &sequenza[i]);
+    }
+    risultato=dueUnaCifra(sequenza,lunghezza);
+    //******** UNCLEAR MESSAGE -0.2
+    if(risultato==1)
+        printf("la tua istanza e\' positiva");
+    else printf("la tua istanza e\' negativa");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct function structure with appropriate parameters
+- Good user interaction in main function
+- Proper array handling and memory allocation
+- Clear variable naming
+
+Areas for Improvement:
+1. Array Bounds:
+   - The loop in dueUnaCifra should stop at lunghezza-2 to prevent accessing elements beyond array bounds
+   - Current implementation may cause buffer overflow
+
+2. Logic Error:
+   - The condition checks for exactly one two-digit number instead of at least two single-digit numbers
+   - Should be restructured to check for at least two single-digit numbers in each triple
+
+3. Output Messages:
+   - Messages could be more descriptive about what "positive" and "negative" mean in this context
+   - Consider adding more detailed feedback about the result
+
+Key Recommendations:
+1. Fix the loop boundary in dueUnaCifra:
+   ```c
+   for(int j = 0; j < lunghezza-2; j++)
+   ```
+
+2. Revise the triple checking condition to properly verify for at least two single-digit numbers
+
+3. Improve output messages to be more informative about the result's meaning
+
+4. Add input validation to ensure only positive integers are entered
+</feedback_summary>

@@ -1,0 +1,73 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.2 - 0.3
+   TOTAL.......................7.3
+*/
+
+#include <stdio.h>
+int ugualiCompresi(int array[],int l){
+	int esiste=0;
+	int i;
+	i=1;
+	//******** CONDITION ON INDEX IS WRONG, SHOULD BE i < l-2 -0.5
+	while(i<l-1&&!esiste){
+		//******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+		if(((array[i]==array[i+1])&& (array[i]+array[i+1]>=10 && array[i]+array[i+1]<=20)&&(array[i]!=array[i-1]))
+			||((array[i-1]==array[i+1])&&(array[i-1]+array[i+1]>=10 && array[i-1]+array[i+1]<=20)&&(array[i-1]!=array[i]))
+			||((array[i]==array[i-1])&&(array[i-1]+array[i]>=10 && array[i-1]+array[i]<=20)&&(array[i-1]!=array[i+1])))
+			esiste=1;
+		else
+			i++;
+	}
+	return esiste;
+}
+
+int main(){
+	int i;
+	int l;
+	//******** BADLY INDENTED -0.2
+	printf("Salve utente sono un programma che data una sequenza di interi verifica se \n");
+	printf("esiste una tripla in cui vi sono esattamente 2 elementi uguali tra loro\n");
+	printf ("e almeno due elementi della tripla hanno somma compresa tra 10 e 20\n\n");
+	printf("Quanti interi vuoi inserire\n");
+	scanf("%d",&l);
+	int array[l];
+	//******** OUTPUT IS A BIT SCARCE -0.3
+	printf("va bene adesso inserisci gli interi\n");
+	for( i=0;i<l;i++){
+		printf("Inserisci l'intero di indice %d \n",i);
+		scanf("%d",&array[i]);
+	}
+	if(ugualiCompresi(array,l)){
+		printf("esiste una tripla in cui vi sono esattamente 2 elementi uguali tra loro\n");
+		printf ("e almeno due elementi della tripla hanno somma compresa tra 10 e 20\n\n");
+	}
+	else{
+		printf("non esiste una tripla in cui vi sono esattamente 2 elementi uguali tra loro\n");
+		printf ("e almeno due elementi della tripla hanno somma compresa tra 10 e 20\n\n");
+	}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for checking equal elements and sum range
+- Good use of boolean flag for existence checking
+- Proper user interaction in main function
+- Clear output messages describing the result
+
+Areas for Improvement:
+- The loop condition in ugualiCompresi should be i < l-2 to avoid array bounds issues
+- The logic conditions could be more readable by breaking them into smaller parts
+- Code indentation could be more consistent
+- User prompts could be more informative and professional
+
+Key Recommendations:
+1. Fix the loop boundary condition to prevent potential array access issues
+2. Break down complex conditions into smaller, more readable parts using intermediate variables
+3. Use consistent indentation throughout the code
+4. Enhance user interaction messages to be more professional and descriptive
+5. Consider adding input validation for array length
+</feedback_summary>

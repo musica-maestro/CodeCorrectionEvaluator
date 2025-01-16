@@ -1,0 +1,81 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.5 = 6.0 - 1.0 - 0.5
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL......................6.3
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int condictionTerna(int x, int y, int z){
+    int result = 0;
+    //******** MISSING HANDLING FOR DIVISION BY ZERO -0.5
+    if((x % y) == z)
+        result = 1;
+    else if((y % x) == z)
+        result = 1;
+    else if((y % z) == x)
+        result = 1;
+    else if((z % y) == x)
+        result = 1;
+    else if((x % z) == y)
+        result = 1;
+    else if((z % x) == y)
+        result = 1;
+    return result;
+}
+
+int restoDivisione(int array[], int dim){
+    int result = 0;
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < dim - 2 -1.0
+    for (int i = 0; i < dim - 1 && result == 0; i++){
+        if(condictionTerna(array[i], array[i + 1], array[i + 2]) == 1)
+            result = 1;
+    }
+    return result;
+}
+
+void insertArray(int array[], int dim){
+    for (int i = 0; i < dim; i++){
+        printf("inserisci il %d posto dell'array: ", i);
+        scanf("%d", &array[i]);
+    }
+}
+
+int main(){
+    int x;
+    printf("Inserisci la dimensione dell'array: ");
+    scanf("%d", &x);
+    int array[x];
+    insertArray(array, x);
+    //******** UNCLEAR MESSAGE WITH SPECIAL CHARACTER -0.2
+    if(restoDivisione(array, x) == 1)
+        printf("Questo array %c un instanza positiva del problema!!\n", 138);
+    else
+        printf("Questo array NON %c un instanza positiva del problema!!\n", 138);
+    return 0;  
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good overall structure with separate functions for different tasks
+- Comprehensive check for all possible remainder combinations
+- Efficient use of early termination in the loop when a valid triple is found
+- Good implementation of array input functionality
+
+Areas for Improvement:
+- Array bounds checking in restoDivisione function needs correction to avoid accessing invalid memory
+- Missing handling for division by zero cases in condictionTerna function
+- Output messages could be clearer and avoid using special characters
+- Consider adding input validation for array size
+
+Key Recommendations:
+1. Fix the loop condition in restoDivisione to i < dim - 2 to prevent array overflow
+2. Add checks for division by zero in condictionTerna function
+3. Use clearer output messages without special characters
+4. Add validation for array size input to ensure it's positive and reasonable
+5. Consider adding error handling for invalid inputs
+</feedback_summary>

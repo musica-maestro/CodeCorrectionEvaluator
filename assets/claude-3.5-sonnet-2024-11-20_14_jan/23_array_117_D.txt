@@ -1,0 +1,66 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.8 = 6.0 - 1.0 - 0.2
+   MAIN PROGRAM (max 2.0):....2.0
+   TOTAL.......................6.8
+*/
+
+#include <stdio.h>
+int isMultiplo(int a,int b,int c){
+	return (a == b%c || a == c%b) || (b == a%c || b == c%a) || (c == a%b || c == b%a);
+}
+int restoDivisione(int seq[], int l){
+	int esiste = 0;											
+	//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < l - 2 -1.0
+	for (int i = 0; i < l-1 && !esiste; ++i)				
+	{
+		if(isMultiplo(seq[i], seq[i+1], seq[i+2])){
+			esiste=1;
+		}
+	}
+	//******** HOW DO YOU CONSIDER 0? -0.2
+	return esiste;
+}
+int main(){
+	int lunghezza=3;										
+	int risultato; 											
+	printf("Quanti interi vuoi inserire?\n");
+	scanf("%d",&lunghezza);
+	int sequenza[lunghezza];								
+	printf("Inserire i %d interi della sequenza:\n");
+	for (int i = 0; i < lunghezza; ++i)
+	{
+		scanf("%d", &sequenza[i]);
+	}
+	risultato=restoDivisione(sequenza,lunghezza);
+	if(risultato)                                
+		printf("Nella sequenza esiste almeno una terna in cui un elemento è il resto della divisione tra gli altri due!\n");
+	else
+		printf("Nella sequenza non esiste nemmeno una terna in cui un elemento è il resto della divisione tra gli altri due!\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good separation of concerns with helper function isMultiplo
+- Clear and complete main function implementation
+- Proper user interaction and input handling
+- Clear output messages
+
+Areas for Improvement:
+- Array bounds checking in restoDivisione function needs correction
+  - Current implementation could lead to accessing memory outside array bounds
+  - Should use i < l-2 to ensure all accessed elements are within bounds
+- Edge case handling
+  - Consider how zero values should be handled in the calculations
+  - Add validation for zero divisors
+
+Key Recommendations:
+1. Fix the loop condition in restoDivisione to prevent array bounds violation:
+   ```c
+   for (int i = 0; i < l-2 && !esiste; ++i)
+   ```
+2. Add validation for zero values in isMultiplo function to handle division by zero cases
+3. Consider adding input validation for the sequence length to ensure it's at least 3
+</feedback_summary>

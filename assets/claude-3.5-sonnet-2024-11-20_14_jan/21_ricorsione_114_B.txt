@@ -1,0 +1,148 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........2.5
+countNumbers (2).....1.0
+readNumbers (2)......1.0
+writeNumbers(1)......0.3
+TOTAL................4.8
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+//******** Missing return type for function -0.3
+quantiNumeri()
+{
+    int quanti=0;
+    //******** Incorrect file opening mode syntax ('r' should be "r") -0.4
+    FILE *fp = fopen("Arraynumeri.txt",'r'); 
+    if(fp==NULL)
+    {
+        printf("Apertura del file non riuscita!");
+    }
+    else
+    {
+        int numeri;
+        //******** Incorrect fscanf syntax - missing & operator -1.0
+        while(fscanf(fp,"%d",numeri)!=EOF) 
+        {
+            quanti++;
+        }
+    }
+    fclose(fp);
+    return quanti;
+}
+
+void scriviNumeri(int a[], int l)
+{
+    //******** Incorrect file opening mode syntax -0.4
+    FILE *fp = fopen("Arraynumeri.txt",'r');
+    if(fp==NULL)
+    {
+        printf("Apertura del file non riuscita!");
+    }
+    else
+    {
+        int i=0;
+        //******** Incorrect fscanf syntax - using array element as pointer -1.0
+        while(fscanf(fp,"%d",a[i])!=EOF)
+        {
+            i++;
+        }
+    }
+    fclose(fp);
+    printf("AAquisizione effettuata!");
+}
+
+//******** Recursive implementation has issues with minimum calculation -1.5
+int controlloMinimo(int *a)
+{
+    int verifica=0;
+    if(a[0]<=a[1])
+    {
+        if(a[0]<=a[2])
+        {
+            if(a[0]%2!=0)
+            {
+                verifica=1;
+            }
+            else
+            {
+                verifica=0;
+            }
+        }
+        else if(a[0]>a[2])
+        {
+            if(a[2]%2!=0)
+            {
+                verifica=1;
+            }
+            else
+            {
+                verifica=0;
+            }
+        }
+    }
+    else if(a[1]<=a[2])
+    {
+        if(a[1]%2!=0)
+        {
+            verifica=1;
+        }
+        else
+        {
+            verifica=0;
+        }
+    }    
+    return verifica;
+}
+
+//******** Base case is correct but recursive implementation could be improved -0.5
+int minimoDispari(int a[], int l)
+{
+    int minimod=0;
+    if(l<=2)
+    {
+        minimod=1;
+    }
+    else
+    {
+        minimod= controlloMinimo(a) && minimoDispari(a+1, l-1);
+    }
+    return minimod;
+}
+
+[Rest of code omitted for brevity]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic file operations implemented
+- Attempt at recursive solution for minimum odd check
+- Proper file closing after operations
+
+Areas for Improvement:
+- File operations:
+  * Fix file opening mode syntax
+  * Correct fscanf usage with proper pointer syntax
+  * Implement proper error handling for file operations
+
+- Minimum Odd function:
+  * Improve recursive implementation
+  * Simplify minimum calculation logic
+  * Better handle base cases
+
+- General:
+  * Add proper function return types
+  * Improve code organization
+  * Add input validation
+
+Key Recommendations:
+1. Fix file operation syntax and error handling
+2. Restructure minimum odd calculation for better efficiency
+3. Add proper function prototypes and return types
+4. Implement proper parameter validation
+5. Follow consistent naming conventions
+</feedback_summary>

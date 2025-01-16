@@ -1,0 +1,69 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.3 = 6.0 - 1.5 - 0.2
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................6.3
+*/
+
+#include <stdio.h>
+//******** FUNCTION PROTOTYPE SHOULD BE DECLARED BEFORE USE -0.5
+int DueUguali(int i, int array[]){
+    return (((array[i]==array[i+1])&&(array[i]!=array[i+2]))||((array[i+1]==array[i+2])&&(array[i+1]!=array[i]))||
+    ((array[i]==array[i+2])&&(array[i]!=array[i+1])));
+}
+
+int UgualiCompresi(int l, int array[]){
+    int i=0;                
+    int verificata=0;     
+    //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+    while((i<l-2)&&(verificata==0)){
+        if(((((array[i]+array[i+1])<=20)&&(array[i]+array[i+1])>=10)||(((array[i+1]+array[i+2])<=20)&&(array[i+1]+array[i+2])>=10)||
+        (((array[i+1]+array[i+2])<=20)&&(array[i+1]+array[i+2])>=10)) && DueUguali(i,array))
+            verificata=1;
+        else i++;
+    }
+    return verificata;
+}
+
+int main(){
+    int lung;  
+    printf("Sono un programma che calcola se una tripla di una sequenza possiede due elementi che hanno la somma compresa tra 10 e 20 \n");
+    printf("e che la stessa tripla possieda esattamente due numeri uguali \n");
+    printf("Caro utente, quanti interi vuole inserire?: ");
+    scanf("%d",&lung);
+    if(lung<3)
+        printf("si devono inserire almeno 3 interi \n");
+    else{
+        int array[lung];
+        for(int i=0;i<lung;i++){
+            printf("inserire il %d %c elemento della sequenza: ",i+1,167);
+            scanf("%d",&array[i]);
+        }
+        //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+        if(UgualiCompresi(lung,array))
+            printf("nella stringa e' presente almeno una tripla che possiede due elementi uguali e due elementi che \nhanno somma compresa tra 10 e 20 \n");
+        else printf("nella stringa non e' presente una tripla che possiede due elementi uguali e due elementi che \nhanno somma compresa tra 10 e 20 \n");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for checking exactly two equal elements
+- Proper array bounds checking in the main loop
+- Good input validation for minimum array length
+- Correct implementation of the sum range check (10-20)
+
+Areas for Improvement:
+- Function prototype should be declared at the beginning of the program
+- The condition in UgualiCompresi could be more readable by breaking it into smaller logical parts
+- Output messages could be more specific about which properties were found/not found
+- Consider using more descriptive variable names (e.g., 'verificata' could be 'found' or 'exists')
+
+Key Recommendations:
+- Add function prototypes at the start of the program
+- Break down complex conditions into smaller, more readable parts using intermediate boolean variables
+- Improve output messages to be more specific about the properties being checked
+- Use more descriptive variable names to improve code readability
+</feedback_summary>

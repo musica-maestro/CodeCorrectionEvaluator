@@ -1,0 +1,62 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.5 = 6.0 - 1.5
+   MAIN (max 2.0):.......1.8 = 2.0 - 0.2
+   TOTAL..................6.3
+*/
+
+#include<stdio.h>
+int duePositivi(int v[],int l){
+	int duepos=1;											
+	//******** SETTING THE VARIABLE TO 1 IS NOT NECESSARY (BECAUSE IT'S ALREADY 1), BUT YOU SAVE IT BECAUSE YOU PLACED THE BOOLEAN IN THE LOOP CONDITION -0.5
+	for(int i=0;i<l-2 && duepos==1;i++){
+		if(!(((v[i]<=0 && v[i+1]>0 && v[i+2]>0)||(v[i+1]<=0 && v[i]>0 && v[i+2]>0)||(v[i+2]<=0 && v[i]>0 && v[i+1]>0)))){
+			duepos=0;										
+		}
+	}
+	return duepos;
+}
+int main(){
+	int l;												
+	printf("Quanti elementi desideri inserire?");      
+	//******** MISSING SPACE -0.1
+	scanf("%d",&l);
+	int sequenza[l];									
+	printf("\nInserire la sequenza");
+	for(int i=0;i<l;i++){
+		printf("\nInserisci %d intero: ",i+1);
+		scanf("%d",&sequenza[i]);
+	}
+	//******** UNCLEAR MESSAGE -0.2
+	if(duePositivi(sequenza,l)){
+		printf("\nTutte le triple di interi consecutivi hanno esattamente due numeri positivi");
+	}else{
+		printf("\nNon tutte le triple di interi consecutivi hanno esattamente due numeri positivi");
+	}
+	return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the universal verification logic
+- Proper array bounds checking in the loop (i<l-2)
+- Good handling of all possible combinations for two positive numbers in triples
+- Well-structured main function with clear user interaction
+
+Areas for Improvement:
+- The initialization of duepos=1 is redundant since it's already initialized to 1
+- User interface messages could be clearer and more concise
+- Missing space after the first prompt message
+- The condition checking for positive numbers could be more clearly structured
+
+Key Recommendations:
+1. Remove redundant initialization of duepos
+2. Add spaces after prompts for better readability
+3. Consider using more descriptive variable names (e.g., 'hasExactlyTwoPositives' instead of 'duepos')
+4. Structure the triple-checking condition more clearly, possibly breaking it into smaller, more readable parts
+5. Add input validation for the sequence length
+</feedback_summary>
+
+The student's solution is generally well-implemented, with only minor issues. The core algorithm correctly implements the universal verification required by the assignment, and the main function handles user interaction appropriately. The deductions are primarily for style and clarity issues rather than functional problems.

@@ -1,0 +1,99 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........4.0 = 5.0 - 1.0
+countNumbers (2).....1.7 = 2.0 - 0.3
+readNumbers (2)......1.7 = 2.0 - 0.3
+writeNumbers(1)......0.7 = 1.0 - 0.3
+TOTAL................8.1/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int minimoDispari(int *seq, int lunghezza){
+    //******** Base case should check if length <= 2 since we need triplets -0.5
+    int verifica;
+    if(lunghezza<3){
+        verifica = 1;
+    }else{
+        //******** Complex logic for minimum calculation could be simplified -0.5
+        if(seq[0] < seq[1] && seq[0]<seq[2]){        
+            verifica = ((abs(seq[0])%2==1)  && minimoDispari(seq+1,lunghezza-1));
+        }else if(seq[1] < seq[0] && seq[1]<seq[2]){        
+            verifica = ((abs(seq[1])%2==1)  && minimoDispari(seq+1,lunghezza-1));
+        }else if(seq[2] < seq[0] && seq[2]<seq[1]){        
+            verifica = ((abs(seq[2])%2==1)  && minimoDispari(seq+1,lunghezza-1));
+        }
+    }
+    return verifica;
+}
+
+int quantiNumeri() {
+    //******** Counter not initialized -0.3
+    int cont=0;
+    FILE* fp=fopen("interi.txt","r");
+    if(fp == NULL){
+        printf("Errore conteggio numeri");
+    }else{
+        int app;
+        while(fscanf(fp,"%d",&app)!=EOF){
+            cont++;
+        }
+    }
+    fclose(fp);
+    return cont;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE* fp=fopen("interi.txt","r");
+    //******** Missing return value after error -0.3
+    if(fp == NULL){
+        printf("Errore lettura numeri");
+    }else{
+        int i =0;
+        while(fscanf(fp,"%d",&sequenza[i])!=EOF){
+            i++;
+        }
+    }
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE* fp = fopen("interi.txt","w");
+    //******** Missing return value after error -0.3
+    if(fp == NULL){
+        printf("Errore scrittura file");
+    }else{
+        for(int i = 0 ; i < lunghezza ; i++){
+            fprintf(fp,"%d\n",sequenza[i]);
+        }
+    }
+    fclose(fp);
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of file I/O operations
+- Proper use of recursive approach for minimum odd check
+- Clear variable naming and code structure
+- Appropriate error checking for file operations
+
+Areas for Improvement:
+- Base case in minimoDispari function should check for length <= 2
+- File operation error handling should include return statements
+- Counter initialization in quantiNumeri should be at declaration
+- Minimum calculation logic could be simplified
+
+Key Recommendations:
+1. Revise the base case condition in minimoDispari to properly handle sequences shorter than 3 elements
+2. Add proper return statements after file operation errors
+3. Initialize variables at declaration
+4. Consider simplifying the minimum calculation logic using a helper function or simpler comparison structure
+5. Add more robust error handling for file operations
+
+The code is generally well-structured but could benefit from more robust error handling and some logical simplifications.
+</feedback_summary>

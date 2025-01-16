@@ -1,0 +1,68 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.3 = 6.0 - 1.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................6.1/8.0
+*/
+
+#include <stdio.h>
+#include <string.h>
+int restoDivisione(int *sequenza, int lunghezza){
+    int restoDivisione=0;        
+    for(int i=0; i<lunghezza; i++)        
+        //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lunghezza - 2 -1.0
+        if((sequenza[i]%sequenza[i+1]==sequenza[i+2]) ||
+            (sequenza[i]%sequenza[i+2]==sequenza[i+1]) ||
+            (sequenza[i+1]%sequenza[i+2]==sequenza[i]) ||
+            (sequenza[i+1]%sequenza[i]==sequenza[i+2]) ||
+            (sequenza[i+2]%sequenza[i+1]==sequenza[i]) ||
+            (sequenza[i+2]%sequenza[i]==sequenza[i+1]))
+            restoDivisione=1;        
+        else
+            //******** INCORRECT LOOP CONTROL, SKIPPING ELEMENTS COULD MISS VALID TRIPLES -0.5
+            i++;        
+    //******** HOW DO YOU CONSIDER DIVISION BY 0? -0.2
+return restoDivisione;
+}
+
+int main(){
+    int len;
+    printf("Quanto vuoi che si alunga la tua sequenza?\n");
+    scanf("%d", &len);
+    int sequenza[len];
+    for(int i=0; i<len; i++){
+        printf("Dammi un numero: ");
+        scanf("%d", &sequenza[i]);
+    }
+    int resto;
+    resto=restoDivisione(sequenza, len);
+    //******** UNCLEAR MESSAGE -0.2
+    if(resto==1)
+        printf("Esiste almeno una tripla di numeri adiacenti in cui\nuno dei tre e' il resto della divisione degli altri due");
+    else
+        printf("NON esistono triple di numeri adiacenti in cui\nuno dei tre e' il resto della divisione degli altri due");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of all possible division remainder combinations
+- Good overall structure with separate function and main program
+- Clear variable naming
+- Complete user interaction implementation
+
+Areas for Improvement:
+- Array bounds checking: The loop in restoDivisione() should stop at lunghezza-2 to prevent accessing memory outside the array
+- Division by zero: Need to handle cases where divisor could be zero
+- Loop control: The i++ in the else clause can cause skipping of valid triples
+- Output messages could be more clear and concise
+
+Key Recommendations:
+1. Modify the loop condition to prevent array bounds violation:
+   for(int i=0; i < lunghezza-2; i++)
+2. Add checks for division by zero before performing modulo operations
+3. Remove the i++ from the else clause to check all possible adjacent triples
+4. Consider making output messages more user-friendly and precise
+5. Add input validation for array length and elements
+</feedback_summary>

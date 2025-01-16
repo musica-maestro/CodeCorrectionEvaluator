@@ -1,0 +1,93 @@
+I'll grade the student's submission following the provided format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.0 = 6.0 - 1.5 - 1.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................5.0
+*/
+
+#include <stdio.h>
+int compresiMultipli3(int s[], int l)
+{
+	int i;
+	int f; 
+        //******** UNINITIALIZED VARIABLE f -1.0
+	 for(i=0; i<l-2; i++)
+	 {  
+		 if(((s[i]>='-10' && s[i]<='10')&&(s[i+1]>='-10' && s[i+1]<="10"))||
+		 ((s[i+1]>='-10' && s[i+1]<='10')&&(s[i+2]>='-10' && s[i+2]<="10"))||
+		 ((s[i]>='-10' && s[i]<='10')&&(s[i+2]>='-10' && s[i+2]<="10")))
+                 //******** IT'S NOT A STRING - COMPARISON WITH CHARACTER LITERALS INSTEAD OF NUMBERS -0.2
+			 {
+			  f=1;
+		     }
+		 else
+			{
+			f=0; 
+	        }
+	 }
+	 if(f==1){
+	 for(i=0; i<l-2; i++){
+		  if(((s[i])%3==0 && (s[i+1])%3==0 && (s[i+2])%3!=0)||
+		  ((s[i+1])%3==0 && (s[i+2])%3==0 && (s[i])%3!=0)||
+		  ((s[i])%3==0 && (s[i+2])%3==0 && (s[i+1])%3!=0))
+			  {
+			    f;
+                            //******** STATEMENT HAS NO EFFECT -0.3
+			}
+		  else
+		  {
+			  f=0;
+		  }
+	  }
+	}
+        //******** RETURN VALUE CALCULATED ON THE LAST TRIPLE -1.5
+	return f;
+}
+
+int main()
+{
+	int l;
+	printf("Questo e' un programma che verifica se in una sequenza di interi sono presenti almeno due numeri compresi\n");
+	printf("tra -10 e +10 e se in questa sequenza sono presenti solo due multipli di 3\n");
+	printf("Quanti numeri vuoi inserire?\n");
+	scanf("%d",&l);
+	int s[l];
+	for(int i=0; i<l; i++)
+	{
+		printf("Inserisci un numero: ");
+		scanf("%d", &s[i]);
+	}
+	int f=compresiMultipli3(s,l);
+	if(f==1)
+	{
+		printf("La sequenza rispetta la regola iniziale\n");
+	}
+	else
+	{
+		printf("La sequenza non rispetta la regola iniziale\n");
+	}   
+        //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct array bounds checking in loops
+- Good structure with separate function and main program
+- Proper user interaction for input collection
+
+Areas for Improvement:
+- Variable initialization: The flag variable 'f' should be initialized before use
+- Logic error: The function returns result based only on the last triple instead of any valid triple
+- String comparison syntax: Using character literals instead of numeric values for range checking
+- Output messages: Should be more specific about the conditions being checked
+- Statement effectiveness: The line "f;" has no effect and should be an assignment
+
+Key Recommendations:
+1. Initialize all variables before use
+2. Modify the logic to return true if ANY triple satisfies both conditions
+3. Use numeric values instead of character literals for comparisons
+4. Make output messages more descriptive of the specific conditions being checked
+5. Ensure all statements have an effect (proper assignments)
+</feedback_summary>

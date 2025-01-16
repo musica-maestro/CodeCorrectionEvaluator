@@ -1,0 +1,65 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.0):....1.3 = 2.0 - 0.5 - 0.2
+   TOTAL......................5.3
+*/
+
+#include<stdio.h>
+int multipli(int vettore[],int l);
+int proprietà(int vettore[],int i);
+int main(){
+    int lunghezza;
+    printf("\nQuanti numeri vuoi inserire? ");
+    scanf("%d",&lunghezza);
+    //******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+    int vettore[lunghezza];
+    for(int i=0;i<lunghezza;i++){
+        printf("\n\tInserisci il %d%c elemento: ",i+1,248);
+        scanf("%d",&vettore[i]);
+    }
+    //******** UNCLEAR OUTPUT MESSAGE -0.2
+    if(multipli(vettore,lunghezza))
+        printf("\n---In ogni terna c'%c almeno un elemento muoltiplo di uno degli altri.\n",138);
+    else
+        printf("\n---In almeno una terna un elemento non %c multiplo di uno degli altri.\n",138);
+}
+
+int multipli(int vettore[],int l){
+    int i;
+    int multiplo=1;
+    //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+    for(i=0;i<l-2 && multiplo;i++){
+        if(!proprietà(vettore,i))
+            multiplo=0;
+    }
+    return multiplo;
+}
+
+//******** ACCENTED CHARACTERS ARE NOT ALLOWED -0.5
+int proprietà(int vettore[],int i){
+    return vettore[i]%vettore[i+1]==0 || vettore[i+1]%vettore[i]==0 || vettore[i]%vettore[i+2]==0 || vettore[i+2]%vettore[i]==0 || vettore[i+1]%vettore[i+2]==0 || vettore[i+2]%vettore[i+1]==0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of array bounds checking in the multipli function
+- Good separation of concerns with separate functions for checking properties
+- Proper implementation of the universal verification logic
+
+Areas for Improvement:
+- Array declaration should occur after getting the length from user input
+- Avoid using accented characters in function names and identifiers
+- The triple condition logic could be improved for better clarity
+- Output messages could be clearer and more descriptive
+- Consider using standard ASCII characters instead of special characters
+
+Key Recommendations:
+1. Move the array declaration after the scanf for length
+2. Use standard ASCII characters for function names
+3. Restructure the triple condition check for better readability
+4. Improve output messages to be more user-friendly
+5. Consider adding input validation for array length and elements
+</feedback_summary>

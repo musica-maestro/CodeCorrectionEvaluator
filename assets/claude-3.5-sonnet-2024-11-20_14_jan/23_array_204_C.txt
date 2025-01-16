@@ -1,0 +1,74 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....3.5 = 6.0 - 1.5 - 0.5 - 0.5
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL........................5.3
+*/
+
+#include <stdio.h>
+int DueUnacifra(int* array, int n){
+    int verificato=1;            
+    int i=0;                    
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < n - 2 -1.5
+    while( i<n-2 && verificato==1){
+        //******** CONDITION ON THE TRIPLE IS WRONG (logical error in second condition) -0.5
+        if(((array[i]<=9 && array[i]>=0) && (array[i+1]<=9 && array[i+1]>=0))
+            ||((array[i+1]&& array[i+1]>=0)&&(array[i+2]<=9 && array[i+2]>=0))
+            ||(( array[i]<=9 && array[i]>=0) && (array[i+2]<=9 && array[i+2]>=0)))
+                i++;
+        else
+            verificato=0;
+    }
+    return verificato;
+}
+
+int main (){
+    int n;            
+    printf(" Utente, quanti numeri desiderri inserire?\n");
+    scanf("%d", &n);
+    //******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.2
+    int array[n];
+    for(int i=0; i<n;i++){
+        printf(" inserisci il valore:");
+        scanf("%d", &array[i]);
+    }
+    if(DueUnacifra(array, n)){
+        printf(" La tua sequenza di numeri soddisfa le condizioni\n");
+    }         
+    else{
+        printf(" la tua sequenza di numeri NON soddifa le condizioni\n");
+    }
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is correct
+- Main function implements all required user interactions
+- Function returns correct boolean value for verification
+- Proper use of parameters in function definition
+
+Areas for Improvement:
+1. Array Bounds:
+- The while loop condition should be i < n-2 to prevent accessing elements outside array bounds
+- This ensures safe access to i, i+1, and i+2 elements
+
+2. Triple Condition Logic:
+- The condition checking for single-digit numbers has logical errors
+- Second condition in the OR statement is incomplete and incorrect
+- Should properly check all three combinations of two single-digit numbers
+
+3. Code Structure:
+- Array declaration should come after getting the size from user
+- Consider adding input validation for array size
+- Consider adding validation for positive integers only
+
+Key Recommendations:
+1. Fix array bounds checking in the while loop
+2. Revise the triple condition logic to correctly check for single-digit numbers
+3. Add input validation for array size and positive integers
+4. Move array declaration after size input
+5. Consider adding comments to explain the logic
+</feedback_summary>

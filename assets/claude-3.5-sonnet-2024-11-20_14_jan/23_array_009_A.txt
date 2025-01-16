@@ -1,0 +1,77 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.5 = 6.0 - 1.5
+   MAIN PROGRAM (max 2.0):....2.0
+   TOTAL........................6.5
+*/
+
+#include<stdio.h>
+int verifica(int n1, int n2, int n3){
+int risultatoVerifica=0;
+if(n1%n2==0)
+    risultatoVerifica = 1;
+else if(n1%n3==0)
+    risultatoVerifica = 1;
+else if(n2%n1==0)
+    risultatoVerifica = 1;
+else if(n2%n3==0)
+    risultatoVerifica = 1;
+else if(n3%n1==0)
+    risultatoVerifica = 1;
+else if(n3%n2==0)
+    risultatoVerifica = 1;
+return risultatoVerifica;
+}
+
+int multipli(int array[], int lunghezza){
+int i=0;
+int risultatoMultipli = 1; 
+//******** SETTING THE VARIABLE TO 1 IS NOT NECESSARY (BECAUSE IT'S ALREADY 1), BUT YOU SAVE IT BECAUSE YOU PLACED THE BOOLEAN IN THE LOOP CONDITION -0.5
+for(i=0; i<lunghezza-2 && risultatoMultipli!=0; i++){
+ if(verifica(array[i], array[i+1], array[i+2]) == 1)
+    risultatoMultipli = 1; 
+ else                      
+    risultatoMultipli = 0;
+}
+return risultatoMultipli;
+}
+
+int main(){
+int lunghezza;
+printf("inserisci la lunghezza dell'array: ");
+scanf("%d", &lunghezza);
+int array[lunghezza];
+int i;
+for(i=0; i<lunghezza; i++){
+    printf("inserisci l'elemento in [%d]: ", i);
+    scanf("%d", &array[i]);
+}
+int risultato = multipli(array, lunghezza);
+if(risultato == 1)
+    printf("in tutte le terne di elementi adiacenti della sequenza C'E' un elemento multiplo di uno degli altri due\n");
+else
+    printf("NON in tutte le terne di elementi adiacenti della sequenza c'e' un elemento multiplo di uno degli altri due\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the main function with proper user interaction
+- Good array bounds checking in the multipli function
+- Clear output messages indicating the result
+- Proper implementation of the verification logic for multiples
+
+Areas for Improvement:
+- The initialization of risultatoMultipli to 1 is redundant since it's already the default value
+- The verifica function could be simplified to reduce redundancy
+- Consider adding input validation for array length and elements
+
+Key Recommendations:
+- Remove unnecessary variable initialization
+- Consider adding input validation to ensure positive array length
+- Add comments to explain the logic of the verifica function
+- Consider using more descriptive variable names in English for better code readability
+</feedback_summary>
+
+The student's implementation is generally good, with only minor issues. The main functionality works as required, checking for multiples in adjacent triples correctly. The main program handles user interaction appropriately, and the output messages are clear and informative.

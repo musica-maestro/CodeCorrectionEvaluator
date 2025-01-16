@@ -1,0 +1,79 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):....1.8 = 6.0 - 2.0 - 1.5 - 0.5 - 0.2
+   MAIN (max 2.0):....1.3 = 2.0 - 0.5 - 0.2
+   TOTAL:....3.1
+*/
+
+#include <stdio.h>
+int dueUnaCifra (int seq[], int lunghezza) {  
+int risultato;
+//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lunghezza - 2 -1.0
+for (int i = 0; i < lunghezza-2; i++)
+{
+    //******** BEING BETWEEN 0 AND 9 IS WRITTEN AS seq[i] >= 0 && seq[i] <= 9 -2.0
+    if ((0<=seq[i]<=9 && 0<=seq[i+1]<=9 && 0<=seq[i+2]<=9)|| 
+        (seq[i]>=10 && 0<=seq[i+1]<=9 && 0<=seq[i+2]<=9)||
+        (0<=seq[i]<=9 && seq[i+1]>=10 && 0<=seq[i+2]<=9)||
+        (0<=seq[i]<=9 && 0<=seq[i+1]<=9 && seq[i+2]>=10))
+    {
+    risultato=1; 
+    }															
+    else risultato=0; 
+}
+//******** WITHOUT THE BOOLEAN VARIABLE IN THE CONDITION, EVEN IF YOU FIND A TRIPLE THAT DOES NOT SATISFY THE PROPERTY, YOU CONTINUE TO CHECK -0.2
+return risultato; 
+}
+
+int main()
+{
+    int lunghezza;
+    printf("Ciao user, quanti elementi deve contenere la sequenza?\n");
+    scanf("%d", &lunghezza); 
+    //******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+    int seq[lunghezza];
+    for (int i = 0; i < lunghezza; i++)
+    {
+        printf("digita un numero della sequenza:");    
+        scanf("%d", &seq[i]);
+    }
+    dueUnaCifra(seq, lunghezza);   
+    if (dueUnaCifra(seq, lunghezza)==1)
+    {
+        //******** UNCLEAR MESSAGE -0.2
+        printf(" %c un istanza positiva\n ", 138); 
+    }
+    else{
+        printf(" non %c un' istanza positiva\n", 138);  
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic structure of the function and main program is present
+- Attempt to check for single-digit numbers in triples
+- User interaction for input collection is implemented
+
+Areas for Improvement:
+1. Logic Issues:
+   - Incorrect syntax for range checking (0<=seq[i]<=9)
+   - The loop continues checking even after finding an invalid triple
+   - Array bounds checking needs correction
+
+2. Implementation Issues:
+   - Array declaration should follow length input
+   - Boolean logic needs restructuring to properly verify all triples
+   - Output messages could be clearer and more informative
+
+Key Recommendations:
+1. Fix the range checking syntax using proper boolean operators:
+   ```c
+   if (seq[i] >= 0 && seq[i] <= 9)
+   ```
+2. Use a boolean flag to track validity across all triples
+3. Restructure the loop to properly handle array bounds
+4. Improve output messages for better user understanding
+5. Consider adding input validation for positive integers only
+</feedback_summary>

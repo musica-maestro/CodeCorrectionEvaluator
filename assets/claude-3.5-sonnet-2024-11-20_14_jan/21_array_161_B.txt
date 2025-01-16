@@ -1,0 +1,84 @@
+I'll grade the student's submission following the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........1.5 = 6.0 - 1.5 - 1.0 - 1.0 - 1.0
+   MAIN PROGRAM (max 2.5):....0.5 = 2.5 - 1.0 - 1.0
+   TOTAL.......................2.0
+*/
+
+#include <stdio.h>
+int maggiori5Pari (int array[] , int dim)
+{
+    //******** WRONG INITIALIZATION: verifica = 1 instead of == in while condition -1.0
+    int verifica = 1;        
+    int i = 0;                 
+    //******** INFINITE LOOP: while (verifica = 1) assigns 1 to verifica instead of comparing -1.0
+    while (verifica = 1) 
+    {
+        //******** ARRAY INDEX OUT OF BOUNDS: No check for i < dim-2 -1.0
+        if ( ((array[i]>=5) && (array[i+1]>=5)) || ((array[i]>=5) && (array[i+2]>=5)) || ((array[i+1]>=5) && (array[i+2]>=5)) ) 
+        {
+            if( ((array[i]%2==0) && (array[i+1]%2==0)) || ((array[i]%2==0) && (array[i+2]%2==0)) || ((array[i+1]%2==0) && (array[i+2]%2==0)) )    
+            {
+                i++;        
+            }
+        }
+        else
+        {
+            verifica = 0;    
+        }
+    }
+    return verifica;
+}
+int main(int argc, char **argv)
+{
+    int dim;        
+    printf("Quanti numeri interi vuoi inserire? \n");
+    scanf("%d", &dim);
+    int array[dim];
+    for(int i = 0 ; i < dim ; i++)        
+    {
+        printf("Inserisci un intero \n");
+        //******** WRONG ARRAY INPUT: &array instead of &array[i] -1.0
+        scanf("%d", &array);  
+    }
+    //******** MISSING VALIDATION: No check if dim >= 3 -1.5
+    if ( maggiori5Pari(array, dim) == 1 ) 
+    {
+        printf("Ogni tripla di interi contiene esattamente due elementi maggiori o uguali a 5 ed almeno due elementi pari");
+    }
+    else                                
+    {
+        printf("Ogni tripla di interi NON contiene esattamente due elementi maggiori o uguali a 5 ed almeno due elementi pari");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Attempt to check for both conditions (>=5 and even numbers)
+- Clear output messages
+
+Areas for Improvement:
+1. Array Access and Bounds:
+- Add bounds checking to prevent array index out of bounds
+- Fix array input using &array[i] instead of &array
+
+2. Logic Issues:
+- Fix the while loop condition (use == instead of =)
+- Add validation to ensure dim >= 3 for triple checking
+- Correct the logic to check for exactly two elements >= 5
+
+3. Implementation:
+- Add proper loop termination conditions
+- Fix the infinite loop issue
+- Implement proper array bounds checking
+
+Key Recommendations:
+1. Use proper comparison operators (== instead of =)
+2. Add input validation for array size
+3. Fix array input syntax
+4. Implement proper bounds checking for array access
+5. Review the logic for checking triples to ensure exactly two elements are >= 5
+</feedback_summary>

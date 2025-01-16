@@ -1,0 +1,65 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.8 = 6.0 - 0.2
+   MAIN PROGRAM (max 2.0):....2.0
+   TOTAL.......................7.8
+*/
+
+#include <stdio.h>
+int restoDivisione(int seq[], int l)
+{
+    int i=0;      
+    int verifica=0;       
+    //******** WITHOUT THE BOOLEAN VARIABLE IN THE CONDITION, EVEN IF YOU FIND A TRIPLE THAT SATISFIES THE PROPERTY, YOU CONTINUE TO CHECK -0.2
+    while(i<l-2 && !verifica)  
+    {               
+        if((seq[i]%seq[i+1]==seq[i+2]) || (seq[i+1]%seq[i]==seq[i+2]) ||
+        (seq[i]%seq[i+2]==seq[i+1]) || (seq[i+2]%seq[i]==seq[i+1]) ||
+        (seq[i+1]%seq[i+2]==seq[i]) || (seq[i+2]%seq[i+1]==seq[i]))
+            verifica=1;
+        else
+            i++;
+    }
+    return verifica;
+}
+
+int main()
+{
+    int l;         
+    printf("Ciao, Utente, sono un programma che legge una sequenza di interi e \n");
+    printf("verificase esiste una sequenza di tre interi consecutivi tali che \n");
+    printf("uno dei tre sia il resto della divisione degli altri due, quanti interi vuoi inserire? \n");
+    scanf("%d", &l);
+    int array[l];  
+    for(int i=0; i<l; i++) 
+    {
+        printf("dammi un intero:\n");
+        scanf("%d", &array[i]);
+    }
+    if(restoDivisione(array, l))
+        printf("Esiste una tripla che verifica la richiesta");
+    else
+        printf("Non esiste una tripla che verifica la richiesta");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the main function with clear user interaction
+- Proper array handling and parameter passing
+- Complete check of all possible remainder combinations in the triple
+- Good use of boolean flag to stop searching once a valid triple is found
+- Clear output messages indicating the result
+
+Areas for Improvement:
+- The loop condition could be optimized by incorporating the boolean flag directly into the while condition, eliminating the need for the separate verifica variable
+- Consider adding input validation for array length and handling division by zero cases
+
+Key Recommendations:
+- Consider implementing input validation to handle edge cases
+- The code could be made more efficient by using a simpler loop structure
+- Add checks for division by zero to make the program more robust
+</feedback_summary>
+
+The submission demonstrates a good understanding of the problem and implements the required functionality correctly. The minor deduction is for a small optimization issue in the loop control structure, but overall the code is well-structured and meets the assignment requirements effectively.

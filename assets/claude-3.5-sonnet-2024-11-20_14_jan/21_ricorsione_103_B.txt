@@ -1,0 +1,116 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........4.0 = 5.0 - 1.0
+countNumbers (2).....2.0
+readNumbers (2)......2.0
+writeNumbers(1)......0.7 = 1.0 - 0.3
+TOTAL................8.7/10
+*/
+
+int minimo(int num1, int num2, int num3)
+{
+    int min;
+    if(num1 < num2 && num1 < num3)
+    {
+        min = num1;
+    }
+    else if(num2 < num1 && num2 < num3)
+    {
+        min = num2;
+    }
+    else if(num3 < num1 && num3 < num1)  //******** Error in condition: num3 < num1 repeated twice -0.5
+    {
+        min = num3;
+    }
+    return min;
+}
+
+int minimoDispari(int *seq, int lunghezza)
+{
+    int risultato;
+    if(lunghezza < 3)
+    {
+        risultato = 1;
+    }
+    else
+    {
+        risultato = (minimo(seq[lunghezza - 1], seq[lunghezza - 2], seq[lunghezza - 3]) % 2 != 0) &&
+        minimoDispari(seq, lunghezza - 1);
+    }
+    return risultato;
+}
+
+int quantiNumeri() {
+    int quanti = 0;
+    FILE* fp = fopen("interi.txt", "r");
+    if(fp == NULL)
+    {
+        printf("\nApertura non riuscita o file non esistente\n\n");
+    }
+    else
+    {
+        int numero;
+        while(fscanf(fp, "%d", &numero) != EOF)
+        {
+            quanti++;
+        }
+        fclose(fp);
+    }
+    return quanti;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE* fp = fopen("interi.txt", "r");
+    if(fp == NULL)
+    {
+        printf("\nApertura non riuscita o file non esistente\n\n");
+    }
+    else
+    {
+        for(int i = 0; i < lunghezza; i++)
+        {
+            fscanf(fp, "%d", &sequenza[i]);
+        }
+        fclose(fp);
+        printf("\nLETTURA COMPLETATA\n\n");
+    }
+}
+
+void scriviNumeri(int* sequenza, int lunghezza)
+{
+    FILE* fp = fopen("interi.txt", "w");
+    if(fp == NULL)
+    {
+        printf("\nApertura non riuscita\n\n");
+    }
+    else
+    {
+        for(int i = 0; i < lunghezza; i++)
+        {
+            fprintf(fp, "%d ", sequenza[i]);  //******** When writing to a text file, numbers are written without spacing -0.3
+        }
+        fclose(fp);
+        printf("\nSCRITTURA COMPLETATA\n\n");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of recursive minimoDispari function
+- Proper file handling with NULL checks
+- Correct implementation of file reading and counting functions
+- Good error messages for file operations
+
+Areas for Improvement:
+- The minimo function has a logical error in the last condition where num3 < num1 is checked twice
+- In scriviNumeri, numbers should be written without spaces between them for better file format consistency
+- Consider adding more detailed error messages for specific file operation failures
+
+Key Recommendations:
+- Fix the condition in minimo function to correctly check for the minimum value
+- Remove the space when writing numbers to file in scriviNumeri
+- Consider adding return values for file operation functions to better handle errors in the calling code
+</feedback_summary>

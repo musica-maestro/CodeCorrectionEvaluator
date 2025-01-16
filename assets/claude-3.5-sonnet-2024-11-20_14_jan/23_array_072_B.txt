@@ -1,0 +1,71 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.8 = 6.0 - 1.5 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................5.6
+*/
+
+#include <stdio.h>
+int duePositivi (int sequenza[], int lunghezza){
+    int i=0;
+    int condizione=1;
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lunghezza - 2 -1.5
+    while(i<=lunghezza-2 && condizione==1){
+        //******** CONDITION ON THE TRIPLE IS WRONG (0 is considered positive) -0.2
+        if ((sequenza[i]<0 && sequenza[i+1]>=0 && sequenza[i+2]>=0) || 
+            (sequenza[i]>=0 && sequenza[i+1]>=0 && sequenza[i+2]<0) || 
+            (sequenza[i]>=0 && sequenza[i+1]<0 && sequenza[i+2]>=0))
+        {
+            //******** SETTING THE VARIABLE TO 1 IS NOT NECESSARY -0.5
+            condizione=1; 
+            i++;
+        }
+        else{
+            condizione=0;
+        }
+    }
+    return condizione;
+}
+int main()
+{
+    int lunghezza;
+    printf("Di quanto vuoi lunga la sequenza?\n");
+    scanf("%d", &lunghezza);
+    int sequenza[lunghezza];
+    for (int i = 0; i < lunghezza; i++)
+    {
+        printf("Inserisci un numero\n");
+        scanf("%d", &sequenza[i]);
+    }
+    duePositivi(sequenza, lunghezza);
+    //******** UNCLEAR MESSAGE -0.2
+    if (duePositivi(sequenza, lunghezza)==1)
+    {
+        printf("La condizione %c verificata!", 138); 
+    }
+    else
+        printf("La condizione non %c verificata!", 138);
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct overall structure with separate function and main program
+- Proper parameter passing and array handling
+- Good implementation of the universal verification logic
+- Appropriate use of boolean flag (condizione) to track verification status
+
+Areas for Improvement:
+- Array bounds checking needs correction to prevent buffer overflow
+- The condition for checking positive numbers should be more precise regarding zero
+- Unnecessary reassignment of condizione=1 in the loop
+- Output messages could be more descriptive and clear
+
+Key Recommendations:
+1. Fix the array bounds check by changing i<=lunghezza-2 to i<lunghezza-2
+2. Define clearly whether zero should be considered positive or negative
+3. Remove unnecessary condizione=1 assignment in the loop
+4. Improve output messages to be more descriptive about what condition was verified
+5. Consider adding input validation for array length
+</feedback_summary>

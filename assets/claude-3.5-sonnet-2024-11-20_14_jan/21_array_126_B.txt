@@ -1,0 +1,62 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.0 - 1.0
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................6.0
+*/
+
+#include <stdio.h>
+int maggiori5Pari(int seq[], int l){           
+	int verificato=1;                          
+	int i=0;                                    
+	while(i<=l-3&&verificato){
+        //******** WRONG CONDITION ON INDEX: should be i < l-2 instead of i <= l-3 -1.0
+         if(!((seq[i]>=5&&seq[i+1]>=5)||(seq[i]>=5&&seq[i+2]>=5)||(seq[i+2]>=5&&seq[i+1]>=5))
+         &&((seq[i]%2==0&&seq[i+1]%2==0)||(seq[i+2]%2==0&&seq[i+1]%2==0)||(seq[i]%2==0&&seq[i+2]%2==0)
+         ||(seq[i]%2==0&&seq[i+1]%2==0&&seq[i+2]==0))) 
+			 verificato=0;
+           else
+             i++;
+	}
+    //******** MISSING RETURN STATEMENT -1.0
+}
+
+int main(int argc, char **argv)
+{
+	int lunghezza;       
+	printf("caro utente sono un programma che verifica se all'interno di una sequenza di interi, ogni tripla di elementi consecutivi contiene esattamente due elementi maggiori o uguali a 5 e almeno due elementi pari.  \n");
+	printf("quanti interi vuoi inserire?\n");
+	scanf("%d",&lunghezza);
+	int sequenza[lunghezza];
+	for(int i=0;i<lunghezza;i++){
+		printf("inserisci un intero:");
+		scanf("%d",&sequenza[i]);
+	}
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+	if(maggiori5Pari(sequenza,lunghezza))                                                        
+		printf("ogni tripla di elementi consecutivi contiene esattamente due elementi maggiori o uguali a 5 e almeno due elementi pari.");
+	else
+        printf("non ogni tripla di elementi consecutivi contiene esattamente due elementi maggiori o uguali a 5 e almeno due elementi pari.");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good overall program structure with separate function and main
+- Correct logic for checking both conditions (two elements ≥5 and two even elements)
+- Proper user interaction in main function
+- Good use of boolean flag (verificato) for loop control
+
+Areas for Improvement:
+- The function maggiori5Pari is missing a return statement, which is crucial for the function to work
+- The array bounds checking condition in the while loop should be i < l-2 to properly handle all triples
+- The output messages could be more specific and user-friendly
+- The condition checking is correct but could be more readable with better formatting
+
+Key Recommendations:
+1. Add return verificato; at the end of the maggiori5Pari function
+2. Fix the array bounds condition to prevent potential out-of-bounds access
+3. Improve output messages to be more specific about the sequence properties
+4. Consider breaking down the complex condition into smaller, more readable parts using intermediate boolean variables
+</feedback_summary>

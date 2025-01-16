@@ -1,0 +1,98 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....1.3 = 6.0 - 2.0 - 1.5 - 1.0 - 0.2
+   MAIN PROGRAM (max 2.0):....1.0 = 2.0 - 0.5 - 0.5
+   TOTAL.......................2.3
+*/
+
+#include <stdio.h>
+int multipli (int interi[], int lunghezza){
+//******** THIS IS A UNIVERSAL VERIFICATION, NOT AN EXISTENTIAL ONE -2.0
+int c=0; 
+int m1;
+int m2;
+int m3;
+    for (int i = 0; i < lunghezza; ++i)
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lunghezza - 2 -1.0
+    {
+        int limite= i+3;
+        for (int p=i; p<limite; p++)
+            {
+                if ((interi[p]%interi[p+1]==0) && (!(p+1>limite)))
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+                //******** RETURN THE CALCULATED VALUE ON THE FIRST TRIPLE, BECAUSE WITH RETURN YOU EXIT IMMEDIATELY FROM THE ITERATION -1.5
+                if ((interi[p]%interi[p+2]==0) && (!(p+2>limite)))
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+    }
+}
+
+int main()
+{
+    int l;
+    int s[l]; 
+    //******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+    printf("questo programma ti dira se nelle sequenze di terne nella stringa ci sono dei numeri che sono i multipli di altri\n");
+    printf("inserisci la lunghezza della sequenza: ");      
+    scanf("%d", &l);
+    printf("\nora inserisci i numeri della sequenza\n");
+    for(int j=0; j<l; j++)
+         {
+            scanf("%d", &s[j]);
+         }
+         multipli(s, l); 
+    //******** INCORRECT READING, SHOULD BE ONE CALL TO multipli() -0.5
+    if (multipli(s, l)==1)
+    {
+        printf("nella sequenza tutte le terne contengono multipli");
+    }
+    else
+    {
+        printf("nella sequenza non ci sono multipli");
+    } 
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Input/output interaction with user is implemented
+- Function parameters are correctly defined
+
+Areas for Improvement:
+1. Function Implementation:
+- The verification logic is incorrect - it should check all triples (universal verification)
+- Array bounds checking is incorrect and could lead to buffer overflows
+- The return statements cause premature function exit
+- The multiple conditions for checking divisibility are incomplete
+
+2. Main Program:
+- Array should be declared after getting its length
+- Function is called twice unnecessarily
+- Input validation could be improved
+
+Key Recommendations:
+1. Restructure the multipli function to:
+   - Use proper array bounds (i < lunghezza - 2)
+   - Check all possible divisibility combinations within each triple
+   - Use a boolean flag instead of immediate returns
+   - Implement proper universal verification
+
+2. In the main function:
+   - Move array declaration after length input
+   - Remove duplicate function call
+   - Add input validation for array length
+</feedback_summary>

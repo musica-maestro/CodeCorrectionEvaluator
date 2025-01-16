@@ -1,0 +1,76 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....3.3 = 6.0 - 1.5 - 1.0 - 0.2
+   MAIN (max 2.0):.......1.3 = 2.0 - 0.5 - 0.2
+   TOTAL.................4.6/8.0
+*/
+
+#include<stdio.h>
+int multipli(int array[],int lun){
+    int esiste=0; 
+    int i; 
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lun - 2 -1.0
+    for(i=0;i<lun-2;i++){
+        //******** CONDITION ON THE TRIPLE IS WRONG - TWO COMBINATIONS MISSING -1.5
+        if((array[i]%array[i+1]==0)||(array[i]%array[i+2]==0)||
+            (array[i+1]%array[i]==0)||(array[i+1]%array[i+2]==0)||
+            (array[i+2]%array[i]==0)||(array[i+2]%array[i+1]==0))
+            esiste=1; 
+    }
+    //******** HOW TO CONSIDER 0? NO HANDLING FOR DIVISION BY ZERO -0.2
+return esiste; 
+}
+
+int main(){
+    int n; 
+    int i; 
+    int esiste;
+    printf("inserire lunghezza della sequenza: ");
+    scanf("%d",&n);
+    //******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+    int array[n];
+    for(i=0;i<n;i++){
+        printf("inserire valore [%d]",i);
+        scanf("%d",&array[i]);
+    }
+    esiste=multipli(array,n); 
+    //******** UNCLEAR OUTPUT MESSAGE -0.2
+    if(esiste==1) 
+      printf("la condizione di esistenza di un multiplo %c verificata quindi: %d",138,esiste);
+    else
+      printf("la condizione di esistenza di un multiplo non %c verificata quindi: %d",138,esiste);
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic function structure is implemented correctly
+- Main program handles user input and array population
+- Function correctly returns boolean result
+- Basic loop structure for checking triples is present
+
+Areas for Improvement:
+1. Array Bounds and Safety:
+   - Fix array bounds checking in the loop
+   - Add handling for division by zero cases
+
+2. Logic Implementation:
+   - The triple condition check is incomplete
+   - Consider all possible combinations for multiple checking
+
+3. Code Organization:
+   - Move array declaration after getting the length
+   - Improve output message clarity
+
+4. Error Handling:
+   - Add input validation for array length
+   - Add checks for division by zero
+
+Key Recommendations:
+1. Implement proper array bounds checking with (i < lun-2)
+2. Add validation for zero values in the divisor positions
+3. Restructure array declaration to follow after length input
+4. Improve output messages for better user understanding
+5. Review and complete all possible combinations for checking multiples in triples
+</feedback_summary>

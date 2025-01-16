@@ -1,0 +1,77 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........1.0 = 6.0 - 1.5 - 1.0 - 1.0 - 0.5 - 1.0
+   MAIN PROGRAM (max 2.5):....1.0 = 2.5 - 1.0 - 0.5
+   TOTAL.......................2.0
+*/
+
+#include <stdio.h>
+int maggiori5Pari(int array[], int len) {
+    //******** MISSING SEMICOLONS AFTER DECLARATIONS -0.5
+    int esistenza = 1
+    int cont = 0
+    //******** UNINITIALIZED VARIABLE i -1.0
+    while (esistenza && i<len){  
+        //******** WRONG LOOP CONDITIONS AND LOGIC - DOESN'T CHECK TRIPLES CORRECTLY -1.5
+        for (i=1;i<len-1;i++)
+            if (array[i]>=5)
+                cont++;
+                //******** MISSING CONDITION CHECK FOR EVEN NUMBERS -1.0
+                if (array[i+1])
+                    cont++
+            else
+                i++
+    //******** MISSING RETURN STATEMENT -1.0
+}
+int main(int argc, char **argv)
+{
+    int lunghezza;
+    printf("Ciao utente, questo %c un programma che verifica che ogni tripla della sequenza inserita abbia esattamente 2 elementi maggiori o uguali a 5 e due elementi pari\n", 138);
+    printf("Quanti interi vuoi inserire?");
+    scanf("%d", &lunghezza);
+    printf("Perfetto, ora inserisci gli elementi\n");
+    int array[lunghezza];
+    int i=0;
+    for (i=0;i<lunghezza;i++){
+        printf("Elemento [%d]", i+1);
+        scanf("%d", &array[i]);
+    }
+    //******** INCORRECT FUNCTION CALL SYNTAX -1.0
+    if (maggiori5Pari(array[],lunghezza)){ 
+        //******** OUTPUT MESSAGE COULD BE MORE SPECIFIC -0.5
+        printf("Caro utente, ogni tripla della sequenza da lei indicata ha esattamente due elementi maggiori o uguali a 5 ed almeno due elementi pari");
+    }
+    else
+    printf("Caro utente, putroppo non tutte le triple hanno hanno esattamente due elementi maggiori o uguali a 5 e almeno due elementi pari");
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Main function handles user input appropriately
+- Output messages are user-friendly
+
+Areas for Improvement:
+1. Function Implementation:
+   - Fix syntax errors (missing semicolons)
+   - Initialize all variables before use
+   - Implement correct logic for checking triples
+   - Add proper return statement
+   - Include checks for both conditions (>=5 and even numbers)
+
+2. Main Program:
+   - Correct the function call syntax
+   - Make output messages more specific about which condition failed
+   - Improve code formatting and consistency
+
+Key Recommendations:
+1. Review C syntax fundamentals (semicolons, variable initialization)
+2. Implement proper logic for checking consecutive triples
+3. Add proper checks for both conditions (exactly two elements >=5 AND at least two even elements)
+4. Include appropriate return statements
+5. Fix function call syntax in main
+6. Use consistent code formatting and indentation
+</feedback_summary>

@@ -1,0 +1,84 @@
+I'll grade the student's submission following the provided format and criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........6.0
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................8.0
+*/
+
+#include <stdio.h>
+int intervallo(int numero){		
+	int risultato = 0;
+	if((numero >= -10) && (numero <= 10)){
+		risultato = 1;
+	}
+	return risultato;
+}
+int compresiMultipli3(int stringa[],int lun){
+	int esiste = 0;
+	for(int i = 0 ; (i < lun-2) && (esiste == 0); i++){
+		int numeri = 0;							
+		int multipli = 0;						
+		for(int j = i ; j < i+3 ; j++){			
+			if(intervallo(stringa[j]) == 1){	
+				numeri++;
+			}
+			if(stringa[j]%3==0){				
+				multipli++;
+			}
+		}
+		if (numeri >= 2 && multipli==2){
+			esiste = 1;
+		}
+	}
+	return esiste;
+}
+int main(int argc, char **argv)
+{
+	int lunghezza;
+	printf("Programma che verifica se esiste una tripla\ndi elementi consecutivi\n");
+	printf("che contiene almeno due elementi il cui\nvalore e' compreso fra -10 e 10\n");
+	printf("e che contiene esattamente due numeri multipli di 3\n");
+	printf("Quanti numeri si vogliono inserire nella se quenza? ");
+	scanf("%d",&lunghezza);
+	while(lunghezza < 3){
+		system("cls");
+		printf("la lunghezza della sequenza deve essere >= 3 reinseriscila: ");
+		scanf("%d",&lunghezza);
+	}
+	int sequenza[lunghezza];
+	printf("Inserisci la sequenza\n");
+	for(int i = 0 ; i < lunghezza ; i++){
+		system("cls"); 
+		printf("\nInserisci il %d elemento della sequenza: ", i+1);
+		scanf("%d",&sequenza[i]);
+	}
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+	if(compresiMultipli3(sequenza,lunghezza)){
+		printf("esiste una tripla di elementi consecutivi\nche contiene almeno due elementi il cui\nvalore e' compreso fra -10 e 10");
+	}else{
+		printf("NON esiste una tripladi elementi consecutivi\nche contiene almeno due elementi il cui\nvalore e' compreso fra -10 e 10");
+	}
+	return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the compresiMultipli3 function with proper logic
+- Good use of helper function (intervallo) to check range
+- Proper array bounds checking in the main loop
+- Input validation for sequence length
+- Efficient use of boolean flag (esiste) to exit loop when condition is met
+
+Areas for Improvement:
+- The output messages could be more specific and complete, mentioning both conditions (range check and multiples of 3)
+- The use of system("cls") might not be portable across different operating systems
+- Consider adding more descriptive variable names (e.g., 'stringa' could be 'array' or 'sequence')
+
+Key Recommendations:
+- Enhance output messages to clearly communicate all conditions being checked
+- Consider platform-independent alternatives to system("cls")
+- Use more descriptive variable names to improve code readability
+- Add comments to explain the logic in complex sections of the code
+</feedback_summary>

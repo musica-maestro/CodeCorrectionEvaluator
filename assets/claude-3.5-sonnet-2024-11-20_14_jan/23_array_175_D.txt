@@ -1,0 +1,72 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.0 = 6.0 - 1.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL......................4.8
+*/
+
+#include <stdio.h>
+int restoDivisione(int sequenza[], int lunghezza) {
+    int i = 0;            
+    int tripla = 0;        
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lunghezza - 2 -1.0
+    while (i<lunghezza-3 && !(tripla)) { 
+        //******** CONDITION ON THE TRIPLE IS WRONG - MISSING DIVISION BY ZERO CHECK -1.5
+        if(((sequenza[i+1]%sequenza[i+2] == sequenza[i]) || (sequenza[i] % sequenza[i+2] == sequenza[i+1]) || (sequenza[i] % sequenza[i+1] == sequenza[i+2]) ||
+             (sequenza[i+2]%sequenza[i+1] == sequenza[i]) || (sequenza[i+2] % sequenza[i] == sequenza[i+1]) || (sequenza[i+1] % sequenza[i] == sequenza[i+2])))        
+            tripla = 1;        
+        else
+            i++;        
+    //******** 2 RETURNS IS NOT STRUCTURED PROGRAMMING -0.5
+    return tripla;
+    }
+}
+
+int main() {
+    int lunghezza;        
+    printf("Ciao utente, quanti numeri vuoi inserire?\n");
+    scanf("%d", &lunghezza);
+    int sequenza[lunghezza];        
+    for (int i=0; i<lunghezza; i++){
+    //******** UNCLEAR MESSAGE -0.2
+    printf("Dammi un elemento: ");
+    scanf("%d", &sequenza[i]);
+    }
+    if (restoDivisione(sequenza, lunghezza))
+        printf("La sequenza contiene almeno una tripla di numeri adiacenti dove uno %c il resto della divisione degli altri due", 138);
+    else
+        printf("La sequenza NON contiene almeno una tripla di numeri adiacenti dove uno %c il resto della divisione degli altri due", 138);
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic function structure is implemented correctly
+- Main program handles user interaction appropriately
+- Array initialization and input collection are properly implemented
+- Output messages clearly communicate the result
+
+Areas for Improvement:
+1. Array Bounds:
+   - The while loop condition should be i < lunghezza - 2 to avoid accessing elements beyond array bounds
+   
+2. Division Operations:
+   - Need to add checks for division by zero to prevent runtime errors
+   - The remainder calculations should be protected against zero divisors
+
+3. Code Structure:
+   - The return statement inside the while loop creates poor code structure
+   - Consider using a single return statement at the end of the function
+
+4. User Interface:
+   - Input prompts could be more descriptive
+   - Consider adding input validation for array length
+
+Key Recommendations:
+1. Fix the array bounds check in the while loop condition
+2. Add division by zero checks in the remainder calculations
+3. Restructure the function to use a single return statement
+4. Improve user prompts to be more descriptive and informative
+5. Add input validation for array length and elements
+</feedback_summary>

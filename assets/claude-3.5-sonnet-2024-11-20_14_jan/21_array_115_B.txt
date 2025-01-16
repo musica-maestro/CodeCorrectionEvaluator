@@ -1,0 +1,76 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................6.0
+*/
+
+#include <stdio.h>
+int maggiori5Pari(int seq[],int l){
+	int k=1;
+	int i=0;
+	//******** WRONG CONDITION ON INDEX i < l-2 NEEDED TO AVOID ARRAY BOUNDS -1.5
+	while(i<l && k){
+	//******** CONDITION IS COMPLICATED AND NOT VERY READABLE -0.5
+	if(((seq[i]<=5 && seq[i+1]<=5)
+	|| (seq[i]<=5 && seq[i+2]<=5)
+	|| (seq[i+1]<5 && seq[i+2]<=5)
+	|| (seq[i]>5 && seq[i+1]>5 && seq[i+2]>5))
+	&&
+		((seq[i]%2==1 && seq[i+1]%2==1)|| (seq[i]%2==1 && seq[i+2]%2==1) || (seq[i+1]%2==1 && seq[i+2]%2==1)))
+			k=0;
+		else
+			i++;
+	}
+	return k;
+}
+
+int main(int argc, char **argv)
+{
+	int lunghezza;    
+	printf("Utente inserisci la quantita' di numeri che si vogliono inserire nella sequenza\n");
+	scanf("%d",&lunghezza);
+	int sequenza[lunghezza];
+	printf("Utente inserisci ora gli interi che si voglioono inserire nella sequenza\n");
+	for(int i=0;i<lunghezza;i++)
+		scanf("%d",&sequenza[i]);
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+	if(maggiori5Pari(sequenza,lunghezza))
+		printf("La sequenza contiene essattamente due elementi maggiori o uguali a 5 ed almeno due elementi pari");
+	else
+		printf("La sequenza NON contiene essattamente due elementi maggiori o uguali a 5 ed almeno due elementi pari");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is correct
+- Main function correctly handles user input
+- Function implements the core logic for checking triples
+- Proper use of boolean flag for control flow
+
+Areas for Improvement:
+1. Array Bounds Safety:
+   - The while loop condition should be i < l-2 to avoid accessing array elements beyond bounds
+   - Current implementation could cause buffer overflow
+
+2. Code Readability:
+   - The condition checking in maggiori5Pari is overly complex
+   - Consider breaking down the conditions into smaller, more readable parts
+   - Add comments to explain the logic
+
+3. Output Clarity:
+   - The output message could be more specific about the properties being checked
+   - Include information about checking consecutive triples
+
+Key Recommendations:
+1. Modify the loop condition to prevent array bounds violation:
+   while(i < l-2 && k)
+
+2. Break down the complex condition into smaller, more readable parts using intermediate boolean variables
+
+3. Improve output messages to be more precise about what properties are being verified in the sequence
+
+4. Add input validation to ensure the sequence has at least 3 elements
+</feedback_summary>

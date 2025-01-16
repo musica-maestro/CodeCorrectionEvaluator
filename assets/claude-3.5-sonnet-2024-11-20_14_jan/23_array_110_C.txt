@@ -1,0 +1,71 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.5 = 6.0 - 1.0 - 0.5
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................6.3
+*/
+
+#include <stdio.h>
+int dueUnaCifra(int seq[], int n) {
+    int tutte = 1;        
+    int i=0;            
+    //******** CONDITION ON THE TRIPLE IS WRONG - SHOULD USE seq[i] >= 0 && seq[i] <= 9 TO CHECK SINGLE DIGIT -1.0
+    while(i<n-2 && tutte) {
+        if(!((seq[i]<10 && seq[i+1]<10 && seq[i+2]>=10) ||
+             (seq[i]<10 && seq[i+1]>=10 && seq[i+2]<10) ||
+             (seq[i]>=10 && seq[i+1]<10 && seq[i+2]<10) ||
+             (seq[i]<10 && seq[i+1]<10) && seq[i]<10))  
+            tutte = 0;
+        else
+            i++;
+    }
+    //******** SETTING THE VARIABLE TO 1 IS NOT NECESSARY, BUT SAVED BY BOOLEAN IN LOOP CONDITION -0.5
+    return tutte;
+}
+
+int main() {
+    int n;        
+    printf("\nCiao utente, questo programma chiede di inserire n numeri in una sequenza e ");
+    printf("controlla se in ogni tripla della sequenza\nsiano presenti almeno due numeri ");
+    printf("composti da una sola cifra\n\n");
+    printf("Quanti numeri interi positivi vuoi inserire nella sequenza: ");
+    scanf("%d", &n);
+    int seq[n];        
+    printf("\n");
+    //******** UNCLEAR MESSAGE -0.2
+    for(int i=0; i<n; i++) {
+        printf("Inserire il %d' numero: ", i+1);
+        scanf("%d", &seq[i]);
+    }
+    if(dueUnaCifra(seq, n)) {
+        printf("\nIn tutte le triple di elementi adiacenti della sequenza sono presenti\n");
+        printf("almeno due numeri composti da una sola cifra\n");
+    }
+    else {
+        printf("\nNON in tutte le triple di elementi adiacenti della sequenza sono presenti\n");
+        printf("almeno due numeri composti da una sola cifra\n");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct overall program structure with separate function and main
+- Proper implementation of universal verification logic
+- Good user interaction with clear instructions
+- Appropriate array handling and function parameters
+
+Areas for Improvement:
+- The condition to check for single-digit numbers should use proper range checking (>= 0 && <= 9)
+- The initialization of 'tutte' variable could be more efficient
+- User prompts could be more clear and professional
+- Consider adding input validation for positive integers
+
+Key Recommendations:
+1. Implement proper range checking for single-digit numbers
+2. Remove redundant variable initialization
+3. Improve clarity of user prompts
+4. Add input validation for the sequence length and values
+5. Consider using more descriptive variable names (e.g., 'allValid' instead of 'tutte')
+</feedback_summary>

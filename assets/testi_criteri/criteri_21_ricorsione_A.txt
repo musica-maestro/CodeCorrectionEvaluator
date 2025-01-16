@@ -1,0 +1,92 @@
+/* 
+maxEven (5).........
+countNumbers (2).... 
+readNumbers (2)..... 
+writeNumbers(1)..... 
+TOTAL............... 
+*/
+
+======================= GENERAL
+//***** 4 return! -0.3
+//***** 6 return! -0.5
+//***** output not very explanatory, does not explain what is being checked -0.3
+//***** cryptic output, does not explain what is being checked -0.4
+//***** if you declare a function after calling it, you must declare the prototype at the beginning -0.3
+//***** missing a semicolon -0.2
+
+======================= FUNCTION
+
+//***** missing base case or it is completely wrong -1.5
+//***** wrong base case condition: considering an index that is part of the recursive step. If you put it in the base case, you need to repeat the check "maximum of 3 evens" twice -0.3
+//***** l must be <3 or <=2 otherwise when it is called with l=2 or l=1 it goes into the recursive case and accesses memory that does not belong to the array -1
+//***** Recursion should be done on the array length -1
+//***** The base case should be length<=2 or <3 (because you need to consider a triplet of elements) -0.5
+//***** universal variable incorrectly initialized - exists=1, does not exist=0! -1
+//***** wrong operators for a universal check using or instead of and -1.5
+//***** using a for loop to calculate the maximum of the triplet -1.5
+//***** error in calculating the maximum of three integers -1.5
+//***** missing the calculation of the maximum of the triplet -1
+//***** you are comparing a boolean expression with the result of the recursive function -1
+//***** the maximum must be even, not >0 -1
+//***** you need to call the function, but you only write the parameters -1.5
+//***** you cannot access array[l] (it is not part of the array) -0.5
+//***** missing a parenthesis -0.3
+//***** array indices cannot be negative -2
+//***** error in the recursive function call -1.5
+//***** inside maxEven, you should call the recursive function with i, not i+1 -0.3
+//***** the requested function maxEvenRec is not recursive - it only checks the property (the max of the triplet must be even) -2.5
+
+//================== GENERAL FILE ISSUES
+
+//***** missing file closure -0.2
+//***** you don't check if the file opening failed -0.3
+//***** in fread, you should not use &, sequence is already an address -0.5
+//***** fp==NULL -0.2
+//***** file opened with wrong mode -0.4
+//***** comparing an integer with a character: -0.5
+//***** not using & to read an integer -1
+//***** you cannot use fopen in a for loop! -1
+//***** in the while loop reading file elements, i does not change (you store what you read always in the same component) -0.3
+
+//================== READ NUMBERS
+//***** IF YOU ALREADY USE fscanf, YOU CANNOT USE ANOTHER READ INSTRUCTION -1
+//***** fread syntax incorrect: first sizeof(int), then 1 -0.3
+//***** fread syntax - not "%d" but sizeof(int) -0.4
+//***** in fread you should not use &sequence, because sequence is already an address -0.3
+//***** sequence[i]=fread(value, sizeof(int), 1, fp); NO, it should be &value -0.3
+//***** error in assignment, you are assigning an integer to an address -0.3
+//***** missing semicolon -0.2
+//***** loop with always verified condition -0.5
+//***** fread is used for binary files, not for text files -0.2
+//***** it's a file, not a list -0.2
+//***** if fp==NULL the file is not empty, it just failed to open -0.2
+//***** missing else! -0.5
+//***** badly indented -0.1
+//***** missing the readNumbers function -2
+
+//================== COUNT NUMBERS
+//***** counter not initialized -0.3
+//***** countNumbers has no parameters -0.5
+//***** in the countNumbers function, you don't know the array length because you need to calculate it -1
+//***** in text files, fscanf is used, not fread
+//***** with fscanf, while must return a value >0 while(fscanf(fp,"%d",&num)>0) -1
+//***** while(fp!=NULL): this leads to an infinite loop! -1
+//***** you wonder if the file is empty, but the file is missing -0.2
+//***** missing return -0.5
+//***** missing the counting part! -1
+//***** syntax error in file reading instruction -0.3
+//***** confusing integer read with pointer -0.5
+//***** you cannot use the same variable both for counting and for fread -0.5
+//***** missing the countNumbers function -2
+
+//================== WRITE NUMBERS
+//***** you don't check if fopen was successful -0.3
+//***** when writing to a text file, you write all numbers together -0.3
+//***** not 1, but length! -0.5
+//***** fwrite is used for binary files, not for text files -0.2
+//***** fwrite syntax is not "%d", but sizeof(int) -0.4
+//***** putting the read integer into all components of the array 
+//***** so you put the control element into all components of the file -1
+//***** not sizeof(sequence), but sizeof(int) -0.5
+//***** you don't need another array, the array to write to the file is passed as a parameter to writeNumbers -0.6
+//***** missing the writeNumbers function -1

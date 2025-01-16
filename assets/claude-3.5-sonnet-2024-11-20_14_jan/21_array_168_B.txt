@@ -1,0 +1,90 @@
+I'll grade the student's submission following the provided format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.0 = 6.0 - 1.0
+   MAIN PROGRAM (max 2.5):....2.2 = 2.5 - 0.3
+   TOTAL.......................7.2
+*/
+
+#include <stdio.h>
+int verificaMaggioreDi5(int a){
+    int maggiore = 0; 
+    if(a>=5){
+        maggiore = 1;
+    }
+    return maggiore;
+}
+
+int pari(int a){      
+    int pari=0;
+    if(a%2==0){
+        pari = 1;
+    }
+    return pari;
+}
+
+int maggiori5Pari(int vet[], int lunghezza){
+    int i=1, verificato=1;                                    
+    //******** WRONG CONDITION ON INDEX i < length - 2 -1.0
+    while((i<lunghezza-1) && (verificato==1)){
+        if(((verificaMaggioreDi5(vet[i-1])) && (verificaMaggioreDi5(vet[i])))
+        || ((verificaMaggioreDi5(vet[i+1])) && (verificaMaggioreDi5(vet[i])))
+        || ((verificaMaggioreDi5(vet[i+1])) && (verificaMaggioreDi5(vet[i-1])))){
+            if(((pari(vet[i-1]))&&(pari(vet[i])))
+            || ((pari(vet[i-1]))&&(pari(vet[i+1])))
+            || ((pari(vet[i]))&&(pari(vet[i+1])))){
+                i++;
+            }
+        }
+        else{
+            verificato=0;
+        }
+    }
+    return verificato;
+}
+
+int main(int argc, char **argv)
+{
+    printf("Caro utente, in questo programma viene verificata se, nella sequenza di numeri inseriti ogni tripla di elementi consecutivi contiene esattamente due elementi maggiori o uguali a 5 ed almeno 2 pari\n");
+    int lunghezza=0, i;                                               
+    printf("Per prima cosa inserisci quanto deve essere lunga la sequenza di interi: ");
+    scanf("%d", &lunghezza);                
+    int array[lunghezza];
+    printf("Bene! Ora inserisci i valori della sequenza: \n");
+    for(i=0; i<lunghezza; i++){
+        printf("Inserisci il valore %d: ", i+1);
+        scanf("%d", &array[i]);
+    }
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+    printf("La sequenza inserita ");
+    for(i=0; i<lunghezza; i++){
+        printf("[%d]", array[i]);
+    }
+    if(maggiori5Pari(array, lunghezza)){
+        printf(" soddisfa la condizione!");
+    }
+    else{
+        printf(" non soddisfa la condizione :(");
+    }
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good modular design with separate functions for checking conditions
+- Clear variable naming and logical structure
+- Proper user interaction and input handling
+- Good use of helper functions to improve code readability
+
+Areas for Improvement:
+- The loop condition in maggiori5Pari should be i < lunghezza - 2 to properly check all triples without going out of bounds
+- The output messages could be more specific about which conditions are being satisfied/not satisfied
+- The logic for checking exactly two elements >= 5 could be more explicit
+
+Key Recommendations:
+- Fix the loop boundary condition to prevent potential array access issues
+- Make output messages more descriptive to better inform the user about the specific conditions being tested
+- Consider adding input validation for the sequence length
+- Consider restructuring the conditions to make them more readable and maintainable
+</feedback_summary>

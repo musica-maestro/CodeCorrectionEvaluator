@@ -1,0 +1,66 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.0 = 6.0 - 1.5 - 0.5
+   MAIN (max 2.0):.......1.5 = 2.0 - 0.5
+   TOTAL..................5.5/8.0
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+int restoDivisione(int array[], int dimensione) {
+    int restoDiv = 0;
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < dimensione - 2 -1.5
+    for (int i=1; i<dimensione-1; i++) {
+        //******** TWO OR THREE COMBINATIONS ON THE TRIPLE CONDITION ARE MISSING -0.5
+        if (array[i]==array[i+1]%array[i-1]||array[i]==array[i-1]%array[i+1]||
+            array[i-1]==array[i]%array[i+1]||array[i-1]==array[i+1]%array[i]||
+            array[i+1]==array[i]%array[i-1]||array[i+1]==array[i-1]%array[i]) {
+            restoDiv = 1;
+        }
+    }
+    return restoDiv;
+}
+int main(int argv, char **argc) {
+    int lunghezza;
+    printf("Ciao utente, quanto %c lunga la tua sequenza?\n", 138);
+    scanf("%d", &lunghezza);
+    if (lunghezza < 3) {
+        printf("La tua sequenza non %c idonea.\n", 138);
+        exit(-1);
+    }
+    printf("Ok ora dammene i valori:\n");
+    //******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+    int sequenza[lunghezza];
+    for (int i=0; i<lunghezza; i++) {
+        scanf("%d", &sequenza[i]);
+    }
+    if (restoDivisione(sequenza, lunghezza)) {
+        printf("Complimenti! Esiste una terna di elementi adiacenti in cui un elemento è pari al resto della divisione degli altri due.\n");
+    } else {
+        printf("Mi dispiace! Non esiste una terna di elementi adiacenti in cui un elemento è pari al resto della divisione degli altri due.\n");
+    }                                                                      
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good overall structure with separate function and main program
+- Proper implementation of user interaction
+- Clear output messages
+- Appropriate error checking for sequence length
+
+Areas for Improvement:
+- Array bounds checking in restoDivisione function needs correction
+- The loop should run until i < dimensione - 2 to avoid accessing elements outside array bounds
+- Some combinations for checking the remainder condition are missing
+- Array declaration should follow after input validation
+- Consider edge cases when dealing with division operations
+
+Key Recommendations:
+- Fix the array bounds in the loop condition to prevent buffer overflow
+- Complete all possible combinations for the remainder check
+- Move array declaration after length validation
+- Add input validation for array elements
+- Consider handling division by zero cases
+</feedback_summary>

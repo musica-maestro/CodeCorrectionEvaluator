@@ -1,0 +1,60 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL......................5.8
+*/
+
+#include<stdio.h>
+#include<math.h>
+int duePositivi(int x[], int lunghezza){
+    int verificato=1; 
+    //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+    for(int i=0;i<lunghezza-2;i++){
+        if ( (x[i]>0 && x[i+1]>0 && x[i+2]>0) ||
+             (x[i]<0 && x[i+1]<0 && x[i+2]<0) ||
+             (x[i]<0 && x[i+1]<0 && x[i+2]>0) ||
+             (x[i]<0 && x[i+1]>0 && x[i+2]<0) ||
+             (x[i]>0 && x[i+1]<0 && x[i+2]<0) )  
+                verificato=0; 
+    }
+    //******** SETTING THE VARIABLE TO 1 IS NOT NECESSARY (BECAUSE IT'S ALREADY 1), BUT YOU SAVE IT BECAUSE YOU PLACED THE BOOLEAN IN THE LOOP CONDITION -0.5
+    return verificato;
+}
+int main (){
+    int lunghezza; 
+        printf("quanti interi vuoi inserire?\n");
+        scanf("%d",&lunghezza);
+    int sequenza[lunghezza]; 
+        printf("inserisci gli interi\n");
+        for(int i=0;i<lunghezza;i++){
+            scanf("%d",&sequenza[i]);
+        }
+        //******** UNCLEAR MESSAGE -0.2
+        if(duePositivi(sequenza,lunghezza)){
+            printf("ogni tripla della sequenza contiene esattamente due positivi\n");
+        } else{
+            printf("non ci sono esattamente due positivi in ogni tripla della sequenza\n");
+        }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct function structure with proper parameters
+- Good array handling and iteration
+- Proper main function implementation with user interaction
+- Clear variable naming
+
+Areas for Improvement:
+- The condition for checking triples is incorrect. It should check for exactly two positive numbers, but instead checks for cases where the condition is not met. Consider simplifying the logic to directly count positive numbers in each triple.
+- The initialization of verificato=1 is redundant since it's already initialized to 1. While this doesn't affect functionality, it's not optimal.
+- Output messages could be more precise and clearer for users.
+
+Key Recommendations:
+- Revise the triple-checking logic to directly count positive numbers (should be exactly 2)
+- Simplify the boolean conditions in the function
+- Make output messages more specific and user-friendly
+- Consider adding input validation for array length
+</feedback_summary>

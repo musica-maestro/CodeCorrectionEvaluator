@@ -1,0 +1,65 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.5 = 6.0 - 1.0 - 0.5
+   MAIN (max 2.0):.......2.0
+   TOTAL..................6.5/8.0
+*/
+
+#include <stdio.h>
+int dueUnaCifra(int* seq, int n){
+	int tutte = 1;	
+	int i = 0;	
+	//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < n - 2 -1.0
+	while(i < n-2 && tutte){
+		//******** SETTING THE VARIABLE TO 1 IS NOT NECESSARY, BUT SAVED BY BOOLEAN IN LOOP CONDITION -0.5
+		if(!((seq[i] <= 9 && seq[i+1] <= 9) || (seq[i] <= 9 && seq[i+2] <= 9) || (seq[i+1] <= 9 && seq[i+2] <= 9)))
+			tutte = 0;
+		else
+			i++;
+	}
+	return tutte;
+}
+
+int main(){
+	int n;	
+	printf("Inserire quanti numeri si vuole inserire: ");
+	scanf("%d", &n);
+	int seq[n];		
+	for(int i = 0; i < n; i++){
+		printf("Inserire il %d' numero: ", i+1);
+		scanf("%d", &seq[i]);
+	}
+	if(dueUnaCifra(seq, n)){
+		printf("In ogni tripla di elementi adiacenti della sequenza sono ");
+		printf("presenti almeno due numeri composti da una sola cifra. \n");
+	}
+	else{
+		printf("Non in ogni tripla di elementi adiacenti della sequenza sono ");
+		printf("presenti almeno due numeri composti da una sola cifra. \n");
+	}
+	return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the universal verification logic
+- Good main function structure with clear user interaction
+- Proper function parameters and return type
+- Clear output messages
+
+Areas for Improvement:
+- Array bounds checking needs attention in the while loop condition
+- The initialization of 'tutte' could be more efficient
+- Should add validation for positive integers in input
+- Could improve the efficiency of the triple checking logic
+
+Key Recommendations:
+1. Fix the array bounds checking by using (i < n-2) to prevent accessing elements outside the array
+2. Consider adding input validation to ensure only positive integers are processed
+3. The boolean variable initialization could be simplified since it's already controlled in the while loop condition
+4. Consider adding comments to explain the logic of the triple checking condition
+</feedback_summary>
+
+The student's solution is generally well-implemented with only minor issues. The main function meets all requirements, and the core logic in dueUnaCifra is correct, though it could be optimized. The most significant concern is the potential for array bounds violation, which should be addressed for robustness.

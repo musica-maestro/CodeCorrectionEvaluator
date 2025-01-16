@@ -1,0 +1,86 @@
+I'll grade the student's submission following the provided format and criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):....1.3 = 6.0 - 1.5 - 1.0 - 1.0 - 1.2
+   MAIN PROGRAM (max 2.0):....0.5 = 2.0 - 0.5 - 0.5 - 0.5
+   TOTAL.......................1.8/8.0
+*/
+
+#include <stdio.h>
+void main(){ 
+//******** MISSING PARAMETERS FOR THE FUNCTION int seq[] AND length -1.5
+int x;
+int y;
+int z;
+int l;
+//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < l - 2 -1.0
+for(int i=0; i<=l; i++){
+int verifica=0; 
+    if(x%y==0 || x%z==0 || y%z==0) 
+    verifica=1;
+else
+    //******** THIS IS A UNIVERSAL VERIFICATION, NOT AN EXISTENTIAL ONE -1.2
+    return verifica;
+    }
+}
+
+int multipli(int a[]; int l){ 
+//******** INCORRECT INDENTATION -0.5
+int multiplo;
+for(int i=0; i<=l; i++)
+    if(multiplo(a[i],a[i+1],a[i+2])){ 
+    multiplo=0;
+    }
+    return multiplo;
+}
+
+int main(){
+int a;
+printf("Caro utente dimmi la lunghezza della tua sequenza\n");
+scanf("%d",&l);
+//******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+int seq[l];
+//******** INCORRECT READING, SHOULD BE &seq[i] -0.5
+printf("Adesso introduci la tua sequenza di %d elementi\n", &l[a]);
+scanf("%d", &seq[a]); 
+//******** NON-EXPLANATORY OUTPUT -0.5
+if(multiplo(a, l))
+    printf("La tua terna contiene almeno un elemento que %c un multiplo delle altre due\n", 138);
+else        
+    printf("Mi dispiace ma nessun elemento %c un multiplo degli altri due\n", 138);
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure with main function and helper functions
+- Attempt to implement the multiple checking logic
+- Basic user interaction implemented
+
+Areas for Improvement:
+1. Function Implementation:
+- The multipli function needs proper parameters (array and length)
+- Array bounds checking needs correction (i < l - 2)
+- The verification logic should be universal, not existential
+- Improve function indentation for better readability
+
+2. Main Program:
+- Array declaration should follow length input
+- Array reading needs proper indexing with a loop
+- Output messages should be more clear and explanatory
+- Input validation is missing
+
+Key Recommendations:
+1. Restructure the multipli function to:
+   - Accept proper parameters
+   - Implement correct array bounds checking
+   - Use proper universal verification logic
+2. Improve main function to:
+   - Properly read array elements using a loop
+   - Include input validation
+   - Provide clearer output messages
+3. Follow proper coding structure:
+   - Use consistent indentation
+   - Implement proper array handling
+   - Add appropriate error checking
+</feedback_summary>

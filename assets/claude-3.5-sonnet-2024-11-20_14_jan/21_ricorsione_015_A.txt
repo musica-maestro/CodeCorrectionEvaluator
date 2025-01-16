@@ -1,0 +1,129 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)......... 1.5 = 5.0 - 1.5 - 1.5 - 0.5
+countNumbers (2).... 0.5 = 2.0 - 1.0 - 0.5
+readNumbers (2)..... 0.5 = 2.0 - 1.0 - 0.5
+writeNumbers(1)..... 0.8 = 1.0 - 0.2
+TOTAL............... 3.3
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimoPari(int *seq, int lunghezza){
+    int verifica=1;
+    int i=0;
+    int max;
+    //******** Missing base case for recursion -1.5
+    if((verifica==1)&&(i<lunghezza-2))
+     massimoPariric(seq, lunghezza, i+1); 
+    else
+        verifica=0;
+        return verifica;
+    }
+
+int massimoPariric(int *seq, int lunghezza, int i){ 
+    //******** Function is not properly recursive - only checks one triplet -1.5
+    int verifica;                                   
+    int max;                                        
+    //******** Universal check should use && for all triplets -0.5
+    if((seq[i]>seq[i+1])&&seq[i]>seq[i+2])
+    {
+        max=seq[i];
+        if ((max%2)==0)
+            verifica=1;
+    }
+    else  if((seq[i]<seq[i+1])&&seq[i+1]>seq[i+2])
+    {
+        max=seq[i+1];
+        if ((max%2)==0)
+            verifica=1;
+    }
+     else if((seq[i]<seq[i+1])&&seq[i+1]<seq[i+2]) 
+    {
+        max=seq[i+2];
+        if ((max%2)==0)
+            verifica=1;
+    }
+    return verifica;
+}
+
+int quantiNumeri()
+{
+    int letto;
+    int valori=0;
+    //******** Wrong file mode for counting numbers -0.5
+    FILE  *fp=fopen("interi.dat", "wb");
+    if(fp==NULL)
+        printf("errore nell'apertura del file\n");
+     else
+    {     
+           //******** Incorrect file reading logic -1.0
+           letto=fread(&letto, sizeof(int), 1, fp);
+           if(letto);
+           valori=valori+1;
+           return valori;
+    }
+    printf("Ci sono %d Valori nel file", valori);
+    fclose(fp);
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    int valore;
+    FILE  *fp=fopen("interi.dat", "rb");
+    if(fp==NULL)
+        printf("errore nell'apertura del file\n");
+     else
+    {
+        for(int i=0;i<lunghezza;i++)
+           //******** Incorrect fread usage -1.0
+           sequenza[i]=fread(valore, sizeof(int), 1, fp);
+    } 
+    fclose(fp);
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE  *fp=fopen("interi.dat", "wb");
+    if(fp==NULL)
+        printf("errore nell'apertura del file\n");
+    else
+       //******** Missing last element in write loop -0.2
+       for(int i=0; i<lunghezza-1; i++){
+           int valore=sequenza[i];
+        fwrite(&valore, sizeof(int), 1, fp);
+       }
+    fclose(fp);
+}
+
+[... rest of the code remains unchanged ...]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic file operations structure is present
+- Error checking for file operations implemented
+- Main function properly handles user interaction
+
+Areas for Improvement:
+1. Maximum Even Function:
+   - Implement proper recursion checking all triplets
+   - Add proper base case for recursion
+   - Fix logical operators for universal check
+
+2. File Operations:
+   - Fix file reading logic in quantiNumeri()
+   - Correct fread usage in leggiNumeri()
+   - Include all elements in writeNumbers loop
+
+3. General Structure:
+   - Improve error handling in file operations
+   - Add proper return value handling
+
+Key Recommendations:
+1. Restructure massimoPari to properly implement recursion
+2. Fix file reading/writing operations using correct syntax
+3. Implement proper error handling for all file operations
+4. Complete the loop in scriviNumeri to include all elements
+</feedback_summary>

@@ -1,0 +1,61 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6):........3.3 = 6.0 - 2.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2):....1.8 = 2.0 - 0.2
+   TOTAL....................5.1
+*/
+
+#include <stdio.h>
+#include <stdbool.h>
+bool DuePositivi(int A[], int l){
+    bool flg= false;         
+    //******** THIS IS A UNIVERSAL VERIFICATION, NOT AN EXISTENTIAL ONE -2.0
+    for(int i=0; i<l-2; i++){
+        if((A[i]>=0)&&(A[i+1]>=0)&&(A[i+2]<0) || (A[i]>=0)&&(A[i+1]<0)&&(A[i+2]>=0) || (A[i]<0)&&(A[i+1]>=0)&&(A[i+2]>=0)){
+            flg=true;         
+        }else flg=false;    
+    }
+    //******** DO YOU CONSIDER 0 POSITIVE OR NEGATIVE? -0.2
+    return flg;
+}
+
+int main(){
+    int l;                     
+    printf("-> Salve utente di quanti elementi e' composta la sua sequenza di interi? ");
+    scanf("%d", &l);
+    printf("\n");
+    int A[l];                 
+    for(int i=0; i<l; i++){
+        printf("-> Inserisci il %d# elemento della sequenza (anche negativo): ", i+1);
+        scanf("%d", &A[i]);
+    }
+    //******** UNCLEAR MESSAGE -0.2
+    if(DuePositivi(A, l)) printf("\n-> Utente la sequenza da lei inserita CONTIENE tutte triple con al piu' 2 elementi positivi.");
+    else printf("\n-> Utente la sequenza da lei inserita NON CONTIENE tutte triple con al piu' 2 elementi positivi.");
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct function parameters and return type
+- Good array handling and user interaction
+- Clear input prompts
+- Proper use of loops for array traversal
+
+Areas for Improvement:
+- The logic in DuePositivi function implements existential verification (finds if there exists a triple) instead of universal verification (checks all triples must satisfy the condition)
+- The function should maintain a flag that starts as true and becomes false if any triple doesn't satisfy the condition
+- Zero handling should be clearly defined as either positive or negative
+- Output messages could be more precise about "exactly two positive numbers" rather than "at most 2"
+
+Key Recommendations:
+1. Modify the function logic to implement universal verification:
+   - Start with flag = true
+   - Set flag = false if any triple doesn't satisfy the condition
+   - Don't set flag back to true inside the loop
+2. Clarify zero handling in the implementation
+3. Make output messages more precise about the exact condition being checked
+4. Consider adding input validation for array length
+</feedback_summary>

@@ -1,0 +1,68 @@
+I'll grade the student's submission following the provided format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........0.5 = 6.0 - 1.5 - 1.0 - 1.5 - 0.5 - 1.0 - 1.0
+   MAIN PROGRAM (max 2.5):....0.5 = 2.5 - 0.5 - 1.0 - 0.5
+   TOTAL.......................1.0
+*/
+
+ #iclude <stdio.h>
+//******** SYNTAX ERROR IN #include -0.5
+int maggiori5Pari; 
+//******** FUNCTION DECLARATION INCOMPLETE (MISSING PARAMETERS) -1.5
+{
+	int i, sequenza[], trovato;
+	for(i=0, i>lunghezza+2, i++)
+//******** WRONG LOOP SYNTAX AND CONDITION -1.5
+}
+
+int main()
+{
+	int lunghezza;
+	int i, sequenza;
+	//******** SEQUENCE SHOULD BE AN ARRAY -1.0
+	printf("Ciao utente sono una funzione che verifica se in una tripla di interi sono soddisfatte le condizioni:\n");
+	printf(" esistenza di una tripla di interi maggiori o uguali a 5 e almeno due interi pari\n");
+	printf("Caro utente inserisci la lunghezza della sequenza");
+	scanf("%d", lunghezza);
+	//******** MISSING & OPERATOR FOR SCANF -0.5
+	printf("Inserisci gli interi\n");
+	scanf("[%d]", sequenza);
+	//******** INCORRECT ARRAY INPUT FORMAT -0.5
+	maggiori5Pari(sequenza, i);
+	if()
+	//******** INCOMPLETE IF STATEMENT -1.0
+	}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure attempt with main function
+- Attempt to include user instructions and input prompts
+
+Areas for Improvement:
+1. Function Implementation:
+   - Complete the maggiori5Pari function with proper parameters and return type
+   - Implement the logic for checking triples of consecutive elements
+   - Add proper loop conditions and array bounds checking
+
+2. Main Program:
+   - Declare sequence as an array after getting its length
+   - Implement proper array input using a loop
+   - Complete the if statement with proper condition and output message
+   - Fix scanf statements to properly read input
+
+3. Syntax and Structure:
+   - Fix #include directive
+   - Add function prototype
+   - Complete control structures (if statement)
+   - Use proper array declaration and handling
+
+Key Recommendations:
+1. Study array declaration and manipulation in C
+2. Review function declaration syntax and parameter passing
+3. Learn proper input/output handling with scanf/printf
+4. Implement complete logic for checking consecutive triples
+5. Add proper error checking and validation
+</feedback_summary>

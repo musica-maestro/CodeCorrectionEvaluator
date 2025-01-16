@@ -1,0 +1,74 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL......................5.8
+*/
+
+#include <stdio.h>
+int multipli(int array[], int dimensione){
+    int i=0;            
+    int esiste=1;        
+    int primoSecondo;
+    int primoTerzo;
+    int secondoTerzo;
+    //******** INCORRECT FUNCTION NAME (multipli vs multipli) -0.5
+    while(i<(dimensione-2) && esiste){
+        primoSecondo=(array[i]%array[i+1]==0) || (array[i+1]%array[i]==0);
+        primoTerzo=(array[i]%array[i+2]==0) || (array[i+2]%array[i]==0);
+        secondoTerzo=(array[i+1]%array[i+2]==0) || (array[i+2]%array[i+1]==0);
+        //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+        if(!(primoSecondo || primoTerzo || secondoTerzo))
+            esiste=0;
+        else
+            i++;
+    }
+    return esiste;
+}
+
+int main(){
+    int lunghezza;        
+    printf("\nCiao utente, sono un programma che, data una sequenza, verifico se\n%c presente almeno un elemento multiplo di uno degli altri due.",138);
+    printf("\n\nQuanti elementi vuoi inserire? ");
+    scanf("%d",&lunghezza);
+    if(lunghezza<3){
+        do{
+            printf("\nDevi inserire almeno 3 elementi!");
+            printf("\n\nQuanti elementi vuoi inserire? ");
+            scanf("%d",&lunghezza);
+        }while(lunghezza<3);
+    }
+    int sequenza[lunghezza];            
+    for(int i=0;i<lunghezza;i++){
+        printf("\nInserisci il %d%c elemento: ",i+1,167);
+        scanf("%d",&sequenza[i]);
+    }
+    //******** UNCLEAR OUTPUT MESSAGE -0.2
+    if(multipli(sequenza,lunghezza))
+        printf("\nPer ogni tripla di elementi,%c presente almeno\nun elemento multiplo di uno degli altri due",138);
+    else
+        printf("\nC'%c almeno una tripla di elementi dove non %c presente\nalmeno un elemento multiplo di uno degli altri due",138,138);
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good overall program structure with separate function and main
+- Proper input validation for sequence length
+- Correct array bounds checking in the function
+- Good use of boolean flag for verification
+
+Areas for Improvement:
+- Function name mismatch between declaration and usage (multipli vs multipli)
+- The condition for checking multiples in triples could be more clearly structured
+- Output messages could be more precise and clearer
+- Consider handling edge cases like zero values in the sequence
+
+Key Recommendations:
+1. Ensure consistent function naming throughout the code
+2. Restructure the triple condition check for better readability and correctness
+3. Make output messages more precise and user-friendly
+4. Add validation for zero values in the input sequence
+5. Consider using more descriptive variable names for better code readability
+</feedback_summary>

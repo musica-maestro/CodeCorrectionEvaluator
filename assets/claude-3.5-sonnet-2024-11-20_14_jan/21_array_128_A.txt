@@ -1,0 +1,68 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................7.3
+*/
+
+#include <stdio.h>
+int ugualiCompresi(int vet[],int lung)
+{
+    //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+    int c,vero=0 ;                  
+    for(c=0;c<lung-2 && vero==0;c++){
+        if((vet[c]+vet[c+1]<20 && vet[c]+vet[c+1]>10)
+        || (vet[c]+vet[c+2]<20 && vet[c]+vet[c+2]>10)  
+        || (vet[c+1]+vet[c+2]<20 && vet[c]+vet[c+2]>10))
+            if((vet[c]==vet[c+1] && vet[c]!=vet[c+2])
+            || (vet[c]==vet[c+2] && vet[c+1]!=vet[c])
+            || (vet[c+2]==vet[c+1] && vet[c]!=vet[c+1])){
+                vero=1;
+            }
+    }
+    return vero;
+}
+
+int main()
+{
+    int lung,c;
+    printf("inserisci la lunghezza della sequenza: \n");
+    scanf("%d",&lung);
+    int vet[lung];
+    printf("inserisci i valori della sequenza: \n");
+    for(c=0;c<lung;c++){
+        scanf("%d",&vet[c]);
+    }
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    if (ugualiCompresi(vet,lung)==1){
+        printf("esiste una tripla di interi consecutivi all'interno della sequenza tale che");
+        printf(" la somma di almeno due valori sia compresa tra 10 e 20 e che esattamente due valori siano uguali tra loro \n");
+    }
+    else{
+        printf("non esiste una tripla di interi consecutivi all'interno della sequenza tale che");
+        printf(" la somma di almeno due valori sia compresa tra 10 e 20 e che esattamente due valori siano uguali tra loro \n");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for checking consecutive triples
+- Proper array bounds checking in the loop condition
+- Correct handling of the equality condition for exactly two elements
+- Good implementation of the main function's input/output requirements
+
+Areas for Improvement:
+- The condition checks could be more readable by breaking them into smaller, more manageable parts
+- Output messages could be more concise and clearer while still conveying all necessary information
+- Consider using more descriptive variable names (e.g., 'vero' could be 'found' or 'exists')
+
+Key Recommendations:
+- Break down complex conditions into smaller, well-named boolean variables for better readability
+- Simplify output messages while maintaining clarity
+- Use more descriptive variable names to improve code maintainability
+- Consider adding input validation for array length
+</feedback_summary>
+
+The student's implementation is generally correct and meets most of the requirements. The main deductions are for code readability and output message clarity. The function correctly implements the required logic for finding triples that satisfy both conditions (sum between 10 and 20 and exactly two equal elements). The main program correctly handles user interaction and array management.

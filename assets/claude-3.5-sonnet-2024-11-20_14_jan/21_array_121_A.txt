@@ -1,0 +1,72 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........2.0 = 6.0 - 1.5 - 1.5 - 1.0
+   MAIN PROGRAM (max 2.5):....1.8 = 2.5 - 0.5 - 0.2
+   TOTAL.......................3.8
+*/
+
+#include <stdio.h>
+ int ugualiCompresi (int s[], int l){
+	 int i=0;
+	 int positiva=0;
+	 //******** CONDITION ON INDEX IS WRONG, SHOULD BE i < l-2 -1.5
+	 while(s[i]<l-2){ 
+		 //******** ERROR IN "WITHIN THE RANGE" EXPRESSION: THIS DOES NOT EXPRESS "WITHIN THE RANGE" -1.5
+		 if(((s[i]==s[i+1]) && (s[i+1]!=s[i+2])) || ((s[i+1]==s[i+2])  && (s[i]!=s[i+2])) || ((s[i]==s[i+2]  && (s[i+1]!=s[i]))))
+			 if (((10>=s[i]+s[i+1]<=20) || (10>=s[i]+s[i+2]<=20) || (10>=s[i+1]+s[i+2]<=20)))
+				positiva=1; 
+			 else
+			 //******** INCREMENT OF i IS MISSING IN MAIN LOOP BODY -1.0
+			 i++;} 
+return positiva;}
+
+int main(int argc, char **argv)
+{
+	int l;
+	printf("caro utente inserisci la lunghezza della tua sequenza\n");
+	scanf("%d", &l);
+	int sequenza[l];
+	printf("inserisci uno alla volta gli elementi della tua sequenza\n");
+	for(int i=0;i<l;i++)
+		scanf("%d", &sequenza[i]);
+		//******** BADLY INDENTED -0.2
+		if (ugualiCompresi(sequenza, l)){
+		printf("esiste una tripla di elementi consecutivi di cui esattamente 2 sono uguali e la somma di almeno 2 di loro e' compresa tra 10 e 20\n");}
+		else{
+		//******** OUTPUT IS POORLY EXPRESSED -0.5
+		printf("NON esiste una tripla di elementi consecutivi di cui esattamente 2 sono uguali e la somma di almeno 2 di loro e' compresa tra 10 e 20\n");
+		}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic structure of the function and main program is present
+- Correct approach to checking for exactly two equal elements
+- Good user interaction in main function
+
+Areas for Improvement:
+1. Loop condition and array bounds:
+   - The while loop condition should be i < l-2 to properly check triples
+   - Array index bounds checking needs correction to prevent buffer overflow
+
+2. Range checking implementation:
+   - The expression for checking if sum is between 10 and 20 is incorrectly written
+   - Should be written as (s[i]+s[i+1] >= 10 && s[i]+s[i+1] <= 20)
+
+3. Loop control:
+   - Missing proper increment of i in the main loop body
+   - Loop structure needs revision to ensure all triples are checked
+
+4. Code structure:
+   - Improve indentation for better readability
+   - Make output messages more precise and clear
+
+Key Recommendations:
+1. Fix the loop condition to properly iterate through array triples
+2. Correct the range checking expression syntax
+3. Ensure proper increment of loop counter
+4. Improve code formatting and indentation
+5. Make output messages more concise and clear
+</feedback_summary>

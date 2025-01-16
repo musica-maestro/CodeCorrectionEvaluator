@@ -1,0 +1,56 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.5 = 6.0 - 1.0 - 0.5
+   MAIN PROGRAM (max 2.0):....2.0
+   TOTAL.......................6.5
+*/
+
+#include <stdio.h>
+int dueUnaCifra(int array[], int n){
+	int i=0; 
+	int triple=1; 
+	//******** SETTING THE VARIABLE TO 1 IS NOT NECESSARY (BECAUSE IT'S ALREADY 1), BUT YOU SAVE IT BECAUSE YOU PLACED THE BOOLEAN IN THE LOOP CONDITION -0.5
+	while(i<n-2 && triple)
+		//******** CONDITION ON THE TRIPLE IS WRONG -1.0
+		if((array[i]>=10 && array[i+1]>=10) || (array[i]>=10 && array[i+2]>=10) || (array[i+1]>=10 && array[i+2]>=10)) 
+			triple=0;
+		else 
+			i++;
+	return triple;
+}
+int main(){
+	int lunghezza;
+	printf("Ciao utente, questo programma verifica se, nella sequenza inserita di interi positivi, ogni tripla di elementi adiacenti ha almeno 2 numeri composti da una sola cifra. \n");
+	printf("Quanti interi positivi vuoi inserire? ");
+	scanf("%d", &lunghezza);
+	int sequenza[lunghezza];
+	for (int i = 0; i < lunghezza; i++){
+		printf("Inserisci un intero positivo alla volta: ");
+		scanf("%d", &sequenza[i]);
+	}
+	if(dueUnaCifra(sequenza, lunghezza))
+		printf("Nella sequenza inserita ogni tripla di elementi adiacenti ha almeno 2 numeri composti da una sola cifra.");
+	else
+		printf("Nella sequenza inserita esiste almeno una tripla di elementi adiacenti in cui non ci sono almeno 2 numeri composti da una sola cifra.");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of array bounds checking (i<n-2)
+- Good user interaction in main function
+- Clear output messages
+- Proper parameter passing to the function
+- Good use of boolean flag for early termination
+
+Areas for Improvement:
+- The condition for checking single-digit numbers could be more precise. Instead of checking if numbers are >=10, consider checking if they are between 0 and 9
+- The triple condition logic could be simplified and made more clear
+- The initialization of triple=1 is redundant since it's already initialized to 1
+
+Key Recommendations:
+- Revise the condition for checking single-digit numbers to be more explicit (use x >= 0 && x <= 9)
+- Consider restructuring the triple condition to make it more readable and maintainable
+- Consider adding input validation for positive integers in the main function
+</feedback_summary>

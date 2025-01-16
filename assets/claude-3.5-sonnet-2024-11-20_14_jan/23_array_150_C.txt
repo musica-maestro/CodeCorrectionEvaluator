@@ -1,0 +1,71 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....2.0 = 6.0 - 1.5 - 1.5 - 1.0
+   MAIN PROGRAM (max 2.0):....1.0 = 2.0 - 0.5 - 0.5
+   TOTAL.......................3.0
+*/
+
+#include <stdio.h>
+#include <string.h>
+int dueUnaCifra (int* array, int l){
+	int esiste=1;
+	int i=0;
+		for (int i = 0; i < l-3; ++i){ 
+        //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < l - 2 -1.0
+		if(!((array[i]<='9'&&array[i+2]<='9'&&array[i+1]>'9')||   
+		     (array[i]<='9'&&array[i+1]<='9'&&array[i+2]>'9')||   
+		     (array[i+1]<='9'&&array[i+2]<='9'&&array[i+3]>'9'))) 
+        //******** COMPARING AN INTEGER WITH A CHARACTER! -1.5
+        //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+			esiste=0;
+		}
+	return esiste;
+}
+int main(int argc, char const *argv[])
+{
+int l;
+printf("utente, inserisci la lunghezza del tuo array: \n");
+scanf("%d", &l);
+int array[l];
+printf("ora inserisci gli elementi dell'array \n");
+for (int i = 0; i < l; i++)
+{
+	scanf("%d", &array[l]);
+    //******** INCORRECT READING, SHOULD BE &array[i] -0.5
+}
+if (dueUnaCifra(array, l))
+	printf("la tua propietà VALE\n"); 
+else
+	printf("la tua propietà NON VALE\n");
+//******** NON-EXPLANATORY OUTPUT -0.5
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Function and main program separation is correct
+- Attempt to implement the required logic for checking triples
+
+Areas for Improvement:
+1. Array Access and Bounds:
+- The loop condition in dueUnaCifra should be i < l-2 to properly check triples
+- Array access in scanf should use index i, not l
+
+2. Logic Implementation:
+- Integer comparison with characters ('9') is incorrect
+- Should use proper integer comparison (e.g., array[i] <= 9)
+- Triple condition logic needs revision to correctly check for single-digit numbers
+
+3. User Interface:
+- Output messages should be more descriptive and clear
+- Consider adding input validation
+
+Key Recommendations:
+1. Fix array bounds checking in the dueUnaCifra function
+2. Implement proper integer comparisons instead of character comparisons
+3. Correct the array indexing in the scanf statement
+4. Improve output messages to be more user-friendly and descriptive
+5. Add input validation for array length and elements
+</feedback_summary>

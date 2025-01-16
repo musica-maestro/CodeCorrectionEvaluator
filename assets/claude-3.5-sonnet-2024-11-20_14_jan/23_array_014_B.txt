@@ -1,0 +1,73 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........2.3 = 6.0 - 2.0 - 1.5 - 0.2
+   MAIN PROGRAM (max 2.0):....1.3 = 2.0 - 0.5 - 0.2
+   TOTAL.......................3.6
+*/
+
+#include<stdio.h>
+int duePositivi(int array[], int lunghezza){
+    int i;
+    int conta=0; 
+    //******** THIS IS A UNIVERSAL VERIFICATION, NOT AN EXISTENTIAL ONE -2.0
+    for(i=0;i<lunghezza-2;i++){
+        //******** THIS WAY YOU CHECK IF THERE ARE AT LEAST TWO POSITIVES, NOT EXACTLY TWO -1.5
+        if((array[i]>0 && array[i+1]>0) || (array[i+1]>0 && array[i+2]>0))
+            conta=1;
+    }
+    //******** DO YOU CONSIDER 0 POSITIVE OR NEGATIVE? -0.2
+    return conta;
+}
+int main(){
+    int i; 
+    int n; 
+    int conta; 
+    printf("quanto vuoi lunga la sequenza?"); 
+    //******** MISSING SPACE -0.1
+    scanf("%d",&n);
+    //******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+    int array[n]; 
+    for(i=0;i<n;i++){
+        printf("inserire il valore nella cella [%d]",i); 
+        scanf("%d",&array[i]);
+    }
+    conta=duePositivi(array,n);
+    //******** UNCLEAR MESSAGE -0.2
+    printf("%d",conta);  
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Function parameters and array handling are correctly implemented
+- Input collection from user is implemented
+
+Areas for Improvement:
+1. Logic Implementation:
+   - The function checks for at least two positives instead of exactly two
+   - The verification should be universal (all triples must satisfy the condition)
+   - Need to clarify how zero values should be handled
+
+2. Main Program:
+   - Array declaration should follow the size input
+   - Output message should clearly indicate what the result means
+   - Add spaces in output messages for better readability
+
+Key Recommendations:
+1. Modify the function logic to:
+   - Count exactly two positives in each triple
+   - Return 0 as soon as a triple doesn't satisfy the condition
+   - Use a boolean flag to track if all triples satisfy the condition
+
+2. Improve the main program by:
+   - Moving array declaration after size input
+   - Adding clear output messages explaining the result
+   - Including proper spacing in output messages
+
+3. Consider edge cases:
+   - Define how to handle zero values
+   - Validate input values
+   - Add proper error checking
+</feedback_summary>

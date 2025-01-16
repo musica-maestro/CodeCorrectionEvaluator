@@ -1,0 +1,10 @@
+Design an algorithm to solve the following problem. Given a sequence of integers, check if in each triple of adjacent elements there are exactly two positive numbers. For example, the sequence [3, -1, 2, 5, -4] is a positive instance of the problem, because all the triples of adjacent elements in the sequence (3, -1, 2), (-1, 2, 5), and (2, 5, -4) contain exactly two positive numbers, while in the sequence [3, 2, 5, -1, -4] the first triple (3, 2, 5) does not contain exactly two positive numbers.
+
+(1 pt) Describe the specification of the problem briefly.
+(1 pt) Indicate what type of problem this is (accumulation, counting, existential verification, universal verification, search, minimum/maximum).
+(6 pt) A function duePositivi with parameters: 1) an array of integers; and 2) an integer representing the length of the array. The function returns 1 if in all the triples of adjacent elements in the sequence there are exactly two positive numbers, 0 otherwise.
+(2 pt) A main function that handles user interaction. The main function should:
+· Ask the user how many integers the sequence has and read the user's response
+· Ask the user to enter the integers of the sequence, read the integers entered by the user, and store them in an array;
+· Call the duePositivi function, passing it a reference to the sequence of integers just read and its length;
+· Print a message informing the user whether it is true that in all the triples of adjacent elements of the sequence there are exactly two positive numbers, or not.

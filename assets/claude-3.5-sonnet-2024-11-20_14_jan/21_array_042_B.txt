@@ -1,0 +1,73 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.5 = 6.0 - 1.5
+   MAIN PROGRAM (max 2.5):....2.5
+   TOTAL.......................7.0
+*/
+
+#include <stdio.h>
+int maggiori5Pari(int array[], int lunghezza){
+    int verificata=1; 
+    int contaPari=0; 
+    int contamaggiori5=0; 
+    //******** WRONG CONDITION: DOESN'T CHECK ALL TRIPLES CORRECTLY -1.5
+    for(int i=0;i<lunghezza-2;i++){
+        if(array[i]%2==0){
+            contaPari++;
+        }
+        if(contaPari==1 && (array[i+1]%2!=0 && array[i+2]!=0)){
+            verificata=0;
+            break;  
+        }
+        if(array[i]>=5){
+            contamaggiori5++;
+        }
+        if((contamaggiori5==3) || (contamaggiori5==1 && (array[i+1]<5 || array[i+2]<5))){
+            verificata=0;
+            break;    
+        }
+    }
+    return verificata; 
+}
+
+int main(){
+    int lunghezza; 
+    printf("Ciao utente! Inserisci quanti numeri vuoi mettere!\n");
+    scanf("%d", &lunghezza);
+    int array[lunghezza]; 
+    printf("Ora inserisci i numeri della sequenza:\n");
+    for(int i=0;i<lunghezza;i++){
+        scanf("%d", &array[i]);
+    }
+    int boole=maggiori5Pari(array,lunghezza); 
+    if(boole==1)
+        printf("Ogni tripla di elementi consecutivi contiene esattamente due numeri maggiori o uguali a 5 e almeno due numeri pari");
+    else
+        printf("NON ogni tripla di elementi consecutivi contiene esattamente due numeri maggiori o uguali a 5 e almeno due numeri pari");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Well-structured main function with clear user interaction
+- Proper array handling and memory allocation
+- Clear output messages that explain the results
+- Good variable naming conventions
+
+Areas for Improvement:
+- The logic in maggiori5Pari function needs revision for checking triples correctly
+- The counting mechanism for even numbers and numbers ≥5 should be reset for each triple
+- The current implementation doesn't properly verify each triple independently
+- The break statements make the function exit early, potentially missing some cases
+
+Key Recommendations:
+1. Modify the function to check each triple independently by:
+   - Resetting counters for each new triple
+   - Counting properties within the scope of current triple only
+2. Remove break statements and implement a more structured verification approach
+3. Consider using separate helper functions to improve code readability
+4. Add input validation for array length to ensure it's at least 3
+</feedback_summary>
+
+The main deduction comes from the function implementation which doesn't correctly verify the properties for each triple independently. The current implementation maintains running counts across all elements rather than checking each consecutive triple separately. The main function is well implemented with proper user interaction and clear output messages.

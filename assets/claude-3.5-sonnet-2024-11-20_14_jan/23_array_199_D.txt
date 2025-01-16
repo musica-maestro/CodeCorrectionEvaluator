@@ -1,0 +1,62 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL......................7.1
+*/
+
+#include <stdio.h>
+int restoDivisione(int *array, int len);
+int main(){
+    int len; 
+    printf("Specificare dimensione array: ");
+    scanf("%d",&len);
+    int array[len];
+    for(int i = 0; i < len; i++){
+        printf("%d numero: ",i+1);
+        scanf("%d", &array[i]);
+    }
+    int res = restoDivisione(array,len);
+    //******** UNCLEAR MESSAGE -0.2
+    if(res)
+        printf("Istanza Positiva");  
+    else
+        printf("Istanza Negativa");
+}
+
+int restoDivisione(int *array, int len){
+    //******** INCORRECT INDENTATION -0.5
+	int condizione = 0;
+    //******** HOW DO YOU CONSIDER 0? -0.2
+	for(int i = 0 ; (i < len -2 ) && !condizione; i++){
+		if( (array[i] == (array[i+1] / array[i+2]) || (array[i] == (array[i+2] / array[i+1]))) ||
+			(array[i+1] == (array[i] / array[i+2]) || (array[i+1] == (array[i+2] / array[i]))) ||
+			(array[i+2] == (array[i+1] / array[i]) || (array[i+2] == (array[i] / array[i+1]))) )
+			condizione = 1;
+	}
+	return condizione;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the existential verification algorithm
+- Proper array bounds checking in the loop (i < len-2)
+- Complete check of all possible division combinations between triple elements
+- Good use of boolean flag to exit loop early when condition is found
+
+Areas for Improvement:
+- Code indentation needs to be consistent throughout the function
+- Messages to user could be more descriptive (e.g., "Found a triple that satisfies the condition" instead of "Istanza Positiva")
+- Need to consider edge case when dividing by zero
+- Consider using more descriptive variable names (e.g., 'found' instead of 'condizione')
+
+Key Recommendations:
+1. Add proper indentation to improve code readability
+2. Implement zero division checks to prevent runtime errors
+3. Make output messages more user-friendly and descriptive
+4. Use consistent naming conventions throughout the code
+</feedback_summary>
+
+The student's implementation is generally good, with only minor issues. The main algorithm correctly identifies triples where one number is the remainder of the division of the other two, and the main program handles user interaction appropriately. The deductions are primarily for code style and edge case handling rather than algorithmic correctness.

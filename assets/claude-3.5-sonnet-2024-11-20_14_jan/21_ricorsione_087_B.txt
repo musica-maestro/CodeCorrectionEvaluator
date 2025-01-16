@@ -1,0 +1,100 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........3.0 = 5.0 - 1.5 - 0.5
+countNumbers (2).....0.7 = 2.0 - 1.0 - 0.3
+readNumbers (2)......1.7 = 2.0 - 0.3
+writeNumbers(1)......0.7 = 1.0 - 0.3
+TOTAL................6.1
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int minimoDispari(int *seq, int lunghezza){
+    int tutti;
+    //******** The base case should be length<=2 (because you need to consider a triplet of elements) -0.5
+    if(lunghezza<2) 
+        tutti=1;
+        else{
+            //******** incorrect syntax for evaluating boolean expressions -1.5
+            tutti=((((seq[0]<seq[1]&&seq[0]<seq[2])&&(seq[0]%2!=0))||
+                (seq[1]<seq[0]&&seq[1]<seq[2]&&(seq[1]%2!=0))||
+                (seq[2]<seq[0]&&seq[2]<seq[1]&&(seq[2]%2!=0)))&&minimoDispari(seq+1,lunghezza-1));
+                } 
+ return tutti;
+}
+
+int quantiNumeri() {
+    int quanti=0;
+    FILE* fp=fopen("file.txt","r");
+    //******** with fscanf, while must return a value >0 while(fscanf(fp,"%d",&num)>0) -1.0
+    if(fp==NULL)
+        printf("Niente da contare!\n\n");
+        else{
+           int numero;
+            fscanf(fp,"%d", &numero);
+            //******** counter not initialized -0.3
+               quanti++;
+        fclose(fp);
+        }
+    return quanti;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE* fp=fopen("file.txt", "r");
+    if(fp==NULL)
+        printf("Niente da leggere!\n\n");
+        else{
+            for(int i=0; i<lunghezza; i++)
+                fscanf(fp, "%d", &sequenza[i]);
+        }
+      fclose(fp);
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE* fp=fopen("file.txt","w");
+    //******** you don't check if fopen was successful -0.3
+    if(fp==NULL)
+        printf("File inesistente\n\n");
+        else{
+            for(int i=0; i<lunghezza; i++){
+                fprintf(fp," %d ", sequenza[i]);
+            }
+            fclose(fp);
+    }
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic file operations implemented correctly
+- Good structure with separate functions for different operations
+- Proper file closing in most cases
+- Basic error checking for file operations included
+
+Areas for Improvement:
+1. minimoDispari function:
+   - Base case needs revision to handle triplets correctly
+   - Boolean expression syntax needs simplification
+   - Consider edge cases when array length is less than 3
+
+2. quantiNumeri function:
+   - Implement proper file reading loop to count all numbers
+   - Initialize counter properly
+   - Improve error handling for file operations
+
+3. scriviNumeri function:
+   - Add proper error checking for file operations
+   - Consider using proper file naming as per assignment (integers.txt)
+
+Key Recommendations:
+1. Revise the base case in minimoDispari to properly handle sequences shorter than 3 elements
+2. Implement proper file reading loop in quantiNumeri using while(fscanf(fp,"%d",&num)>0)
+3. Use consistent error handling across all file operations
+4. Follow assignment specifications for file naming (integers.txt instead of file.txt)
+5. Simplify boolean expressions in minimoDispari for better readability and correctness
+</feedback_summary>

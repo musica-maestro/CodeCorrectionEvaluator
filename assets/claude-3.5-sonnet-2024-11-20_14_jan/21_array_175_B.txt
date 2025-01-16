@@ -1,0 +1,75 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....2.0 = 6.0 - 1.5 - 1.0 - 1.5
+   MAIN PROGRAM (max 2.5):....1.7 = 2.5 - 0.5 - 0.3
+   TOTAL.......................3.7
+*/
+
+#include <stdio.h>
+int maggiori5Pari(int interi[], int lung){
+    int i=0;
+    int verificato=1;
+    //******** WRONG CONDITION ON INDEX i < length - 2 -1.5
+    while((i<lung)&&verificato){
+    //******** WRONG CONDITION: COMPARING INTEGER WITH CHARACTER RANGE -1.5
+    if(!((interi[i]>='0')&&(interi[i]<='9'))) 
+        i++;
+        else{
+            //******** CONDITION IS WRONG: EXACTLY TWO ELEMENTS MUST BE >= 5 -1.0
+            if(((interi[i])&&(interi[i+1])>=5)||((interi[i])&&(interi[i+2])>=5)||((interi[i+1])&&(interi[i+2])>=5)){
+                if(((interi[i]%2==0)&&(interi[i+1]%2==0))||((interi[i]%2==0)&&(interi[i+2]%2==0))||(interi[i+1]%2==0)&&(interi[i+2]%2==0)){
+                    verificato=1;}} 
+                    else{
+                        verificato=0;}}
+                    }
+                        i++;
+    return verificato;}
+
+int main(){
+    int lunghezza;
+    printf("caro utente,quanti interi vuoi inserire?");
+    scanf("%d", &lunghezza);
+    int sequenza[lunghezza];
+    for (int i=0; i<lunghezza; i++){
+        printf("inserisci gli interi della sequenza");
+        scanf("%d", &sequenza[i]);}
+    //******** OUTPUT IS POORLY EXPRESSED -0.5
+    if(maggiori5Pari(sequenza,lunghezza))
+        //******** BADLY INDENTED -0.3
+        printf("ogni tripla di elementi consecutivi nella sequenza contiene almeno esattamente due elementi maggiori o uguali a 5 e almeno due elementi pari");
+        else 
+            printf("ogni tripla di elementi consecutivi nella sequenza NON contiene almeno esattamente due elementi maggiori o uguali a 5 e almeno due elementi pari");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Main function handles user input correctly
+- Return value is properly implemented
+
+Areas for Improvement:
+1. Function Logic:
+   - The loop condition should be i < lung - 2 to avoid array bounds issues
+   - The condition for checking numbers ≥ 5 is incorrect and overly complicated
+   - Character comparison ('0' to '9') is inappropriate for integer values
+
+2. Code Structure:
+   - Improve code indentation for better readability
+   - Simplify the nested conditions
+   - Make output messages more concise and clear
+
+3. Algorithm Implementation:
+   - Revise the logic to check for exactly two elements ≥ 5
+   - Correctly implement the check for at least two even elements
+   - Remove unnecessary character comparisons
+
+Key Recommendations:
+1. Restructure the maggiori5Pari function to:
+   - Use proper array bounds checking
+   - Implement clear conditions for counting elements ≥ 5
+   - Simplify the logic for checking even numbers
+2. Improve code formatting and indentation
+3. Make output messages more precise and user-friendly
+</feedback_summary>

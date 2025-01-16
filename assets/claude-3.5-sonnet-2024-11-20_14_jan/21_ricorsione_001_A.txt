@@ -1,0 +1,94 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* 
+maxEven (5)............4.0 = 5.0 - 1.0
+countNumbers (2).......2.0
+readNumbers (2)........2.0
+writeNumbers(1)........1.0
+TOTAL..................9.0
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimoPari(int *seq, int lunghezza) {
+    int ogniTripla;          
+    int max;                
+    if(lunghezza<=2)
+        ogniTripla=1;
+    else {
+        max = seq[0];
+        //******** Using if-else instead of a more efficient method to find maximum of three numbers -0.5
+        if(seq[1]>max && seq[1]>seq[2])
+            max=seq[1];
+        else {
+            if(seq[2]>seq[1] && seq[2]>max)
+                max=seq[2];
+        }
+        //******** Recursive call should check all triplets, using && for universal property -0.5
+        ogniTripla = (max%2==0) && massimoPari(seq+1, lunghezza-1);
+    }
+    return ogniTripla;
+}
+
+int quantiNumeri() {
+    int intero;         
+    int quanti = 0;     
+    FILE *fp = fopen("interi.dat", "rb");        
+    if(fp==NULL)
+        printf("impossibile aprire file o file non esistente!\n\n");
+    else {
+        while(fread(&intero, sizeof(int), 1, fp)>0)
+            quanti++;           
+        fclose(fp);         
+    }
+    return quanti;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE *fp = fopen("interi.dat", "rb");            
+    if(fp==NULL)
+        printf("impossibile aprire file o file non esistente!\n\n");
+    else {
+        fread(sequenza, sizeof(int), lunghezza, fp);
+        fclose(fp);         
+    }
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE *fp = fopen("interi.dat", "wb");        
+    if(fp==NULL)
+        printf("salvataggio non riuscito!\n\n");
+    else {
+        fwrite(sequenza, sizeof(int), lunghezza, fp);
+        fclose(fp);     
+    }
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of file operations (reading, writing, counting)
+- Proper file handling with error checking
+- Good implementation of base case for recursion
+- Clean and well-structured code
+
+Areas for Improvement:
+- The massimoPari function could be optimized:
+  - The method for finding maximum of three numbers could be simplified
+  - The recursive implementation should better handle the universal property check
+- Consider adding more descriptive error messages for file operations
+- The main function could benefit from better input validation
+
+Key Recommendations:
+1. Simplify the maximum calculation using math.h functions or direct comparisons
+2. Strengthen the recursive logic to ensure all triplets are properly checked
+3. Add more robust input validation in the main function
+4. Consider adding more detailed error messages for file operations
+5. Add documentation/comments to explain the logic of complex operations
+</feedback_summary>
+
+The student's implementation is generally good, with minor issues in the recursive function implementation. The file operations are well-handled with proper error checking. The main deductions come from the suboptimal implementation of finding the maximum value and the recursive property checking in massimoPari function.

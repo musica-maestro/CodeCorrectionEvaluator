@@ -1,0 +1,101 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........2.0 = 5.0 - 1.5 - 1.0 - 0.5
+countNumbers (2).....0.2 = 2.0 - 1.0 - 0.5 - 0.3
+readNumbers (2)......0.7 = 2.0 - 0.5 - 0.5 - 0.3
+writeNumbers(1)......0.3 = 1.0 - 0.4 - 0.3
+TOTAL................3.2
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+int minimoDispari(int *seq, int lunghezza){
+    //******** Recursion should be done on array length -1.0
+    //******** The base case should be length<=2 -0.5
+    //******** incorrect syntax for evaluating boolean expressions -1.5
+    int r;
+    if(lunghezza<3)
+        r=0;
+    else
+        r=(((seq[0]<seq[1] || seq[0]<seq[2]) && seq[0]%2!=0) ||
+        ((seq[1]<seq[0] || seq[1]<seq[2]) && seq[1]%2!=0)) ||
+        ((seq[2]<seq[1] || seq[2]<seq[0])&&seq[2]%2!=0) ||  
+        minimoDispari(*seq+1, lunghezza-1); 
+    return r;
+}
+
+int quantiNumeri() {
+    int n;   
+    //******** counter not initialized -0.3
+    FILE *fp=fopen("interi.dat","rd"); 
+    //******** file opened with wrong mode -0.4
+    //******** while(fp!=NULL): this leads to an infinite loop! -1.0
+    if(fp==NULL)
+        printf("\nFile vuoto\n");
+    while(fread(&fp,sizeof(int),1,fp)!=EOF)
+        n++;
+    fclose(fp);
+    return n;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE *fp=fopen("interi.dat","rd");
+    //******** file opened with wrong mode -0.4
+    if(fp==NULL)
+        printf("\nFile vuoto\n");
+    //******** loop with always verified condition -0.5
+    while(fp!=EOF){
+        for(int i=1;i<lunghezza;i++)
+        //******** in fread, you should not use &, sequence is already an address -0.5
+        fread(&sequenza[i],sizeof(int),i,fp);
+    }
+    fclose(fp);
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE *fp=fopen("interi.dat","wb");
+    if(fp==NULL)
+        printf("\nFile vuoto\n");
+    //******** array indices start from 1 instead of 0 -0.3
+    for(int i=1; i<lunghezza; i++){
+        fwrite(&sequenza[i],sizeof(int),1,fp);
+    }
+    fclose(fp);
+    printf("Valori array salvati nel file!");
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic file operations structure is present
+- Error checking for file opening is implemented
+- Proper file closing in all functions
+
+Areas for Improvement:
+1. minimoDispari function:
+   - Recursion implementation needs revision
+   - Base case condition should be length<=2
+   - Boolean expression evaluation needs correction
+
+2. File Operations:
+   - File opening modes are incorrect ("rd" instead of "rb" for binary files)
+   - Array indexing should start from 0, not 1
+   - Counter initialization missing in quantiNumeri()
+   - Infinite loop in file reading logic
+
+3. Memory Management:
+   - Proper pointer handling in file operations
+   - Array access needs to be zero-based
+
+Key Recommendations:
+1. Review binary file operations syntax and modes
+2. Implement proper recursion logic for minimoDispari
+3. Fix array indexing to start from 0
+4. Correct file reading logic to avoid infinite loops
+5. Initialize counters before use
+6. Use proper file opening modes ("rb" for binary read, "wb" for binary write)
+</feedback_summary>

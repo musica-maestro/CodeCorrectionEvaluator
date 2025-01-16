@@ -1,0 +1,71 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)............4.0 = 5.0 - 1.0
+countNumbers (2).......2.0
+readNumbers (2)........2.0
+writeNumbers(1)........1.0
+TOTAL..................9.0
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimoPari(int *a, int l){
+    int vero;  
+    if(l<=2)
+        vero=1;
+    else
+        //******** Complex logic for finding maximum could be simplified using a helper function -0.5
+        vero=((a[0]>a[1]&&a[0]>a[2]&&a[0]%2==0)
+        	||(a[1]>a[0]&&a[1]>a[2]&&a[1]%2==0)
+        	||(a[2]>a[0]&&a[2]>a[1]&&a[2]%2==0))&&massimoPari(a+1,l-1);
+    //******** Variable name 'vero' is not descriptive -0.5
+    return vero;
+}
+
+int quantiNumeri() {
+    FILE *fp=fopen("interi.dat","rb");  
+    int numero;  
+    int quanti=0;  
+    if(fp==NULL)  
+        printf("impossibile accedere al file\n");
+    else{
+        while(fread(&numero,sizeof(int),1,fp)>0)  
+            quanti++;  
+    }
+    fclose(fp);  
+    return quanti;
+}
+
+[Rest of the code remains unchanged...]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of file operations (reading, writing, counting)
+- Proper error handling for file operations
+- Good implementation of recursive logic in massimoPari function
+- Appropriate use of binary file operations
+
+Areas for Improvement:
+1. massimoPari function:
+   - Could be simplified using helper functions for better readability
+   - Variable names could be more descriptive (e.g., 'vero' could be 'isMaxEven')
+   - Complex boolean expression could be broken down for better maintainability
+
+2. Code Structure:
+   - Consider adding more comments to explain complex logic
+   - Could benefit from better variable naming conventions
+   - Consider breaking down complex conditions into smaller, more manageable pieces
+
+Key Recommendations:
+1. Implement helper functions to handle complex operations
+2. Use more descriptive variable names
+3. Add comments to explain complex logic
+4. Consider breaking down complex boolean expressions into smaller parts
+5. Add more detailed error messages for file operations
+
+The code is functionally correct but could be improved in terms of readability and maintainability.
+</feedback_summary>

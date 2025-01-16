@@ -1,0 +1,62 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.2 - 0.5
+   MAIN PROGRAM (max 2.5):....2.2 = 2.5 - 0.3
+   TOTAL.......................7.5
+*/
+
+#include <stdio.h>
+int maggiori5Pari(int seq[], int dim){
+    int maggiori=1;    
+    int i=0;          
+    while (i<dim-2&&maggiori){
+        //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+        if (!((seq[i]>=5&&seq[i+1]>=5)||(seq[i+1]>=5&&seq[i+2]>=5)||(seq[i]>=5&&seq[i+2]>=5))
+        &&((seq[i]%2==0&&seq[i+1]%2==0)||(seq[i]%2==0&&seq[i+2]%2==0)||(seq[i+1]%2==0&&seq[i+2]%2==0)))
+            maggiori=0;
+        else
+            i++;
+    }
+    return maggiori;
+}
+
+int main(int argc, char **argv)
+{
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+    printf("Ciao utente sono un programma che verifica se ogni tripla di elementi consecutivi contiene esattamente due elementi maggiori o uguali a cinque ed almeno due elementi pari\n ");
+    int lunghezza;    
+    printf("Utente dimmi quanto vuoi sia lunga la tua sequenza\n");
+        scanf("%d",&lunghezza);
+    int arr[lunghezza];
+    for(int i=0; i<lunghezza; i++){
+        printf("Inserisci un intero\n");
+            scanf("%d",&arr[i]);
+    }
+    if(maggiori5Pari(arr,lunghezza))
+        printf("Ogni tripla di elementi consecutivi contiene esattamente due elementi maggiori o uguali a cinque ed almeno due elementi pari\n");
+    else
+        printf("Non tutte le triple di elementi consecutivi contengono esattamente due elementi maggiori o uguali a cinque ed almeno due elementi pari\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the universal verification logic
+- Proper array bounds checking in the loop condition
+- Good handling of input/output in main function
+- Correct implementation of the two required conditions (exactly two ≥5 and at least two even numbers)
+
+Areas for Improvement:
+- The logical condition in the maggiori5Pari function is correct but could be more readable by breaking it into smaller parts or using intermediate boolean variables
+- The initial program description could be more precise and user-friendly
+- Code indentation could be more consistent, especially around scanf statements
+
+Key Recommendations:
+- Consider breaking down complex logical conditions into smaller, more readable parts
+- Improve the clarity of user prompts and messages
+- Maintain consistent code indentation throughout the program
+- Consider adding input validation for array length
+</feedback_summary>
+
+The student's implementation is generally solid, with only minor issues in readability and presentation. The core logic correctly implements the required functionality for checking both conditions across all consecutive triples in the array.

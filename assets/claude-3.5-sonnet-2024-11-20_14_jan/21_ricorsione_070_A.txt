@@ -1,0 +1,98 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)......... 1.5 = 5.0 - 1.5 - 1.0 - 1.0
+countNumbers (2).... 0.5 = 2.0 - 1.5
+readNumbers (2)..... 0.0 = 2.0 - 2.0
+writeNumbers(1)..... 0.4 = 1.0 - 0.4 - 0.2
+TOTAL............... 2.4/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimoPari(int *seq, int lunghezza){
+    //******** The base case is incorrect - missing check for length < 3 -1.0
+    //******** Using a for loop instead of proper recursion for maximum calculation -1.5
+    //******** Universal check should use && for all triplets -1.0
+    int verificata = 0;
+    int massimo;
+    if(lunghezza==0) 
+        verificata = 0;
+    else{
+        for(int i=0; i<3; i++){ 
+            massimo =seq[i];
+            if(seq[i+1]>massimo)
+                massimo=seq[i+1];
+            if(seq[i+2]>massimo)
+                massimo = seq[i+2];
+        }
+        verificata = massimo%2==0 && massimoPari(seq+1, lunghezza-1);
+    }
+    return verificata;
+}
+
+int quantiNumeri() {
+    FILE *fp = fopen("interi.txt", "r");
+    //******** Missing file open check (fp==NULL) -0.3
+    //******** Incomplete function implementation -1.2
+    int quanti = 0;
+    quanti = ()
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    //******** Missing implementation of readNumbers function -2.0
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE *fp = fopen("interi.txt", "a"); 
+    //******** Missing file open check -0.2
+    //******** Incorrect fprintf syntax (missing file pointer) -0.4
+    for(int i=0; i<lunghezza; i++){
+        fprintf("%d",sequenza[i]); 
+    } 
+    //******** Missing file closure -0.2
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is in place
+- Main function handles user interaction appropriately
+- Attempt at implementing recursion in massimoPari function
+
+Areas for Improvement:
+1. massimoPari function:
+   - Implement proper base case for length < 3
+   - Use proper recursive approach instead of for loop
+   - Fix the universal check logic using &&
+
+2. File Operations:
+   - Add file open error checking
+   - Complete quantiNumeri implementation
+   - Implement leggiNumeri function
+   - Fix fprintf syntax in scriviNumeri
+   - Add file closure after operations
+
+3. General:
+   - Complete all unimplemented functions
+   - Add proper error handling
+   - Fix syntax errors in file operations
+
+Key Recommendations:
+1. Review recursive function implementation, focusing on:
+   - Proper base case
+   - Correct recursive step
+   - Handling of triplets
+
+2. Complete file handling functions with:
+   - Proper error checking
+   - Correct file operation syntax
+   - File closure after operations
+
+3. Implement missing functions:
+   - Complete quantiNumeri function
+   - Implement leggiNumeri function
+   - Fix scriviNumeri function syntax
+</feedback_summary>

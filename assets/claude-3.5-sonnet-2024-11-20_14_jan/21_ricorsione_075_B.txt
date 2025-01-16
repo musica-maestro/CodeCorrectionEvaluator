@@ -1,0 +1,119 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........2.0 = 5.0 - 1.5 - 1.0 - 0.5
+countNumbers (2).....0.7 = 2.0 - 0.3 - 0.5 - 0.5
+readNumbers (2)......0.9 = 2.0 - 0.4 - 0.4 - 0.3
+writeNumbers(1)......0.2 = 1.0 - 0.4 - 0.4
+TOTAL................3.8
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int minimo(int *seq, int length){ 
+    //******** Recursion should be done on array length -1.0
+    //******** The base case should be length<=2 -0.5
+    int mini;
+    int mini1, mini2, mini3;
+    if(length < 1)  
+        mini = 0;
+    else{
+        if(seq[0] < seq[1] && seq[0] < seq[2]){
+            mini1 = seq[0];
+        }
+        else if(seq[1] < seq[0] && seq[1] < seq[2]){
+            mini2 = seq[1];
+        }
+        else if(seq[2] < seq[0] && seq[2] < seq[1]){
+            mini3 = seq[2];
+        }
+        //******** incorrect syntax for evaluating boolean expressions -1.5
+        mini = ((mini1 % 2 == 1 || mini2 % 2 == 1 || mini3 % 2 == 1) || minimo(seq+1,length-1));
+    }
+    return mini;   
+}
+
+int quantiNumeri() {
+    FILE* fp = fopen("ric.dat", "rb");
+    int *seq;
+    int i;
+    int quanti = 0;
+    //******** fp==NULL syntax error -0.2
+    if(fp = NULL)  
+        printf("Apertura file non riuscita\n\n");
+    else{
+        //******** length undefined -0.5
+        for(int i = 0; i < length; i++){ 
+            //******** fread syntax incorrect -0.3
+            fread(&seq[i], "%d", 1, fp); 
+            quanti++;
+        }
+        printf("Lettura riuscita\n\n");
+    }
+    return quanti;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE* fp = fopen("ric.dat", "rb");
+    //******** fp==NULL syntax error -0.2
+    if(fp = NULL)  
+        printf("Apertura file non riuscita\n\n");
+    else{
+        //******** length undefined -0.4
+        for(int i = 0; i < length; i++){
+            //******** fread syntax - not "%d" but sizeof(int) -0.4
+            fread(&seq[i], "%d", 1, fp); 
+        }
+        printf("Lettura riuscita\n\n");
+    }
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE* fp = fopen("ric.dat", "wb");
+    //******** fp==NULL syntax error -0.2
+    if(fp = NULL)  
+        printf("Apertura file non riuscita\n\n");
+    else{
+        //******** length undefined -0.4
+        for(int i = 0; i < length; i++){
+            //******** fwrite syntax is not "%d", but sizeof(int) -0.4
+            fwrite(&seq[i], "%d", 1, fp); 
+        }
+    }  
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is in place
+- Attempt at implementing all required functions
+- Main function handles both file and user input scenarios
+
+Areas for Improvement:
+1. Function minimo/minimoDispari:
+   - Base case needs correction (should be length<=2)
+   - Boolean expression evaluation needs proper syntax
+   - Recursion implementation needs revision
+
+2. File Operations:
+   - File pointer comparison syntax (fp == NULL, not fp = NULL)
+   - Binary file operations need correct syntax (use sizeof(int) instead of "%d")
+   - Undefined variable 'length' used in loops
+   - Missing file closure operations
+
+3. Variable Usage:
+   - Undefined variables (seq, length) used in functions
+   - Proper parameter names needed in file operations
+
+Key Recommendations:
+1. Review binary file operation syntax (fread/fwrite)
+2. Implement proper file handling with error checks
+3. Fix recursive implementation in minimo function
+4. Add proper variable declarations and initialization
+5. Add file closure after operations
+6. Use correct comparison operators (== vs =)
+</feedback_summary>

@@ -1,0 +1,73 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.0 - 1.0
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................5.8
+*/
+
+#include <stdio.h>
+int DueUnaCifra (int stringa[], int len) {
+int d = 0;
+//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < len - 2 -1.0
+for(int i=0; i<len;i = i+3){ 
+    if(stringa[i] >= 0 && stringa[i] <= 9) {
+        if (stringa[i+1] >= 0 && stringa[i+1] <= 9) {
+            d = d+1;
+        } else {
+            if (stringa[i+2] >= 0 && stringa[i+2] <= 9) {
+                d = d + 1;
+            } 
+    }
+    }
+    }
+    //******** THIS IS A UNIVERSAL VERIFICATION, NOT AN EXISTENTIAL ONE -1.0
+    if (d > 1)
+    {
+        return 1;
+    } else
+        return 0;
+}
+int main() {
+    int len = 5;
+    printf("quanti numeri ha la sequenza?: ");
+    scanf("%d",&len);
+    int stringa[len];
+    printf("inserire i relativi  %d  numeri\n", len);
+    for(int i=0; i<len; i++) {
+        scanf("%d",&stringa[i]);
+    }
+    printf("la nostra stringa: ");
+    for(int j=0; j<len; j++) {
+        printf("%d  ",stringa[j]);
+    }
+    int c =DueUnaCifra(stringa,len);
+    //******** UNCLEAR MESSAGE -0.2
+    if (c == 1){
+        printf("\nla condizione da vera, ci sono due coppie di numeri infeririori a 9 nelle triple");
+    } else {
+        printf("\nla condizione è falsa, non ci sono due coppie di numeri infeririori a 9 nelle triple");
+    } 
+    return 0;
+} 
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct function parameter declaration
+- Good user interaction in main function
+- Clear variable naming
+- Proper array handling and user input collection
+
+Areas for Improvement:
+- Array bounds checking: The loop in DueUnaCifra function should check until len-2 to avoid accessing elements outside the array
+- Logic implementation: The function implements an existential verification (checking if there are at least two triples) instead of the required universal verification (checking all triples)
+- Output messages could be clearer and more precise
+- Consider adding input validation for array length
+
+Key Recommendations:
+- Modify the loop condition to prevent array bounds violation
+- Restructure the verification logic to check all triples instead of counting occurrences
+- Improve output messages clarity
+- Add input validation for array length and elements
+</feedback_summary>

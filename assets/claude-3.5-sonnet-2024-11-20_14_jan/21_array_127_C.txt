@@ -1,0 +1,76 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.5):....2.5
+   TOTAL.......................6.5
+*/
+
+#include <stdio.h>
+//******** LOGICAL ERROR IN COMPRESO10 FUNCTION: CONDITION IS WRONG (CHECKS >=-10 TWICE INSTEAD OF <=10) -1.5
+int compreso10(int arr[], int index){  
+	if(arr[index]>=-10 && arr[index]>=-10)
+		return 1;
+	return 0;      
+}
+
+int multiplo3(int arr[], int index){ 
+	if(arr[index]%3==0)
+		return 1;
+	return 0;     
+}
+
+//******** ITERATION LIMITS INCORRECT (SHOULD BE i<len-2) -0.5
+int compresiMultipli3(int arr[], int len)
+{
+	for(int i=2; i<len; i++){
+		if((compreso10(arr, i-2) && compreso10(arr, i-1))
+		|| (compreso10(arr, i-2) && compreso10(arr, i))
+		|| (compreso10(arr, i) && compreso10(arr, i-1))){
+			if((multiplo3(arr, i-2) && multiplo3(arr, i-1) && !(multiplo3(arr, i)))
+			|| (multiplo3(arr, i-2) && multiplo3(arr, i) && !(multiplo3(arr, i-1)))
+			|| (multiplo3(arr, i) && multiplo3(arr, i-1) && !(multiplo3(arr, i-2)))){
+				return 1; 
+			}
+		}
+	}
+	return 0;
+}
+
+int main(int argc, char **argv)
+{
+	int lunghezza;
+	printf("Questo programma verifica che in una sequenza esiste una tripla di elementi consecutivi che contiene almeno due elementi il cui valore %c compreso tra -10 e 10 e che contiene esattamente due multipli di 3\n", 138);
+	printf("Da quanti interi %c formata la sequenza?\n", 138);
+	scanf("%d", &lunghezza);
+	int array[lunghezza];
+	for(int i=0;i<lunghezza;i++){
+		printf("Inserisci l'intero di indice %d: ", i);
+		scanf("%d", &array[i]);
+	}
+	if(compresiMultipli3(array, lunghezza)){
+		printf("In questa sequenza ESISTE una tripla di elementi consecutivi che contiene almeno due elementi il cui valore %c compreso tra -10 e 10 e che contiene esattamente due multipli di 3\n", 138);
+	} else {
+		printf("In questa sequenza NON ESISTE una tripla di elementi consecutivi che contiene almeno due elementi il cui valore %c compreso tra -10 e 10 e che contiene esattamente due multipli di 3\n", 138);
+	}
+	return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good overall program structure with separate functions for each check
+- Well-implemented main function with clear user interaction
+- Correct implementation of the multiple of 3 check
+- Good handling of the existential verification aspect
+
+Areas for Improvement:
+- The compreso10 function has a logical error in its condition. It should check if the number is between -10 and 10 inclusive (arr[index]>=-10 && arr[index]<=10)
+- The loop bounds in compresiMultipli3 function should be i<len-2 to avoid array index out of bounds
+- The code could be more efficient by avoiding redundant checks
+
+Key Recommendations:
+1. Fix the compreso10 function condition to properly check if a number is between -10 and 10
+2. Correct the loop bounds in compresiMultipli3 to prevent potential array access violations
+3. Consider adding input validation for array length to ensure it's at least 3 (minimum needed for a triple)
+</feedback_summary>

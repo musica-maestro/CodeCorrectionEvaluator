@@ -1,0 +1,107 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* 
+maxEven (5)......... 2.0 = 5.0 - 1.5 - 1.0 - 0.5
+countNumbers (2).... 0.5 = 2.0 - 1.0 - 0.5
+readNumbers (2)..... 0.5 = 2.0 - 1.0 - 0.5
+writeNumbers(1)..... 0.0 = 1.0 - 1.0
+TOTAL............... 3.0
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimoPari(int *seq, int lunghezza){  
+    int ris;
+    //******** base case is incorrect - should check for length<=2 -1.0
+    if(lunghezza<3){   
+        ris=0;
+    }
+    else{
+        int max=trovaMassimo(seq[lunghezza-1],seq[lunghezza-2],seq[lunghezza-3]);
+        //******** incorrect logical operation - should use && for universal check -1.5
+        ris=(max%2==0) || massimoPari(seq,lunghezza-1); 
+    }
+    return ris;
+}
+
+int quantiNumeri() {
+    FILE* fp=fopen("interi.txt","r");
+    int n;
+    int letto;
+    //******** incorrect file reading logic and missing counter initialization -1.0
+    if(fp!=NULL){
+        letto=fp;
+        //******** incorrect condition check for file reading -0.5
+        if(letto!=NULL){ 
+            for(){
+            }
+        }
+        else{
+            printf("Non ci sono dati presenti nel file \n");
+        }
+    }
+    fclose(fp);
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE* fp=fopen("interi.txt","r");
+    int n;
+    int letto;
+    if(fp!=NULL){
+        letto=fp;
+        if(letto!=NULL){ 
+            for(int i=0;i<lunghezza;i++){
+                //******** incorrect file reading syntax -1.0
+                sequenza[i]=fread(fp,sizeof(int),1,n); 
+            }
+        }
+        else{
+            printf("Non ci sono dati presenti nel file \n"); 
+        }
+    }
+    fclose(fp);
+}
+
+//******** Empty function implementation -1.0
+void scriviNumeri(int* sequenza, int lunghezza) {
+}
+
+[Rest of the code remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic recursive structure attempt in massimoPari function
+- Proper file handling with open/close operations
+- Basic error checking for file operations
+
+Areas for Improvement:
+1. massimoPari function:
+   - Incorrect base case implementation
+   - Logic error in combining recursive results
+   - Should use && instead of || for universal property check
+
+2. File Operations:
+   - quantiNumeri: Missing proper counter implementation
+   - leggiNumeri: Incorrect file reading syntax
+   - scriviNumeri: Complete implementation missing
+
+3. General Issues:
+   - File reading logic needs revision
+   - Error handling could be more robust
+   - Missing proper implementation of writeNumbers function
+
+Key Recommendations:
+1. Revise the recursive logic in massimoPari:
+   - Use proper base case (length <= 2)
+   - Fix the logical operator for universal property check
+   
+2. Implement proper file operations:
+   - Use correct file reading syntax (fscanf for text files)
+   - Initialize and maintain proper counters
+   - Complete the writeNumbers function implementation
+
+3. Add proper error handling and validation throughout the code
+</feedback_summary>

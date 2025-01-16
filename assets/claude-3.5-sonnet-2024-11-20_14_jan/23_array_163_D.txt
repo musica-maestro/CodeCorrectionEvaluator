@@ -1,0 +1,74 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....2.8 = 6.0 - 1.0 - 0.5 - 1.5 - 0.2
+   MAIN (max 2.0):.......0.4 = 2.0 - 0.5 - 1.0 - 0.1
+   TOTAL..................3.2
+*/
+
+# include <stdio.h>
+   int restoDivisione(int interi[], int lunghezza){
+	int i;
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lunghezza - 2 -1.0
+	for(i=1; i<lunghezza-2; i++){
+        //******** TWO OR THREE COMBINATIONS ON THE TRIPLE CONDITION ARE MISSING -1.5
+		if( interi[i] == interi[i+1] % interi[i+2]  ||
+             interi[i] == interi[i+2] % interi[i+1] ||
+             interi[i+1] == interi[i] % interi[i+2]  ||
+              interi[i+1] == interi[i+2] % interi[i]||
+             interi[i+2] == interi[i+1] % interi[i] ||
+             interi[i+2] == interi[i] % interi[i+1])
+       return 1;
+	}
+    //******** HOW DO YOU CONSIDER 0? -0.2
+	return 0;
+}
+
+int main(){
+	int lunghezza;
+	printf("Ciao utente, ");
+	printf("quanti interi ha la tua sequenza: ");
+	scanf("%d", &lunghezza);
+    //******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+	int sequenza[lunghezza];
+	printf("\n");
+	for(int i=0; i<lunghezza; i++){
+	printf("Introduci gli interi della sequenza: ");
+	scanf("%d", &sequenza[i]);
+}
+    //******** PRACTICALLY MISSING OUTPUT -1.0
+    //******** MISSING SPACE -0.1
+    printf("Il risultato e': %d. "); 
+	restoDivisione(sequenza, lunghezza); 
+	}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic function structure is implemented
+- Correct parameter passing to the function
+- Input collection from user is implemented
+
+Areas for Improvement:
+1. Array bounds checking:
+   - The loop condition should be i < lunghezza - 2 to avoid accessing elements outside array bounds
+
+2. Function implementation:
+   - Need to handle division by zero cases
+   - Some combinations in the remainder checking are missing
+   - Consider all possible combinations for the triple elements
+
+3. Main function:
+   - Array should be declared after getting the length input
+   - Result output is incomplete and missing the actual function return value
+   - Output formatting needs improvement
+
+Key Recommendations:
+1. Fix array bounds in the loop condition
+2. Add proper error handling for division by zero
+3. Complete the output statement to show the actual result
+4. Improve code structure and formatting
+5. Add proper validation for user inputs
+6. Ensure all possible combinations for remainder checking are included
+
+</feedback_summary>

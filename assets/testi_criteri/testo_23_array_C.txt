@@ -1,0 +1,10 @@
+Design an algorithm to solve the following problem. Given a sequence of positive integers, check if in every triple of adjacent elements in the sequence there are at least two numbers consisting of a single digit. For example, the sequence [3, 2, 12, 9, 4] is a positive instance of the problem because in all the triples (3, 2, 12), (2, 12, 9), and (12, 9, 4), there are at least two numbers consisting of a single digit. The sequence [13, 2, 12, 9, 4] is a negative instance of the problem because the first triple (13, 2, 12) does not contain at least two numbers consisting of a single digit.
+
+(1 pt) Describe the specification of the problem briefly.
+(1 pt) Indicate what type of problem this is (accumulation, counting, existential verification, universal verification, search, minimum/maximum).
+(6 pt) A function dueUnaCifra with parameters: 1) an array of integers; and 2) an integer representing the length of the array. The function returns 1 if in all the triples of adjacent elements in the sequence there are at least two numbers consisting of a single digit, 0 otherwise.
+(2 pt) A main function that handles user interaction. The main function should:
+· Ask the user how many integers the sequence has and read the user's response
+· Ask the user to enter the integers of the sequence, read the integers entered by the user, and store them in an array;
+· Call the dueUnaCifra function, passing it a reference to the sequence of integers just read and its length;
+· Print a message informing the user whether in all the triples of adjacent elements of the sequence there are at least two numbers consisting of a single digit, or not.

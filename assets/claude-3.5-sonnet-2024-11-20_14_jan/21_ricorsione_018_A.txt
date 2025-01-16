@@ -1,0 +1,97 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* 
+maxEven (5)......... 2.5 = 5.0 - 1.5 - 1.0
+countNumbers (2).... 0.0 = 2.0 - 2.0
+readNumbers (2)..... 0.0 = 2.0 - 2.0
+writeNumbers(1)..... 0.0 = 1.0 - 1.0
+TOTAL............... 2.5/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimo(int i,int j,int z){
+    int max=i;
+    if(j>i && j>z)
+        max=j;
+    else if(z>max)
+        max=z;
+return max;
+}
+
+int massimoPari(int seq[], int lunghezza){
+    int risultato;
+    //******** The base case should be length<=2 (because you need to consider a triplet of elements) -1.0
+    if(lunghezza<3)
+        risultato=1;
+    else
+        //******** it is a universal check, && -1.5
+        risultato=(massimo(seq[0],seq[1],seq[2])%2==0 && massimoPari(seq+1,lunghezza-1));
+    return risultato;
+}
+
+//******** missing the countNumbers function -2.0
+int quantiNumeri() {
+}
+
+//******** missing the readNumbers function -2.0
+void leggiNumeri(int* sequenza, int lunghezza) {
+}
+
+//******** missing the writeNumbers function -1.0
+int main() {
+    int lunghezza; 		
+	int scelta;				
+    printf("Vuoi introdurre una nuova sequenza (premi 1) oppure recuperarla da file (premi 2)? ");
+    scanf("%d",&scelta);
+	if(scelta==1) {
+		printf("Introduci la lunghezza della sequenza: ");
+		scanf("%d",&lunghezza);
+		int array[lunghezza];
+		printf("Scrivi %d elementi \n",lunghezza);
+		for(int i=0;i<lunghezza;i++)
+			scanf("%d",&array[i]);
+		if(massimoPari(array,lunghezza))
+			printf(" Verificato! \n");
+		else
+			printf(" Non verificato!\n");
+	}
+	else {
+		lunghezza = quantiNumeri();
+		int array[lunghezza];
+		leggiNumeri(array,lunghezza);
+		printf("Ecco la sequenza recuperata\n");
+		for(int i=0;i<lunghezza;i++)
+			printf("%d ", array[i]);
+		printf("\n");
+		if(massimoPari(array,lunghezza))
+			printf(" ... \n");
+		else
+			printf(" ... \n");
+	}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the maximum function for three numbers
+- Basic structure of the recursive massimoPari function is present
+- Main function provides a user interface for input
+
+Areas for Improvement:
+- The base case in massimoPari is incorrect. It should handle arrays of length ≤ 2 properly
+- The recursive implementation needs to use && for universal checking of all triplets
+- Missing implementation of three required functions:
+  * quantiNumeri (countNumbers)
+  * leggiNumeri (readNumbers)
+  * writeNumbers function is completely missing
+
+Key Recommendations:
+1. Implement the missing file handling functions (writeNumbers, readNumbers, countNumbers)
+2. Fix the base case in massimoPari to properly handle arrays with length ≤ 2
+3. Modify the recursive case to ensure all triplets are checked using proper logical operators
+4. Add proper file handling with error checking for the file operations
+5. Include more descriptive output messages to explain the results to users
+</feedback_summary>

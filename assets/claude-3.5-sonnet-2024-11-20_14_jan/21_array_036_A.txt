@@ -1,0 +1,79 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........2.0 = 6.0 - 1.5 - 1.5 - 1.0
+   MAIN PROGRAM (max 2.5):....1.5 = 2.5 - 0.5 - 0.5
+   TOTAL.......................3.5
+*/
+
+#include <stdio.h>
+ int UgualiCompresi(int s[], int l){
+     int i=0;
+     int Uguali=1; 
+      //******** CONDITION ON INDEX IS WRONG i < length-2 -1.5
+      while((s[i+2]<l)&&(Uguali==1)){
+          if ((s[i]==s[i+1])||(s[i]==s[i+2])||(s[i+1]==s[i+2])){
+            //******** ERROR IN "WITHIN THE RANGE" EXPRESSION -1.5
+            if ((10<=s[i]+s[i+1]<=20)||(10<=s[i+1]+s[i+2]<=20)||(10<=s[i+1]+s[i+2]<=20))
+            i++;
+          else
+              Uguali=0;;        
+          }
+           else Uguali=0;
+      }
+      printf("%d", Uguali);
+      return Uguali; 
+ }
+int main(int argc, char **argv)
+{
+    int l;
+    int j=0;
+    //******** VARIABLE IS NOT INITIALIZED -1.0
+	printf("Benvenuto Utente, di che lunghezza vuoi la sequenza?\n");
+    while (l<3){
+        printf("Inserisci un valore maggiore o uguale a 3\n");
+        scanf("%d", &l);
+    }
+    int interi[l];
+    for (j=0;j<l;j++){
+        printf("Inserisci il valore %d della sequenza\n", j+1);
+        scanf("%d", &interi[j]);
+    }
+    //******** OUTPUT IS POORLY EXPRESSED -0.5
+    if (UgualiCompresi(interi, l)==1)
+        printf("Esiste una tripla di interi che contiene due numeri uguali e due numeri la cui somma %c compresa tra 10 e 20", 138);
+        else
+             printf("Non esiste una tripla di interi che contiene due numeri uguali e due numeri la cui somma %c compresa tra 10 e 20", 138);
+	return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Input handling for sequence length and elements
+- Function returns correct type (int)
+
+Areas for Improvement:
+1. Array Index and Loop Condition:
+- The while loop condition should check i < l-2 to avoid array bounds violation
+- Current condition s[i+2]<l is incorrect for checking array bounds
+
+2. Range Check Implementation:
+- The range check expression (10<=s[i]+s[i+1]<=20) is incorrect in C
+- Should be written as (s[i]+s[i+1]>=10 && s[i]+s[i+1]<=20)
+
+3. Variable Initialization:
+- Variable 'l' in main() should be initialized before use in while loop
+
+4. Output Messages:
+- Messages should be more specific about the conditions being checked
+- Consider using clearer formatting for readability
+
+Key Recommendations:
+1. Fix the loop condition to properly check array bounds
+2. Correct the range check syntax for sum comparison
+3. Initialize all variables before use
+4. Improve output message clarity and formatting
+5. Add input validation for array elements
+</feedback_summary>

@@ -1,0 +1,63 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....3.0 = 6.0 - 1.5 - 1.5
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL........................4.8
+*/
+
+#include<stdio.h>
+int duePositivi(int interi[],int lunghezza){
+	int esiste;		
+	int i;            
+	i=0; 
+	esiste=1; 
+	//******** THIS WAY YOU CHECK IF THERE ARE AT LEAST TWO POSITIVES, NOT EXACTLY TWO -1.5
+	while(i<lunghezza-2&&esiste){ 
+		if((interi[i]<=0&&interi[i+1]<=0)||(interi[i+1]<=0&&interi[i+2]<=0)||(interi[i]<=0&&interi[i+2]<=0))
+			esiste=0;		
+		else
+			i++;			
+	}
+	return esiste;
+}
+
+int main(){
+	int lunghezza; 
+	printf("Utente sono un programma per verificare \nche in ogni tripla della sequenza \nci siano almeno due numeri positivi\n");
+	//******** UNCLEAR MESSAGE -0.2
+	printf("inserisci la lunghezza della sequenza:");
+	scanf("%d",&lunghezza);
+	int sequenza[lunghezza];		
+	printf("\n");
+	for(int i=0;i<lunghezza;i++){
+		printf("inserisci un intero:"); 
+		scanf("%d",&sequenza[i]);
+	}
+	//******** CONDITION ON THE TRIPLE IS WRONG -1.5
+	if(duePositivi(sequenza,lunghezza))
+		printf("\nogni tripla della sequenza ha almeno due numeri positivi\n");
+	else
+		printf("\nnon tutte le triple della sequenza ha almeno due numeri positivi\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct array bounds checking in the loop (i<lunghezza-2)
+- Good basic program structure with separate function and main
+- Proper parameter passing for array and length
+- Clear input collection from user
+
+Areas for Improvement:
+- The logic checks for at least two positives instead of exactly two positives
+- The condition for checking triples needs to be modified to verify exactly two positives
+- User messages could be clearer about checking for "exactly" two positives rather than "at least" two
+- Main program output messages should match the exact requirement
+
+Key Recommendations:
+1. Modify the triple checking condition to count exactly two positives in each triple
+2. Update the logic to return false if more than two positives are found in a triple
+3. Make the output messages more precise by specifying "exactly two positives" instead of "at least two positives"
+4. Consider adding input validation for the sequence length
+</feedback_summary>

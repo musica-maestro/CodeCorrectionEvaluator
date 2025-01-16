@@ -1,0 +1,63 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.3 = 6.0 - 1.5 - 0.2
+   MAIN PROGRAM (max 2.0):....2.0
+   TOTAL.......................6.3
+*/
+
+#include <stdio.h>
+int duePositivi(int arr[], int n){
+	int i=0; 
+	int ver=1; 
+	while(i<n-2 && ver){
+		//******** CONDITION ON THE TRIPLE IS WRONG (zero is considered positive) -1.5
+		if((arr[i]>=0 && arr[i+1]>=0 && arr[i+2]<0) || (arr[i]>=0 && arr[i+1]<0 && arr[i+2]>=0) || (arr[i]<0 && arr[i+1]>=0 && arr[i+2]>=0))
+			i++;
+		else
+			ver=0; 
+	}
+	//******** DO YOU CONSIDER 0 POSITIVE OR NEGATIVE? -0.2
+	return ver;
+}
+
+int main(){
+	int ver; 
+	int n; 
+	printf("Inserisci lunghezza array: ");
+	scanf("%d", &n);
+	int v[n]; 
+	for(int i=0; i<n; i++){
+		printf("Inserisci un numero: ");
+		scanf("%d", &v[i]);
+	}
+	ver=duePositivi(v, n);
+	if(ver)
+		printf("\nIl tuo array contiene ogni stringa con al suo interno esattamente due numeri positivi.\n");
+	else
+		printf("\nIl tuo array NON contiene ogni stringa con al suo interno esattamente due numeri positivi.\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of universal verification approach
+- Proper array bounds checking in the loop (i<n-2)
+- Good main function structure with clear user interaction
+- Appropriate use of boolean flag for verification
+- Clear output messages indicating the result
+
+Areas for Improvement:
+- The condition for checking exactly two positive numbers needs revision:
+  * Currently treats zero as a positive number
+  * Should explicitly check for strictly positive numbers (>0)
+- The logic should be clearer about how zero values are handled
+  * Consider adding a comment or documentation about zero handling
+  * Be explicit about whether zero is considered positive or negative
+
+Key Recommendations:
+1. Modify the conditions to use strict inequality (>0) instead of (>=0) to properly handle zero values
+2. Add comments explaining the logic for handling zero values
+3. Consider adding input validation for array size n
+4. Consider adding more descriptive variable names instead of 'ver'
+</feedback_summary>

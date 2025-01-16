@@ -1,0 +1,81 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.2 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.2 - 0.3
+   TOTAL.......................7.3
+*/
+
+#include <stdio.h>
+ int compresiMultipli3 (int sequenza[], int lunghezza)
+ {
+	 int i=0;  
+	 int esiste=0;  
+	 while (i<lunghezza-2 && !esiste)
+	 {
+		 //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+		 if (((sequenza[i]%3==0 && sequenza[i+1]%3==0 && sequenza[i+2]%3!=0) ||
+			 (sequenza[i]%3==0 && sequenza[i+1]%3!=0 && sequenza[i+2]%3==0) ||
+			 (sequenza[i]%3!=0 && sequenza[i+1]%3==0 && sequenza[i+2]%3==0)) &&
+			 (((sequenza[i]<=10 && sequenza[i]>=-10) && (sequenza[i+1]<=10 && sequenza[i+1]>=-10) &&
+			 (sequenza[i+2]<=10 && sequenza[i+2]>=-10)) ||
+			 ((sequenza[i]<=10 && sequenza[i]>=-10) &&
+			 (sequenza[i+1]<=10 && sequenza[i+1]>=-10) &&
+			 (!(sequenza[i+2]<=10 && sequenza[i+2]>=-10))) ||
+			 ((sequenza[i]<=10 && sequenza[i]>=-10) &&
+			 (!(sequenza[i+1]<=10 && sequenza[i+1]>=-10)) &&
+			 (sequenza[i+2]<=10 && sequenza[i+2]>=-10)) ||
+			 ((!(sequenza[i]<=10 && sequenza[i]>=-10)) &&
+			 (sequenza[i+1]<=10 && sequenza[i+1]>=-10) &&
+			 (sequenza[i+2]<=10 && sequenza[i+2]>=-10))))   
+				 esiste=1;
+				 else
+					 i++;  
+	 }
+	 return esiste;
+ }
+ int main ()
+ {
+	 int lunghezza;
+	 //******** NOT INDENTED! -0.2
+	 printf ("sono un programma che verifica se nella sequenza da lei inserita esiste almeno una tripla di elementi consecutivi che\n");
+	 printf ("contiene almeno due elementi il cui valore %c compreso o uguale tra 10 e -10\n", 138);
+	 printf ("ed esattamente due numeri multipli di 3\n ");
+	 //******** OUTPUT IS A BIT SCARCE -0.3
+	 printf ("inserisca la lunghezza della sequenza\n");
+	 scanf ("%d", &lunghezza);
+	 int sequenza[lunghezza];
+	 for (int i=0; i<lunghezza; i++)
+	 {
+		 printf ("inserisca un intero\n");
+		 scanf ("%d", &sequenza[i]);
+	 }
+	 if (compresiMultipli3(sequenza, lunghezza))
+		printf ("la sua sequenza soddisfa la condizione richiesta\n");
+		 else
+			 printf ("la sua sequenza non soddisfa la condizione richiesta\n");
+ }
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the existential verification logic
+- Proper handling of array bounds in the loop condition
+- Correct implementation of the two conditions (multiples of 3 and range check)
+- Good use of boolean variable for loop control
+- Proper array input handling in main
+
+Areas for Improvement:
+- Code readability could be enhanced by breaking down the complex condition into smaller, more manageable parts
+- Main program output messages could be more descriptive about the results
+- Code indentation needs improvement for better readability
+- Consider using constants for magic numbers (-10, 10, 3)
+
+Key Recommendations:
+- Break down the complex condition into separate boolean functions for better readability
+- Improve code formatting and indentation
+- Add more detailed output messages explaining the found pattern when a match is found
+- Use named constants for better code maintenance
+</feedback_summary>
+
+The student's implementation is generally correct and handles all the required cases, with only minor issues related to code style and readability. The core logic correctly identifies triples with exactly two multiples of 3 and at least two numbers in the specified range.

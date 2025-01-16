@@ -1,0 +1,71 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....2.3 = 6.0 - 2.0 - 1.5 - 0.2
+   MAIN (max 2.0):.......1.8 = 2.0 - 0.2
+   TOTAL..................4.1
+*/
+
+#include <stdio.h>
+	int dueUnaCifra( int sequenza[], int lunghezza){
+		int risultato = 1;
+		int i=0;
+		//******** CONDITION ON THE TRIPLE IS WRONG -2.0
+		//******** WITHOUT THE BOOLEAN VARIABLE IN THE CONDITION, EVEN IF YOU FIND A TRIPLE THAT DOES NOT SATISFY THE PROPERTY, YOU CONTINUE TO CHECK -0.2
+		for (int i = 0; (i < lunghezza-2) && risultato; ++i){
+			if( (sequenza[i]>9 && sequenza[i]<-9) && ( (sequenza[i+1]>9 && sequenza[i+1]<-9) ||
+			    (sequenza[i+2]>9 && sequenza[i+2]<-9) ) ||
+				( (sequenza[i+1]>9 && sequenza[i+1]<-9) && ( (sequenza[i]>9 && sequenza[i]<-9) ||
+				(sequenza[i+2]>9 && sequenza[i+2]<-9) ) ) ||
+				((sequenza[i+2]>9 && sequenza[i+2]<-9) && ( (sequenza[i+1]>9 && sequenza[i+1]<-9)
+				|| (sequenza[i]>9 && sequenza[i]<-9) ) )
+			 ){ 
+				risultato = 0;
+				//******** 2 RETURNS IS NOT STRUCTURED PROGRAMMING -1.5
+				return risultato;
+			}
+		}
+	return risultato;
+	}
+int main(){
+	int lunghezza;
+	//******** UNCLEAR MESSAGE -0.2
+	printf("Ciao, sono un programa che verifica se in ogni tripla di elementi adiacenti della sequenza sono presenti almeno due numeri composti da una cifra sola \n");
+	printf("Dammi la lunghezza della sequenza\n");
+	scanf("%d", &lunghezza);
+	int sequenza[lunghezza];
+	printf("Inserisci gli elementi della sequenza\n");
+	for (int i = 0; i < lunghezza; ++i)
+	{
+		scanf("%d", &sequenza[i]);
+	}
+		if(dueUnaCifra(sequenza, lunghezza)){
+			printf("Ogni tripla di elementi adiacenti della sequenza contiene almeno due numeri composti da una cifra sola\n");
+		}
+		else{
+			printf("Non ogni tripla di elementi adiacenti della sequenza contiene almeno due numeri composti da una cifra sola\n");
+		}
+	return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct array bounds checking in the loop
+- Proper function parameter passing
+- Good user interaction in main function
+- Clear output messages for results
+
+Areas for Improvement:
+- The logic for checking single-digit numbers is incorrect. The condition should check if a number is between 0 and 9
+- Multiple return statements affect code structure and readability
+- The triple checking condition is overly complex and incorrect
+- The boolean flag in the loop condition could be better utilized
+
+Key Recommendations:
+1. Simplify the number checking logic to: number >= 0 && number <= 9
+2. Restructure the function to use a single return statement
+3. Simplify the triple checking logic by counting single-digit numbers in each triple
+4. Use clearer variable names and more concise conditions
+5. Add input validation for positive integers
+</feedback_summary>

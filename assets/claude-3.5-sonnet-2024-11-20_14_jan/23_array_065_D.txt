@@ -1,0 +1,67 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.3 = 6.0 - 1.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................6.1
+*/
+
+#include<stdio.h>
+int restoDivisione(int * array, int l) {
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < l - 2 -1.0
+    int i=0;       
+    int esiste=0;  
+    while(i<=l-3&&!esiste)
+        //******** HOW DO YOU CONSIDER 0? -0.2
+        if(array[i]==(int)(array[i+1]%array[i+2])||array[i+1]==(int)(array[i]%array[i+2])||
+           array[i+2]==(int)(array[i]%array[i+1])||array[i]==(int)(array[i+2]%array[i+1])||
+           array[i+1]==(int)(array[i+2]%array[i])||array[i+2]==(int)(array[i+1]%array[i]))
+            esiste=1;
+        else
+            i++;
+        //******** INCORRECT INDENTATION -0.5
+        return esiste;
+    }
+
+int main() {
+    int l;    
+    printf("ciao, utente, sono un programma che dice se per ogni tripla ");
+    printf("di elementi adiacenti, esiste almeno un numero che risulta uguale ");
+    printf("al resto della divisione degli altri due\n");
+    printf("ora, dammi la lunghezza della tua sequenza:\n");
+    scanf("%d", &l);
+    int array[l];
+    printf("bene, ora dammi tutti i numeri:\n");
+    for(int i=0;i<l;i++) {
+        printf("numero: \n");
+        scanf("%d", &array[i]);
+    }
+    //******** UNCLEAR MESSAGE -0.2
+    if(restoDivisione(array, l))
+        printf("la tua sequenza rispetta la proprieta\'");
+    else
+        printf("la tua sequenza non rispetta la proprieta\'");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the existential verification logic
+- Good parameter passing and function structure
+- Proper user interaction in main function
+- Complete implementation of all six possible combinations for remainder checking
+
+Areas for Improvement:
+- Array bounds checking needs correction (should use i < l - 2)
+- Code indentation needs to be consistent
+- Consider edge cases with zero values in divisions
+- Output messages could be more descriptive
+- Function's return statement should be properly indented within the while loop
+
+Key Recommendations:
+1. Fix the array bounds check to prevent potential buffer overflows
+2. Implement proper indentation for better code readability
+3. Add validation for division by zero cases
+4. Make output messages more descriptive and clear
+5. Review and fix the control flow structure in the restoDivisione function
+</feedback_summary>

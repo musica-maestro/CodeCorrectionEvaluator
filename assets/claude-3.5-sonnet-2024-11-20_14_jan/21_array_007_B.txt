@@ -1,0 +1,86 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.0 = 6.0 - 1.5 - 1.0 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL......................5.0
+*/
+
+#include <stdio.h>
+int maggiori5Pari(int array[],int lunghezza){
+         int i; 
+		 int trovato=1; 
+		 int k;
+		 i=0;
+		 //******** WRONG CONDITION ON INDEX, SHOULD BE i < lunghezza - 2 -1.5
+		 while(i<=lunghezza-3 && trovato){
+			//******** ARRAY INDEX OUT OF BOUNDS RISK IN k+1 ACCESS -1.0
+			for(k=i+1;k<=lunghezza;k++){ 
+				//******** CONDITION IS COMPLICATED AND NOT VERY READABLE -0.5
+				if((array[k]%2==0 && array[k+1]%2!=0 && array[k-1]%2!=0)
+				|| (array[k]%2!=0 && array[k+1]%2==0 && array[k-1]%2!=0)
+				|| (array[k]%2!=0 && array[k+1]%2!=0 && array[k-1]%2==0) ||
+				   (array[k]%2==0 && array[k+1]%2==0 && array[k-1]%2==0)){
+					   trovato=0;
+				   }
+             else {  
+				if((array[k]>5 && array[k+1]<5 && array[k-1]<5)
+				|| (array[k]<5 && array[k+1]>5 && array[k-1]<5) |
+				| (array[k]<5 && array[k+1]<5 && array[k-1]>5) ||
+				   (array[k]>5 && array[k+1]>5 && array[k-1]>5)){
+					   trovato=0; 
+			 }
+			}
+		 }
+		 i++;
+		 }
+		 return trovato;
+}
+
+int main(int argc, char **argv)
+{
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+	printf("Salve utente sono un programma che ti dice se all'interno della tua sequenza ogni tripla è costituita da due numeri pari e da due numeri maggiori di 5!\n \n");
+	int lunghezza;
+	printf("Dimmi quanti numeri vuoi inserire:\n");
+	scanf("%d", &lunghezza);
+	if(lunghezza<3){
+		printf("Non te lo posso calcolare!\n");
+		return 0;
+	}
+	int sequenza[lunghezza];
+	for(int i=0;i<lunghezza;i++){
+		printf("Dammi il %d%c elemento: ",i+1,167);
+		scanf("%d", &sequenza[i]);
+	}
+	if(maggiori5Pari(sequenza,lunghezza)){
+		printf("ISTANZA POSITIVA\n");
+	}
+	else {
+		printf("ISTANZA NEGATIVA\n");
+	}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of the main function with proper user interaction
+- Correct input validation for sequence length
+- Proper array allocation and input reading
+- Basic structure of the verification function is present
+
+Areas for Improvement:
+- The array bounds checking in the maggiori5Pari function is incorrect and could lead to buffer overflows
+- The logic for checking triples is overly complicated and doesn't correctly implement the requirements
+- The conditions for checking even numbers and numbers greater than 5 should be simplified and made more readable
+- The output messages could be more descriptive about what properties are being verified
+
+Key Recommendations:
+1. Fix the loop bounds in maggiori5Pari to properly iterate through triples (i < lunghezza - 2)
+2. Simplify the logic for checking triples by:
+   - First counting even numbers in the triple
+   - Then counting numbers >= 5 in the triple
+   - Comparing these counts against requirements
+3. Improve output messages to clearly state what conditions are being checked
+4. Add more detailed error messages when conditions aren't met
+</feedback_summary>

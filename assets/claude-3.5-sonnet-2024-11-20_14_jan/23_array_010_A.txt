@@ -1,0 +1,82 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....1.3 = 6.0 - 1.5 - 1.5 - 1.0 - 0.5 - 0.2
+   MAIN (max 2.0):....0.5 = 2.0 - 1.0 - 0.5
+   TOTAL:....1.8
+*/
+
+#include <stdio.h>
+int multipli (int interi[], int lunghezza){
+    int i;                                                                                                    
+    int multiplo=0;                                                                                            
+    int m_1, m_2, m_3;                                                                                        
+    int risultato;                                                                                            
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < l - 2 -1.0
+    m_1=(interi[i-1])*(interi[i+1]);                                                                        
+    m_2=(interi[i])*(interi[i+1]);                                                                            
+    m_3=(interi[i])*(interi[i-1]);                                                                            
+    for (i=1; i<lunghezza; i++){
+        //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+        //******** USING = INSTEAD OF == FOR COMPARISON -1.5
+        if ((interi[i]=m_1)||(interi[i-1]=m_2)||(interi[i+1]=m_3)){                                            
+            risultato=1;                                                                                    
+        }
+        else{
+            risultato=0;                                                                                    
+        }
+    }
+    return risultato;
+}
+int main (){
+    int lunghezza;                                                                                            
+    int interi;                                                                                                
+    int i;                                                                                                    
+    printf("Caro utente, io verifico, in una terna di numeri, se ci sono multipli fra di loro");
+    printf("Attenzione, inserisci almeno tre valori!");
+    printf("Di quanti elementi vuoi che sia formato l'array?");
+    scanf("%d", &lunghezza);
+    //******** DECLARING THE ARRAY IN THE LOOP! -1.0
+    do{
+        int sequenza[lunghezza];
+        for(int i=0; i<lunghezza; i++){
+        printf("Inserisci un valore:");
+        //******** INCORRECT ARRAY REFERENCE -0.5
+        scanf("\n %d", &interi[i]);
+        }
+    } while (!(lunghezza>=3));                                                                                
+    if (multipli (interi, lunghezza)){
+        printf("La sequenza introdotta riespetta la condizione, tutte le terne hanno un multiplo");
+    }
+    else{
+        printf("La sequenza introdotta non riespetta la condizione, non tutte le terne hanno un multiplo");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure with separate function and main
+- Attempt to implement the required functionality
+- Basic user interaction implemented
+
+Areas for Improvement:
+1. Function Implementation:
+- The array bounds checking is incorrect and could cause buffer overflows
+- The comparison logic for checking multiples is fundamentally flawed
+- Using assignment operators (=) instead of comparison operators (==)
+- The triple checking logic needs to be completely revised
+
+2. Main Program:
+- Array declaration should be outside the do-while loop
+- Incorrect array reference in scanf
+- Array handling needs significant improvement
+
+Key Recommendations:
+1. Fix array bounds checking to prevent buffer overflows
+2. Correct the comparison operators from = to ==
+3. Revise the multiple checking logic to properly verify if one number is a multiple of another
+4. Move array declaration outside the loop
+5. Fix array references in scanf statements
+6. Implement proper error checking for array bounds and input validation
+</feedback_summary>

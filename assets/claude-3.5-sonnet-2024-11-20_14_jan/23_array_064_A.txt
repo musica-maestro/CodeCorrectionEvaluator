@@ -1,0 +1,65 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.5 = 6.0 - 1.5
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL......................6.3
+*/
+
+#include <stdio.h>
+int multipli(int s[],int lunghezza); 
+//******** FUNCTION PROTOTYPE DECLARED BUT NOT USED (NAME MISMATCH WITH IMPLEMENTATION) -0.2
+
+int multipli(int s[],int lunghezza){
+    int i=0; 
+    int verificato=1; 
+    do{
+        //******** CONDITION ON THE TRIPLE IS OVERLY COMPLEX AND COULD BE SIMPLIFIED -0.3
+        if(!((s[i]%s[i+1]==0) || (s[i]%s[i+2]==0) || (s[i+1]%s[i]==0) || (s[i+1]%s[i+2]==0) || (s[i+2]%s[i]==0) || (s[i+2]%s[i+1]==0))){
+            verificato=0; 
+        }
+        else  
+            i++;
+    }while(i<lunghezza-2 && verificato);
+    return verificato; 
+}
+
+int main(){
+    int lunghezza; 
+    int i; 
+    printf("Ciao utente sono un programma che ti dice se in tutte le terne di elementi adiacenti\n");
+    printf(" di una sequenza c'%c almeno un elemento multiplo di uno degli altri due\n\n",138);
+    //******** ACCENTED CHARACTERS ARE NOT ALLOWED -0.2
+    printf("Inserisci la lunghezza della sequenza: ");
+    scanf("%d",&lunghezza);
+    int sequenza[lunghezza]; 
+    for(i=0;i<lunghezza;i++){
+        printf("Inserisci il numero della sequenza di indice %d: ",i);
+        scanf("%d",&sequenza[i]);
+    }
+    if(multipli(sequenza,lunghezza))
+        printf("in tutte le terne di elementi adiacenti della sequenza c'%c almeno un elemento multiplo di uno degli altri due \n",138);
+    else 
+        printf("NON in tutte le terne di elementi adiacenti della sequenza c'%c almeno un elemento multiplo di uno degli altri due \n",138);
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the universal verification logic
+- Proper array handling and iteration
+- Good user interaction in main function
+- Clear output messages
+
+Areas for Improvement:
+- Function prototype doesn't match implementation (multipli vs multipli)
+- Use of non-standard characters (é) should be avoided
+- The triple condition check could be simplified for better readability
+- Consider adding input validation for array length and values
+
+Key Recommendations:
+1. Fix the function name consistency between prototype and implementation
+2. Replace accented characters with standard ASCII characters
+3. Consider restructuring the multiple conditions check for better maintainability
+4. Add input validation to ensure proper array length and valid integer inputs
+</feedback_summary>

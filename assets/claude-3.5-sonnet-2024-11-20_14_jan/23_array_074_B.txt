@@ -1,0 +1,72 @@
+I'll grade the student's submission following the provided format and criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.3 = 6.0 - 1.5 - 0.2
+   MAIN (max 2.0):...........2.0
+   TOTAL.....................6.3
+*/
+
+#include <stdio.h>
+int duePositivi(int array[],int dim){
+	int nPositivi, verificato=1;
+	//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < dim - 2 -1.5
+	for(int i=0; i+2<dim && verificato; i++){
+		nPositivi=0;
+		for(int k=i; k<i+3; k++){
+			//******** DO YOU CONSIDER 0 POSITIVE OR NEGATIVE? -0.2
+			if(array[k]>=0)
+				nPositivi++;
+		}
+		if(nPositivi!=2) 
+			verificato=0;
+	}
+	return verificato;
+}
+
+int main(){
+	int dim;   
+	int i,v;   
+	printf("Caro utente, questo programma verifica se una sequenza di numeri interi da te inserita soddisfa la propriet%c:",133);
+	printf("\nper ogni terna ci sono esattamente due numeri positivi\nQuanti numeri vuoi scrivere: ");
+	scanf("%d",&dim);
+	while(dim<3){
+		printf("Numero non valido, riprova: ");
+		scanf("%d",&dim);
+	}
+	int array[dim];
+	printf("Ora inserisci i numeri\n");
+	for(i=0;i<dim;i++){
+		printf("Numero[%d]:",i);
+		scanf("%d",&array[i]);
+	}
+	v=duePositivi(array,dim);
+	if(v)
+		printf("La propriet%c %c rispettata\n",133,138 );
+	else
+		printf("La propriet%c non %c rispettata\n",133,138);
+}       
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of the main function with proper user interaction
+- Correct validation of input dimension (must be at least 3)
+- Proper use of boolean flag (verificato) to stop checking once a violation is found
+- Good structure with separate function implementation
+
+Areas for Improvement:
+- Array bounds checking in duePositivi function needs correction:
+  - Current condition (i+2<dim) could lead to array access beyond bounds
+  - Should be (i < dim-2) to properly check triples
+- Ambiguity in handling zero values:
+  - Need to clearly define if 0 should be considered positive or negative
+  - Current implementation treats 0 as positive, which should be clarified
+
+Key Recommendations:
+1. Fix the array bounds checking in the loop condition
+2. Clearly document and implement the handling of zero values
+3. Consider adding more detailed output messages to indicate which triple violated the condition (if any)
+4. Add input validation for the array elements (though not required by the assignment)
+</feedback_summary>
+
+The student's implementation is generally good, with only two significant issues. The main function is implemented correctly, handling user interaction and input validation appropriately. The duePositivi function has the correct logic for checking triples but contains a potential array bounds issue and ambiguity in handling zero values. The overall structure and approach are sound, making this a solid submission with room for minor improvements.

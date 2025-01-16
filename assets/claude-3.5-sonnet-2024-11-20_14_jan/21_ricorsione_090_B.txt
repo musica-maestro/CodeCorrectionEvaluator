@@ -1,0 +1,116 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........2.5 = 5.0 - 1.5 - 1.0
+countNumbers (2).....0.7 = 2.0 - 0.5 - 0.5 - 0.3
+readNumbers (2)......0.7 = 2.0 - 0.3 - 0.5 - 0.5
+writeNumbers(1)......0.3 = 1.0 - 0.3 - 0.4
+TOTAL................4.2
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+//******** Missing function prototype declarations -0.3
+int minimoDispari(int *seq, int lunghezza){
+    int ris;
+    ris=minimoDispariRic(seq, lunghezza, 0);
+    return ris;
+}
+
+int minimoDispariRic(int vet[], int l, int i){
+    int ris=1; 
+    if(i<l-2 ) {
+        printf("\n\n file!\n\n");  
+        //******** Incorrect logic for checking minimum odd in triplet -1.5
+        if(((vet[i]<vet[i+1])&&(vet[i]<vet[i+2]) &&(vet[i]%2!=0))
+            || ((vet[i+1]<vet[i])&&(vet[i+1]<vet[i+2]) &&(vet[i+1]%2!=0))
+            || ((vet[i+2]<vet[i])&&(vet[i+2]<vet[i+1]) &&(vet[i+2]%2!=0))) {
+            ris=minimoDispariRic(vet, l, i+1);
+        } else {
+            ris=0;
+        }
+        return ris;
+    } 
+    //******** Missing base case -1.0
+}
+
+int quantiNumeri() {
+    int c=0; 
+    int ap; 
+    FILE* fp= fopen("interi.dat", "rb");
+    if(fp==NULL){
+        printf("Errore apertura file!\n\n");
+    } else{
+        //******** Incorrect fread syntax - using unaddressed variable -0.5
+        while (fread(ap, sizeof(int), 1, fp)>0) {
+            c=c+1;
+        }
+    }
+    //******** Missing file closure -0.3
+    return c;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE* fp= fopen("interi.dat", "rb");
+    if(fp==NULL){
+        printf("Errore apertura file!\n\n");
+    }
+    else{
+        //******** Incorrect fread parameters -0.5
+        while (fread(lunghezza, sizeof(int), lunghezza, fp)>0) {
+        }
+        printf("Acquisizione dati copmpletata!\n\n");
+    }
+    //******** Missing file closure -0.3
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    if(lunghezza<=0)
+        printf("per favore prima deve inserire degli elementi!\n\n");
+    else{
+        FILE* fp= fopen("interi.dat", "wb");
+        if(fp==NULL){
+            printf("Errore apertura / creazione file!\n\n");
+        } else{
+            //******** Incorrect use of stdin instead of fp -0.4
+            fwrite(sequenza, sizeof(int), lunghezza, stdin); 
+            printf("Scrittura dati completata!\n\n");
+        }
+        fclose(fp);
+    }
+}
+
+[Rest of main function...]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is in place
+- File handling checks for NULL pointer
+- Good error messages for file operations
+
+Areas for Improvement:
+1. Function minimoDispariRic:
+   - Missing proper base case
+   - Logic for checking minimum odd in triplet needs revision
+   - Should use && instead of multiple OR conditions
+
+2. File Operations:
+   - Fix fread/fwrite syntax in all functions
+   - Add proper file closure in all functions
+   - Correct parameter usage in file operations
+
+3. General Structure:
+   - Add function prototypes at the beginning
+   - Improve error handling
+   - Fix variable usage in file operations
+
+Key Recommendations:
+1. Implement proper base case for recursive function
+2. Review and correct file operation syntax
+3. Add missing file closures
+4. Add function prototypes
+5. Fix the logic for checking minimum odd in triplets
+</feedback_summary>

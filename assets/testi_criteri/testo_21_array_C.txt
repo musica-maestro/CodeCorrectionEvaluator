@@ -1,0 +1,14 @@
+Design an algorithm to solve the following problem. Given a sequence of integers, verify if there exists a triple of consecutive elements that contains at least two elements whose value is between -10 and 10 (inclusive) and that contains exactly two elements that are multiples of 3. For example, the sequence [-20, 6, 12, 8] is a positive instance of the problem, as there exists a triple of consecutive elements (the triple [6, 12, 8]) such that at least two elements (6 and 8) have a value between -10 and 10, and exactly two elements (6 and 12) are multiples of 3. The sequence [6, 9, 3] is instead a negative instance of the problem, as the only triple of consecutive elements does not contain exactly two elements that are multiples of 3 (but rather contains 3). Similarly, the sequence [15, 7, -20] is a negative instance of the problem, as the only triple of consecutive elements contains only one element whose value is between -10 and 10.
+
+(1.5 pt) Provide a concise description of the problem specification.
+(1 pt) Indicate the type of problem (accumulation, counting, existential verification, universal verification, search, minimum/maximum).
+Write a C program compresiMultipli3 in which the following are defined:
+(6 pt) A function compresiMultipli3 with parameters:
+
+an array of integers; and an integer representing the length of the array.
+The function returns 1 if there exists a triple of consecutive elements that contains at least two elements whose value is between -10 and 10 (inclusive) and that contains exactly two elements that are multiples of 3; otherwise, it returns 0.
+(2.5 pt) A main function that manages the user interaction. The main function must:
+ask the user how many integers are in the sequence and read the user’s input;
+ask the user to input the integers of the sequence, read the integers provided by the user, and store them in an array;
+call the compresiMultipli3 function, providing it with the reference to the sequence of integers just read and its length;
+print a message to the user indicating whether there exists a triple of consecutive elements that contains at least two elements whose value is between -10 and 10 (inclusive) and that contains exactly two elements that are multiples of 3, or whether such a triple of elements does not exist.

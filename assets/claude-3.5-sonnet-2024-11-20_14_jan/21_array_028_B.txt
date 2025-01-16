@@ -1,0 +1,84 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.5 = 6.0 - 1.0 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL......................6.5/8.5
+*/
+
+#include <stdio.h>
+int maggiori5Pari(int interi[],int lunghezza){
+    int i=0; 
+    int ris=1; 
+    //******** CONDITION IS COMPLICATED AND NOT VERY READABLE -0.2
+    while((i<lunghezza-2)&&(ris==1)){
+        //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+        if(((interi[i]>=5)&&(interi[i+1]>=5)&& !(interi[i+2]>=5))||((interi[i+1]>=5)&&(interi[i+2]>=5)&& !(interi[i]>=5))){
+        }else{
+            ris=0;
+        }
+        //******** MISSING A COMBINATION (NOT ALL THE PAIRS ARE CONSIDERED) -0.5
+        if((interi[i]%2==0)&&(interi[i+1]%2==0)||(interi[i]%2==0)&&(interi[i+2]%2==0)||(interi[i+2]%2==0)&&(interi[i+1]%2==0)){
+        }else{
+            ris=0;
+        }
+        i++;
+    }
+    return ris;
+}
+
+int main(){
+    int lung=0;
+    int risultato=0;
+    printf("Benvenuto! In questo programma verifica che in una sequenza ci sono\n");
+    printf("esattamente due numeri >=5 e almeno due numeri pari in ogni tripla\n\n");
+    printf("Quanto e' lunga la sequenza?\n");
+    scanf("%d",&lung);
+    int array[lung];
+    for (int i=0;i<lung;i++){
+        printf("Inserisci numero\n");
+        scanf("%d",&array[i]);
+    }
+    risultato=maggiori5Pari(array,lung); 
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    if(risultato==1){
+        printf("la sequenza contiene almeno due numeri pari e due numeri >=5");
+    }else{
+        printf("la sequenza non contiene almeno due numeri pari e due numeri >=5");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct overall program structure with separate function and main
+- Proper array handling and iteration
+- Good input collection from user
+- Basic logic for checking conditions is present
+
+Areas for Improvement:
+1. Code Readability:
+- The conditions in the maggiori5Pari function are complex and could be broken down into smaller, more readable parts
+- Consider using intermediate boolean variables to make the logic clearer
+
+2. Logic Implementation:
+- The even number check doesn't consider all possible combinations of pairs
+- The output message could be more specific about the exact conditions being tested (exactly two numbers ≥5 and at least two even numbers)
+
+3. Function Design:
+- The logic for checking conditions could be structured more clearly
+- Consider breaking down the complex conditions into separate helper functions
+
+Key Recommendations:
+1. Restructure the conditions for better readability:
+   - Split complex conditions into smaller, well-named boolean variables
+   - Add comments explaining the logic
+
+2. Improve the output messages:
+   - Be more specific about the exact conditions being tested
+   - Clearly distinguish between the "exactly two ≥5" and "at least two even" requirements
+
+3. Consider edge cases:
+   - Add input validation for array length
+   - Handle invalid input scenarios
+</feedback_summary>

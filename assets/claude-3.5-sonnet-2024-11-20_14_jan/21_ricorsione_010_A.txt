@@ -1,0 +1,86 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)............3.2 = 5.0 - 1.5 - 0.3
+countNumbers (2).......2.0
+readNumbers (2)........2.0
+writeNumbers(1)........1.0
+TOTAL..................8.2/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimoPari(int *seq, int lunghezza){
+    //******** base case: l==3 is part of the recursive step. If you put it in the base case, you need to repeat the check "maximum of 3 evens" twice -0.3
+    int masP;
+    if(lunghezza==3 && ((seq[0]>seq[1] && seq[0]>seq[2] && seq[0]%2==0) || (seq[1]>seq[0] && seq[1]>seq[2] && seq[1]%2==0) || (seq[2]>seq[1] && seq[2]>seq[0] && seq[2]%2==0)))
+        masP=1;
+    else
+        //******** The base case should be length<=2 (because you need to consider a triplet of elements) -1.5
+        masP=(((seq[0]>seq[1] && seq[0]>seq[2] && seq[0]%2==0) || (seq[1]>seq[0] && seq[1]>seq[2] && seq[1]%2==0) || (seq[2]>seq[1] && seq[2]>seq[0] && seq[2]%2==0)) &&  massimoPari(seq+1,lunghezza-1));
+    return masP;
+}
+
+int quantiNumeri() {
+    int quanti=0;
+    FILE *fp=fopen("interi.dat","rb");
+    if(fp==NULL)
+        printf("impossibile aprire il file o file vuoto\n");
+    else{
+        int numero;
+        while(fread(&numero,sizeof(int),1,fp)>0){
+            quanti++;
+        }
+        fclose(fp);
+    }
+    return quanti;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE *fp=fopen("interi.dat","rb");
+    if(fp==NULL)
+        printf("impossibile aprire il file\n");
+    else{
+        fread(sequenza,sizeof(int),lunghezza,fp);
+        fclose(fp);
+    }
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE *fp=fopen("interi.dat","wb");
+    if(fp==NULL)
+        printf("impossibile salvare il file\n");
+    else{
+        fwrite(sequenza,sizeof(int),lunghezza,fp);
+        fclose(fp);
+    }
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of file handling functions (readNumbers, writeNumbers, countNumbers)
+- Proper file opening/closing and error checking
+- Good use of binary file operations
+- Appropriate parameter passing and memory management
+
+Areas for Improvement:
+- The massimoPari (maxEven) function has issues with its recursive implementation:
+  - The base case is incorrectly handled, mixing it with the recursive step
+  - Missing proper handling for arrays of length <= 2
+  - The recursive logic could be simplified
+
+Key Recommendations:
+1. Restructure the massimoPari function to:
+   - Add a proper base case for length <= 2
+   - Separate the base case from the recursive step
+   - Simplify the maximum checking logic
+2. Consider adding more descriptive error messages in the file handling functions
+3. Add input validation for the array length in the main function
+
+The code is functional for file operations but needs improvement in the recursive implementation of massimoPari.
+</feedback_summary>

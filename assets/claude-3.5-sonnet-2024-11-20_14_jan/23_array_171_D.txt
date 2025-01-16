@@ -1,0 +1,65 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.0 = 6.0 - 1.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL......................4.8
+*/
+
+#include <stdio.h>
+int restoDivisione(int sequenza[], int lunghezza){    
+    int i = 0;    
+    int terna = 0;
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lunghezza - 2 -1.0
+    while ((i < lunghezza -1) && terna == 0){ 
+        //******** CONDITION ON THE TRIPLE IS WRONG - OVERWRITING PREVIOUS RESULT -1.5
+        if ((sequenza[i]%sequenza[i+1] == sequenza[i+2]) || (sequenza[i+1]%sequenza[i+2] == sequenza[i]) || (sequenza[i+2]%sequenza[i] == sequenza[i+1]))
+            terna = 1;
+        else
+            terna = 0;
+        if ((sequenza[i+1]%sequenza[i] == sequenza[i+2]) || (sequenza[i+2]%sequenza[i+1] == sequenza[i]) || (sequenza[i]%sequenza[i+2] == sequenza[i+1]))
+            terna = 1;
+        else
+            terna = 0;
+        i++;
+    }
+    return terna;
+}
+
+int main(){
+    int lunghezza; 
+    int terna;
+    printf("Ciao! Sono un programma che, data una sequenza di interi, verifica che esista una tripla di elementi adiacenti in cui uno dei tre sia il resto della divisione degli altri due.\n");
+    printf("Introduci la lunghezza della sequenza.\n");
+    scanf("%d", &lunghezza);
+    int sequenza[lunghezza];
+    for (int i = 0; i < lunghezza; i++){
+        printf("Introduci l'intero i[%d]\n", i);
+        scanf("%d", &sequenza[i]);
+    }
+    terna = restoDivisione(sequenza, lunghezza);
+    //******** UNCLEAR MESSAGE -0.2
+    if (terna == 1)
+        printf("All'interno della sequenza esiste una terna di elementi adiacenti in cui uno dei tre %c resto della divisione degli altri due.\n", 138);
+    if (terna == 0)
+        printf("All'interno della sequenza non esiste una terna di elementi adiacenti in cui uno dei tre %c resto della divisione degli altri due.\n", 138);
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct overall program structure with separate function and main
+- Good user interaction with clear prompts
+- Proper parameter passing and function return
+
+Areas for Improvement:
+- Array bounds checking: The loop condition should be i < lunghezza - 2 to avoid accessing elements beyond array bounds
+- Logic error in remainder checking: The second if statement overwrites the result of the first, making some valid cases fail
+- Message clarity: Output messages could be clearer and avoid using special characters
+
+Key Recommendations:
+1. Fix the array bounds in the while loop condition to prevent buffer overflow
+2. Combine the remainder checking conditions using OR (||) operators instead of separate if statements
+3. Use clearer output messages with standard characters
+4. Consider adding input validation for array length and division by zero
+</feedback_summary>

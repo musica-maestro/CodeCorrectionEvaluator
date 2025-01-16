@@ -1,0 +1,61 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........6.0
+   MAIN PROGRAM (max 2.5):....2.2 = 2.5 - 0.3
+   TOTAL.......................8.2
+*/
+
+#include <stdio.h>
+int somma10_20(int x, int y){   
+    int risultato = 0; 
+    if(x+y <=20 && x+y>=10) 
+        risultato = 1; 
+    return risultato;    
+}
+int ugualiCompresi(int array[], int l){
+    int risultato = 0;  
+    int i; 
+    for(i=0;i<(l-2)&&(!risultato);i++){  
+        if(somma10_20(array[i],array[i+1]) || somma10_20(array[i], array[i+2])|| somma10_20(array[i+1],array[i+2]))  
+            if((array[i] == array[i+1] && array[i+2]!=array[i])||(array[i+2] == array[i+1] && array[i+2]!=array[i])||(array[i] == array[i+2] && array[i+1]!=array[i]))  
+                risultato = 1;  
+    }
+    return risultato;
+}
+int main()
+{
+    int l; 
+    printf("Inserisci la lunghezza della sequenza: ");
+    scanf("%d", &l); 
+    int array[l]; 
+    for(int i=0; i<l;i++){
+        printf("Inserisci l'elemento n.%d: ", i+1);
+        scanf("%d", &array[i]); 
+    }
+    if(ugualiCompresi(array, l)) 
+        //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+        printf("Esiste una tripla che ha due elementi la cui somma %c compresa tra 10 e 20 ed\nesattamente due elementi di tale tripla sono uguali.\n\n",138);
+    else 
+        printf("Non esiste una tripla che ha due elementi la cui somma %c compresa tra 10 e 20 ed\nesattamente due elementi di tale tripla sono uguali.\n\n",138);
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the ugualiCompresi function with proper logic for checking consecutive triples
+- Efficient use of helper function somma10_20 to check sum conditions
+- Proper array bounds checking in the loop
+- Correct implementation of the exactly-two-equal-elements condition
+- Good use of boolean flag to stop when a valid triple is found
+
+Areas for Improvement:
+- The output messages could be more specific and clearer about what properties were found or not found in the sequence
+- Consider adding input validation for the array length
+- The code could benefit from better formatting and indentation for improved readability
+
+Key Recommendations:
+- Enhance the output messages to be more descriptive and user-friendly
+- Add input validation to ensure the array length is positive and reasonable
+- Consider adding comments to explain the logic of the complex conditions
+</feedback_summary>

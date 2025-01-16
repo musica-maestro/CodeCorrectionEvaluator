@@ -1,0 +1,88 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)......... 1.5 = 5.0 - 1.5 - 1.0 - 1.0
+countNumbers (2).... 0.5 = 2.0 - 1.0 - 0.5
+readNumbers (2)..... 0.8 = 2.0 - 0.5 - 0.4 - 0.3
+writeNumbers(1)..... 0.3 = 1.0 - 0.4 - 0.3
+TOTAL............... 3.1
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimoPari(int *sequenza, int lunghezza) {
+    int risultato;
+    //******** Base case returns 1 regardless of array content -1.5
+    if (lunghezza<=2)
+        risultato=1;
+    else
+        //******** Complex boolean expression makes code hard to maintain and error-prone -1.0
+        //******** Logic error in checking maximum of triplets -1.0
+        risultato = ((((sequenza[0]>sequenza[1])&&(sequenza[0]>sequenza[2]))&&(sequenza[0]%2==0))||
+        (((sequenza[1]>sequenza[0])&&(sequenza[1]>sequenza[2]))&&sequenza[1]%2==0)||
+        (((sequenza[2]>sequenza[0])&&(sequenza[2]>sequenza[1]))&&sequenza[2]%2==0)) && massimoPari(sequenza+1, lunghezza-1);
+    return risultato;
+}
+
+int quantiNumeri() {
+    int quanti=0;
+    FILE *fp = fopen("interi.dat", "rb"); 
+    //******** Incorrect file reading logic - infinite loop condition -1.0
+    while (fp!=NULL){
+        //******** Incorrect fread usage - wrong parameters -0.5
+        fread(&fp, sizeof(int massimoPari));
+        quanti++;
+    }
+    return quanti;
+    //******** Unreachable code - fclose after return -0.3
+    fclose(fp);
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE *fp = fopen("interi.dat", "rb"); 
+    //******** Incorrect fread usage - wrong parameters -0.4
+    fread (&fp, sizeof(int massimoPari)); 
+    fclose(fp);
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE *fp = fopen("interi.dat", "wb"); 
+    //******** Incorrect fwrite usage - wrong parameters -0.4
+    fwrite(&fp, sizeof(int massimoPari));
+    fclose(fp);
+}
+
+[Rest of main function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is in place
+- File operations include proper opening and closing
+- Main function handles user interaction appropriately
+
+Areas for Improvement:
+1. massimoPari function:
+   - Base case needs proper validation
+   - Simplify the complex boolean expression
+   - Fix logic for checking maximum even numbers in triplets
+
+2. File Operations:
+   - Fix fread/fwrite parameter usage
+   - Implement proper file existence checks
+   - Correct the infinite loop in quantiNumeri()
+
+3. Error Handling:
+   - Add file operation error checking
+   - Validate array bounds properly
+   - Handle edge cases in array operations
+
+Key Recommendations:
+1. Restructure massimoPari to use clearer logic for checking triplets
+2. Implement proper file reading/writing mechanisms
+3. Add error checking for file operations
+4. Fix the counting logic in quantiNumeri
+5. Review and correct parameter usage in file operations
+</feedback_summary>

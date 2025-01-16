@@ -1,0 +1,112 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* 
+maxEven (5)............3.0 = 5.0 - 1.5 - 0.5
+countNumbers (2).......1.7 = 2.0 - 0.3
+readNumbers (2)........1.7 = 2.0 - 0.3
+writeNumbers (1).......0.7 = 1.0 - 0.3
+TOTAL..................7.1/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimo(int a,int b,int c){
+    int max;
+    //******** FUNCTION HAS MISSING RETURN PATHS - LOGIC ERROR IN MAX CALCULATION -1.5
+    if(a<b){
+        if(c<b){
+            max=b;
+        }
+        else{ 
+            if(a<c)
+                max=c;
+        }
+    }
+    else{ 
+        if(a>c)
+            max=a;          
+    }
+    return max;
+}
+
+int massimoPari(int *seq, int lunghezza){
+    //******** BASE CASE SHOULD BE LENGTH <= 2 -0.5
+    int risultato; 
+    if(lunghezza<3)
+        risultato=1;
+    else
+        risultato=(massimo(seq[0],seq[1],seq[2])%2==0)&&massimoPari(seq+1,lunghezza-1);
+    return risultato;
+}
+
+int quantiNumeri() {
+    int quanti=0; 
+    int numero; 
+    FILE *fp=fopen("interi.dat","rb"); 
+    //******** MISSING ELSE AFTER NULL CHECK -0.3
+    if(fp==NULL)
+        printf("Il file non si può aprire oppure vuoto");
+    else{
+        while(fread(&numero,sizeof(int),1,fp)>0)
+            quanti++;
+        fclose(fp); 
+    }
+    return quanti;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE *fp=fopen("interi.dat","rb"); 
+    //******** MISSING ELSE AFTER NULL CHECK -0.3
+    if(fp==NULL)
+        printf("Il file non si può aprire oppure vuoto");
+    else{
+        fread(sequenza,sizeof(int),lunghezza,fp);
+        fclose(fp); 
+    }
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE *fp=fopen("interi.dat","wb");
+    //******** MISSING ELSE AFTER NULL CHECK -0.3
+    if(fp==NULL)
+        printf("Il file non si può aprire oppure vuoto");
+    else{
+        fwrite(sequenza,sizeof(int),lunghezza,fp);
+        fclose(fp);
+    }
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of file operations (open, read, write, close)
+- Good use of recursion in massimoPari function
+- Proper memory management with arrays
+- Well-structured main function with clear user interaction
+
+Areas for Improvement:
+1. massimo function:
+   - Function has incomplete logic for finding maximum
+   - Missing return paths for some cases
+   - Should handle all possible combinations of a, b, and c
+
+2. massimoPari function:
+   - Base case should check for length <= 2 instead of < 3
+   - Could be more efficient in handling edge cases
+
+3. File handling:
+   - Error handling could be more robust
+   - Should include else blocks after NULL checks
+   - Error messages could be more descriptive
+
+Key Recommendations:
+1. Revise the massimo function to ensure it correctly handles all cases
+2. Improve error handling in file operations
+3. Adjust the base case in massimoPari function
+4. Add more detailed error messages for file operations
+5. Consider adding input validation for array lengths and user inputs
+</feedback_summary>

@@ -1,0 +1,76 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.2 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................7.3/8.5
+*/
+
+#include <stdio.h>
+int compresiMultipli3(int array[], int l)
+{
+    int b=0;
+    for(int i=0; i<l-2 && b==0;i++)
+    {
+        //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+        if((array[i]>=-10 && array[i]<=10) || ((array[i+1]>=-10 && array[i+1]<=10) && (array[i+2]>=-10 && array[i+2]<=10)))
+        {
+            if((array[i+1]>=-10 && array[i+1]<=10) || (array[i+2]>=-10 && array[i+2]<=10))
+                //******** MISSING A COMBINATION (NOT ALL THE PAIRS ARE CONSIDERED) -0.5
+                if(((array[i]%3==0) && (array[i+1]%3==0) && (array[i+2]%3!=0))
+                || ((array[i]%3==0) && (array[i+1]%3!=0) && (array[i+2]%3==0))
+                || ((array[i]%3!=0) && (array[i+1]%3==0) && (array[i+2]%3==0)))
+                {
+                    b=1;
+                }
+            }
+        }
+    return b;
+}
+
+int main(int argc, char **argv)
+{
+    int l;
+    int b=0;
+    printf("Algoritmo che verifica l'esistenza di una tripla di interi, che contiene due elementi il cui valore %c compreso fra -10 e 10, e che contiene esattamente due elementi multipli di 3.\n", 138);
+    printf("Inserire la lunghezza della sequenza di interi: ");
+    scanf("%d", &l);
+    int array[l];
+    for(int i=0; i<l; i++)
+    {
+        printf("Inserire il %d%c numero della sequenza: ",i+1, 167);
+        scanf("%d", &array[i]);
+    }
+    b=compresiMultipli3(array, l);
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    if(b==1)
+    {
+        printf("Esiste una tripla di numeri consecutivi che contiene almeno due caratteri il cui valore %c compreso fra -10 e 10 e che contiene esattamente due elementi multipli di 3\n", 138);
+    }
+    else
+    {
+        printf("Non esiste una tripla di numeri consecutivi che contiene almeno due caratteri il cui valore %c compreso fra -10 e 10 e che contiene esattamente due elementi multipli di 3\n", 138);
+    }
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the array bounds checking (l-2)
+- Proper use of boolean variable to exit loop when solution is found
+- Good structure with separate function and main program
+- Correct handling of input for array size and elements
+
+Areas for Improvement:
+- The conditions in the function are overly complex and could be simplified for better readability
+- Some combinations for checking pairs of numbers within range are missing
+- Output messages could be more specific about the properties being checked
+- Code formatting could be improved for better readability
+
+Key Recommendations:
+- Simplify the nested conditions by breaking them into smaller, more manageable checks
+- Review and include all possible combinations for checking pairs of numbers
+- Improve output messages to be more precise about what conditions are being verified
+- Use consistent indentation and spacing to improve code readability
+</feedback_summary>

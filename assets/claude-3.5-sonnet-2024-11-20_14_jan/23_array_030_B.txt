@@ -1,0 +1,61 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.3 = 6.0 - 1.5 - 0.2
+   MAIN PROGRAM (max 2.0):....2.0
+   TOTAL.......................6.3
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+int duePositivi(int seq[], int x) {
+	int v=1;												
+	//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < x - 2 -1.5
+	for(int i=0;i<x-2&&v==1;i++) {
+		//******** DO YOU CONSIDER 0 POSITIVE OR NEGATIVE? -0.2
+		if((seq[i]>=0&&seq[i+1]>=0&&seq[i+2]>=0)			
+			||(seq[i]<0&&seq[i+1]<0&&seq[i+2]<0)			
+			||(seq[i]<0&&seq[i+1]<0&&seq[i+2]>=0)			
+			||(seq[i]<0&&seq[i+1]>=0&&seq[i+2]<0)			
+			||(seq[i]>=0&&seq[i+1]<0&&seq[i+2]<0))			
+			v=0;
+	}                
+	return v;
+}
+int main () {
+	int x;
+	printf("inserisci la lunghezza della sequenza\n");
+	scanf("%d", &x);
+	int seq[x];
+	printf("inserisci i valori della sequenza\n");
+	for(int i=0;i<x;i++)
+		scanf("%d", &seq[i]);
+	int v;
+	v=duePositivi(seq, x);									
+	if(v==1)
+		printf("tutte le triple hanno esattamente due numeri positivi\n");
+	else
+		printf("non tutte le triple hanno esattamente due numeri positivi\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the universal verification approach
+- Good main function structure with clear user interaction
+- Proper function parameter passing and return value handling
+- Clear output messages indicating the result
+
+Areas for Improvement:
+- Array bounds checking needs attention: The loop condition should be i < x - 2 to prevent accessing elements beyond array bounds
+- The handling of zero values should be explicitly defined as either positive or negative
+- The conditions for checking triples could be more clearly structured
+
+Key Recommendations:
+1. Fix the array bounds issue by adjusting the loop condition
+2. Clearly define how zero values should be handled (positive or negative)
+3. Consider using more structured conditions for better readability
+4. Add input validation for the sequence length
+
+The code is generally well-structured and follows most of the assignment requirements, but needs attention to array bounds and zero handling for complete correctness.
+</feedback_summary>

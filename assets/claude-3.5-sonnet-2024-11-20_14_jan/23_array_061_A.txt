@@ -1,0 +1,70 @@
+I'll grade the submission following the provided format and criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL......................5.8
+*/
+
+#include <stdio.h>
+int multipli(int vettore[], int dim)
+{
+    int risposta=1;
+    int cont=0;
+    //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+    while((cont+2<dim) && (risposta==1))
+    {
+        if((vettore[cont]%vettore[cont+1]!=0)&&
+           (vettore[cont+1]%vettore[cont]!=0)&&
+           (vettore[cont]%vettore[cont+2]!=0)&&
+           (vettore[cont+2]%vettore[cont]!=0)&&
+           (vettore[cont+1]%vettore[cont+2]!=0)&&
+           (vettore[cont+2]%vettore[cont+1]!=0))
+                risposta=0;
+        cont++;
+    }
+    //******** SETTING THE VARIABLE TO 1 IS NOT NECESSARY (BECAUSE IT'S ALREADY 1), BUT YOU SAVE IT BECAUSE YOU PLACED THE BOOLEAN IN THE LOOP CONDITION -0.5
+    return risposta;
+}
+int main()
+{
+    int dim;
+    int cont=0;
+    do{
+        printf("Inserisci la dimensione dell'array (minimo 3):\n");
+        scanf("%d",&dim);}
+    while(dim<3);
+    int vettore[dim];
+    while(cont<dim)
+    {
+        printf("Inserisci il valore della posizione n. %d:",cont); 
+        scanf("%d",&vettore[cont]);
+        cont++;
+    }
+    //******** UNCLEAR OUTPUT MESSAGE -0.2
+    int risposta=multipli(vettore,dim);
+    if (risposta==1)
+    printf("Si! Nelle terne c'e' almeno un elemento multiplo degli altri due!");
+    else
+        printf("No! Nelle terne non c'e' almeno un elemento multiplo degli altri due!");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct function structure with appropriate parameters
+- Good input validation for array size (minimum 3)
+- Proper array initialization and population
+- Efficient use of boolean flag for early termination
+
+Areas for Improvement:
+- The condition for checking multiples in triples is incorrect. The current implementation checks if NO number is a multiple of another, when it should check if AT LEAST ONE number is a multiple of another
+- The output message could be clearer and more specific
+- The initialization of risposta=1 is redundant since it's already used in the while condition
+
+Key Recommendations:
+- Modify the triple checking condition to use OR (||) instead of AND (&&) operators
+- Make output messages more precise and user-friendly
+- Consider adding input validation for zero values in the array
+- Consider simplifying the boolean logic in the function
+</feedback_summary>

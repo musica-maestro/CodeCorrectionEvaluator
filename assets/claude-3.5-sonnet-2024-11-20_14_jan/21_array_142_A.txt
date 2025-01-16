@@ -1,0 +1,70 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................6.0
+*/
+
+#include <stdio.h>
+int ugualiCompresi(int seq[], int l){
+    int i=0;                
+    int ver=0;              
+    //******** CONDITION ON INDEX IS WRONG, SHOULD BE i < l-2 TO AVOID ARRAY OUT OF BOUNDS -1.5
+    while(i<l-1){           
+        if((seq[i]+seq[i+1]>=10 && seq[i]+seq[i+1]<=20) || ((seq[i+1]+seq[i+2]>=10 && seq[i+1]+seq[i+2]<=20)) || (seq[i]+seq[i+2]>=10 && seq[i]+seq[i+2]<=20)){
+            //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.5
+            if((seq[i]==seq[i+1] && seq[i]!=seq[i+2]) || (seq[i+1]==seq[i+2] && seq[i+2]!=seq[i]) || (seq[i+2]==seq[i] && seq[i+2!=seq[i+1]])){
+                ver=1;                          
+                break; 
+            }
+        }
+        i++;
+    }
+    return ver; 
+}
+
+int main()
+{
+    int l;            
+    printf("Benvenuto\n");
+    printf("Inserisci la lunghezza della sequenza di interi \n");
+    scanf("%d",&l);       
+    int seq[l];
+    printf("Ora dovrai inserire i valori nella sequenza\n");
+    int i=0;
+    while(i<l){    
+        printf("Inserisci un numero intero\n");
+        scanf("%d",&seq[i]);
+        i++;
+    }
+    int ver=ugualiCompresi(seq,l); 
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    if(ver==1){                    
+        printf("Vi %c una tripla che soddisfa le condizioni\n",138); 
+    }
+    else{
+        printf("Non vi %c una tripla che soddisfa le condizioni\n",138);
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the basic logic for checking equal elements
+- Proper use of break statement to exit loop when condition is found
+- Good structure in main function for reading input
+- Proper variable initialization
+
+Areas for Improvement:
+- Array bounds checking: The while loop condition should be i < l-2 to avoid accessing elements beyond array bounds
+- Code readability: The conditions could be broken down into smaller, more readable parts
+- Output messages could be more specific about what conditions are being checked
+- Consider using more descriptive variable names (ver could be found or hasValidTriple)
+
+Key Recommendations:
+1. Fix the array bounds issue by changing the loop condition to i < l-2
+2. Break down complex conditions into smaller, more readable parts using intermediate boolean variables
+3. Make output messages more descriptive and specific to the problem being solved
+4. Use more meaningful variable names to improve code readability
+</feedback_summary>

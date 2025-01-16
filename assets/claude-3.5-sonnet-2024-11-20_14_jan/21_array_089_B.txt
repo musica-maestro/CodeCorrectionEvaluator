@@ -1,0 +1,68 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.0 = 6.0 - 1.0
+   MAIN PROGRAM (max 2.5):....2.5
+   TOTAL.......................7.5
+*/
+
+#include <stdio.h>
+int maggiori5Pari(int Array[],int Length);
+int main(int argc, char **argv)
+{
+	int Length; 
+	printf("Inserire Lunghezza Array : ");
+	scanf("%d",&Length); 
+	int Array[Length]; 
+	for(int i = 0;i < Length;i++){
+		printf("Inserire Elemento Array[%d] : ",i);
+		scanf("%d",&Array[i]); 
+	}
+	if(maggiori5Pari(Array,Length)) 
+		printf("Ogni tripla di elementi dell'array contiene esattamente due maggiori o uguali a 5 ed almeno due elementi pari");
+	else
+		printf("Una o ogni tripla di elementi dell'array non contiene esattamente due maggiori o uguali a 5 ed almeno due elementi pari");
+	return 0;
+}
+
+int maggiori5Pari(int Array[],int Length){
+	int i ;                           
+	int Esiste;                       
+	int Numeri_Maggiori_Uguali_5;     
+	int Numeri_Pari;                  
+	i = 2;                            
+	Esiste = 1;                       
+	//******** WRONG CONDITION ON INDEX, SHOULD BE i < Length - 2 TO AVOID ARRAY BOUNDS OVERFLOW -1.0
+	while(i < Length && Esiste){
+		Numeri_Maggiori_Uguali_5 = 0; 
+		Numeri_Pari = 0;              
+		for(int j = i - 2;j <= i;j++){
+			if(Array[j] >= 5) 
+				Numeri_Maggiori_Uguali_5++;
+			if(Array[j] % 2 == 0) 
+				Numeri_Pari++;
+		}
+		if(Numeri_Pari < 2 && Numeri_Maggiori_Uguali_5 != 2) 
+			Esiste = 0;
+		i++; 
+	}
+	return Esiste; 
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the main function with proper user interaction
+- Good variable naming and code structure
+- Proper implementation of the counting logic for both conditions (>=5 and even numbers)
+- Correct use of boolean flag (Esiste) to track conditions
+
+Areas for Improvement:
+- The array bounds checking in the while loop condition needs correction. Currently, it can access elements beyond the array bounds. The condition should be i < Length - 2 to ensure all accessed elements are within bounds.
+- The logic for checking triples is correct, but the loop boundary could cause buffer overflow for small arrays.
+
+Key Recommendations:
+- Modify the while loop condition to: while(i < Length - 2 && Esiste)
+- Consider adding input validation for the array length to ensure it's at least 3 (minimum required for a triple)
+- Consider adding more descriptive variable names in English for better code readability
+</feedback_summary>

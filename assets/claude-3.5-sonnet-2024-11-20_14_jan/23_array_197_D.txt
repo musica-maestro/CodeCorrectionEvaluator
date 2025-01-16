@@ -1,0 +1,75 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....3.3 = 6.0 - 1.5 - 0.5 - 0.2 - 0.5
+   MAIN PROGRAM (max 2.0):....1.5 = 2.0 - 0.5
+   TOTAL.......................4.8
+*/
+
+#include <stdio.h>
+int restoDivisione(int *array, int n){
+	int risposta = 0;
+	//******** INCORRECT INDENTATION -0.5
+	for(int i=0; i<(n-2); i++){
+		if ( ( (array[i])%(array[i+1]) )==(array[i+2]) || ( (array[i])%(array[i+2]) )==(array[i+1]) ||
+		     ( (array[i+2])%(array[i+1]) )==(array[i])
+			|| ( (array[i+1])%(array[i]) )==(array[i+2]) ||
+			 ( (array[i+2])%(array[i]) )==(array[i+1]) || ( (array[i+1])%(array[i+2]) )==(array[i]) )
+		{
+		risposta =1;
+		}
+	}
+	//******** THE TEXT REQUIRES THE PRINT TO BE DONE IN THE MAIN, NOT IN THE FUNCTION -1.5
+	printf("%d ", risposta);
+	if(risposta == 1){
+		//******** ACCENTED CHARACTERS ARE NOT ALLOWED -0.5
+		printf("esiste almeno una tripla che abbia al suo interno il resto della divisione tra gli altri due numeri\n");
+	}else{
+		printf("non esiste neanche una tripla che abbia al suo interno il resto della divisione tra gli altri due numeri\n");
+	}                    
+	//******** HOW DO YOU CONSIDER 0? -0.2
+	return risposta;
+}
+
+int main(){
+	int n=0;
+	printf("quanti numeri vuoi inserire?(min 3)\n\n");
+	scanf("%d", &n);
+	if(n<3){
+		printf("\nti ho detto detto che mi servono minimo tre numeri\n\n");
+		do{
+			printf("quanti numeri vuoi inserire?(min 3)\n");
+			scanf("%d", &n);
+		}while(n<3);
+	}
+	//******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+	int array[n];
+	for(int i=0; i<n; i++){
+		printf("inserire il numero\n");
+		scanf("%d", &array[i]);
+	}
+	restoDivisione(array, n);
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core algorithm checking all possible remainder combinations
+- Good input validation for minimum array length
+- Proper parameter passing and array handling
+- Complete implementation of all required functionality
+
+Areas for Improvement:
+- The output messages should be in the main function, not in restoDivisione
+- Code indentation needs to be consistent
+- Avoid using accented characters in output messages
+- Consider edge cases like division by zero
+- Array declaration should follow the input validation
+
+Key Recommendations:
+1. Move all print statements to the main function
+2. Implement proper indentation throughout the code
+3. Use only ASCII characters in output messages
+4. Add validation for division by zero cases
+5. Restructure code to declare array after size validation
+</feedback_summary>

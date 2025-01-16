@@ -1,0 +1,61 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................6.0
+*/
+
+#include <stdio.h>
+int ugualiCompresi (int sequenza[], int lunghezza) {
+	int risultato=0;
+	//******** CONDITION IS COMPLICATED AND NOT VERY READABLE -0.2
+	//******** EXACTLY TWO ELEMENTS MUST BE EQUAL (THE THIRD MUST BE DIFFERENT). YOUR CONDITION ALLOWS ALL THREE TO BE EQUAL -1.5
+	for (int i=0; i<lunghezza-2 && risultato==0;i++) {
+		if ((sequenza[i]==sequenza[i+1] || sequenza[i]==sequenza[i+2] || sequenza[i+1]==sequenza[i+2])
+		&& ((sequenza[i]+sequenza[i+1]>10 && sequenza[i]+sequenza[i+1]<20) || (sequenza[i]+sequenza[i+2]>10 && sequenza[i]+sequenza[i+2]<20) || (sequenza[i+1]+sequenza[i+2]>10 && sequenza[i+1]+sequenza[i+2]<20)))
+		risultato=1; 
+		else
+			risultato=0; 
+		}
+	return risultato;
+}
+
+int main(int argc, char **argv)
+{
+	int lung; 
+	int ris;  
+	printf("Inserisci la dimensione della sequenza \n");
+	scanf ("%d", &lung);
+	int numeri[lung]; 
+	for(int i=0;i<lung;i++) {
+		printf("Inserisci il valore %d\n", i+1);
+		scanf("%d", &numeri[i]);
+	}
+	ris =  ugualiCompresi(numeri, lung); 
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES CLEARLY) -0.5
+	if (ris==1)
+		printf("esiste una tripla con almeno due elementi uguali e con almeno due elementi la cui somma e' compresa tra 10 e 20 \n");
+	else
+		printf("non esiste una tripla con almeno due elementi uguali e con almeno due elementi la cui somma e' compresa tra 10 e 20 \n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct array bounds checking in the loop condition
+- Proper implementation of the main function with user input
+- Good structure for reading array elements
+- Correct return value implementation
+
+Areas for Improvement:
+- The condition for checking exactly two equal elements needs revision. Currently, it allows for all three elements to be equal, which should be invalid according to the specifications
+- The code readability could be improved by breaking down the complex condition into smaller, more manageable parts
+- The output messages could be more precise and clearer about the specific conditions being checked
+
+Key Recommendations:
+- Modify the equality condition to ensure exactly two elements are equal, not three
+- Consider breaking down the complex condition into separate boolean variables for better readability
+- Improve the output messages to be more specific about the conditions being checked
+- Consider adding input validation for the array length
+</feedback_summary>

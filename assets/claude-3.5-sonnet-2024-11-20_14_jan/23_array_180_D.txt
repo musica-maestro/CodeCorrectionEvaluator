@@ -1,0 +1,69 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.8 = 6.0 - 1.0 - 0.2
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................6.6/8.0
+*/
+
+#include <stdio.h>
+int restoDivisione(int *array,int i)
+{
+int esito=0;
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < i - 2 -1.0
+    for (int j = 0; j <= i-3; j++) 
+    {                              
+        //******** HOW DO YOU CONSIDER 0? -0.2
+        if ((array[j]%array[j+1]==array[j+2])||(array[j+1]%array[j]==array[j+2])||
+            (array[j+2]%array[j+1]==array[j])||(array[j+1]%array[j+2]==array[j])||
+            (array[j+2]%array[j]==array[j])||(array[j]%array[j+2]==array[j+1]))
+        {
+            esito=1;
+        }
+    }
+return esito;
+}
+
+int main()
+{
+    //******** UNCLEAR MESSAGE -0.2
+    printf("salve sono un programma che verifica in una tripla di numeri se uno e' il resto degli altri due\n");           
+    printf("inserire lunghezza sequenza\n");
+    int i=0;
+    scanf("%d",&i);
+    int array[i];                  
+    for (int j= 0; j <= i-1; j++)
+    {
+        printf("inserire il valore al ponsto n %d\n",j+1 );
+        scanf("%d",&array[j]);
+    }
+    if (restoDivisione(array, i)==1)
+    {
+        printf("esiste una tripla che contiene un elemento che rappresenta il resto degli altri due \n");
+    }
+    else
+    {
+        printf("NON esiste una tripla che contiene un elemento che rappresenta il resto degli altri due \n");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the main function structure
+- Proper handling of user input and array storage
+- Complete check for all possible remainder combinations in triples
+- Clear output messages for results
+
+Areas for Improvement:
+- Array bounds checking needs correction to prevent potential buffer overflows
+- Consider edge cases involving division by zero
+- Messages could be more precise and professional
+- Array index bounds in the loop condition should be adjusted for safety
+
+Key Recommendations:
+1. Modify the loop condition to prevent array access violations
+2. Add validation for division by zero cases
+3. Improve clarity of user prompts and messages
+4. Consider using more descriptive variable names (e.g., 'length' instead of 'i')
+</feedback_summary>

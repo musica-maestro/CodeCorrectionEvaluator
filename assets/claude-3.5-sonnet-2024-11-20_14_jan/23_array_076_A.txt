@@ -1,0 +1,63 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.5 = 6.0 - 1.0 - 0.5
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL......................6.3
+*/
+
+#include<stdio.h>
+#include<math.h>
+int multipli(int interi[], int dimensione){
+    int i=0; 
+    int multipli=1; 
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < dimensione - 2 -1.0
+    while(i<=dimensione-3 && multipli){
+        if(interi[i]%interi[i+1]==0 || interi[i+1]%interi[i+2]==0 || interi[i]%interi[i+2]==0 ||
+           interi[i+1]%interi[i]==0 || interi[i+2]%interi[i+1]  || interi[i+2]%interi[i]==0)
+            i++;                 
+        else                     
+            multipli=0;
+    }
+    //******** SETTING THE VARIABLE TO 1 IS NOT NECESSARY, BUT SAVED BY BOOLEAN IN LOOP CONDITION -0.5
+    return multipli;
+}
+
+int main(){
+    int lunghezza;
+    printf("Quanto vuoi che sia lunga la tua sequenza? \n");
+    scanf("%d", &lunghezza);
+    //******** UNCLEAR OUTPUT MESSAGE -0.2
+    printf("Quali numeri vuoi inserire? \n");
+    for(int i=0; i<lunghezza; i++)
+        scanf("%d", &sequenza[i]);
+    if(multipli(sequenza, lunghezza)){
+        printf("Ogni terna ha almeno un numero multiplo degli altri due \n");
+    }else{
+        printf("Non tutte le terne hanno almeno un numero multiplo degli altri due \n");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the multiple checking logic
+- Good use of boolean flag to control iteration
+- Proper function structure with parameters
+- Clear main program flow with user interaction
+
+Areas for Improvement:
+- Array bounds checking needs correction to prevent buffer overflow
+- Output messages could be more descriptive and user-friendly
+- Initialization of multipli variable could be optimized
+- Array index condition in while loop should use < instead of <=
+
+Key Recommendations:
+1. Fix the array bounds checking by changing the condition to i < dimensione - 2
+2. Make output messages more descriptive and user-friendly
+3. Consider removing unnecessary variable initialization
+4. Add input validation for array length
+5. Consider adding error handling for division by zero cases
+
+The solution is generally well-structured but needs some technical refinements to be more robust and user-friendly.
+</feedback_summary>

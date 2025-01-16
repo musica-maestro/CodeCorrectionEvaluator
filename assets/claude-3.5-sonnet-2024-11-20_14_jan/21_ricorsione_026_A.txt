@@ -1,0 +1,92 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)............2.0 = 5.0 - 1.5 - 1.0 - 0.5
+countNumbers (2).......2.0
+readNumbers (2)........2.0
+writeNumbers(1)........1.0
+TOTAL..................7.0/10
+*/
+
+#include <stdio.h>
+int massimoPari(int array[], int l) {
+    int max;                               
+    //******** INCORRECT BASE CASE: l==3 should not be base case, should be l<=2 -0.5
+    if(l==3)
+        //******** NOT CALCULATING MAXIMUM OF TRIPLET, ONLY CHECKING IF ANY IS EVEN -1.5
+        max = (array[0]%2==0 || array[1]%2==0 || array[2]%2==0);
+    else {                                                       
+        //******** INCORRECT RECURSION: Should check if maximum of triplet is even -1.0
+        if((array[0]%2==0 || array[1]%2==0 || array[2]%2==0)>massimoPari(array+1,l-1))
+            max = (array[0]%2==0 || array[1]%2==0 || array[2]%2==0);
+        else
+            max = massimoPari(array+1,l-1);
+    }
+    return max;
+}
+
+int quantiNumeri() {
+    int quanti = 0;                             
+    int valore;                                 
+    FILE *fp = fopen("Array.dat", "rb");
+    if(fp==NULL)
+        printf("Niente da leggere");
+    else {
+        while(fread(&valore, sizeof(int), 1, fp))
+            quanti++;
+    }
+    fclose(fp);
+    return quanti;
+}
+
+void scriviNumeri(int array[], int l) {
+    FILE *fp = fopen("Array.dat", "wb");
+    if(fp==NULL)
+        printf("Errore\n");
+    else {
+        for(int i=0; i<l; i++)
+            fwrite(&array[i], sizeof(int), 1, fp);
+    }
+    fclose(fp);
+}
+
+void leggiNumeri(int array[], int l) {
+    FILE *fp = fopen("Array.dat", "rb");
+    if(fp==NULL)
+        printf("Niente da leggere\n");
+    else {
+        for(int i=0; i<l; i++)
+            fread(&array[i], sizeof(int), 1, fp);
+    }
+    fclose(fp);
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of file handling functions (readNumbers, writeNumbers, countNumbers)
+- Proper file opening/closing and error checking
+- Good structure for binary file operations
+
+Areas for Improvement:
+- The massimoPari (maxEven) function has several issues:
+  1. Incorrect base case implementation
+  2. Not calculating the maximum of triplets
+  3. Logic checks for even numbers but doesn't find maximum value
+  
+- The recursive implementation needs revision:
+  1. Base case should handle arrays of length ≤ 2
+  2. Should calculate maximum of each triplet and check if it's even
+  3. Recursive step should properly combine results
+
+Key Recommendations:
+1. Revise the recursive function to:
+   - Use proper base case (l <= 2)
+   - Calculate maximum of triplets
+   - Check if maximum is even
+2. Implement proper logic to combine results from recursive calls
+3. Consider edge cases for small array lengths
+</feedback_summary>

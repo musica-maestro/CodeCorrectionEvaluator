@@ -1,0 +1,126 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.0 = 6.0 - 0.5 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.3 - 0.2
+   TOTAL.......................7.0
+*/
+
+#include <stdio.h>
+//******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+int compresiMultipli3 (int sequenza [], int lunghezza)
+{   
+	int i=0;
+	//******** ITERATION LIMITS INCORRECT -0.5
+	while (i+2<lunghezza)
+	{
+		if (sequenza[i]%3==0)
+		{
+			if (sequenza[i+1]%3==0)
+			{
+				if(sequenza[i+2]%3==0)
+				{
+					i++;
+				}
+				else
+				{
+					if(((sequenza[i]>=-10 && sequenza[i]<=10) && (sequenza[i+1]>=-10 && sequenza[i+1]<=10)) || ((sequenza[i+1]>=-10 && sequenza[i+1]<=10) && (sequenza[i+2]>=-10 && sequenza[i+2]<=10))
+					|| ((sequenza[i]>=-10 && sequenza[i]<=10) && (sequenza[i+2]>=-10 && sequenza[i+2]<=10) ))
+					{
+						return (1);
+					}
+					else
+					{
+						i++;
+					}
+				}
+			}
+			else
+			{
+				if (sequenza[i+2]%3!=0)
+				{
+					i++;
+				}
+				else
+				{
+					if(((sequenza[i]>=-10 && sequenza[i]<=10) && (sequenza[i+1]>=-10 && sequenza[i+1]<=10)) || ((sequenza[i+1]>=-10 && sequenza[i+1]<=10) && (sequenza[i+2]>=-10 && sequenza[i+2]<=10))
+					|| ((sequenza[i]>=-10 && sequenza[i]<=10) && (sequenza[i+2]>=-10 && sequenza[i+2]<=10)))
+					{
+						return(1);
+					}
+					else
+					{
+						i++;
+					}
+				}
+			}
+		}
+		else
+		{
+			if (sequenza[i+1]%3==0 && sequenza [i+2]%3==0)
+			{
+				if(((sequenza[i]>=-10 && sequenza[i]<=10) && (sequenza[i+1]>=-10 && sequenza[i+1]<=10)) || ((sequenza[i+1]>=-10 && sequenza[i+1]<=10) && (sequenza[i+2]>=-10 && sequenza[i+2]<=10))
+					|| ((sequenza[i]>=-10 && sequenza[i]<=10) && (sequenza[i+2]>=-10 && sequenza[i+2]<=10)))
+					{
+						return (1);
+					}
+				else
+				{
+					i++;
+				}
+			}
+			else
+			{
+				i++;
+			}
+		}
+	}
+return(0);
+}
+
+int main()
+{
+	int lunghezza;
+	int soluzione;
+	//******** NOT INDENTED! -0.2
+	printf("inserisci la quantita di numeri desiderata");
+	scanf("%d", &lunghezza);
+	int sequenza[lunghezza];
+	for (int i=0;i<lunghezza;i++)
+	{
+		printf("inserisci i numeri desiderati");
+		scanf("%d", &sequenza[i]);
+	}
+soluzione=compresiMultipli3(sequenza,lunghezza);
+//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+if(soluzione==1)
+{
+	printf("la tua stringa rispetta le condizoni");
+}
+else
+{
+	printf("la tua stringa non rispetta le condizioni");
+}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for checking multiples of 3
+- Proper handling of array bounds and consecutive elements
+- Good implementation of the main function's input/output structure
+
+Areas for Improvement:
+- The loop condition should be i < lunghezza-2 to prevent array bounds issues
+- Code readability could be improved by breaking down complex conditions
+- Main program output messages should be more specific about what conditions are being checked
+- Code indentation needs to be consistent throughout
+- Variable names and output messages should reflect that we're working with numbers, not strings
+
+Key Recommendations:
+- Simplify complex conditions by breaking them into smaller, more readable parts
+- Use proper indentation throughout the code
+- Provide more descriptive output messages that explain the specific conditions being checked
+- Consider using more meaningful variable names
+- Add comments to explain the logic of complex conditions
+</feedback_summary>

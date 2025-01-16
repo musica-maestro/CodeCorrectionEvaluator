@@ -1,0 +1,79 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.5):....2.5
+   TOTAL.......................7.8
+*/
+
+#include <stdio.h>
+int isPari(int x){
+    return x%2==0;
+}
+int maggiori5pari(int interi[],int l){
+    int i;                                                 
+    int verificata;                                        
+    verificata=1;
+    i=1;
+    //******** WRONG CONDITION ON INDEX i < length - 2 -0.5
+    while(i+1<l && verificata){
+        //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+        if((interi[i-1]>=5 && interi[i]<5 && interi[i+1]<5)
+        || (interi[i-1]<5 && interi[i]<5 && interi[i+1]>=5)
+        || (interi[i-1]<5 && interi[i]>=5 && interi[i+1]<5)
+        || (interi[i-1]<5 && interi[i]<5 && interi[i+1]<5)
+        || (interi[i-1]>=5 && interi[i]>=5 && interi[i+1]>=5))
+            verificata=0;
+        else
+            if((isPari(interi[i-1]) && !isPari(interi[i]) && !isPari(interi[i+1]))
+            || (!isPari(interi[i-1]) && !isPari(interi[i]) && isPari(interi[i+1]))
+            || (!isPari(interi[i-1]) && isPari(interi[i]) && !isPari(interi[i+1]))
+            || (!isPari(interi[i-1]) && !isPari(interi[i]) && !isPari(interi[i+1])))
+                verificata=0;
+    i++;
+    }
+    if(l<3)
+        verificata=0;
+    return verificata;
+}
+int main(){
+    int l;
+    printf("Ciao utente, questo %c un programma che riceve in imput una sequenza di elementi e verifica se ogni tripla di elementi\n", 138);
+    printf("consecutivi contiene esattamente due elementi maggiori o uguali a 5 ed almeno due elementi pari\n");
+    printf("Scrivi la lunghezza della sequenza: ");
+    scanf("%d",&l);
+    int Interi[l];
+    for(int i=0;i<l;i++){
+        printf("Introduci un elemento: ");
+        scanf("%d",&Interi[i]);
+    }
+    if(maggiori5pari(Interi,l))
+        printf("Ogni tripla di elementi consecutivi contiene esattamente due elementi maggiori o uguali a 5 ed almeno due elementi pari\n");
+    else{
+        printf("C'%c una tripla di elementi consecutivi che non contiene esattamente due elementi maggiori o uguali a 5 ed almeno\n", 138);
+        printf("due elementi pari, oppure l'array ha meno di tre elementi\n");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the main function with proper user interaction
+- Good handling of array input and output
+- Proper check for minimum array length (l<3)
+- Correct implementation of even number checking function (isPari)
+- Good error messages and user communication
+
+Areas for Improvement:
+- The loop condition in maggiori5pari function should be i < l-2 to prevent array bounds issues
+- The logic conditions could be simplified and made more readable by breaking them into smaller parts or using helper variables
+- Consider using more meaningful variable names (e.g., 'verificata' could be 'isValid' or 'result')
+
+Key Recommendations:
+- Restructure the loop condition to properly handle array bounds
+- Break down complex conditions into smaller, more manageable parts
+- Consider adding comments to explain the logic of complex conditions
+- Use more descriptive variable names to improve code readability
+</feedback_summary>
+
+The student's implementation is generally good, with only minor issues in the loop condition and code readability. The main function is well implemented with proper user interaction and clear output messages. The core logic for checking the triples is correct, though it could be made more readable.

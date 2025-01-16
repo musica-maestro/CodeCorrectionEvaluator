@@ -1,0 +1,71 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....1.8 = 6.0 - 1.5 - 1.5 - 1.0 - 0.2
+   MAIN (max 2.0):....0.5 = 2.0 - 1.0 - 0.5
+   TOTAL:....2.3/8.0
+*/
+
+#include <stdio.h>
+int multipli(int interi[],int lunghezza){
+    //******** THIS IS A UNIVERSAL VERIFICATION, NOT AN EXISTENTIAL ONE -1.5
+    //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < l - 2 -1.0
+    int i=1;
+    int multiplo=0;
+    while(i<lunghezza-2&&!multiplo){
+        //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+        if(interi[i]%interi[i+1]==0||interi[i]%interi[i+2]==0)
+            multiplo=1;
+        else
+            i++;  
+    }
+    //******** HOW TO CONSIDER 0? -0.2
+    return multiplo;
+}
+
+int main(){
+    int lunghezza;
+    int i;
+    //******** MISSING DECLARATION OF THE ARRAY -1.0
+    int interi;
+    for(i=1;i<lunghezza;i++)
+        printf("Ciao user, sono un programma che, data una sequenza di interi, verifica se e' presente almeno un intero che sia multiplo di un altro.\n");
+        printf("Quanti interi vuoi inserire?\n");
+        scanf("%d",&lunghezza);
+        printf("Inserisci %d interi.\n",lunghezza);
+    //******** INCORRECT READING, SHOULD BE &seq[i] -0.5
+if(!multipli(interi,lunghezza)){
+    printf("Non ci sono elementi che sono multipli di un altro in alcuna terna della sequenza inserita.\n");
+    }
+    else
+        printf("In tutte le terne adiacenti c'e' un elemento multiplo degli altri 2.\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic function structure is present
+- Attempt to implement the required logic for checking multiples
+- Main function includes user interaction elements
+
+Areas for Improvement:
+1. Function Implementation:
+- The verification logic is incorrect - it should check all triples (universal verification)
+- Array bounds checking needs correction to prevent buffer overflow
+- The multiple checking condition is incomplete - should check all combinations within triple
+- Need to handle edge case of zero values
+
+2. Main Program:
+- Array declaration is missing
+- Array reading implementation is incorrect
+- Input validation should be added
+
+Key Recommendations:
+1. Implement proper array declaration and initialization
+2. Correct the verification logic to check all triples
+3. Fix array bounds checking
+4. Implement proper array element reading
+5. Add complete multiple checking conditions for all combinations in triples
+6. Add input validation
+7. Consider edge cases like zero values
+</feedback_summary>

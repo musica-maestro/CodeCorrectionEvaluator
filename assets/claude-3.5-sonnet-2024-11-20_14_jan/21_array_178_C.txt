@@ -1,0 +1,73 @@
+I'll grade the student's submission following the provided format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.0 = 6.0 - 1.0
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................7.0
+*/
+
+int compresiMultipli3(int arr[], int lung){
+    int j;
+    for(int i=0; i<lung-2; i++){
+        if ((arr[i]>=-10 && arr[i]<=10) && (arr[i+1]>=-10 && arr[i+1]<=10) && (arr[i+2]>=-10 && arr[i+2]<=10)){
+            //******** YOU MUST CHECK THAT AT LEAST 2 ARE BETWEEN -10 AND 10, NOT EXACTLY 2 -1.0
+            int contatore=0;
+            for(int j=i; j<i+3; j++){
+                if(arr[j]%3==0){
+                    contatore = contatore+1;
+                }
+                if(contatore==2){
+                    return 1; 
+                }             
+            }
+        }
+    }
+    return 0;
+}
+
+#include <stdio.h>
+int main()
+{
+    int lung;
+    printf("quanti interi ha la sequenza?\n");
+    scanf("%d", &lung);
+    int arr[lung];
+    if(lung<3){
+        printf("la sequenza e' troppo corta\n\n");
+        //******** MISSING RETURN STATEMENT AFTER ERROR CONDITION -0.5
+    }
+    for (int i=0; i<lung; i++){
+        printf("inserisci un intero: ");
+        scanf("%d", &arr[i]);
+    }
+    compresiMultipli3(arr, lung);
+    if((compresiMultipli3(arr, lung))==1){
+        printf("esiste una tripla\n\n"); 
+    }else{
+        printf("tripla non esiste\n\n");
+    }
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the basic function structure
+- Proper array bounds checking in the main loop
+- Good implementation of the counter for multiples of 3
+- Clear user interaction in main function
+
+Areas for Improvement:
+1. Function Logic:
+- The condition for checking numbers between -10 and 10 is too restrictive. It requires all three numbers to be in range, when only at least two should be.
+- Consider using a separate counter for numbers in range (-10 to 10)
+
+2. Main Function:
+- Add proper error handling with return statement when the sequence is too short
+- The function compresiMultipli3 is called twice unnecessarily - store the result in a variable
+
+Key Recommendations:
+- Modify the range checking condition to count numbers between -10 and 10 and verify at least 2 are in range
+- Add proper error handling in main function
+- Optimize the code by avoiding duplicate function calls
+- Consider adding more descriptive output messages to indicate what properties were found/not found in the sequence
+</feedback_summary>

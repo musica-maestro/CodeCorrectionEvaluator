@@ -1,0 +1,80 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* 
+maxEven (5)......... 1.5 = 5.0 - 1.5 - 1.0 - 1.0
+countNumbers (2).... 1.7 = 2.0 - 0.3
+readNumbers (2)..... 0.0 = 2.0 - 2.0
+writeNumbers(1)..... 0.5 = 1.0 - 0.5
+TOTAL............... 3.7
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimoPari(int *seq, int lunghezza){
+    int ver;
+    if(lunghezza<=2)
+        ver=0;   
+    else{
+        //******** ERROR: Undefined variable 'sequenza' used instead of 'seq' -1.0
+        //******** ERROR: Recursive implementation incorrect - not checking maximum properly -1.5
+        ver=((massimoPariRic(seq[lunghezza-1],seq[lunghezza-2],sequenza[lunghezza-3])%2==0)
+        &&massimoPari(seq,lunghezza-1));
+    }
+    //******** MISSING: Return statement -1.0
+}
+
+int massimoPariRic(int num1,int num2,int num3){  
+    int massimo;
+    //******** MISSING: Function implementation and return statement -1.0
+}
+
+int quantiNumeri(File*fp) {
+    int num=0;
+    //******** MISSING: Function implementation but counter initialized correctly -0.3
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    //******** MISSING: Complete function implementation -2.0
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    int i=0;
+    //******** ERROR: Incomplete while loop condition and implementation -0.5
+    while(sequenza[i])
+}
+
+[Rest of the main function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is in place
+- Main function handles user input appropriately
+- Correct function prototypes defined
+
+Areas for Improvement:
+1. massimoPari function:
+   - Missing return statement
+   - Incorrect recursive implementation
+   - Variable naming inconsistency (seq vs sequenza)
+
+2. massimoPariRic function:
+   - Function body is empty
+   - Missing logic for finding maximum of three numbers
+   - Missing return statement
+
+3. File handling functions:
+   - quantiNumeri: Missing implementation
+   - leggiNumeri: Complete implementation missing
+   - scriviNumeri: Incomplete while loop and missing file operations
+
+Key Recommendations:
+1. Complete the massimoPariRic function to properly find the maximum of three numbers
+2. Implement proper recursion in massimoPari function
+3. Add proper file handling operations in the I/O functions
+4. Add proper return statements in all functions that require them
+5. Fix variable naming consistency throughout the code
+6. Complete the while loop implementation in scriviNumeri
+</feedback_summary>

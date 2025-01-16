@@ -1,0 +1,76 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.0 = 6.0 - 1.5 - 1.0 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL......................5.0
+*/
+
+#include <stdio.h>
+int isPari(int n){
+    return n%2==0;
+}
+int maggiori5Pari(int interi[], int l){
+    int i; 
+    int maggioripari=1; 
+    //******** WRONG CONDITION IN LOGIC: The condition checks are not properly structured for exactly 2 elements >= 5 -1.5
+    for(i=0;i<l-2&&maggioripari;i++){
+        if((interi[i]>=5&&interi[i+1]>=5)||(interi[i]>=5&&interi[i+2]>=5)||(interi[i+1]&&interi[i+2]>=5)){
+            if((interi[i]<5)||(interi[i+1]<5)||(interi[i+2]<5)){
+                //******** WRONG CONDITION: Logic error in checking pairs of even numbers -1.0
+                if((isPari(interi[i])&&isPari(interi[i+1]))||(isPari(interi[i]&&isPari(interi[i+2])))||(isPari(interi[i+1]&&isPari(interi[i+2])))){
+                    maggioripari=1; 
+                }
+                else
+                    maggioripari=0; 
+            }
+            else
+                    maggioripari=0; 
+        }
+        else
+                    maggioripari=0; 
+    }
+    //******** MISSING RETURN VALUE -0.5
+    return
+        maggioripari;
+}
+int main()
+{
+    int i; 
+    int lunghezza; 
+    printf("Caro utente questo programma legge una sequenza di interi e verifica se contiene esattamente due elementi\nmaggiori o uguali a 5 ed almeno due elementi pari\n");
+    printf("Quanto %c lunga la sequenza? ",138);
+    scanf("%d",&lunghezza);
+    int sequenza[lunghezza];
+    for(i=0;i<lunghezza;i++){
+        printf("Inserisci il %d%c numero: ",i+1,167);
+        scanf("%d",&sequenza[i]);
+    }
+    //******** OUTPUT MESSAGE IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    if (maggiori5Pari(sequenza,lunghezza))
+        printf("\nOgni tripla contiene esattamente due elementi maggiori o uguali di 5 e almeno due pari");
+    else
+        printf("\nAlmeno una tripla non contiene esattamente due elementi maggiori o uguali di 5 e almeno due pari");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct use of array indexing and bounds checking
+- Good implementation of the isPari helper function
+- Proper user interaction in main function
+- Good array allocation based on user input
+
+Areas for Improvement:
+- The logic for checking exactly two elements >= 5 needs revision
+- The condition for checking pairs of even numbers has syntax errors
+- The return statement is incorrectly formatted
+- Output messages could be more specific and clearer
+
+Key Recommendations:
+1. Restructure the conditions to properly check for exactly two elements >= 5
+2. Fix the syntax in the even number checking conditions
+3. Properly format the return statement
+4. Make output messages more specific about what properties are being verified
+5. Consider using clearer variable names and better code formatting
+</feedback_summary>

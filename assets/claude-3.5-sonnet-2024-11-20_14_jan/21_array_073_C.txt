@@ -1,0 +1,64 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.5 = 6.0 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................7.5/8.5
+*/
+
+#include <stdio.h>
+int compresiMultipli3(int array[],int l){
+    int i=0; 
+    int esiste=0;
+    int quantiDivisibiliPer3, compreso10;
+    while(i<l-2&&!esiste){
+        //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+        quantiDivisibiliPer3=((array[i]%3)!=0)+((array[i+1]%3)!=0)+((array[i+2]%3)!=0);
+        compreso10=(array[i]>=-10&&array[i]<=10)+(array[i+1]>=-10&&array[i+1]<=10)+(array[i+2]>=-10&&array[i+2]<=10);
+        if(quantiDivisibiliPer3==1&&compreso10>=2)
+            esiste=1;
+        else
+            i++;
+    }
+    return esiste;
+}
+
+int main(){
+    int i=0;
+    int lunghezza;
+    printf("Ciao! Quanto vuoi lunga la tua sequenza? ");
+    scanf("%d",&lunghezza);
+    int array[lunghezza];
+    while(i<lunghezza){
+        printf("\nInserisci che valore dare al %d elemento: ",i+1);
+        scanf("%d",&array[i]);
+        i++;
+    }
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    if(compresiMultipli3(&array[0],lunghezza))
+        printf("La stringa inserita contiene almeno due elementi il cui valore\ne' compreso tra -10 e 10 e che contiene esattamente due elementi multipli di 3!\n");
+    else
+        printf("La stringa inserita NON contiene almeno due elementi il cui valore\ne' compreso tra -10 e 10 e che contiene esattamente due elementi multipli di 3.\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the array bounds checking (i<l-2)
+- Proper use of boolean flag (esiste) for loop control
+- Correct handling of the consecutive triple check
+- Good implementation of the main function's input gathering
+
+Areas for Improvement:
+- The condition checking for divisibility by 3 and range checking could be more readable
+- The output message could be more specific about the consecutive nature of the elements
+- Consider using more descriptive variable names (e.g., 'compreso10' could be 'elementsInRange')
+
+Key Recommendations:
+- Break down complex conditions into smaller, more readable parts using intermediate variables
+- Improve output messages to clearly specify that the elements must be consecutive
+- Use more descriptive variable names to improve code readability
+- Consider adding input validation for the array length
+</feedback_summary>
+
+The student's implementation is generally correct and handles the core requirements well. The main deductions come from readability issues in the condition checking and the clarity of the output message. The function correctly implements the logic for finding consecutive triples with the required properties, though the implementation could be more readable.

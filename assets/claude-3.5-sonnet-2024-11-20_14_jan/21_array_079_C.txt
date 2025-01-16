@@ -1,0 +1,67 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........6.0
+   MAIN PROGRAM (max 2.5):....2.5
+   TOTAL.......................8.5
+*/
+
+#include <stdio.h>
+int compresiMultipli3(int array[],int lungh)
+{
+	int trovato=0;      
+	int multipli3=0;   
+	int compresi=0;   
+	for(int i=0; i<lungh-2 && !trovato; i++){
+		multipli3 = (array[i]%3==0)+(array[i+1]%3==0)+(array[i+2]%3==0);
+		compresi = (array[i]<=10 && array[i]>=-10)+(array[i+1]<=10 && array[i+1]>=-10)+(array[i+2]<=10 && array[i+2]>=-10);
+		if((multipli3==2)&&(compresi==2 || compresi==3)){
+			trovato=1;
+		}
+	}
+	return trovato;
+}
+
+int main(int argc, char **argv)
+{
+	int lungh;
+	printf("Ciao, sono un programma che controlla se esiste\nuna tripla consecutiva di interi avente esattamente\ndue multipli di 3 e almeno due interi compresi tra -10 e 10\n");
+	printf("Per prima cosa dimmi quanto e' lunga la tua sequenza: ");
+	scanf("%d", &lungh);
+	int array[lungh];
+	for(int i=0; i<lungh;i++){
+		printf("\nInserisci un valore: ");
+		scanf("%d", &array[i]);
+	}
+	if(compresiMultipli3(array,lungh)){
+		printf("\nEsiste una tripla consecutiva di interi avente esattamente\ndue multipli di 3 e almeno due interi compresi tra -10 e 10!");
+	}
+	else{
+		printf("\nNon esiste una tripla che soddisfa la proprieta' descritta.");
+	}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the function logic for checking consecutive triples
+- Proper use of boolean flag (trovato) to exit loop when condition is met
+- Clear and efficient counting of multiples of 3 and numbers in range
+- Well-structured main program with clear user interaction
+- Good input handling and array management
+- Clear output messages that explain the results
+
+Areas for Improvement:
+- While the code is functionally correct, readability could be improved by:
+  - Adding comments to explain the logic
+  - Using more descriptive variable names
+  - Breaking down complex conditions into smaller, more readable parts
+
+Key Recommendations:
+- Consider adding input validation for array length
+- Add comments to explain the logic behind the multipli3 and compresi calculations
+- Consider using const variables for magic numbers like 10 and -10
+- Consider breaking down the complex conditions in the if statement for better readability
+</feedback_summary>
+
+The student's submission fully meets all the requirements specified in the assignment. The function correctly implements the logic to find triples with exactly two multiples of 3 and at least two numbers in the range [-10,10]. The main program properly handles user interaction, array input, and result display. No points were deducted as there are no errors according to the grading criteria.

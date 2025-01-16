@@ -1,0 +1,14 @@
+Design an algorithm to solve the following problem. Given a sequence of integers, verify if there exists a triple of consecutive elements such that at least two elements of the triple have a sum between 10 and 20 (inclusive), and exactly two elements of the triple are equal. For example, the sequence [1, 7, 4, 4] is a positive instance of the problem, as there exists a triple of consecutive elements (the triple [7, 4, 4]) such that at least two elements (7 and 4) have a sum between 10 and 20, and exactly two elements are equal (the two elements with value 4). The sequence [6, 6, 6] is instead a negative instance of the problem, as there are two elements of the triple with a sum between 10 and 20, but it does not contain exactly two equal elements (instead, all 3 are equal). Similarly, the sequence [12, -3, -3] is a negative instance of the problem, as the only triple of consecutive elements has exactly two numbers equal, but does not contain two elements whose sum is between 10 and 20.
+
+(1.5 pt) Provide a concise description of the problem specification.
+(1 pt) Indicate the type of problem (accumulation, counting, existential verification, universal verification, search, minimum/maximum).
+Write a C program UgualiCompresi in which the following are defined:
+(6 pt) A function ugualiCompresi with parameters:
+
+an array of integers; and an integer representing the length of the array.
+The function returns 1 if there exists a triple of consecutive elements such that at least two elements of the triple have a sum between 10 and 20 (inclusive) and exactly two elements of the triple are equal; otherwise, it returns 0.
+(2.5 pt) A main function that manages the user interaction. The main function must:
+ask the user how many integers are in the sequence and read the user’s input;
+ask the user to input the integers of the sequence, read the integers provided by the user, and store them in an array;
+call the ugualiCompresi function, providing it with the reference to the sequence of integers just read and its length;
+print a message to the user indicating whether a triple of consecutive elements exists such that at least two elements of the triple have a sum between 10 and 20 (inclusive) and exactly two elements of the triple are equal, or whether such a triple does not exist.

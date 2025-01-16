@@ -1,0 +1,121 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.0 = 6.0 - 1.0 - 1.0 - 1.0
+   MAIN PROGRAM (max 2.5):....1.2 = 2.5 - 0.5 - 0.5 - 0.3
+   TOTAL.......................4.2
+*/
+
+#include <stdio.h>
+#include <string.h>
+int compreso (int valore)
+{
+        int risultato;
+        if(valore>=-10 && valore<=10) 
+        {
+            risultato=1;
+        }
+        else
+        {
+        risultato=0;
+        }
+        return risultato;
+}
+int compresiMultipli3 (int array[], int lunghezza)
+{
+        int esiste=0;
+        int conteggioMultipli=0;
+        int conteggioCompresi=0;
+        int contatoregenerale=0;
+        //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i<lunghezza-2 -1.0
+        for(int i=0;i<lunghezza;i++)
+        {
+            int j=i;
+                while(contatoregenerale<3)
+                {
+                    printf("%d\n", array[j]);
+                    printf("aaa\n");
+                        if(compreso(array[j]))
+                        {
+                                printf("compreso\n");
+                                conteggioCompresi++;
+                        }
+                        if(array[j]%3==0)
+                        {
+                            printf("multiplo\n");
+                                conteggioMultipli++;
+                        }
+                        j++;
+                        contatoregenerale++;
+                }
+                //******** EXACTLY TWO ELEMENTS MUST BE DIVISIBLE BY 3. EXAMPLE: IF TRIPLE IS 3 12 6 YOUR CONDITION IS SATISFIED -1.0
+                if(conteggioCompresi>=2 && conteggioMultipli>=2)
+                {
+                    printf("conteggio compreso= %d\n", conteggioCompresi);
+                    printf("conteggio multipli= %d\n", conteggioMultipli);
+                    printf("%d\n", array[j]);
+                    esiste=1;
+                    printf("variebile esiste %d ", esiste);
+                    break;
+                }
+                contatoregenerale=0;
+                conteggioCompresi=0;
+                conteggioMultipli=0;
+        }
+        //******** MISSING RETURN -1.0
+}
+int main(int argc, char **argv)
+{
+    int x;
+    printf("quanto voui lungo il vettore ?");
+    scanf("%d",&x);
+    int vett[x];
+    for(int i=0;i<x;i++)
+    {
+            printf("inserisci il valore in posizione %d ",i);
+            scanf("%d", &vett[i]);
+    }
+    //******** FUNCTION CALLED TWICE UNNECESSARILY -0.5
+    compresiMultipli3(vett,x); 
+    //******** WRONG FUNCTION CALL COMPARISON -0.5
+    if(compresiMultipli3==1)
+    {
+            //******** OUTPUT IS POORLY EXPRESSED -0.3
+            printf("verificato");
+    }
+    else
+    {
+            printf("non verificato");
+    }
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of the compreso helper function
+- Proper array input handling in main
+- Basic logic structure for checking consecutive triples
+
+Areas for Improvement:
+1. Array bounds checking:
+   - Modify the loop condition to prevent array overflow (i < lunghezza-2)
+   - This ensures safe access to consecutive triples
+
+2. Function implementation:
+   - Add missing return statement in compresiMultipli3
+   - Fix the condition for exactly two multiples of 3
+   - Remove unnecessary debug print statements
+
+3. Main function:
+   - Fix the function call comparison (currently comparing function pointer)
+   - Remove redundant function call
+   - Improve output messages to be more descriptive
+
+Key Recommendations:
+1. Add proper array bounds checking to prevent buffer overflows
+2. Implement proper return value in compresiMultipli3
+3. Fix the condition to check for exactly two multiples of 3
+4. Clean up the main function's logic for checking the result
+5. Improve output messages to clearly indicate what was verified
+</feedback_summary>

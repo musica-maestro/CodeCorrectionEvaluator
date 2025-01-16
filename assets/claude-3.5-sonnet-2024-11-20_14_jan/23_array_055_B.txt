@@ -1,0 +1,70 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.3 = 6.0 - 1.5 - 0.2
+   MAIN (max 2.0):.......1.8 = 2.0 - 0.2
+   TOTAL..................6.1/8.0
+*/
+
+#include <stdio.h>
+int espBl(int a,int b, int c){
+	return ((a>0&&b>0&&c<0)||(a>0&&c>0&&b<0)||(b>0&&c>0&&a<0));
+}
+
+int duePositivi(int a[],int L){
+	int risultato;	
+	int i;	
+	risultato=1;	
+	i=0;	
+	//******** TWO OR THREE COMBINATIONS ON THE TRIPLE CONDITION ARE MISSING -1.5
+	while(i<L-2&&risultato){
+		if(!espBl(a[i],a[i+1],a[i+2]))
+			risultato=0;	
+		else
+			i++;	
+	}
+	return risultato;
+}
+
+int main(){
+	int n;	
+	int i;	
+	printf("ciao utente, data una sequenza, sono un programma che ti dice\nse in ogni tripla di numeri consecutivi ci sono esattamente due numeri positivi.\n");
+	printf("\ndunque scriviamo una sequenza:\n");
+	do{
+		printf("quanti valori vuoi (almeno 3):  ");
+		scanf("%d",&n);	
+		if(n<3)
+			printf("non va bene, riprova\n");
+	}
+	while(n<3);
+	int seq[n];	
+	for(i=0;i<n;i++){
+		printf("utente inserisci un valore:  ");
+		scanf("%d",&seq[i]);
+	}
+	//******** UNCLEAR MESSAGE -0.2
+	printf("nella sequenza che hai scritto, in ogni tripla di numeri consecutivi \nci sono esattamente due valori positivi");
+	printf("|vero == 1  falso == 0| --> Calcolato: %d",duePositivi(seq,n)); 
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct overall program structure with separate functions
+- Proper array bounds checking in the main loop
+- Good input validation for sequence length
+- Clear variable naming and logical organization
+
+Areas for Improvement:
+- The espBl function doesn't handle all possible combinations for exactly two positive numbers. It should include cases like (-,+,+) and (+,+,-) as well
+- The output message could be clearer about whether the condition is satisfied or not
+- Consider adding more descriptive variable names instead of 'a', 'b', 'c'
+- The program doesn't explicitly handle zero values, which should be considered as non-positive
+
+Key Recommendations:
+- Complete the triple condition check by adding all possible combinations for exactly two positive numbers
+- Make output messages more user-friendly and explicit
+- Add comments to explain the logic of the espBl function
+- Consider edge cases like zero values in the implementation
+</feedback_summary>

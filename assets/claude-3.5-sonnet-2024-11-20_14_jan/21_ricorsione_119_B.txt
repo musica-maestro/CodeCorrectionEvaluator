@@ -1,0 +1,98 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........3.5 = 5.0 - 1.5
+countNumbers (2).....2.0
+readNumbers (2)......2.0
+writeNumbers(1)......1.0
+TOTAL................8.5/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int minimoDispari(int *seq, int lunghezza){
+    int ris;
+    int verifica;
+    //******** Base case missing for length < 3 -1.5
+    if(seq[0] <= seq[1] && seq[0] <= seq[2]){
+        if(seq[0] % 2 == 1)
+            verifica = 1;
+    }
+    if(seq[1] <= seq[0] && seq[1] <= seq[2]){
+        if(seq[1] % 2 == 1)
+        verifica = 1;
+    }
+    if(seq[2] <= seq[0] && seq[2] <= seq[1]){
+        if(seq[2] % 2 == 1)
+            verifica = 1;
+    }
+    if(lunghezza == 0) 
+        ris = 1;
+    else{
+        ris = verifica && minimoDispari(seq+1, lunghezza-1);
+    }
+    return ris;
+}
+
+int quantiNumeri() {
+    int count = 0;
+    FILE *fp = fopen("interi.dat", "rb");
+    if(fp == NULL)
+        printf("File non aperto o inesistente\n\n");
+    else{
+        int num;
+        while(fread(&num, sizeof(int), 1, fp) > 0)
+            count++;
+        fclose(fp);
+    }
+    return count;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE *fp = fopen("interi.dat", "rb");
+    if(fp == NULL)
+        printf("File non aperto o inesistente\n\n");
+    else{
+        fread(sequenza, sizeof(int), lunghezza, fp);
+        printf("Deti recuperati\n\n");
+        fclose(fp);
+    }
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE *fp = fopen("interi.dat", "wb");
+    if(fp == NULL)
+        printf("File non aperto o inesistente\n\n");
+    else{
+        fwrite(sequenza, sizeof(int), lunghezza, fp);
+        printf("Salvataggio riuscito\n\n");
+        fclose(fp);
+    }
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of file operations (reading, writing, counting)
+- Proper file handling with error checking
+- Good structure for file operations functions
+- Appropriate use of binary file operations
+
+Areas for Improvement:
+- The minimoDispari function needs a proper base case for arrays with length < 3
+- The recursive implementation could be more efficient
+- The verification of odd minimum values could be more clearly structured
+
+Key Recommendations:
+1. Add proper base case handling for arrays with length < 3
+2. Restructure the minimum finding logic to be more concise
+3. Consider using a helper function for checking triple minimums
+4. Add more detailed error messages for file operations
+5. Consider adding input validation for array length in main function
+
+The code is generally well-structured but needs improvements in the recursive implementation of minimoDispari function. The file handling portions are implemented correctly with proper error checking and closing of files.
+</feedback_summary>

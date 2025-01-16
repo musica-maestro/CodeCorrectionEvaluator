@@ -1,0 +1,77 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.0 = 6.0 - 1.5 - 1.5
+   MAIN PROGRAM (max 2.5):....1.8 = 2.5 - 0.5 - 0.2
+   TOTAL.......................4.8
+*/
+
+#include <stdio.h>
+int maggiori5Pari(int sequenza[],int lunghezza){
+    int verificato=1;  
+    int i=1;   
+    //******** WRONG CONDITION ON INDEX i < length - 2 -1.5
+    while(i<lunghezza && verificato){ 
+        //******** CONDITION WRONG: EXACTLY TWO ELEMENTS MUST BE >= 5 (THE THIRD MUST BE < 5) -1.5
+        if((sequenza[i-1]<5 && sequenza[i]<5) 
+        || (sequenza[i]<5 && sequenza[i+1]<5)
+        || (sequenza[i-1]<5 && sequenza[i+1]<5)
+        ||  
+           ((sequenza[i-1]%2!=0 && sequenza[i]%2!=0)
+           || (sequenza[i-1]%2!=0 && sequenza[i+1]%2!=0)
+           || (sequenza[i]%2!=0 && sequenza[i+1]%2!=0))){
+               verificato=0;
+           }
+               i++;   
+    }
+    return verificato;
+    }
+int main(int argc, char **argv)
+{
+    int lunghezza;   
+    printf("Ciao,sono un programma che data una sequenza di interi,verifica se ogni tripla di elementi consecutivi contiene esattamente due interi maggiori o uguali a 5 ed almeno due elementi pari. \n");
+    printf("Inserisci la lunghezza della sequenza:\n");
+    scanf("%d",&lunghezza);
+    int sequenza[lunghezza];
+    printf("\n");
+    for(int i=0;i<lunghezza;i++){
+        //******** OUTPUT IS POORLY EXPRESSED -0.5
+        printf("Inserisic la sequenza:\n");
+        scanf("%d",&sequenza[i]);
+    }
+    //******** BADLY INDENTED -0.2
+    if(maggiori5Pari(sequenza,lunghezza))
+    printf("Verificato.");
+    else   
+        printf("Non verificato:\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is present
+- Correct use of boolean flag for verification
+- Proper array handling and input reading
+- Function returns appropriate boolean result
+
+Areas for Improvement:
+1. Array Index and Loop Conditions:
+- The loop condition should be i < lunghezza - 2 to avoid array bounds issues
+- Current implementation may access array elements beyond bounds
+
+2. Logic Implementation:
+- The condition for checking exactly two elements ≥ 5 is incorrect
+- The even number check needs to verify at least two even numbers, not the absence of two odd numbers
+
+3. Code Style:
+- Main program indentation needs improvement
+- Output messages could be more descriptive and informative
+
+Key Recommendations:
+1. Fix the loop boundary condition to properly handle triples
+2. Revise the logic to correctly check for:
+   - Exactly two elements ≥ 5 in each triple
+   - At least two even elements in each triple
+3. Improve code formatting and indentation
+4. Enhance user interface messages for clarity
+</feedback_summary>

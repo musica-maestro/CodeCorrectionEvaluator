@@ -1,0 +1,99 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)............4.0 = 5.0 - 1.0
+countNumbers (2).......1.7 = 2.0 - 0.3
+readNumbers (2)........1.7 = 2.0 - 0.3
+writeNumbers(1)........0.8 = 1.0 - 0.2
+TOTAL..................8.2/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimoPari(int *seq, int lunghezza){
+    //******** The function name should be maxEven as per requirements, but no points deducted for naming
+    int tutte; 
+    if (lunghezza<3){ 
+        tutte = 1;
+    }
+    else{
+        //******** Complex and hard to read logic for finding maximum, but functionally correct
+        tutte = (((seq[0]>seq[1] && seq[0]>seq[2] && seq[0]%2==0)
+        || (seq[1]>seq[0] && seq[1]>seq[2] && seq[1]%2==0)
+        || (seq[2]>seq[0] && seq[2]>seq[1] && seq[2]%2==0)) && (massimoPari(seq+1, lunghezza-1)));
+    }
+    return tutte;
+}
+
+int quantiNumeri() {
+    //******** Counter not initialized -0.3
+    int quanti;
+    int n;
+    FILE *fp = fopen("array.dat", "rb"); 
+    if(fp==NULL){ 
+        printf("IMPOSSIBILE APRIRE IL FILE\n\n");
+    }
+    else{ 
+        while(fread(&n, sizeof(int), 1, fp)>0){ 
+            quanti++; 
+        }
+    }
+    //******** Missing file closure -0.2
+    return quanti;  
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE *fp = fopen("array.dat", "rb"); 
+    if(fp==NULL){ 
+        printf("IMPOSSIBILE APRIRE IL FILE\n\n");
+    }
+    else{ 
+        //******** In fread, you should not use &, sequence is already an address -0.3
+        fread(sequenza, sizeof(int), lunghezza, fp); 
+    }
+    //******** Missing file closure -0.2
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE *fp = fopen("array.dat", "wb"); 
+    if(fp==NULL){ 
+        printf("IMPOSSIBILE APRIRE IL FILE\n\n");
+    }
+    else{ 
+        fwrite(sequenza, sizeof(int), lunghezza, fp);
+    }
+    //******** Missing file closure -0.2
+    printf("SALVATAGGIO EFFETTUATO!!\n\n");
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of recursive logic in massimoPari function
+- Proper file handling error checks
+- Good implementation of binary file operations
+- Functional main program with user interaction
+
+Areas for Improvement:
+- File operations:
+  * Missing file closure (fclose) after operations
+  * Counter variable not initialized in quantiNumeri
+  * Incorrect use of & operator in fread for array
+
+- Code organization:
+  * Function names should match assignment requirements (massimoPari vs maxEven)
+  * File name should be "integers.dat" as per requirements instead of "array.dat"
+
+Key Recommendations:
+1. Always close files after operations using fclose()
+2. Initialize counter variables before use
+3. Review proper syntax for file operations, especially fread
+4. Follow assignment specifications for function and file names
+5. Add more detailed error messages and user feedback
+</feedback_summary>
+
+The student's implementation is generally good but has some minor issues with file handling. The recursive logic for checking even maximums in triplets is correctly implemented, though somewhat complex in its expression. The main deductions come from technical issues in file handling rather than logical errors in the core algorithm.

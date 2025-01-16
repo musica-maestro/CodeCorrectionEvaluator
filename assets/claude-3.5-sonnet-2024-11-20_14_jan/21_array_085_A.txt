@@ -1,0 +1,78 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....2.0 = 6.0 - 1.5 - 1.5 - 1.0
+   MAIN PROGRAM (max 2.5):....2.2 = 2.5 - 0.3
+   TOTAL.......................4.2
+*/
+
+#include <stdio.h>
+int ugualiCompresi(int interi[], int lunghezza){
+	int i=0; 
+	int trovato=0; 
+	while(i<lunghezza-2 && !trovato) {
+		//******** ERROR IN "WITHIN THE RANGE" EXPRESSION: THIS DOES NOT EXPRESS "WITHIN THE RANGE". IT SHOULD BE 10 <= s[i] + s[i+1] <= 20, BUT IN C, IT CALCULATES SOMETHING ELSE -1.5
+		if(!((interi[i]==interi[i+1])||(interi[i]==interi[i+2])||(interi[i+1]==interi[i+2]))
+			&&((10<=interi[i]+interi[i+1]<=20)||(10<=interi[i+1]+interi[i+2]<=20)||(10<=interi[i]+interi[i+2]<=20))) {
+		trovato=1; }
+				else { 
+					//******** CONDITION IS WRONG: interi[i]==interi[i+1]==interi[i+2] DOESN'T WORK AS EXPECTED IN C -1.5
+					if(interi[i]==interi[i+1]==interi[i+2])	
+						trovato=0;
+						else
+							i++; 
+				}
+				i++;
+	}
+	return trovato;
+}
+int main(){
+	int i; 
+	int l; 
+	printf("Caro utente, inserisci la lunghezza della sequenza: ");
+	scanf("%d", &l);
+	int seq[l];
+	for(i=0;i<l;i++) {
+		printf("\nInserisci l'elemento in questione: ");
+		scanf("%d", &seq[i]);
+	}
+	if(ugualiCompresi(seq,l)) {
+		printf("\nEsiste almeno una tripla di elementi consecutivi tale che\n");
+		printf("almeno due elementi della tripla hanno la somma compresa fra 10 e 20 inclusi\n\n");
+	}else{
+			//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+			printf("\nAlmeno una tripla di elementi consecutivi NON ha almeno due dei suoi elementi\n");
+			printf("la cui somma %c compresa tra 10 e 20 inclusi\n\n", 138);
+	}        
+	return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct overall program structure with separate function and main
+- Proper array handling and user input collection
+- Good loop structure for checking consecutive triples
+- Appropriate use of boolean flag (trovato) for search termination
+
+Areas for Improvement:
+1. Range Checking Expression:
+   - The expression "10<=interi[i]+interi[i+1]<=20" doesn't work as intended in C
+   - Should be split into two conditions: (interi[i]+interi[i+1] >= 10 && interi[i]+interi[i+1] <= 20)
+
+2. Equality Checking:
+   - The expression "interi[i]==interi[i+1]==interi[i+2]" doesn't correctly check for three equal values
+   - Should use separate comparisons with logical operators
+
+3. Output Messages:
+   - The negative case message could be clearer about what condition was not met
+   - Consider rephrasing to match the positive case's clarity
+
+Key Recommendations:
+1. Fix the range checking by properly splitting the conditions
+2. Rewrite equality comparisons using proper logical operators
+3. Improve clarity of output messages, especially for the negative case
+4. Consider adding input validation for array length
+5. Add comments to explain the logic of complex conditions
+
+</feedback_summary>

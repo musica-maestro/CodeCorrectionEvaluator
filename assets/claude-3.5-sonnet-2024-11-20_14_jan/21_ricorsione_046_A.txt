@@ -1,0 +1,96 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)......... 4.0 = 5.0 - 1.0
+countNumbers (2).... 1.7 = 2.0 - 0.3
+readNumbers (2)..... 1.7 = 2.0 - 0.3
+writeNumbers(1)..... 0.7 = 1.0 - 0.3
+TOTAL............... 8.1/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimo(int a, int b, int c){
+    int max; 
+    if(a>=b&&a>=c)
+        max=a;
+    else if(b>=c&&b>=a)
+        max=b;
+    else if(c>=a&&c>=b)
+        max=c;
+    return max;
+}
+
+int massimoPari(int *seq, int lunghezza){
+    int r; 
+    //******** Base case should be lunghezza<=2 since we need triplets -1.0
+    if(lunghezza<3) r=1;
+    else{
+        r=((massimo(seq[lunghezza-1],seq[lunghezza-2], seq[lunghezza-3])%2==0&&massimoPari(seq, lunghezza-1)));
+    }
+    return r;
+}
+
+int quantiNumeri() {
+    int quanti=0; 
+    int temp;
+    FILE* fp=fopen("interi.dat", "rb");
+    //******** Missing else after NULL check -0.3
+    if(fp==NULL)
+        printf("file non trovato\n");
+    else{
+        while(fread(&temp, sizeof (int), 1, fp)>0)
+            quanti++;
+        fclose(fp);}
+return quanti;}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+FILE *fp=fopen("interi.dat", "rb");
+//******** Missing else after NULL check -0.3
+if (fp==NULL)
+    printf("file non trovato\n");
+else{
+    fread(sequenza, sizeof(int), lunghezza, fp);
+    fclose(fp);}
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+FILE *fp=fopen("interi.dat", "wb");
+//******** Missing else after NULL check -0.3
+if(fp==NULL)
+    printf("file non trovato\n");
+else{
+    fwrite(sequenza, sizeof(int), lunghezza, fp);
+    }
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of the maximum function for three numbers
+- Correct use of binary file operations
+- Proper file handling with fread and fwrite
+- Good overall program structure and flow
+
+Areas for Improvement:
+1. massimoPari function:
+   - The base case should check for lunghezza<=2 since we need triplets
+   - Current implementation might access invalid memory for small arrays
+
+2. File handling:
+   - All file operations should have proper else clauses after NULL checks
+   - File closing should be consistent across all functions
+   - Error messages should be more descriptive
+
+Key Recommendations:
+1. Revise the base case in massimoPari to prevent array access violations
+2. Add proper error handling with else clauses for file operations
+3. Consider adding more descriptive error messages
+4. Ensure all file operations properly close the file in all cases
+5. Add input validation for array lengths and user inputs
+
+</feedback_summary>

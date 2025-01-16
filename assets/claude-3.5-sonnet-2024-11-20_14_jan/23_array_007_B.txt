@@ -1,0 +1,73 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.3 = 6.0 - 1.5 - 0.2
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................6.1
+*/
+
+#include <stdio.h>
+int DuePositivi(int array[], int lunghezza) {
+    int verificato=1; 
+    //******** CONDITION ON THE TRIPLE IS WRONG -1.5
+    for (int i=0; i<lunghezza-2 && verificato==1; i++) {
+        if ((array[i]>=0 && array[i+1]>=0 && array[i+2]<0)||(array[i]>=0 && array[i+1]<0 && array[i+2]>=0)||(array[i]<0 && array[i+1]>=0 && array[i+2]>=0))
+            verificato=1;  
+        else
+            verificato=0;
+    }
+    //******** DO YOU CONSIDER 0 POSITIVE OR NEGATIVE? -0.2
+    return verificato;
+}
+int main() {
+    int dimensione;        
+    int verificato=1;    
+    printf("\n Salve utente, questo %c un programma in cui si chiede di inserire una sequenza di numeri interi.",138);
+    printf("\n Successivamente, il programma stampa un messaggio che comunica all'utente se %c vero che in tutte le triple di elementi adiacenti della sequenza ci sono esattamente due numeri positivi, oppure no.", 138);
+    printf("\n\n Inserisci un numero che rappresenta la dimensione della tua sequenza: ");
+    scanf("%d", &dimensione);
+    while (dimensione<3) {
+        printf("\n Il numero da te inserito non %c valido\n", 138);
+        printf(" Riprova: ");
+        scanf("%d", &dimensione);
+    }
+    int sequenza[dimensione];
+    printf("\n Ora devi inserire i numeri della tua sequenza\n");
+    for (int i=0; i<dimensione; i++) {
+        printf(" N%d: ", i+1);
+        scanf("%d", &sequenza[i]);
+    }
+    printf("\n Ecco la tua sequenza: (");
+    for (int i=0; i<dimensione; i++)
+        printf(" %3d", sequenza[i]);
+    printf(" )\n");
+    verificato=DuePositivi(sequenza, dimensione);
+    //******** UNCLEAR MESSAGE -0.2
+    if (verificato) 
+        printf("\n In ogni tripla di numeri consecutivi della tua sequenza, ci sono esattamente due numeri positivi.");
+    else            
+        printf("\n Esiste almeno una tripla di numeri consecutivi della tua sequenza, in cui non ci sono esattamente due numeri positivi.");
+    printf("\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good program structure with separate function and main
+- Proper input validation for sequence length
+- Clear user interface with descriptive prompts
+- Correct array bounds checking in the loop
+- Good use of boolean flag for verification
+
+Areas for Improvement:
+- The condition for checking triples needs revision. The current implementation doesn't correctly verify exactly two positive numbers
+- The handling of zero values should be explicitly defined (whether considered positive or negative)
+- Output messages could be more precise and technical
+- Consider using standard ASCII characters instead of extended ASCII (char 138)
+
+Key Recommendations:
+- Modify the triple checking condition to explicitly count positive numbers in each triple
+- Define and document how zero values should be handled
+- Simplify output messages for better clarity
+- Use standard ASCII characters for better portability
+</feedback_summary>

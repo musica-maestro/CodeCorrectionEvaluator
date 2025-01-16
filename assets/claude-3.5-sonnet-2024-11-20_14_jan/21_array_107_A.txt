@@ -1,0 +1,67 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.5):....2.2 = 2.5 - 0.3
+   TOTAL......................7.5/8.5
+*/
+
+#include <stdio.h>
+ int ugualiCompresi (int interi[], int lunghezza) {
+	 int i;
+	 int trovato;
+	 trovato=0;
+	 i=0;
+	 //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+	 while (i<lunghezza-2 && !trovato) {  
+		 if (((interi[i]+interi[i+1]>=10&&interi[i]+interi[i+1]<=20)||(interi[i+1]+interi[i+2]>=10&&interi[i+1]+interi[i+2]<=20)||(interi[i]+interi[i+2]>=10&&interi[i]+interi[i+2]<=20))
+		 &&((interi[i]==interi[i+1])||(interi[i+1]==interi[i+2])||(interi[i]==interi[i+2])))
+			 trovato=1;
+		else
+			i++;
+	 }
+	 return trovato;
+ }
+int main() {
+	int lunghezza;   
+	printf("Quanti interi vuoi inserire?\n");
+	scanf("%d", &lunghezza);   
+	int interi[lunghezza];
+	for (int i=0; i<lunghezza; i++) {   
+		printf("Inserisci un intero: ");
+		scanf("%d", &interi[i]);
+	}
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+	if (ugualiCompresi(interi, lunghezza))    
+		printf("Esiste una tripla che soddisfa la proprieta'\n");
+	else
+		printf("Non esiste una tripla che soddisfa la proprieta'");
+}       
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for checking consecutive triples
+- Proper handling of array bounds in the while loop
+- Good use of boolean flag (trovato) to control loop execution
+- Correct implementation of the main function's input/output flow
+
+Areas for Improvement:
+- The condition in the if statement could be more readable by breaking it into smaller logical parts or using intermediate variables
+- The output messages could be more specific about what property is being satisfied
+- Consider adding comments to explain the complex logical conditions
+
+Key Recommendations:
+1. Break down complex conditions into smaller, more readable parts using intermediate boolean variables
+2. Provide more descriptive output messages that explain the specific property being checked
+3. Add comments to explain the logic of the conditions for better code maintainability
+4. Consider using more meaningful variable names (e.g., 'found' instead of 'trovato')
+</feedback_summary>
+
+The student's implementation is generally correct and handles the requirements well. The main deductions are for code readability and output clarity rather than functional issues. The solution correctly implements the required checks for:
+1. Finding consecutive triples
+2. Verifying sums between 10 and 20
+3. Checking for exactly two equal elements
+4. Proper array bounds checking
+
+The deductions are minor and relate to code style and user interface rather than algorithmic correctness.

@@ -1,0 +1,79 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.5):....1.0 = 2.5 - 1.0 - 0.3 - 0.2
+   TOTAL.......................5.0
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+ int UgualiCompresi(int Vettore[], int len);
+int main(){
+	int i,Verifica,M;    
+	printf("inserire quanti valori si vuole inserire: ");
+	scanf("%d", & M);
+	//******** YOU MUST READ THE ARRAY LENGTH FROM INPUT BEFORE DECLARING THE ARRAY -1.0
+	int V[M-1];
+	printf("\nInserire i valori dell'array: ");
+	for(i=0;i<M-1;i++){  
+		scanf("%d\n", & V[i]);
+		}
+		Verifica = UgualiCompresi(V, M);
+		//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+		if(Verifica==1){
+			printf("E' presente una tripla che soddisfa i requisiti");
+			}         													 
+		else{
+			printf("Non e' presente una tripla di elementi che soddisfa i requisiti");
+			}
+			//******** BADLY INDENTED -0.2
+			system("pause");
+			return 0;
+	}
+int UgualiCompresi(int Vettore[], int len){
+	int j=0,verifica=0;
+	//******** CONDITION ON INDEX IS WRONG i < length-2 -1.5
+	while(j<len-2){  
+		if(Vettore[j]==Vettore[j+1] || Vettore[j+1]==Vettore[j+2] || Vettore[j+2]==Vettore[j]){
+			if(Vettore[j]+Vettore[j+1]>=10 && Vettore[j]+Vettore[j+1]<=20){
+				verifica=1;
+				break;   
+				}
+			else if(Vettore[j+2]+Vettore[j+1]>=10 && Vettore[j+2]+Vettore[j+1]<=20){
+				verifica=1;
+				break;  
+				}
+			else if(Vettore[j]+Vettore[j+2]>=10 && Vettore[j]+Vettore[j+2]<=20){
+				verifica=1;
+				break;  
+				}
+			}
+			else
+				j++;
+		}
+		//******** IF THE FUNCTION IS WRITTEN BELOW, YOU MUST DECLARE ITS PROTOTYPE -0.5
+		return verifica;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the basic logic for checking consecutive triples
+- Proper use of break statements to exit the loop when a valid triple is found
+- Good use of boolean flag (verifica) to track results
+
+Areas for Improvement:
+- Array declaration should occur after reading the size from input
+- Function prototype should be properly declared at the beginning
+- Index condition in the while loop needs correction to prevent array bounds issues
+- Output messages should be more specific about what conditions are being checked
+- Code indentation needs improvement for better readability
+
+Key Recommendations:
+1. Move the array declaration after reading M
+2. Add proper function prototype declaration
+3. Fix the loop condition to properly handle array bounds
+4. Improve output messages to clearly indicate what conditions are being checked
+5. Maintain consistent indentation throughout the code
+</feedback_summary>

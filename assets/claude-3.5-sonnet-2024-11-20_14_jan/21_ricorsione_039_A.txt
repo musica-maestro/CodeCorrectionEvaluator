@@ -1,0 +1,85 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)......... 2.5 = 5.0 - 1.5 - 1.0
+countNumbers (2).... 2.0
+readNumbers (2)..... 2.0
+writeNumbers(1)..... 1.0
+TOTAL............... 7.5/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimoPari(int *seq, int lunghezza){
+    int maxP;
+    //******** INCORRECT BASE CASE: should check if length <= 2 -1.0
+    if(lunghezza==2)
+        maxP=0;
+    else{
+        //******** INCORRECT LOGIC: checking for positive numbers instead of even maximum -1.5
+        if(seq[0]>seq[1] && seq[0]>seq[2] && seq[0]>0)  
+            maxP=1+massimoPari(seq+1,lunghezza-1);      
+        if(seq[1]>seq[0] && seq[1]>seq[2] && seq[1]>0)
+            maxP=1+massimoPari(seq+1,lunghezza-1);
+        if(seq[2]>seq[0] && seq[2]>seq[1] && seq[2]>0)
+            maxP=1+massimoPari(seq+1,lunghezza-1);
+        if(seq[0]<0 && seq[1]<0 && seq[2]<0)       
+            maxP=0+massimoPari(seq+1,lunghezza-1);
+    }
+    return maxP;
+}
+
+int quantiNumeri() {
+    FILE *fp=fopen("interi.dat","rb");   
+    int quanti=0;  
+    int numero;
+    while(fread(&numero,sizeof(int),1,fp)){
+        quanti++;  
+    }
+    fclose(fp); 
+    return quanti;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE *fp=fopen("interi.dat","rb");            
+    fread(sequenza,sizeof(int),lunghezza,fp);  
+    fclose(fp);  
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE *fp=fopen("interi.dat","wb");                
+    fwrite(sequenza,sizeof(int),lunghezza,fp);   
+    fclose(fp);  
+}
+
+[Rest of the main function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of file I/O functions (readNumbers, writeNumbers, countNumbers)
+- Proper use of binary file operations
+- Good structure and organization of code
+
+Areas for Improvement:
+1. massimoPari (maxEven) function:
+   - The base case is incorrect - should check for length <= 2
+   - The function checks for positive numbers instead of even maximums
+   - Logic for finding maximum in triplets needs revision
+   - Should verify if maximum is even, not just positive
+
+2. File Operations:
+   - Could add error checking for file operations (fp == NULL)
+   - Could add input validation for array lengths
+
+Key Recommendations:
+1. Revise the massimoPari function to:
+   - Implement correct base case (length <= 2)
+   - Check for even maximum in each triplet
+   - Fix the recursive logic to properly traverse the array
+2. Add error handling for file operations
+3. Add input validation for array lengths and user input
+4. Consider adding comments to explain the logic
+</feedback_summary>

@@ -1,0 +1,102 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....2.0 = 6.0 - 1.5 - 1.5 - 1.0
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................4.0
+*/
+
+#include <stdio.h>
+int isCompreso(int numeri[], int lunghezza){
+	int i=0;
+	int compreso=0;
+	//******** LOOP CONDITION IS WRONG (compreso==1 will never be true due to initialization) -1.0
+	while(i<lunghezza-2 && compreso==1){
+		if((((numeri[i]>=-10) && (numeri[i]<=10)) && ((numeri[i+1]<=10) && (numeri[i+1]<=10))) ||
+		(((numeri[i]>=-10) && (numeri[i]<=10)) && ((numeri[i+2]<=10) && (numeri[i+2]<=10))) ||
+		(((numeri[i+1]>=-10) && (numeri[i+1]<=10)) && ((numeri[i+2]<=10) && (numeri[i+2]<=10)))){
+			compreso=1;
+		}
+		else{
+			i++;
+		}
+	}
+	return compreso;
+}
+
+int isMultiplo(int numeri[], int lunghezza){
+	int i=0;
+	int multiplo=0;
+	//******** LOOP CONDITION IS WRONG (multiplo==1 will never be true due to initialization) -1.0
+	while(i<lunghezza-2 && multiplo==1){
+		if(((numeri[i]%3==0) && (numeri[i+1]%3==0)) || ((numeri[i]%3==0) && (numeri[i+2]%3==0)) || ((numeri[i+1]%3==0) && (numeri[i+2]%3==0))){
+			multiplo=1;
+		}      
+		else{
+			i++;
+		}
+	}
+	return multiplo;
+}
+
+//******** EXACTLY TWO ELEMENTS MUST BE DIVISIBLE BY 3 (THE THIRD MUST BE DIFFERENT) -1.5
+int compresiMultipli3(int numeri[],int lunghezza){
+	int trovato;
+	int i=0;
+	trovato=0;
+	//******** LOOP CONDITION IS WRONG (trovato==1 will never be true due to initialization) -1.0
+	while(i<lunghezza-2 && trovato==1){
+		if(isCompreso(numeri,lunghezza) && isMultiplo(numeri,lunghezza)){
+			trovato=1;
+		}                   
+		else{               
+			i++;            
+		}                   
+	}
+	return trovato;
+}
+
+int main()
+{
+	int lunghezza;
+	printf("Caro utente, questo %c un programma che ti controlla se una sequenza di interi\n", 138);
+	printf("contiene almeno una tripla di numeri consecutivi\n");
+	printf("che contiene almeno due elementi il cui valore è compreso fra -10 e 10\n");
+	printf("che contiene esattamente due elementi multipli di 3\n");
+	printf("Inserisci la lunghezza: ");
+	scanf("%d", &lunghezza);
+	int numeri[lunghezza];
+	printf("inserisci gli elementi della sequenza\n");
+	for(int i=0; i<lunghezza; i++){
+		scanf("%d", &numeri[i]);
+	}
+	//******** THIS STATEMENT IS USELESS; THE FUNCTION IS INVOKED AFTER -0.5
+	compresiMultipli3(numeri,lunghezza);
+	if(compresiMultipli3(numeri,lunghezza)==1){
+		printf("esiste una tripla appartenente alla sequenza che soddisfa la condizione\n");
+	}
+	else{
+		printf("NON esiste una tripla appartenente alla sequenza che soddisfa la condizione");
+	}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good program structure with separate functions for different checks
+- Clear user interface with descriptive prompts
+- Proper array handling and input collection
+
+Areas for Improvement:
+- Loop conditions in all three functions are incorrect, preventing proper iteration
+- The logic for checking exactly two multiples of 3 needs revision
+- The condition for checking numbers between -10 and 10 could be simplified
+- Redundant function call in main should be removed
+
+Key Recommendations:
+- Fix the loop conditions by changing the logical operators or initializations
+- Implement proper counting logic for exactly two multiples of 3
+- Simplify the range checking conditions
+- Remove the redundant function call in main
+- Consider adding input validation for array length
+</feedback_summary>

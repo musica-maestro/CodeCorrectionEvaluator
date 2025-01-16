@@ -1,0 +1,74 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.0 - 1.0
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................5.8
+*/
+
+#include <stdio.h>
+int DueUnaCifra(int interi[], int lunghezza){
+	int risultato=0;   
+	//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lunghezza - 2 -1.0
+	for (int i = 0; i < lunghezza-2; ++i)  
+	{
+		//******** CONDITION DOESN'T CHECK FOR POSITIVE NUMBERS -1.0
+		if ((interi[i]<10 && (interi[i+1]<10 ||interi[i+2]<10)) ||
+		    (interi[i+1]<10 && (interi[i]<10 ||interi[i+2]<10)) ||
+		    (interi[i+2]<10 && (interi[i]<10 ||interi[i+1]<10)) )
+		{
+			risultato=1; 
+		}
+	}
+return risultato;
+}
+
+int main () {
+	printf("Ciao! sono un programma che verifica se in tutte le triple di elementi\n");
+	printf("adiacenti della sequenza ci sono almeno 2 numeri composti da una sola cifra\n");
+	int lunghezza; 
+	printf("Da quanti elementi vuoi che sia composta la tua seqeunza?\n");
+	//******** UNCLEAR MESSAGE WITH TYPO IN "seqeunza" -0.2
+	scanf("%d", &lunghezza);
+	if (lunghezza>2)
+		{
+		int sequenza[lunghezza]; 
+		for (int i = 0; i < lunghezza; ++i)
+		{
+			printf("Dimmi un numero!\n");
+			scanf("%d", &sequenza[i]);
+		}
+		int risultato=DueUnaCifra(sequenza, lunghezza);
+		if (risultato==1)
+		{
+			printf("In tutte le triple di elementi adiacenti della sequenza ci sono almeno 2 numeri composti da una sola cifra\n");
+		}
+		else
+			printf("Non in tutte le triple di elementi adiacenti della sequenza ci sono almeno 2 numeri composti da una sola cifra\n");
+		}
+	else
+		printf("La lunghezza della sequenza deve essere almeno di 3 numeri!\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct overall program structure with separate function and main
+- Good implementation of array handling and user interaction
+- Proper validation of sequence length (>2)
+- Clear output messages for results
+
+Areas for Improvement:
+- Array bounds checking in DueUnaCifra function needs correction
+- Missing validation for positive numbers in the input
+- Typo in user prompt message ("seqeunza")
+
+Key Recommendations:
+1. Add input validation to ensure only positive numbers are processed
+2. Fix the array bounds checking in the DueUnaCifra function to prevent potential buffer overflows
+3. Improve user interface messages for clarity and correctness
+4. Consider adding input validation for the numbers entered by the user
+5. Use consistent code formatting and indentation throughout the program
+
+The program is functional but could be more robust with these improvements.
+</feedback_summary>

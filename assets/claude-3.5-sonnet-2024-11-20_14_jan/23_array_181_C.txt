@@ -1,0 +1,60 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.0):....2.0
+   TOTAL.......................6.0
+*/
+
+#include <stdio.h>
+int DueUnaCifra(int array[], int n){
+int x=0;			
+	for (int i=0; i<n-2;i++){
+		//******** CONDITION ON THE TRIPLE IS WRONG - Should check for positive numbers -1.5
+		if ((array[i]<10 && array[i+1]<10) || (array[i]<10 && array[i+2]<10) || (array[i+1]<10 && array[i+2]<10))
+			x++;
+	}
+	//******** 2 RETURNS IS NOT STRUCTURED PROGRAMMING -0.5
+	if (x==(n-2))
+		x=1;
+	else
+		x=0;
+return x;
+}
+
+int main (){
+	int n ;			
+	printf("Quanto deve essere lungo l'array ? ");
+	scanf("%d",&n);
+	int array[n];		
+	printf("Inserisci i %d numeri all'interno dell'array \n",n );
+	for (int i=0;i<n;i++)
+		scanf("%d",&array[i]);
+	if(DueUnaCifra(array,n)) 		
+		printf("In tutte le triple di elementi adiacenti della sequenza sono presenti almeno due numeri composti da una solo cifra");
+	else 							
+		printf("Non in tutte le triple di elementi adiacenti della sequenza sono presenti almeno due numeri composti da una solo cifra");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct overall program structure with separate function and main
+- Proper array handling and user interaction
+- Clear output messages
+- Correct loop structure for checking triples
+
+Areas for Improvement:
+- The condition checking for single-digit numbers should verify that numbers are positive
+- The function could be structured better to avoid multiple returns
+- Consider using a more structured approach with a single return statement
+- The condition should explicitly check for positive integers between 0 and 9
+
+Key Recommendations:
+1. Modify the condition to check for positive single-digit numbers (0-9)
+2. Restructure the function to use a single return statement
+3. Consider using a boolean flag variable instead of counting and comparing with array length
+4. Add input validation to ensure only positive integers are entered
+
+The code is functional but could be more robust with these improvements.
+</feedback_summary>

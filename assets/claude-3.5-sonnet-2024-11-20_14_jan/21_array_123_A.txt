@@ -1,0 +1,73 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.5 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................6.0
+*/
+
+#include <stdio.h>
+int sommaArray(int numero1, int numero2)  
+{ int somma;
+if (numero1+numero2 >9  && numero1+numero2<21)
+    somma=1;
+else
+    somma=0;
+return somma;
+}
+
+int UgualiCompresi(int* array, int lunghezza)
+{
+    int ritorno=1;
+    //******** CONDITION ON INDEX IS WRONG i < length-2 -1.5
+    for (int i=2;i<lunghezza && ritorno==1;i++) {  
+         if ((sommaArray(array[i],array[i-1])==0)
+         && (sommaArray(array[i],array[i-2])==0)
+         && (sommaArray(array[i-2],array[i-1])==0)) 
+             ritorno=0;
+         if( (array[i]==array[i-1] && array[i]==array[i-2] ) ||
+         ((array[i]!=array[i-1]) && (array[i]!=array[i-2])
+         && (array[i-2]!=array[i-1]))) 
+                ritorno=0;
+    }
+    return ritorno;
+}
+
+int main()
+{
+    int lunghezza; 
+    int ritorno;
+    printf("Caro utente digita quante numeri vuoi inserire\n");
+    scanf("%d",&lunghezza);
+    int array[lunghezza];
+    printf("Digita i numeri da te scelti\n");
+    for (int i=0;i<lunghezza;i++)
+         scanf("%d",&array[i]);
+    ritorno=UgualiCompresi(array, lunghezza);
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+    if (ritorno==1)
+        printf("Caro utente nella tua sequenza esiste una tripla che soddisfa le condizioni richieste\n");
+    else
+        printf("Caro utente nella tua sequenza NON esiste una tripla che soddisfa le condizioni richieste\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of helper function sommaArray to check sum range
+- Proper variable initialization
+- Clear main program structure with user interaction
+- Good input handling for array size and elements
+
+Areas for Improvement:
+- The loop condition in UgualiCompresi should be i < lunghezza-2 to avoid array bounds issues
+- The output messages should be more specific about what conditions are being checked
+- The logic could be simplified and made more readable
+- Consider adding input validation for array length
+
+Key Recommendations:
+1. Fix the loop boundary condition to prevent potential array access violations
+2. Make output messages more descriptive of the specific conditions being checked
+3. Consider adding input validation for the array length to ensure it's at least 3
+4. Improve code readability with better spacing and indentation
+</feedback_summary>

@@ -1,0 +1,114 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* 
+minOdd (5)...........2.5 = 5.0 - 1.5 - 1.0
+countNumbers (2).....0.0 = 2.0 - 2.0 
+readNumbers (2)......1.2 = 2.0 - 0.5 - 0.3
+writeNumbers(1)......0.5 = 1.0 - 0.3 - 0.2
+TOTAL................4.2
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int minimoDispariRic (int array[],int i, int lunghezza)
+{
+    //******** Recursion should be done on array length, not using index i -1.0
+    if (lunghezza==3)
+    {
+        return (((array[0]<array[1] && array[0]<array[2]) && (array[0]%2!=0))
+             || ((array[1]<array[0] && array[1]<array[2]) && (array[1]%2!=0))
+             || ((array[2]<array[0] && array[2]<array[1]) && (array[2]%2!=0) ))  ;
+    }
+    else
+    {
+        //******** The recursive case is incorrect - it's a universal check (should use &&) -1.5
+        return (((array[i]<array[i+1] && array[i]<array[i+2]) && (array[i]%2!=0))
+             || ((array[i+1]<array[i] && array[i+1]<array[i+2])&& (array[i+1]%2!=0))
+             || ((array[i+2]<array[i] && array[i+2]<array[i]) && (array[i+2]%2!=0))
+             && (minimoDispariRic(array,i+1,lunghezza-1)));  ;
+    }
+}
+
+int minimoDispari(int *seq, int lunghezza){
+    return minimoDispariRic(seq,0,lunghezza);
+}
+
+int quantiNumeri() {
+    //******** Missing implementation of countNumbers function -2.0
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE* fp=fopen("interi.dat","rb");
+    int i=0;
+    if (fp!=NULL)
+    {
+        while (i<lunghezza)
+        //******** In fread, you should not use &, sequence is already an address -0.5
+        fread(&sequenza,sizeof(int),1,fp); 
+        //******** Loop counter i is not incremented inside the loop -0.3
+        i++;                   
+    }
+    else
+    {
+        printf("apertura errata");
+    }
+    //******** Missing file closure -0.2
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE* fp=fopen("interi.dat","wb");
+    if (fp!=NULL)
+    {
+    //******** In fwrite, you should not use &, sequence is already an address -0.3
+    fwrite(&sequenza,sizeof(int),lunghezza,fp);
+    }
+    else
+    {
+        printf("errore di apertura");
+    }
+    //******** Missing file closure -0.2
+}
+
+[Rest of the main function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic file I/O structure is implemented
+- Main function properly handles user interaction
+- Basic recursive structure attempt for minimoDispari
+
+Areas for Improvement:
+1. Recursive Implementation:
+   - The recursion should be based on array length rather than using an index
+   - The recursive case needs to use && for universal checking
+   - Base case handling needs improvement
+
+2. File Operations:
+   - Add proper file closure after operations
+   - Fix fread/fwrite syntax by removing & from sequence parameter
+   - Implement proper error handling for file operations
+
+3. Missing Functionality:
+   - Implement the quantiNumeri() function
+   - Fix the loop counter issue in leggiNumeri()
+   - Add proper error checking for file operations
+
+Key Recommendations:
+1. Review recursive function implementation, focusing on:
+   - Proper base case handling
+   - Correct logical operators for checking conditions
+   - Array length-based recursion
+
+2. Complete missing functions:
+   - Implement quantiNumeri()
+   - Fix file handling operations
+   - Add proper file closure statements
+
+3. Fix memory and array access issues:
+   - Correct fread/fwrite syntax
+   - Implement proper loop control in leggiNumeri
+   - Add proper error handling
+</feedback_summary>

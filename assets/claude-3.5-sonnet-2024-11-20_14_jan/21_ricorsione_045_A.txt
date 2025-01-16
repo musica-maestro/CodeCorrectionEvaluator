@@ -1,0 +1,95 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)......... 2.5 = 5.0 - 1.5 - 1.0
+countNumbers (2).... 1.7 = 2.0 - 0.3
+readNumbers (2)..... 1.7 = 2.0 - 0.3
+writeNumbers(1)..... 0.7 = 1.0 - 0.3
+TOTAL............... 6.6/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimoPari(int *seq, int lunghezza){
+    int massimo;
+    //******** INCORRECT BASE CASE: Should check if length <= 2 -1.0
+    if(lunghezza<3)
+        massimo=0;     
+    else
+        //******** INCORRECT LOGIC FOR CHECKING MAXIMUM EVEN NUMBER IN TRIPLET -1.5
+        massimo=(((seq[0]%2==0)>seq[1] && (seq[0]%2==0)>seq[2])
+        || ((seq[1]%2==0)>seq[0] && (seq[1]%2==0)>seq[2])
+        || ((seq[2]%2==0)>seq[0] && (seq[2]%2==0)>seq[1])) || massimoPari(seq+1,lunghezza-1);
+    return massimo;
+}
+
+int quantiNumeri() {
+    //******** INCORRECT FILE NAME: Should be integers.dat instead of massimoPari.dat -0.3
+    FILE *fp=fopen64("massimoPari.dat","rb"); 
+    int quanti=0;
+    if(fp!=NULL){ 
+        int massimo;
+        while(fread(&massimo,sizeof(int),1,fp)){
+            quanti++;
+        }
+        fclose(fp);
+    }
+    return quanti;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    //******** INCORRECT FILE NAME: Should be integers.dat -0.3
+    FILE *fp=fopen64("massimoPari.dat","rb");  
+    if(fp!=NULL){
+        fread(sequenza,sizeof(int),lunghezza,fp);
+    }            
+    fclose(fp);
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    //******** INCORRECT FILE NAME: Should be integers.dat -0.3
+    FILE *fp=fopen64("massimoPari.dat","wb");
+    if(fp!=NULL){
+        fwrite(sequenza,sizeof(int),lunghezza,fp);
+    }          
+    fclose(fp);
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of file handling functions
+- Proper use of binary file operations
+- Correct implementation of file opening and closing
+- Good error checking for file operations
+
+Areas for Improvement:
+1. massimoPari function:
+   - The base case is incorrect and should check for length <= 2
+   - The logic for checking maximum even number in triplets needs revision
+   - The recursive implementation could be simplified
+
+2. File Operations:
+   - File name should be "integers.dat" as specified in requirements
+   - Consider adding more robust error handling for file operations
+
+3. General Structure:
+   - Consider adding more descriptive variable names
+   - Add comments to explain complex logic
+
+Key Recommendations:
+1. Revise the massimoPari function to:
+   - Implement correct base case
+   - Simplify the logic for checking maximum even numbers
+   - Improve the recursive implementation
+
+2. Update all file operations to use "integers.dat"
+
+3. Add more comprehensive error handling and input validation
+
+4. Consider adding documentation to explain the logic flow
+</feedback_summary>

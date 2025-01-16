@@ -1,0 +1,59 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.3 = 6.0 - 1.5 - 0.2
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................6.3
+*/
+
+#include <stdio.h>
+int ugualiCompresi(int *a,int l){
+    int esiste = 0;
+    for(int i=0;i<l-2;i++) 
+        //******** CONDITION IS COMPLICATED AND NOT VERY READABLE -0.2
+        if(((a[i]+a[i+1]+a[i+2])<20 && (a[i]+a[i+1]+a[i+2])>10) 
+        || ((a[i]+a[i+1])<20 && (a[i]+a[i+1])>10)               
+        || ((a[i]+a[i+2])<20 && (a[i]+a[i+2])>10) |
+        | ((a[i+1]+a[i+2])<20 && (a[i+1]+a[i+2])>10))
+            //******** WRONG AND USELESS CONDITION: CALCULATING THE SUM OF ALL THREE ELEMENTS IN THE TRIPLE -1.5
+            if((a[i]==a[i+1] && a[i]!=a[i+2]) || (a[i]==a[i+2] && a[i]!=a[i+1]) || (a[i+2]==a[i+1] && a[i]!=a[i+2]))
+                esiste =1;
+    return esiste;
+}
+
+int main(){
+    int l;
+    printf("Quanti interi deve contenere la sequenza?\n");
+    scanf("%d",&l);
+    int a[l];
+    printf("scrivi gli elementi della sequenza\n");
+    for(int i=0; i<l; i++)
+        scanf("%d",&a[i]);
+    if(ugualiCompresi(a,l))
+        //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+        printf("la tripla esiste"); 
+    else
+        printf("la tripla NON esiste");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct array bounds checking in the loop (i<l-2)
+- Proper implementation of exactly two equal elements condition
+- Good structure of main function with proper user interaction
+- Correct variable initialization
+
+Areas for Improvement:
+- The condition checking for sums between 10 and 20 is unnecessarily complicated and includes an irrelevant check for the sum of all three elements
+- The output messages could be more descriptive about what property was found or not found
+- Code readability could be improved by breaking down complex conditions into smaller, more readable parts
+- The logical operators have a typo (| |) which could cause issues
+
+Key Recommendations:
+- Simplify the sum conditions by removing the unnecessary check for the sum of all three elements
+- Make output messages more specific about what was found (e.g., "Esiste una tripla con due elementi uguali e somma tra 10 e 20")
+- Break down complex conditions into separate boolean variables for better readability
+- Fix the logical operator typo (change | | to ||)
+- Consider adding input validation for array length
+</feedback_summary>

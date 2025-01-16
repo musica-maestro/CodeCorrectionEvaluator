@@ -1,0 +1,105 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)......... 3.0 = 5.0 - 1.5 - 0.5
+countNumbers (2).... 1.4 = 2.0 - 0.3 - 0.3
+readNumbers (2)..... 2.0
+writeNumbers(1)..... 1.0
+TOTAL............... 7.4/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int max(int a, int b, int c){
+    int max=a;    
+    if(a>b && a>c)
+            max=a;    
+        else{
+            if(b>a && b>c)
+                max=b;
+            else
+                max=c;
+        }
+    return max;
+}
+
+int massimoPari(int *seq, int lunghezza){
+    int risultato;        
+    //******** Base case is incorrect - should check if length < 3 to avoid accessing invalid memory -1.5
+    if(lunghezza<3)
+        risultato=1;
+    else{
+        //******** Universal check should use && for all triplets -0.5
+        risultato=(max(seq[0],seq[1],seq[2])%2==0) && massimoPari(seq+1,lunghezza-1);
+    }
+    return risultato;
+}
+
+int quantiNumeri() {
+    FILE *fp=fopen("interi.txt","r");
+    int numero;    
+    //******** Counter not initialized -0.3
+    int quanti;    
+    if(fp==NULL)
+        printf("Impossibile aprire file o file vuoto\n");
+    else{
+        //******** Incorrect while condition for fscanf -0.3
+        while((fscanf(fp,"%d",&numero))>0)
+            quanti++;
+        fclose(fp);    
+    }
+    return quanti;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE *fp=fopen("interi.txt","r");
+    if(fp==NULL)
+        printf("Impossibile aprire file o file vuoto\n");
+    else{
+        printf("File aperto\n");
+        for(int i=0; i<lunghezza; i++){
+            fscanf(fp,"%d",&sequenza[i]);
+        }
+        fclose(fp);    
+    }
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE *fp=fopen("interi.txt","w");
+    if(fp==NULL)
+        printf("Impossibile aprire file o file vuoto\n");
+    else{
+        for(int i=0; i<lunghezza; i++){
+            fprintf(fp,"%d ",sequenza[i]);
+        }
+        printf("Salvataggio effettuato\n");
+        fclose(fp);    
+    }
+}
+
+[... rest of the code ...]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of file I/O operations
+- Proper file handling with open/close operations
+- Clear implementation of readNumbers and writeNumbers functions
+- Good error checking for file operations
+
+Areas for Improvement:
+- The base case in massimoPari function is incorrect and could lead to memory access issues
+- The recursive implementation needs to properly check all triplets using logical AND
+- Counter variable in quantiNumeri needs to be initialized
+- File reading loop condition in quantiNumeri needs correction
+
+Key Recommendations:
+1. Revise the base case in massimoPari to properly handle arrays with length < 3
+2. Modify the recursive logic to ensure all triplets are checked using proper AND operations
+3. Initialize all variables before use, especially counters
+4. Review and correct file reading loop conditions for proper functionality
+
+The code is functional but needs improvements in the recursive implementation and variable handling for more robust operation.
+</feedback_summary>

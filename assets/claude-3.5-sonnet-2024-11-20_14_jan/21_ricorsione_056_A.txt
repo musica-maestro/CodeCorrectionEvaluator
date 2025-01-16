@@ -1,0 +1,91 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* 
+maxEven (5)............3.5 = 5.0 - 1.0 - 0.5
+countNumbers (2).......1.7 = 2.0 - 0.3
+readNumbers (2)........1.7 = 2.0 - 0.3
+writeNumbers(1)........0.8 = 1.0 - 0.2
+TOTAL..................7.7/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimoPari(int *seq, int lunghezza){
+    int risultato;
+    //******** Base case should check if length<=2 since we need triplets -0.5
+    if(lunghezza<3)
+        risultato=0; 
+    else
+        //******** Logic error in recursive implementation - should use && for universal check -1.0
+        risultato=((seq[1]>seq[0])&&(seq[1]>seq[2])&&(seq[1]%2==0))||(massimoPari(seq+1,lunghezza-1));
+    return risultato;
+}
+
+int quantiNumeri() {
+    int quanti=0;
+    FILE *fp=fopen("interi.dat", "rb");
+    //******** Missing file closure before return -0.3
+    if(fp==NULL)
+        printf("file vuoto o non aperto correttamente");
+    else
+        while(fread(&quanti,sizeof(int),1,fp)>0)
+        quanti++;
+    return quanti;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE *fp=fopen("interi.dat","rb");
+    //******** Missing file closure -0.3
+    if(fp==NULL)
+        printf("file vuoto o non apeto correttamente");
+    else
+        fread(sequenza,sizeof(int),lunghezza,fp);
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE*fp=fopen("interi.txt","w");  
+    //******** Missing file closure in error case -0.2
+    if(fp==NULL)
+        printf("file vuoto o non aperto correttamente");
+    else{
+        for(int i=0; i<lunghezza; i++){
+            fprintf(fp," %d", sequenza[i]);}
+    }
+    fclose(fp);
+}
+
+[Rest of main function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Good implementation of file I/O operations
+- Clear structure and organization of code
+- Proper parameter passing and function definitions
+- Good error checking for file operations
+
+Areas for Improvement:
+1. massimoPari function:
+   - Base case needs revision to properly handle sequences shorter than 3 elements
+   - Recursive logic should use && for universal check instead of ||
+   - Consider renaming to maxEven for better clarity
+
+2. File Operations:
+   - Add proper file closure in all functions
+   - Improve error handling messages
+   - Consider using consistent file type (mixing .dat and .txt)
+
+3. General:
+   - Add more descriptive output messages
+   - Implement better error handling for invalid inputs
+   - Consider adding input validation in main function
+
+Key Recommendations:
+1. Revise the recursive logic in massimoPari to ensure it checks ALL triplets
+2. Add proper file closure in all file handling functions
+3. Implement consistent error handling across all functions
+4. Use consistent file types (.dat or .txt) throughout the program
+5. Add input validation for array lengths and user inputs
+</feedback_summary>

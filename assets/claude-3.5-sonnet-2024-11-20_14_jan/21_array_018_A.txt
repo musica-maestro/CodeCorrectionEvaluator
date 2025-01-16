@@ -1,0 +1,74 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.5):....2.2 = 2.5 - 0.3
+   TOTAL.......................7.5
+*/
+
+#include <stdio.h>
+int ugualiCompresi(int interi[], int dimensione) {
+	int esiste;					
+	int i;						
+	esiste = 0;
+	i = 0;
+	//******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+	while(i<dimensione-2 && !esiste) {
+		if( ((interi[i]+interi[i+1] >=10 && interi[i]+interi[i+1] <=20) || (interi[i]+interi[i+2] >=10 && interi[i]+interi[i+2] <=20)
+			|| (interi[i+1]+interi[i+2] >=10 && interi[i+1]+interi[i+2] <=20)) && (((interi[i] == interi[i+1]) && (interi[i+2] != interi[i]))
+			|| ((interi[i] == interi[i+2]) && (interi[i+1] != interi[i])) || ((interi[i+1] == interi[i+2]) && (interi[i] != interi[i+1])) ) )
+				esiste = 1;
+		else
+			i++;				
+	}
+	return esiste;
+}
+
+int main() {
+	int lunghezza;				
+	printf("Ciao utente, sono un programma che legge una sequenza di interi e verifica se nella sequenza\n");
+	printf("esiste una tripla di elementi consecutivi tale che almeno due elementi hanno somma compresa fra 10 e 20 (estremi inclusi)\n");
+	printf("ed esattamente due elementi della tripla sono fra loro uguali, o se non esiste!\n\n");
+	printf("Da quanti interi vuoi che sia composta la sequenza?\t");
+	scanf("%d", &lunghezza);
+	if(lunghezza<3) {
+		printf("La sequenza deve avere almeno 3 interi quindi dammi un'altra lunghezza per la sequenza: ");
+		scanf("%d", &lunghezza);
+	}
+	printf("\nBene ora inserisci la sequenza!\n");
+	int sequenza[lunghezza];
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+	for(int i=0; i<lunghezza; i++) {
+		printf("Inserisci il %d%c intero: ", i+1, 167);
+		scanf("%d", &sequenza[i]);
+	}
+	if(ugualiCompresi(sequenza, lunghezza)) {
+		printf("Esiste una tripla di elementi consecutivi tale che almeno due elementi hanno somma compresa fra 10 e 20\n");
+		printf("(estremi inclusi) ed esattamente due elementi della tripla sono fra loro uguali\n");
+	}
+	else {
+		printf("Non esiste una tripla di elementi consecutivi tale che almeno due elementi hanno somma compresa fra 10 e 20\n");
+		printf("(estremi inclusi) ed esattamente due elementi della tripla sono fra loro uguali\n");
+	}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for checking consecutive triples
+- Proper handling of array bounds and loop termination
+- Good input validation for sequence length
+- Appropriate use of boolean flag for existence checking
+- Clear main program structure with proper user interaction
+
+Areas for Improvement:
+- The condition in the ugualiCompresi function could be more readable by breaking it into smaller, more manageable parts
+- Output messages could be more specific about which elements satisfy the conditions
+- Consider adding more descriptive variable names to improve code readability
+
+Key Recommendations:
+- Break down complex conditions into smaller, well-named boolean variables
+- Enhance output messages to be more informative about which elements form the valid triple
+- Consider adding comments to explain the logic of complex conditions
+- Use more descriptive variable names instead of generic ones like 'esiste' and 'i'
+</feedback_summary>

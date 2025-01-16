@@ -1,0 +1,87 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....3.3 = 6.0 - 1.0 - 1.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.0):....1.8 = 2.0 - 0.2
+   TOTAL.......................5.1
+*/
+
+#include <stdio.h>
+int restoDivisione(int *arr, int size){
+if (size>=3){
+    for (int i = 0; i < size; i++){ 
+        //******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < size - 2 -1.0
+        if (arr[i]%arr[i+1]==arr[i+2] || arr[i+2]%arr[i+1]==arr[i]
+            ||arr[i+1]%arr[i]==arr[i+2] || arr[i+2]%arr[i]==arr[i+1]
+            ||arr[i+2]%arr[i+1]==arr[i] 
+         ){
+            return 1;   
+        }
+        else {         
+            return 0;
+        }   
+        //******** RETURN THE CALCULATED VALUE ON THE FIRST TRIPLE -1.0
+    }
+}
+else
+{
+    printf("\nNon hai inserito una grandezza ammissibile, il programma si interrompe!\n");
+    //******** THE TEXT REQUIRES THE PRINT TO BE DONE IN THE MAIN -0.5
+}
+//******** HOW DO YOU CONSIDER 0? -0.2
+}
+
+int main(){
+int i = 0;
+int size = 0;
+printf("Inserisci la grandezza dell'array\n");
+scanf("%d", &size);
+int arr[size];
+printf("Ora inserisci i valori all'interno dell'array\n");
+for ( i = 0; i < size; i++){
+    scanf("%d", &arr[i]);
+}
+if(restoDivisione(arr,size)==1){
+    printf("L'istanza ha un valore vero, esiste almeno  una terna di elementi adiacenti tali che uno dei tre è il resto della divisone degli altri tre");
+}
+else {
+if (restoDivisione(arr,size)==0)
+{
+    printf("Non esiste nessuna tripla che soddisfa i requisiti"); 
+    //******** UNCLEAR MESSAGE -0.2
+}
+}
+return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic structure of the solution is present
+- Main function handles user interaction appropriately
+- Function implements the core logic for checking remainder conditions
+
+Areas for Improvement:
+1. Array Bounds:
+   - The loop in restoDivisione should check until size-2 to prevent buffer overflow
+   - Current implementation accesses invalid memory locations
+
+2. Logic Structure:
+   - The return statements inside the loop prevent checking all possible triples
+   - The function returns after checking only the first triple
+
+3. Error Handling:
+   - Zero case is not properly handled
+   - Error messages should be in the main function, not in restoDivisione
+
+4. Output Messages:
+   - Messages could be clearer and more concise
+   - Consider using English for wider accessibility
+
+Key Recommendations:
+1. Modify the loop condition to: for (int i = 0; i < size-2; i++)
+2. Remove the else clause inside the loop to check all triples
+3. Move error messages to main function
+4. Improve clarity of output messages
+5. Add proper handling for zero values
+</feedback_summary>

@@ -1,0 +1,88 @@
+I'll grade the submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)......... 2.0 = 5.0 - 1.5 - 1.0 - 0.5
+countNumbers (2).... 0.0 = 2.0 - 2.0
+readNumbers (2)..... 0.5 = 2.0 - 0.5 - 0.5 - 0.5
+writeNumbers(1)..... 0.4 = 1.0 - 0.4 - 0.2
+TOTAL............... 2.9
+*/
+
+#include <stdio.h>
+int massimoPari(int a[], int s){
+    //******** Recursion should be done on array length -1.0
+    //******** Base case is incorrect - should be s<=2 -0.5
+    int good;
+    if(s<3) 
+        good = 1; 
+    else {
+        //******** Logic error in checking maximum of triplet -1.5
+        if ((a[0]>a[1] && a[0]>a[2] && a[0]%2==0) ||
+            (a[1]>a[0] && a[1]>a[2] && a[1]%2==0) ||
+            (a[2]>a[0] && a[2]>a[1] && a[2]%2==0))
+                good = 1 && massimoPari(a+1, s-1); 
+        else
+            good = 0; 
+    }
+    return good; 
+}
+
+int quantiNumeri() {
+    //******** Missing implementation of countNumbers function -2.0
+}
+
+void leggiNumeri(int* arr[], int n) {
+    //******** Incorrect parameter type for array -0.5
+    int numeri;
+    FILE * fp = fopen("interi.dat", "rb");
+    if(fp==NULL) 
+        printf("non c'è niente da leggere!\n");
+    else {
+        //******** Incorrect array syntax -0.5
+        arr[n];
+        //******** Incorrect fread syntax -0.5
+        fread(numeri, sizeof(int), n, fp); 
+    }
+    fclose(fp);
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    //******** Wrong file mode for writing -0.4
+    FILE *fp = fopen("interi.dat", "rb"); 
+    //******** Missing actual write operation -0.2
+    fclose(fp);
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is in place
+- File handling includes error checking for NULL
+- Main menu logic is implemented correctly
+
+Areas for Improvement:
+1. massimoPari function:
+   - Recursion implementation needs revision
+   - Base case should handle arrays of length ≤ 2
+   - Logic for checking maximum of triplet needs correction
+
+2. File Operations:
+   - quantiNumeri function is completely missing
+   - leggiNumeri has incorrect parameter types and fread syntax
+   - scriviNumeri opens file in wrong mode and lacks write operation
+
+3. General Implementation:
+   - Array handling needs improvement
+   - File operations need proper implementation
+   - Error handling could be more comprehensive
+
+Key Recommendations:
+1. Implement the missing quantiNumeri function
+2. Fix the recursion logic in massimoPari
+3. Correct file operation modes and implementations
+4. Review array parameter passing
+5. Add proper error handling for file operations
+</feedback_summary>

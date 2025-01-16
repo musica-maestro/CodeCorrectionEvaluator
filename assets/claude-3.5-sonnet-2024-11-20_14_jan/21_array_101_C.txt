@@ -1,0 +1,95 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.5 = 6.0 - 0.5
+   MAIN PROGRAM (max 2.5):....2.2 = 2.5 - 0.3
+   TOTAL.......................7.7/8.5
+*/
+
+#include <stdio.h>
+//******** FUNCTION NAME SHOULD BE LOWERCASE AS PER C CONVENTIONS (no points deducted - style only)
+ int CompresiMultipli3 (int serie2 [],int lunghezza2){
+	 int ver=0;	
+	 for(int i=0;i<lunghezza2-2&&!ver;i++){
+		//******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+		if ((serie2 [i]<=10&&serie2 [i]>=-10)&&(serie2 [i+1]<=10&&serie2 [i+1]>=-10)){
+			if (serie2 [i]%3==0&&serie2 [i+1]%3==0&&serie2 [i+2]%3!=0){
+				 ver=1;
+			}
+			if (serie2 [i]%3==0&&serie2 [i+2]%3==0&&serie2 [i+1]%3!=0){
+				 ver=1;
+				}
+			if (serie2 [i+2]%3==0&&serie2 [i+1]%3==0&&serie2 [i]%3!=0){
+				 ver=1;
+				}
+		}
+		if ((serie2 [i]<=10&&serie2 [i]>=-10)&&(serie2 [i+2]<=10&&serie2 [i+2]>=-10)){
+			if (serie2 [i]%3==0&&serie2 [i+1]%3==0&&serie2 [i+2]%3!=0){
+				 ver=1;
+				}
+			if (serie2 [i]%3==0&&serie2 [i+2]%3==0&&serie2 [i+1]%3!=0){
+				 ver=1;
+				}
+			if (serie2 [i+2]%3==0&&serie2 [i+1]%3==0&&serie2 [i]%3!=0){
+				 ver=1;
+				}
+		}
+		if ((serie2 [i+2]<=10&&serie2 [i+2]>=-10)&&(serie2 [i+1]<=10&&serie2 [i+1]>=-10)){
+			if (serie2 [i]%3==0&&serie2 [i+1]%3==0&&serie2 [i+2]%3!=0){
+				 ver=1;
+				}
+			 if (serie2 [i]%3==0&&serie2 [i+2]%3==0&&serie2 [i+1]%3!=0){
+				 ver=1;
+				}
+			if (serie2 [i+2]%3==0&&serie2 [i+1]%3==0&&serie2 [i]%3!=0){
+				 ver=1;
+				}
+		}
+	}
+	return ver;
+}
+
+int main(int argc, char **argv)
+{
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+	printf("questo programma chiede una serie di elementi all'utente e verifica se esiste una tripla in cui:\n");
+	printf("-almeno 2 elementi sono compresi tra -10 e 10  estremi inclusi\n");
+	printf("-esattamente 2 elementiu sono divisibili per 3\n\n");
+	printf("quanti interi vuoi inserire? ");
+	int lunghezza;	
+	scanf("%d",&lunghezza);
+	int serie [lunghezza];
+	for(int i=0;i<lunghezza;i++){
+		printf("inserisci un intero: ");
+		scanf("%d",&serie[i]);
+	}
+	if (CompresiMultipli3(serie,lunghezza)){
+			printf("la serie inserita contiene almeno una tripla che rispetta la condizione");
+	}else{
+			printf("la serie inserita non contiene almeno una tripla che rispetta la condizione");
+	}
+	return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the existential verification logic
+- Proper use of boolean flag to exit loop when condition is found
+- Correct handling of array bounds
+- Good implementation of the main function with proper user interaction
+- Correct implementation of the multiple conditions for checking triples
+
+Areas for Improvement:
+- Code readability could be enhanced by simplifying the nested conditions
+- Output messages could be more specific about what conditions are being checked
+- Function name should follow C naming conventions (lowercase)
+- Code could be more efficiently structured to reduce repetition of similar conditions
+
+Key Recommendations:
+- Consider restructuring the conditions to improve readability
+- Make output messages more descriptive and specific
+- Follow C naming conventions for functions
+- Consider using helper functions to reduce code repetition
+- Add input validation for array length
+</feedback_summary>

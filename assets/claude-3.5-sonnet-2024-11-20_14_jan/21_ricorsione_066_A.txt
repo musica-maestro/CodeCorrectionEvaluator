@@ -1,0 +1,94 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* 
+maxEven (5)............2.0 = 5.0 - 1.5 - 1.0 - 0.5
+countNumbers (2).......0.5 = 2.0 - 1.0 - 0.5
+readNumbers (2)........0.5 = 2.0 - 1.0 - 0.5
+writeNumbers(1)........0.5 = 1.0 - 0.5
+TOTAL..................3.5/10
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int massimoPari(int *seq, int lunghezza){
+    //******** Base case is correct but accessing array elements when length<=2 is unsafe -1.0
+    int verificato;
+    int max;
+    if(lunghezza<=2)
+        verificato = 1;
+    else{
+        //******** Inefficient and error-prone way to find maximum of three numbers -1.5
+        max = seq[0];
+        if(seq[1]>max)
+            max = seq[1];
+        else if(seq[2]>max)
+            max = seq[2];
+        verificato = (max%2==0) && massimoPari(seq+1, lunghezza-1);
+    }
+    return verificato;
+}
+
+int quantiNumeri() {
+    int numeri = 0;
+    int valore;
+    FILE *fp = fopen("numeri.txt", "r");
+    //******** Incorrect fscanf syntax will cause errors -1.0
+    while(fscanf(&valore, "%d", 1, fp)==1)
+        numeri++;
+    fclose(fp);
+    //******** Missing file open error check -0.5
+    return numeri;
+}
+
+void leggiNumeri(int* sequenza, int lunghezza) {
+    FILE *fp = fopen("numeri.txt", "r");
+    //******** Incorrect fscanf syntax -1.0
+    for(int i=0; i<lunghezza; i++)
+        fscanf(&sequenza[i], "%d", 1, fp); 
+    fclose(fp);
+    //******** Missing file open error check -0.5
+}
+
+void scriviNumeri(int* sequenza, int lunghezza) {
+    FILE *fp = fopen("numeri.txt", "w");
+    //******** Incorrect fprintf syntax -0.5
+    for(int i=0; i<lunghezza; i++)
+        fprintf(&sequenza[i], "%d", 1, fp);
+    fclose(fp);
+    printf("Salvataggio effettuato\n");
+}
+
+[Rest of main() function remains unchanged]
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic recursive structure implemented in massimoPari function
+- File operations (open/close) properly implemented
+- Good program flow control in main function
+
+Areas for Improvement:
+1. massimoPari function:
+   - Unsafe array access when length <= 2
+   - Inefficient maximum calculation method
+   - Consider using a helper function for finding maximum
+
+2. File Operations:
+   - Add error checking for file operations
+   - Fix incorrect fscanf/fprintf syntax
+   - Use proper parameter order in file operations
+
+3. General:
+   - Add input validation
+   - Implement proper error handling
+   - Fix function naming to match assignment requirements
+
+Key Recommendations:
+1. Add file operation error checking: if(fp == NULL)
+2. Fix file I/O function syntax
+3. Implement safer array access in recursive function
+4. Add proper input validation
+5. Follow assignment naming conventions
+</feedback_summary>

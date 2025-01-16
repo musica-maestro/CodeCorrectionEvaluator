@@ -1,0 +1,63 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................7.3
+*/
+
+#include <stdio.h>
+  int ugualiCompresi(int a[],int l){
+	  int i=0;
+	  int esiste=0;
+	  while(i<l-2 && !esiste){
+		   //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+		   if( ((a[i]==a[i+1] && a[i+2]!=a[i]) || (a[i]==a[i+2] && a[i+1]!=a[i]) || (a[i+1]==a[i+2] && a[i]!=a[i+1]))
+		   && ( (a[i]+a[i+1]>=10 && a[i]+a[i+1]<=20) || (a[i]+a[i+2]>=10 && a[i]+a[i+2]<=20) || (a[i+1]+a[i+2]>=10 && a[i+1]+a[i+2]<=20)) )
+			   esiste=1;
+			else
+				i++;
+	  }
+	  return esiste;
+  }
+int main(){
+	int i=0;
+	int n;
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+	printf("Caro utente sono un programma che verifica se nella tua stringa esiste almeno una tripla di elementi consecutivi\n");
+	printf("tali che la somma di due elementi sia compresa tra 10 e 20, inserisci la lunghezza della sequenza\n");
+	scanf("%d", &n);
+	int interi[n];
+	while(i<n){
+		printf("Inserisci l'elemento in posizione %d:\n", i);
+		scanf("%d", &interi[i]);
+		i++;
+	}
+	if(ugualiCompresi(interi,n)==1)
+		printf("Nella sequenza esiste almeno una tripla tale che la somma di due elementi sia compresa tra 10 e 20 e due elementi sono uguali\n");
+	else
+		printf("Nella sequenza NON esiste nemmeno una tripla tale che la somma di due elementi sia compresa tra 10 e 20 e due elementi sono uguali\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for checking consecutive triples
+- Proper handling of array bounds with l-2 in the loop condition
+- Correct implementation of the condition for exactly two equal elements
+- Good use of boolean variable for loop control
+- Proper array input handling in main function
+
+Areas for Improvement:
+- The condition in the if statement could be more readable by breaking it into smaller logical parts
+- Output messages could be more precise in describing the sequence properties
+- Consider using more descriptive variable names (e.g., 'exists' instead of 'esiste')
+
+Key Recommendations:
+- Break down complex conditions into smaller, more readable parts using intermediate boolean variables
+- Improve output messages to be more specific about the properties being checked
+- Consider adding input validation for array length (n > 0)
+- Use more descriptive variable names to improve code readability
+</feedback_summary>
+
+The student's implementation is generally correct and handles the requirements well. The main deductions are for readability issues in the condition statement and output message clarity. The function correctly implements the logic for finding triples with exactly two equal elements and proper sum conditions. The main function handles user interaction appropriately, though the output messages could be more precise.

@@ -1,0 +1,68 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 1.0 - 1.0
+   MAIN PROGRAM (max 2.5):....2.2 = 2.5 - 0.3
+   TOTAL.......................6.2
+*/
+
+#include <stdio.h>
+int maggiorePari5(int ar[],int l){
+    int i=0;
+    int r=1;
+    //******** CONDITION WRONG: EXACTLY TWO ELEMENTS MUST BE >= 5 (THE THIRD MUST BE < 5) -1.0
+    while(i<l-2){ 
+        if(((ar[i]>=5&& ar[i+1]>=5)
+        ||(ar[i]>=5&& ar[i+2]>=5)
+        ||(ar[i+1]>=5&& ar[i+2]>=5))
+        &&((ar[i]%2==0&&ar[i+1]%2==0)||(ar[i+1]%2==0&&ar[i+2]%2==0)||(ar[i]%2==0&&ar[i+2]==0))){
+            i++;
+        }else{
+            r=0;
+            i++; 
+        }
+    }
+    //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+    return r;
+}
+
+int main(){
+    int length;
+    int res;
+    printf("\nInserisci lunghezza della sequenza: ");
+    scanf("%d",&length);
+    int seq[length];
+    for(int i=0;i<length;i++){
+        printf("\nInserisci l'elemento %d della sequenza: ",i);
+        scanf("%d",&seq[i]);
+        printf("\n");
+    }
+    res=maggiorePari5(seq,length);
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+    if(res==1){
+        printf("\nNella sequenza tutte le triplette hanno almeno 2 numeri maggiori o uguali a 5 e 2 numeri pari.");
+    }else{
+        printf("\nNella sequenza NON tutte le tripletta hanno almeno 2 numeri maggiori o uguali a 5 e 2 numeri pari.");
+    }
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct array bounds checking in the loop (i<l-2)
+- Proper function structure with parameters and return value
+- Good user interaction in main() with clear input prompts
+- Correct implementation of array allocation based on user input
+
+Areas for Improvement:
+- The logic for checking exactly two elements >= 5 is incorrect. The current implementation allows for all three elements to be >= 5, which doesn't match the requirement
+- The code readability could be improved by breaking down the complex conditional statement into smaller, more manageable parts
+- Output messages could be more specific about the exact conditions being checked (exactly two elements >= 5 and at least two even numbers)
+
+Key Recommendations:
+1. Modify the condition to ensure exactly two elements are >= 5 by adding checks that the third element must be < 5
+2. Break down the complex condition into separate boolean variables with meaningful names
+3. Update the output messages to clearly specify the exact conditions being checked
+4. Consider adding input validation for the sequence length
+</feedback_summary>

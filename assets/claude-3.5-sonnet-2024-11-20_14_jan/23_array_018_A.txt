@@ -1,0 +1,59 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....3.5 = 6.0 - 2.0 - 0.5
+   MAIN (max 2.0):.......1.5 = 2.0 - 0.5
+   TOTAL..................5.0
+*/
+
+#include <stdio.h>
+int funzioneMultipli(int interi[], int lunghezza){
+	int multiplo; 
+	multiplo=0;
+	//******** THIS IS A UNIVERSAL VERIFICATION, NOT AN EXISTENTIAL ONE -2.0
+	for(int i=0;i<lunghezza-2;i++){  
+		if((interi[i]==2*interi[i+1])||(interi[i]==2*interi[i+2])||(interi[i+1]==2*interi[i])||(interi[i+1]==2*interi[i+2])||(interi[i+2]==2*interi[i])||(interi[i+2]==2*interi[i+1]))
+			multiplo=1;
+	}                   
+	//******** INCORRECT INDENTATION -0.5
+	return multiplo;
+}
+int main()
+{
+	int n; 
+	printf("Caro utente, di quanti interi e' composta la sequenza?\n");
+	scanf("%d",&n);
+	//******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+	int interi[n]; 
+	for(int i=0;i<n;i++){
+		printf("utente introduci un intero:\n");
+		scanf("%d",&interi[i]);
+	}
+	funzioneMultipli(interi,n);
+	if(funzioneMultipli(interi,n))
+		printf("In tutte le terne di elementi adiacenti della sequenza c'e' almeno un multiplo\n\ndegli altri due");
+	else
+		printf("Non esistono terne in cui c'e' un multiplo deegli altri due.\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct function parameters and return type
+- Proper array handling and iteration
+- Good user interaction in main function
+- Complete implementation of the multiple checking logic
+
+Areas for Improvement:
+- The logic implements an existential verification instead of the required universal verification. The function should return 1 only if ALL triples contain a multiple, not just if one triple contains a multiple.
+- Code indentation needs improvement for better readability
+- Array declaration should follow the size input
+- The function is called twice unnecessarily in main
+
+Key Recommendations:
+- Modify the logic to implement universal verification by initializing multiplo to 1 and setting it to 0 if any triple fails the condition
+- Fix indentation following standard coding practices
+- Move array declaration after getting the size input
+- Store the function result in a variable instead of calling it twice
+- Consider adding input validation for array size and elements
+</feedback_summary>

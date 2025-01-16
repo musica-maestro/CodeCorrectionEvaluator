@@ -1,0 +1,83 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....4.3 = 6.0 - 1.0 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.0):....1.0 = 2.0 - 0.5 - 0.5
+   TOTAL.......................5.3
+*/
+
+# include <stdio.h>
+int duePositivi(int v[], int n){
+    int i=0;                
+    int duePos =1;
+    int p=0;
+    //******** ARRAY LENGTH CHECK SHOULD BE n<3 INSTEAD OF n<=2 -0.5
+    if(n<=2)
+        duePos=0;
+    else{
+        //******** CONDITION SHOULD BE i<n-2 TO AVOID ARRAY BOUNDS ISSUES -1.0
+        while(i<n-2&&duePos){            
+            for(int j=i;j<=i+2;j++){
+                //******** NO EXPLICIT HANDLING OF ZERO VALUES -0.2
+                if(v[j]>0)
+                    p++;
+            }
+            if(p!=2)
+                duePos=0;
+            else {
+                p=0;
+                i++;
+            }
+        }
+    }
+    return duePos;
+}
+
+int main(int argc, char const *argv[])
+{
+    int n;
+    //******** ARRAY DECLARED BEFORE KNOWING SIZE -0.5
+    int v[n];  
+    printf("inserisci la lunghezza della sequenza:\n");
+    scanf("%d",&n);
+    for(int i=0;i<n;i++){
+        printf("inserisci il %d elemento: \n", i+1);
+        //******** NON-DESCRIPTIVE OUTPUT MESSAGES -0.5
+        scanf("%d",&v[i]);
+    }
+    if(duePositivi(v,n))
+        printf("in tutte le triple di elementi adiacenti  della sequenza ci sono esattamente due positivi\n");
+    else
+        printf("non in tutte le triple di elementi adiacenti  della sequenza ci sono esattamente due positivi\n");
+    return 0;
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the universal verification logic
+- Proper use of boolean flag for tracking conditions
+- Good structure in checking triples of elements
+- Appropriate function return values
+
+Areas for Improvement:
+- Array declaration should occur after size input
+- Array bounds checking needs more precise conditions
+- Zero values should be explicitly handled in the positivity check
+- Output messages could be more descriptive and user-friendly
+- Array length validation could be more precise
+
+Key Recommendations:
+1. Move array declaration after getting size input:
+   ```c
+   scanf("%d", &n);
+   int v[n];
+   ```
+2. Update array bounds check:
+   ```c
+   if(n < 3) instead of if(n <= 2)
+   ```
+3. Consider explicit handling of zero values in the positivity check
+4. Make output messages more descriptive and user-friendly
+5. Use more precise array bounds checking in the while loop condition
+</feedback_summary>

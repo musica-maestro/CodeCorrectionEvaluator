@@ -1,0 +1,69 @@
+I'll grade the student's submission according to the provided criteria.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.2 - 0.5
+   MAIN PROGRAM (max 2.5):....2.2 = 2.5 - 0.3
+   TOTAL.......................7.5
+*/
+
+#include <stdio.h>
+int ugualiCompresi (int interi[], int n) {
+    int i=0; 
+    int isUgualeCompreso=0; 
+    //******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+    while (i<n-2&&!isUgualeCompreso) {
+        if (((interi[i]+interi[i+1]<=20&&interi[i]+interi[i+1]>=10)
+        ||(interi[i]+interi[i+2]<=20&&interi[i]+interi[i+2]>=10)
+        ||(interi[i+2]+interi[i+1]<=20&&interi[i+2]+interi[i+1]>=10))
+        &&((interi[i]==interi[i+1]&&interi[i]!=interi[i+2])
+        ||(interi[i]==interi[i+2]&&interi[i]!=interi[i+1])
+        ||(interi[i+1]==interi[i+2]&&interi[i+1]!=interi[i])))
+            isUgualeCompreso=1;
+        else
+            i++;
+    }
+    return isUgualeCompreso;
+}
+
+int main () {
+    int n; 
+    printf("Ciao utente, sono un programma che verifica se\n");
+    printf("esiste una tripla di elementi consecutivi tale che\n");
+    printf("esattamente due elementi della tripla sono fra loro uguali,\n");
+    printf("e che almeno due elementi hanno somma compresa tra 10 e 20 inclusi.\n");
+    printf("Quanti numeri vuoi inserire?\n");
+    scanf("%d",&n);
+    int interi[n];
+    for (int i=0; i<n; i++) {
+        printf("Inserisci il %d%c elemento.\n",i+1,248);
+        scanf("%d",&interi[i]);
+    }
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.3
+    if (ugualiCompresi(interi,n))
+        printf("Esiste una tripla di elementi consecutivi che soddisfa tale propriet%c!\n",133);
+    else
+        printf("Non esiste una tripla di elementi consecutivi che soddisfa tale propriet%c!\n",133);
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for checking consecutive triples
+- Proper handling of array bounds in the while loop
+- Good implementation of the condition checking for exactly two equal elements
+- Well-structured main function with clear user interaction
+- Appropriate use of boolean flag for loop control
+
+Areas for Improvement:
+- The condition in the function could be more readable by breaking it into smaller, more manageable parts
+- The output messages could be more specific about which properties were found/not found in the sequence
+- Consider using more descriptive variable names to improve code readability
+
+Key Recommendations:
+- Break down complex conditions into smaller, well-named boolean variables
+- Enhance output messages to be more specific about the properties being checked
+- Consider adding comments to explain the logic of complex conditions
+- Use more descriptive variable names instead of generic ones like 'isUgualeCompreso'
+</feedback_summary>
+
+The student's implementation is generally solid, with only minor issues in readability and output clarity. The core logic correctly implements the requirements for checking both the sum condition and the equality condition for consecutive triples.

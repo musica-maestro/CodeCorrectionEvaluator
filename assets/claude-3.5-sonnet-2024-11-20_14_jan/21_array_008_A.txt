@@ -1,0 +1,73 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........1.0 = 6.0 - 3.0 - 1.0 - 1.0
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................3.0
+*/
+
+#include <stdio.h>
+ int ugualiCompresi(int array[], int l){
+	 int esiste;
+	 esiste = 1; 
+	 int i = 0;
+     //******** NEVER ENTERS THE LOOP! (while condition is !esiste but esiste=1) -1.0
+	 while(!esiste && i<l){
+         //******** CONDITION IS MISSING! -3.0
+		 if(){
+			 esiste = 0;  
+		 }
+		 else
+			 i++;
+	 }
+	 return esiste;
+ }
+int main() {
+	int n;
+	printf("Caro utente quanti interi ha la sequenza:\n");
+	scanf("%d",&n);
+	int array[n];
+	printf("Introduciamo gli interi della sequenza:\n");
+	for(int i=0;i<n;i++){
+		printf("Introduci il %d%c intero: ",i+1,167);
+		scanf("%d",&array[i]);
+	}
+    //******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+	if(ugualiCompresi(array,n))
+		printf("Nella sequenza esiste una tripla di interi con le condizioni descritte nella post-condizione\n");
+		else
+			printf("Non esiste una tripla di questo genere\n");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Main program structure is generally correct
+- Array input handling is properly implemented
+- Variable declarations and basic program flow are correct
+
+Areas for Improvement:
+1. Function Implementation:
+   - The while loop condition is incorrect (using !esiste when esiste=1)
+   - Missing the complete logic for checking:
+     * Consecutive triples
+     * Sum between 10 and 20
+     * Exactly two equal elements
+   - The if condition is empty
+
+2. Output Messages:
+   - The output message should be more specific about what conditions were checked
+
+Key Recommendations:
+1. Fix the loop condition and initialization:
+   - Initialize esiste to 0 (false) and use while(i < l-2 && !esiste)
+   - Add proper boundary check (l-2) for checking triples
+
+2. Implement the missing conditions:
+   - Check for exactly two equal elements in each triple
+   - Verify if any two elements sum between 10 and 20
+   - Consider all possible pairs within each triple
+
+3. Make output messages more descriptive:
+   - Clearly state the conditions being checked (equal elements and sum range)
+</feedback_summary>

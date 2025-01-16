@@ -1,0 +1,77 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....1.1 = 6.0 - 1.5 - 1.5 - 0.5 - 1.0 - 0.2 - 0.2
+   MAIN PROGRAM (max 2.0):....0.5 = 2.0 - 0.5 - 0.5 - 0.5
+   TOTAL.......................1.6
+*/
+
+#include <stdio.h>
+int duePositivi(int interi[], int n){ 
+int verificato; 
+int i; 
+//******** INCORRECT INITIALIZATION: == is comparison, not assignment -1.5
+verificato==1; 
+//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < n - 2 -1.0
+for(i=0; i<n-2; i++){
+    //******** PRINT MESSAGES SHOULD BE IN MAIN, NOT FUNCTION -1.5
+    if(interi[i]>0 && interi[i+1]>0 && interi[i+2]>0 && verificato)
+        printf("Tutti gli interi da te inseriti sono positivi, inserisci un'altra sequenza!\n");
+        //******** INCORRECT ASSIGNMENT OPERATOR == instead of = -0.2
+        verificato==0;
+    if(interi[i]>0 && interi[i+1]>0 && interi[i+2]<0 && verificato)
+        printf("Tutte le triple contengono esattamente due interi positivi|\n");
+        verificato==1;
+    if(interi[i]>0 && interi[i+1]<0 && interi[i+2]>0 && verificato)
+        printf("Tutte le triple contengono esattamente due interi positivi\n");
+        verificato==1;
+    if(interi[i]<0 && interi[i+1]>0 && interi[i+2]>0 && verificato)
+        printf("Tutte le triple contengono esattamente due interi positivi\n");
+        verificato==1;  
+}
+return verificato;
+} 
+
+int main(){
+int n; 
+//******** ARRAY DECLARED BEFORE KNOWING SIZE -0.5
+int interi[n];  
+int verificato; 
+printf("Ciao utente, quanti interi vuoi introdurre?\n");
+scanf("%d", &n);
+for(int i=0; i<n; i++){
+    printf("Inserisci i tuoi interi\n");
+    //******** INCORRECT ARRAY INDEX: should be interi[i] not interi[n] -0.5
+    scanf("%d", &interi[n]);  
+}
+//******** INCORRECT ASSIGNMENT/COMPARISON OPERATOR -0.5
+duePositivi(interi, n)==verificato;  
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic structure of function and main program present
+- Attempt to check for positive numbers in triples
+- User interaction implementation attempted
+
+Areas for Improvement:
+1. Function Implementation:
+- Fix assignment operators (use = instead of ==)
+- Remove print statements from function (should be in main)
+- Correct array bounds checking
+- Properly initialize verificato variable
+
+2. Main Program:
+- Declare array after getting size from user
+- Fix array indexing in scanf
+- Properly handle function return value
+- Add appropriate output messages
+
+Key Recommendations:
+1. Review basic operators (= vs ==)
+2. Move all user interaction to main function
+3. Fix array handling and indexing
+4. Implement proper control flow with correct variable assignments
+5. Add proper output messages in main based on function return value
+</feedback_summary>

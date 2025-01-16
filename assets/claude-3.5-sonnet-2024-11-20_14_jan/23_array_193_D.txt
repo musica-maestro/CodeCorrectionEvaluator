@@ -1,0 +1,65 @@
+I'll grade the submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........3.3 = 6.0 - 1.5 - 0.5 - 0.5 - 0.2
+   MAIN PROGRAM (max 2.0):....1.4 = 2.0 - 0.5 - 0.1
+   TOTAL......................4.7
+*/
+
+#include <stdio.h>
+int restoDivisione (int interi [], int lunghezza){
+    //******** INCORRECT INDENTATION -0.5
+	for (int i=0; i<lunghezza-2; i++){
+        //******** CONDITION ON THE TRIPLE IS PARTIALLY WRONG/INCOMPLETE -1.5
+        //******** HOW DO YOU CONSIDER 0? -0.2
+		if (interi [i]==interi [i+1]%interi [i+2] || interi[i]==interi[i+2]%interi[i+1]
+			|| interi[i+1==interi[i+2] || interi[i+2] || interi[i+1]==interi[i+2]%interi[i]
+			|| interi [i+2]==interi[i]%interi[i+1] || interi[i+2]==interi[i+1]%interi[i]){
+	            return 1;
+            }
+    }
+    return 0;
+}
+int main (){
+	int lunghezza;
+    printf("Quanti interi vuoi introdurre? ");
+    scanf("%d", &lunghezza);
+    //******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+    int sequenza [lunghezza];
+    printf("\n");
+    //******** MISSING SPACE IN OUTPUT -0.1
+    for (int i=0; i<lunghezza; 1++){ 
+    	printf("Introduci un intero:  ");
+	    scanf("%d", &sequenza[i]);
+	}
+	if(restoDivisione(sequenza,lunghezza))
+    printf("\n Esiste una terna di elementi adiacenti nell'array in cui \
+    	è presente un elemento uguale al resto della divisione tra gli altri due \n ");
+    else
+    	printf("\n Non è presente alcuna terna di elementi adiacenti in cui è presente \
+    		un elemento uguale al resto della divisione tra glòi altri due \n ");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic function structure is correct
+- Main program handles user interaction as required
+- Correct use of parameters in restoDivisione function
+- Proper return values (0 or 1) for the required condition
+
+Areas for Improvement:
+- Code indentation needs to be consistent throughout
+- The condition for checking the remainder relationship is partially incorrect and could be simplified
+- Array declaration should follow the length input
+- Consider edge cases like division by zero
+- Output formatting needs improvement (spacing)
+
+Key Recommendations:
+1. Fix indentation for better code readability
+2. Revise the remainder checking condition to ensure all cases are correctly covered
+3. Move array declaration after getting the length input
+4. Add validation for division by zero cases
+5. Clean up output formatting and spacing
+6. Consider using more descriptive variable names
+</feedback_summary>

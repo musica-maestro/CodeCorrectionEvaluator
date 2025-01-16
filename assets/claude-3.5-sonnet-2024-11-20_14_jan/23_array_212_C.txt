@@ -1,0 +1,69 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):....3.0 = 6.0 - 1.5 - 1.0 - 0.5
+   MAIN (max 2.0):.......1.0 = 2.0 - 0.5 - 0.5
+   TOTAL.................4.0
+*/
+
+#include <stdio.h>
+int dueUnaCifra(int*seq, int lung) {
+	int esiste=1;
+	int i=0;
+	//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lung - 2 -1.0
+	while(i<=lung-2 && esiste) {   
+		//******** CONDITION ON THE TRIPLE IS WRONG -1.5
+		if((seq[i]<10 && seq[i+1]<10) ||
+		   (seq[i]<10 && seq[i+2]<10) ||
+		   (seq[i+1]<10 && seq[i+1]<10))  
+			esiste=0;
+		else
+			i++;
+	}
+	return esiste;
+}
+int main() {
+	int lunghezza;
+	int i;
+	printf("Quanti interi vuoi? ");
+	scanf("%d", &lunghezza);
+	//******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+	int sequenza[lunghezza];
+	//******** ARRAY INDEX OUT OF BOUNDS, SHOULD BE i < lunghezza - 2 -0.5
+	for(int i=0;i<=lunghezza-2;i++) { 
+	printf("Dammi un intero: ");
+	scanf("%d", &sequenza[i]);
+    }
+    if(dueUnaCifra(sequenza, lunghezza))
+		printf("In tutte le triple della sequenza sono presenti due numeri a cifra singola ");
+	else
+		printf("Non in tutte le triple della sequenza sono presenti due numeri a cifra singola");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Basic program structure is correct
+- Function and main program separation is appropriate
+- Input/output messages are clear and informative
+
+Areas for Improvement:
+1. Array Bounds:
+   - The loop conditions should use < instead of <= to avoid buffer overflow
+   - Array access needs to be properly bounded for triples
+
+2. Logic Issues:
+   - The triple condition check is incorrect
+   - Current logic inverts the expected result (returns 0 when it should return 1)
+   - Need to check all combinations in each triple properly
+
+3. Implementation:
+   - Array declaration should follow after getting the length
+   - Loop bounds need adjustment to properly process triples
+
+Key Recommendations:
+1. Fix the triple checking logic to properly verify if at least two numbers are single digits
+2. Correct array bounds in both function and main to prevent buffer overflow
+3. Move array declaration after getting the length input
+4. Review and test with various input cases to ensure correct behavior
+</feedback_summary>

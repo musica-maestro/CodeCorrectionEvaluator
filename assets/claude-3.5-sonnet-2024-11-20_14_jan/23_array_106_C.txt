@@ -1,0 +1,65 @@
+I'll grade the student's submission following the provided format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........4.0 = 6.0 - 2.0
+   MAIN PROGRAM (max 2.0):....1.5 = 2.0 - 0.5
+   TOTAL.......................5.5
+*/
+
+#include <stdio.h>
+int DueUnaCifra(int *seq,int lunghezza){
+    int i=0;        
+    int triple=1;    
+    //******** CONDITION ON THE TRIPLE IS WRONG - SHOULD CHECK FOR SINGLE DIGITS USING seq[i] >= 0 && seq[i] <= 9 -1.5
+    while(i<lunghezza-2 && triple==1){
+        if((seq[i]-10 <0 && seq[i+1]-10<0 && seq[i+2]-10<0) ||
+         (seq[i]-10 <0 && seq[i+1]-10<0) || (seq[i]-10 <0 && seq[i+2]-10<0) ||
+          (seq[i+1]-10<0 && seq[i+2]-10<0))
+            i++;
+        else triple=0;
+    }
+    return triple;
+}
+
+int main(){
+    int lunghezza;   
+    printf("dammi la lunghezza dell'array\n");
+    scanf("%d",&lunghezza);
+    //******** DECLARE THE ARRAY ONLY AFTER GETTING THE LENGTH -0.5
+    int seq[lunghezza];   
+    for(int i=0;i<lunghezza;i++){
+        printf("dammi un intero: \n");
+        scanf("%d",&seq[i]);
+        if(seq[i]<0){
+            printf("il valore inserito non e' valido");
+            break;
+        }
+    }
+    //******** EVEN -12635 IS LESS THAN 10, BUT IT DOESN'T HAVE A DIGIT. SHOULD CHECK FOR POSITIVE INTEGERS -0.5
+    if(DueUnaCifra(seq,lunghezza))
+        printf("tutte le triple contengono almeno 2 interi composti da una sola cifra");
+    else
+        printf(" NON tutte le triple contengono almeno 2 interi composti da una sola cifra");
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct overall program structure with separate function and main
+- Proper array handling and function parameters
+- Basic input validation for negative numbers
+- Clear output messages
+
+Areas for Improvement:
+- The condition for checking single-digit numbers should use proper comparison (>= 0 && <= 9)
+- Array declaration should follow after getting the length input
+- Input validation should be more comprehensive to ensure only positive integers
+- The logic for checking triples could be simplified and made more accurate
+
+Key Recommendations:
+1. Modify the single-digit check to use proper comparison operators
+2. Move array declaration after validating the length input
+3. Implement complete input validation for positive integers
+4. Simplify the triple-checking logic to make it more readable and accurate
+5. Consider adding more descriptive error messages for invalid inputs
+</feedback_summary>

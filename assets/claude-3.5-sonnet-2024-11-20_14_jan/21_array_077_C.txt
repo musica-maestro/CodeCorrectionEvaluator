@@ -1,0 +1,69 @@
+I'll grade the student's submission following the provided criteria and format.
+
+<graded_code>
+/* FUNCTION (max 6.0):........5.3 = 6.0 - 0.2 - 0.5
+   MAIN PROGRAM (max 2.5):....2.0 = 2.5 - 0.5
+   TOTAL.......................7.3/8.5
+*/
+
+#include <stdio.h>
+int compresiMultipli3(int serie[],int dimensione) {
+	int esito;   
+	int i;       
+	esito = 0;   
+	for (i=0;i<dimensione-2;i++) {
+		//******** CONDITION IS COMPLICATED BUT NOT VERY READABLE -0.2
+		if (((((serie[i]>=(-10))&&(serie[i]<=10))&&((serie[i+1]>=(-10))&&(serie[i+1]<=10)))
+		||(((serie[i+2]>=(-10))&&(serie[i+2]<=10))&&((serie[i+1]>=(-10))&&(serie[i+1]<=10)))
+		||(((serie[i]>=(-10))&&(serie[i]<=10))&&((serie[i+2]>=(-10))&&(serie[i+2]<=10))))
+		&&(((serie[i]%3==0)&&(serie[i+1]%3==0)&&(serie[i+2]%3!=0))
+		||((serie[i+2]%3==0)&&(serie[i+1]%3==0)&&(serie[i]%3!=0))
+		||((serie[i]%3==0)&&(serie[i+2]%3==0)&&(serie[i+1]%3!=0)))) {
+			esito = 1;
+		}
+	}
+	return esito;
+}
+int main()
+{
+	int lunghezza;    
+	int risultato;    
+	int i;            
+	printf("Quanti interi vuoi inserire?\n");
+	scanf("%d",&lunghezza);
+	int sequenza[lunghezza];     
+	for (i=0;i<lunghezza;i++) {
+		printf("Inserisci l'intero %d\n",i+1);
+		scanf("%d",&sequenza[i]);
+	}
+	risultato = compresiMultipli3 (sequenza,lunghezza);
+	//******** OUTPUT IS POORLY EXPRESSED (DOES NOT SPECIFY WHICH PROPERTY THE SEQUENCE SATISFIES) -0.5
+	if (risultato == 1) {
+		printf("La serie di interi contiene almeno una tripla di numeri di cui almeno due compresi fra -10 e 10 e almeno due divisibili per 3\n");
+	}
+	else {
+		printf("La sequenza non presenta alcuna tripla di numeri particolare");
+	}
+}
+</graded_code>
+
+<feedback_summary>
+Strengths:
+- Correct implementation of the core logic for checking triples
+- Proper array bounds checking in the loop
+- Good variable initialization
+- Correct implementation of the main function's input/output flow
+
+Areas for Improvement:
+- The condition in the compresiMultipli3 function is overly complex and could be broken down into smaller, more readable parts
+- The output messages could be more specific about what properties were found or not found in the sequence
+- Consider using more descriptive variable names (e.g., 'esito' could be 'found' or 'hasValidTriple')
+
+Key Recommendations:
+- Break down complex conditions into smaller, well-named boolean variables for better readability
+- Improve output messages to be more specific about the conditions being checked
+- Consider adding input validation for the sequence length
+- Use more descriptive variable names to improve code readability
+</feedback_summary>
+
+The student's implementation is generally correct and functional, with only minor issues in readability and output clarity. The core logic correctly identifies triples meeting the specified criteria, though the condition could be structured more clearly. The main program correctly handles user input and function calls, with only a small improvement needed in the output messages' clarity.
